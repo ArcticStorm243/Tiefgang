@@ -171,7 +171,7 @@ Alle 30 bis 50 Sekunden passiert zufällig etwas.
 | Stille | 0 m | 10 s lang keine neuen Gegner und +4 Leben pro Sekunde |
 | Sog der Tiefe | 0 m | 12 s lang dreifache Anziehung für Plankton und Perlen |
 | Elite-Patrouille | 200 m | Drei Elite-Gegner mit Goldring tauchen auf |
-| Perlenregen | 350 m | Zwei Perlen erscheinen in deiner Nähe |
+| Perlenregen | 350 m | Eine Perle erscheint in deiner Nähe |
 | Hydrothermale Schlote | 1000 m | 16 s lang brechen um dich 5 Schlote aus. Sie glühen vorher auf, weich ihnen aus. |
 | Tiefenbeben | 1400 m | 12 s lang fallen Felsbrocken. Rote Kreise mit Schatten zeigen den Einschlag. Die Felsen treffen auch Gegner. |
 | Tiefenriss | 2200 m | 6 Elite-Versionen der tiefsten Kreaturen strömen heraus |
@@ -239,10 +239,13 @@ Perlen sind rosa leuchtende Sammelobjekte. Sie bleiben liegen, bis du sie einsam
 
 | Quelle | Chance |
 |---|---|
-| Normaler Gegner | 2,5 % |
-| Elite-Gegner (Goldring) | 30 % |
-| Boss | 2 Perlen garantiert |
-| Planktonblüte | 60 % auf eine Perle |
+| Normaler Gegner | 0,25 % (Leuchtgarnelen und kleine Krabben lassen keine fallen) |
+| Elite-Gegner (Goldring) | 3,5 % |
+| Boss | 1 Perle garantiert |
+| Planktonblüte | 25 % auf eine Perle |
+| Perlenregen | 1 Perle |
+
+Im Schnitt reicht das für etwa eine Luckybox pro 5-Minuten-Tauchgang.
 
 Im Tutorial fallen keine Perlen.
 
