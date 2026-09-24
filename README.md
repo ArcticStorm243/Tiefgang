@@ -19,6 +19,7 @@ Offline: `index.html` herunterladen und im Browser öffnen.
 - [Ereignisse](#ereignisse)
 - [Mutationen](#mutationen)
 - [Erfolge und Skins](#erfolge-und-skins)
+- [Perlen, Luckybox und Mergen](#perlen-luckybox-und-mergen)
 - [Logbuch](#logbuch)
 - [Speicherstand](#speicherstand)
 - [Technik](#technik)
@@ -75,7 +76,15 @@ Im Tutorial sinkst du nicht, es spawnen keine Gegner von selbst, und du kannst n
 - **Elite-Gegner** mit Goldring haben dreifaches Leben und geben mehr Erfahrung.
 - Pfeile am Bildschirmrand zeigen, wo Bosse und Goldquallen sind.
 
-**HUD:** Oben links siehst du Tiefe, Zone, Leben (weiss) und Sprint (violett). Oben rechts stehen Stufe, Besiegte und Rekord. Unten ist der Erfahrungsbalken.
+**HUD:**
+
+| Wo | Was |
+|---|---|
+| Oben links | Tiefe, aktuelle Zone und **Fortschritt zur nächsten Zone** („Noch 83 m bis Dämmerzone“, unentdeckte Zonen erscheinen als ???). Der Balken leuchtet auf, wenn weniger als 25 m fehlen. |
+| Darunter | Leben (weiss) und Sprint (violett) mit Text „Sprint in 1.4 s“ bzw. „Sprint bereit“ |
+| Um die Qualle | Ein **violetter Ring** füllt sich, während der Sprint auflädt. Ist er bereit, blitzt der Ring kurz auf und es gibt einen Ton. Mit dem Skin *Kristall* ab ★2 zeigt ein cyanfarbener Ring den bereiten Schild. |
+| Oben rechts | Stufe, Besiegte, Rekord und **Perlen** |
+| Unten | Erfahrungsbalken |
 
 ---
 
@@ -159,7 +168,7 @@ Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen.
 
 ## Erfolge und Skins
 
-Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin** für deine Qualle. Skins wählst du unter **Logbuch & Skins → Skins**. Sie ändern Körper, Leuchten und Pulsfarbe, einige haben Spezialeffekte.
+Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin** für deine Qualle. Skins gibt es ausserdem aus der [Luckybox](#perlen-luckybox-und-mergen). Skins wählst du unter **Logbuch & Skins → Skins**. Sie ändern Körper, Leuchten und Pulsfarbe, einige haben Spezialeffekte.
 
 | Erfolg | Bedingung | Skin |
 |---|---|---|
@@ -178,11 +187,76 @@ Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin*
 | Mutant | Stufe 10 in einem Tauchgang | Giftgrün |
 | Unberührbar | 3 Minuten am Stück ohne Treffer | Kristall (funkelt) |
 | Funkenkranz | 8 Leuchtfunken gleichzeitig | – |
+| Glückspilz | Erste Luckybox öffnen | – |
+| Verschmolzen | Einen Skin auf ★2 mergen | – |
+| Meisterform | Einen Skin auf ★3 mergen | – |
 | Stammgast | 10 Tauchgänge | – |
 | Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
 | Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
 
 Dazu kommt der Start-Skin **Klassisch**, insgesamt also 16 Skins.
+
+---
+
+## Perlen, Luckybox und Mergen
+
+### Perlen
+
+Perlen sind rosa leuchtende Sammelobjekte. Sie bleiben liegen, bis du sie einsammelst, und werden **dauerhaft** gespeichert.
+
+| Quelle | Chance |
+|---|---|
+| Normaler Gegner | 2,5 % |
+| Elite-Gegner (Goldring) | 30 % |
+| Boss | 2 Perlen garantiert |
+| Planktonblüte | 60 % auf eine Perle |
+
+Im Tutorial fallen keine Perlen.
+
+### Luckybox
+
+Für **5 Perlen** öffnest du eine Luckybox und bekommst einen zufälligen Skin. Die Box findest du im **Hauptmenü** und **nach einem Tauchgang**. Der Knopf zeigt an, wie viele Boxen du öffnen kannst. Spektakuläre Skins sind seltener:
+
+| Seltenheit | Chance gesamt | Skins |
+|---|---|---|
+| Gewöhnlich | 58,6 % | Klassisch, Perle, Dämmerlicht, Minze, Tiefseerose |
+| Selten | 25,0 % | Mitternacht, Glut, Giftgrün, Sonnenfunke |
+| Episch | 12,5 % | Glasgeist, Schattenqualle, Kristall, Sternenstaub |
+| Legendär | 3,1 % | Goldqualle, Polarlicht |
+| Mythisch | 0,8 % | Prisma |
+
+Ist der Skin neu, wird er freigeschaltet. Hast du ihn schon, egal ob aus einer Box oder durch einen Erfolg, bekommst du ein **Duplikat**.
+
+### Mergen und Spezialfähigkeiten
+
+Unter **Logbuch & Skins → Skins** mergst du Duplikate:
+
+| Stufe | Kosten | Wirkung |
+|---|---|---|
+| ★1 | – | Skin freigeschaltet, nur Aussehen |
+| ★2 | 2 Duplikate | Spezialfähigkeit aktiv |
+| ★3 | 3 weitere Duplikate | Spezialfähigkeit verstärkt |
+
+Die Fähigkeit wirkt nur, solange du den Skin **trägst**. Dein aktueller Skin und seine Fähigkeit stehen im Hauptmenü.
+
+| Skin | Fähigkeit | ★2 | ★3 |
+|---|---|---|---|
+| Klassisch | Robust | +15 max. Leben | +30 max. Leben |
+| Perle | Perlenglück | +50 % Perlenchance | +100 % Perlenchance |
+| Dämmerlicht | Stromlinie | +8 % Tempo | +16 % Tempo |
+| Minze | Frische | +0,7 Leben/s | +1,4 Leben/s |
+| Tiefseerose | Dornen | Angreifer bekommen Pulsschaden zurück | doppelter Pulsschaden |
+| Mitternacht | Weites Licht | +10 % Pulsreichweite | +20 % |
+| Glut | Glutpuls | +12 % Schaden | +24 % |
+| Giftgrün | Giftsporen | Start mit 1 Sporenwerfer | Start mit 2 |
+| Sonnenfunke | Sonnenkranz | Start mit 1 Leuchtfunken | Start mit 2 |
+| Glasgeist | Phasensprung | Sprint 18 % schneller bereit | 36 % |
+| Schattenqualle | Schattenblitz | Start mit Zitteraal | Zitteraal Stufe 2 |
+| Kristall | Kristallschild | Schild blockt alle 20 s einen Treffer | alle 12 s |
+| Sternenstaub | Sternensog | +40 % Anziehung | +80 % |
+| Goldqualle | Goldrausch | +25 % Erfahrung | +50 % |
+| Polarlicht | Polarwind | Puls 10 % häufiger | 20 % |
+| Prisma | Prismakraft | +10 % Schaden, +5 % Tempo, +10 % Erfahrung | doppelt so stark |
 
 ---
 
@@ -196,8 +270,8 @@ Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. 
 | Zonen | 5 feste und 8 prozedurale Zonen |
 | Bosse | Alle 3 Bosse, inklusive ob schon besiegt |
 | Ereignisse | Alle 7 Ereignisse |
-| Erfolge | Alle 18 Erfolge mit Bedingung und Belohnung |
-| Skins | Alle Skins, auswählbar sobald freigeschaltet |
+| Erfolge | Alle 21 Erfolge mit Bedingung und Belohnung |
+| Skins | Alle Skins mit Seltenheit, Box-Chance, Sternen, Fähigkeit, Tragen und Mergen |
 
 Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 31 Einträge.
 
@@ -206,7 +280,7 @@ Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie finde
 ## Speicherstand
 
 Alles wird lokal im Browser gespeichert (`localStorage`):
-Rekordtiefe, Logbuch, Erfolge, gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
+Rekordtiefe, Logbuch, Erfolge, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
 
 Der Fortschritt gilt pro Browser und Gerät. Wer die Browserdaten löscht, setzt alles zurück.
 
