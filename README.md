@@ -4,7 +4,9 @@ Endloses Tiefsee-Spiel im Browser. Du bist eine kleine Leuchtqualle und tauchst 
 
 ## Spielen
 
-`index.html` herunterladen und im Browser öffnen. Es braucht keine Installation und keinen Server.
+**▶ [Jetzt spielen](https://arcticstorm243.github.io/Tiefgang/)** – läuft direkt im Browser, auch auf dem Handy.
+
+Offline: `index.html` herunterladen und im Browser öffnen.
 
 | Steuerung | |
 |---|---|
