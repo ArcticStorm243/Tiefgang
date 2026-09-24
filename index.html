@@ -122,6 +122,8 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .entry .row{margin-top:6px}
 .btn2.sm{font-size:13px;padding:6px 12px}
 .btn2:disabled{opacity:.4;cursor:default}
+.btn2.danger{color:#ffb3c2;border-color:rgba(255,107,139,.35)}.btn2.danger:hover{background:rgba(255,107,139,.14);border-color:var(--coral)}
+.btn2.danger.armed{color:#fff;background:rgba(255,107,139,.3);border-color:var(--coral)}
 #cards.four{grid-template-columns:repeat(4,1fr)}#levelup.four .panel{width:min(1000px,100%)}
 .coderow{display:flex;gap:10px;margin:18px 0 10px;flex-wrap:wrap}
 #codeInput{flex:1;min-width:200px;font:inherit;font-size:17px;color:var(--ink);background:rgba(191,247,255,.06);border:1px solid var(--line);border-radius:999px;padding:12px 18px;outline:none;letter-spacing:.04em}
@@ -184,7 +186,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
   <div class="panel">
     <h2>Pausiert</h2>
     <p class="lead">Die Tiefe wartet.</p>
-    <div class="row"><button class="btn" id="resumeBtn" type="button">Weiter tauchen</button><button class="btn2" id="pLogBtn" type="button">Logbuch</button><button class="btn2" id="pKeysBtn" type="button">Steuerung</button></div>
+    <div class="row"><button class="btn" id="resumeBtn" type="button">Weiter tauchen</button><button class="btn2" id="pLogBtn" type="button">Logbuch</button><button class="btn2" id="pKeysBtn" type="button">Steuerung</button><button class="btn2 danger" id="endBtn" type="button">Tauchgang beenden</button></div>
   </div>
 </div>
 
@@ -854,7 +856,7 @@ function blurFocus() { const a = document.activeElement; if (a && a.blur) a.blur
 function subOpen() { return !$('logbook').hidden || !$('keys').hidden || !$('box').hidden || !$('code').hidden; }
 function togglePause() {
   if (subOpen()) return;
-  if (state === 'play') { state = 'pause'; show('pause', true); }
+  if (state === 'play') { state = 'pause'; disarmEnd(); show('pause', true); }
   else if (state === 'pause') { state = 'play'; show('pause', false); blurFocus(); }
 }
 function start(tutorial) {
@@ -870,6 +872,26 @@ function start(tutorial) {
 function askStart() {
   if (store.get('tutSeen', false)) { start(false); return; }
   show('menu', false); show('tutAsk', true);
+}
+let endArmed = false, endTimer = 0;
+function disarmEnd() {
+  endArmed = false; clearTimeout(endTimer);
+  const b = $('endBtn'); b.classList.remove('armed');
+  b.textContent = tut >= 0 ? 'Tutorial beenden' : 'Tauchgang beenden';
+}
+function endRun() {
+  if (state !== 'pause') return;
+  if (!endArmed) {
+    endArmed = true; $('endBtn').classList.add('armed');
+    $('endBtn').textContent = 'Wirklich beenden? Nochmal klicken';
+    clearTimeout(endTimer); endTimer = setTimeout(disarmEnd, 3000);
+    return;
+  }
+  disarmEnd(); show('pause', false);
+  if (tut >= 0) { store.set('tutSeen', true); toMenu(); return; }
+  state = 'play';
+  die();
+  $('deadTitle').textContent = 'Tauchgang beendet bei ' + Math.floor(depth) + ' m';
 }
 function toMenu() {
   ['dead', 'pause', 'levelup', 'tutAsk'].forEach(id => show(id, false));
@@ -1275,6 +1297,7 @@ $('dLogBtn').addEventListener('click', () => openSub('logbook', 'dead'));
 $('boxBtn').addEventListener('click', () => openSub('box', 'menu'));
 $('dBoxBtn').addEventListener('click', () => openSub('box', 'dead'));
 $('boxBack').addEventListener('click', closeSub);
+$('endBtn').addEventListener('click', endRun);
 $('codeBtn').addEventListener('click', () => { openSub('code', 'menu'); $('codeInput').value = ''; $('codeMsg').textContent = ''; $('codeMsg').className = 'codemsg'; setTimeout(() => $('codeInput').focus(), 30); });
 $('codeBack').addEventListener('click', closeSub);
 $('codeGo').addEventListener('click', redeem);
