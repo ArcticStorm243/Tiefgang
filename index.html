@@ -123,6 +123,12 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .btn2.sm{font-size:13px;padding:6px 12px}
 .btn2:disabled{opacity:.4;cursor:default}
 #cards.four{grid-template-columns:repeat(4,1fr)}#levelup.four .panel{width:min(1000px,100%)}
+.coderow{display:flex;gap:10px;margin:18px 0 10px;flex-wrap:wrap}
+#codeInput{flex:1;min-width:200px;font:inherit;font-size:17px;color:var(--ink);background:rgba(191,247,255,.06);border:1px solid var(--line);border-radius:999px;padding:12px 18px;outline:none;letter-spacing:.04em}
+#codeInput:focus{border-color:#9ff6ff;box-shadow:0 0 0 3px rgba(159,246,255,.18)}
+.codemsg{min-height:1.5em;margin:4px 0 0;font-weight:600}
+.codemsg.ok{color:#9ff6ff;text-shadow:0 0 14px rgba(159,246,255,.6)}.codemsg.bad{color:var(--coral)}
+.toast.arctic{border-left-color:#9ff6ff}.toast.arctic b{color:#9ff6ff}
 @media (max-width:640px){#cards,#cards.four{grid-template-columns:1fr}.card{min-height:0}.bars{width:140px}.tr{font-size:13px}.panel{padding:24px 22px}}
 @media (prefers-reduced-motion:reduce){#banner.show{animation-duration:2.4s}.toast{animation:none}}
 </style>
@@ -162,7 +168,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
       <div><strong id="menuPearls">0</strong>Perlen</div>
     </div>
     <p class="muted small" id="menuSkin"></p>
-    <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="boxBtn" type="button">Luckybox</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button></div>
+    <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="boxBtn" type="button">Luckybox</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button><button class="btn2" id="codeBtn" type="button">Code einlösen</button></div>
   </div>
 </div>
 
@@ -205,6 +211,15 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
     <div class="tabs" id="logTabs"></div>
     <div class="muted small" id="logSummary"></div>
     <div class="grid" id="logGrid"></div>
+  </div>
+</div>
+
+<div class="screen" id="code" hidden>
+  <div class="panel">
+    <div class="phead"><h2>Code einlösen</h2><button class="btn2" id="codeBack" type="button">Zurück</button></div>
+    <p class="muted small">Manche Skins gibt es nur mit einem geheimen Code. Gross- und Kleinschreibung zählt.</p>
+    <div class="coderow"><input id="codeInput" type="text" autocomplete="off" spellcheck="false" maxlength="40" placeholder="Code eingeben" aria-label="Code"><button class="btn" id="codeGo" type="button">Einlösen</button></div>
+    <p class="codemsg" id="codeMsg" aria-live="polite"></p>
   </div>
 </div>
 
@@ -392,7 +407,8 @@ const SKINS = [
   { id: 'veteran', name: 'Veteranin',     body: '#e3fffb', glow: '#2ee6d6' },
   { id: 'eternal', name: 'Ewige Qualle',  body: '#ffffff', glow: '#7fe8ff', range: [180, 260] },
   { id: 'queen',   name: 'Mutantenkönigin', body: '#f3ffe0', glow: '#9dff5d', range: [75, 140] },
-  { id: 'heart',   name: 'Abgrundherz',   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true }
+  { id: 'heart',   name: 'Abgrundherz',   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true },
+  { id: 'arctic',  name: 'Arktisqualle',  body: '#f2feff', glow: '#9ff6ff', sparkle: true, snow: true }
 ];
 const RAR = {
   common: { name: 'Gewöhnlich', w: 30,  col: '#bfe9f2' },
@@ -400,7 +416,8 @@ const RAR = {
   epic:   { name: 'Episch',     w: 8,   col: '#c9a4ff' },
   legend: { name: 'Legendär',   w: 4,   col: '#ffcf7a' },
   myth:   { name: 'Mythisch',   w: 2,   col: '#ff7ac8' },
-  earn:   { name: 'Meilenstein', w: 0,  col: '#7fffd4' }
+  earn:   { name: 'Meilenstein', w: 0,  col: '#7fffd4' },
+  arctic: { name: 'Arctic',      w: 0,  col: '#9ff6ff' }
 };
 const SKIN_META = {
   classic: ['common', 'Robust',         '+15 max. Leben', '+30 max. Leben'],
@@ -431,7 +448,8 @@ const SKIN_META = {
   veteran: ['earn',   'Routine',        'Start mit «Stärkerer Puls» und «Schneller Puls»', ''],
   eternal: ['earn',   'Zeitlos',        '+2 % Schaden pro Minute im Tauchgang, maximal +60 %', ''],
   queen:   ['earn',   'Genmutation',    'Bei jedem Level-up 4 statt 3 Mutationen zur Wahl', ''],
-  heart:   ['earn',   'Tiefendruck',    '+1 % Schaden pro 100 m Tiefe, maximal +50 %', '']
+  heart:   ['earn',   'Tiefendruck',    '+1 % Schaden pro 100 m Tiefe, maximal +50 %', ''],
+  arctic:  ['arctic', 'Permafrost',     'Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen', 'Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen']
 };
 SKINS.forEach(k => { const m = SKIN_META[k.id]; k.rar = m[0]; k.ab = m[1]; k.abd = [m[2], m[3]]; });
 const RAR_SUM = SKINS.reduce((a, k) => a + RAR[k.rar].w, 0);
@@ -507,7 +525,7 @@ function setMuted(m) {
 }
 
 /* ---------- Spielzustand ---------- */
-let state = 'menu', P, enemies = [], eproj = [], spores = [], orbs = [], parts = [], fx = [];
+let state = 'menu', P, enemies = [], eproj = [], spores = [], ices = [], orbs = [], parts = [], fx = [];
 let golden = null, boss = null, levelGold = false, curOpts = [];
 let camX = 0, camY = 0, shake = 0, depth = 0, runTime = 0, kills = 0, zoneIdx = -1, zone = getZone(0);
 let eventT = 0, activeEv = {}, lastEv = '', spawnT = 0, newDisc = 0, t = 0;
@@ -518,6 +536,8 @@ const discovered = new Set(store.get('disc', []));
 const life = Object.assign({ runs: 0, kills: 0, goldens: 0, bossNames: [] }, store.get('life', {}));
 const achieved = new Set(store.get('ach', []));
 let skinId = store.get('skin', 'classic');
+const codes = new Set(store.get('codes', []));
+const CODE_HASH = { c6a3dfda6198033ac361f19b7b50b80e310ae8208dd8a65f3b4f8acdf89b80e6: 'arctic' };
 let pearls = store.get('pearls', 0), runPearls = 0, opening = false;
 const inv = store.get('inv', {});
 let binds = loadBinds();
@@ -532,11 +552,12 @@ function newPlayer() {
     dashCd: 2.5, dashT: 0, dashing: 0, inv: 0, lvl: 1, xp: 0, next: 8, ups: {},
     xpMul: 1, pearlMul: 1, thorns: 0, shieldCd: 0, shieldT: 0, dashFlash: 0,
     dmgMul: 1, bossMul: 1, eliteMul: 1, elitePearl: 1, execute: 0, armor: 1, dodge: 0, pearlMag: 0,
-    timeDmg: 0, depthDmg: 0, cards: 3, chainInt: 1.5, slowAura: 0, revive: 0, reviveHp: 0, novaMul: 0 };
+    timeDmg: 0, depthDmg: 0, cards: 3, chainInt: 1.5, slowAura: 0, revive: 0, reviveHp: 0, novaMul: 0,
+    frost: false, freezeT: 0, icicle: false, icicleT: 0 };
 }
 function reset() {
   P = newPlayer(); applySkin(P);
-  enemies = []; eproj = []; spores = []; orbs = []; parts = []; fx = [];
+  enemies = []; eproj = []; spores = []; ices = []; orbs = []; parts = []; fx = [];
   golden = null; boss = null; depth = 0; runTime = 0; kills = 0; zoneIdx = -1; newDisc = 0;
   eventT = 26; activeEv = {}; lastEv = ''; spawnT = 1;
   cur = { x: 0, y: 0 }; curT = { x: 0, y: 0 }; camX = 0; camY = 0;
@@ -572,7 +593,7 @@ function refreshMenu() {
   $('menuAch').textContent = achieved.size + ' / ' + ACH.length;
   $('menuPearls').textContent = String(pearls);
   const sk = skinById(skinId), ss = skinStar(skinId);
-  $('menuSkin').textContent = sk.rar === 'earn' ? 'Skin: ' + sk.name + ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[0] : 'Skin: ' + sk.name + ' ' + '★'.repeat(ss) + (ss >= 2 ? ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[ss - 2] : ', ab ★2 mit Fähigkeit «' + sk.ab + '»');
+  $('menuSkin').textContent = sk.rar === 'arctic' ? 'Skin: ' + sk.name + ' ★★★, Fähigkeit «' + sk.ab + '» aktiv' : sk.rar === 'earn' ? 'Skin: ' + sk.name + ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[0] : 'Skin: ' + sk.name + ' ' + '★'.repeat(ss) + (ss >= 2 ? ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[ss - 2] : ', ab ★2 mit Fähigkeit «' + sk.ab + '»');
   refreshBoxLabels();
   const mk = $('menuKeys'); mk.textContent = '';
   [['Maus oder Finger', 'Qualle schwimmt dorthin'],
@@ -711,6 +732,7 @@ function hitEnemy(e, dmg) {
   if (P.timeDmg) m *= 1 + Math.min(.6, P.timeDmg * runTime / 60);
   if (P.depthDmg) m *= 1 + Math.min(.5, P.depthDmg * depth / 100);
   e.hp -= dmg * m; e.flash = .08;
+  if (e.frozen > 0) e.hp -= dmg * m * .25;
   if (P.execute && e.t !== 'boss' && e.hp > 0 && e.hp < e.max * P.execute) { e.hp = 0; burst(e.x, e.y, '#ff3b5c', 8, 140); }
   if (e.hp <= 0) killEnemy(e);
 }
@@ -793,6 +815,7 @@ const keys = {};
 const ptr = { x: 0, y: 0, active: false, touch: false };
 let lastTap = 0;
 window.addEventListener('keydown', e => {
+  if (e.target && e.target.id === 'codeInput') { if (e.code === 'Enter' || e.code === 'NumpadEnter') { e.preventDefault(); redeem(); } else if (e.code === 'Escape') closeSub(); return; }
   if (capturing) { e.preventDefault(); finishCapture(e.code); return; }
   if (e.code === 'Escape' && subOpen()) { closeSub(); return; }
   keys[e.code] = true;
@@ -827,7 +850,7 @@ cv.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'play') togglePause(); });
 
 function blurFocus() { const a = document.activeElement; if (a && a.blur) a.blur(); }
-function subOpen() { return !$('logbook').hidden || !$('keys').hidden || !$('box').hidden; }
+function subOpen() { return !$('logbook').hidden || !$('keys').hidden || !$('box').hidden || !$('code').hidden; }
 function togglePause() {
   if (subOpen()) return;
   if (state === 'play') { state = 'pause'; show('pause', true); }
@@ -835,7 +858,7 @@ function togglePause() {
 }
 function start(tutorial) {
   initAudio(); reset();
-  ['menu', 'dead', 'pause', 'levelup', 'tutAsk', 'logbook', 'keys', 'box'].forEach(id => show(id, false));
+  ['menu', 'dead', 'pause', 'levelup', 'tutAsk', 'logbook', 'keys', 'box', 'code'].forEach(id => show(id, false));
   $('hud').hidden = false;
   state = 'play';
   tut = tutorial ? 0 : -1; tutData = { dist: 0, kills: 0, stepT: 0 };
@@ -860,7 +883,7 @@ function openSub(id, from) {
   show(id, true);
 }
 function closeSub() {
-  capturing = null; show('logbook', false); show('keys', false); show('box', false);
+  capturing = null; show('logbook', false); show('keys', false); show('box', false); show('code', false);
   if (backTo) show(backTo, true);
   refreshMenu();
 }
@@ -869,7 +892,7 @@ function closeSub() {
 function saveLife() { store.set('life', life); }
 function skinById(id) { return SKINS.find(k => k.id === id) || SKINS[0]; }
 function achSkin(id) { const a = ACH.find(x => x.skin === id); return !!a && achieved.has(a.id); }
-function skinStar(id) { if (SKIN_META[id] && SKIN_META[id][0] === 'earn') return achSkin(id) ? 2 : 0; const s = (inv[id] && inv[id].s) || 0; return Math.max(s, id === 'classic' || achSkin(id) ? 1 : 0); }
+function skinStar(id) { if (id === 'arctic') return codes.has('arctic') ? 3 : 0; if (SKIN_META[id] && SKIN_META[id][0] === 'earn') return achSkin(id) ? 2 : 0; const s = (inv[id] && inv[id].s) || 0; return Math.max(s, id === 'classic' || achSkin(id) ? 1 : 0); }
 function skinUnlocked(id) { return skinStar(id) >= 1; }
 if (!skinUnlocked(skinId)) skinId = 'classic';
 function look() {
@@ -957,6 +980,7 @@ function applySkin(p) {
     case 'eternal': p.timeDmg = .02; break;
     case 'queen':   p.cards = 4; break;
     case 'heart':   p.depthDmg = .01; break;
+    case 'arctic':  p.frost = true; p.freezeT = 3; p.icicle = true; p.icicleT = .8; break;
   }
 }
 function dropPearl(x, y) { orbs.push({ x, y, vx: rand(-60, 60), vy: rand(-60, 60), val: 0, col: '#ffd9ef', pearl: true, age: 0 }); }
@@ -1024,6 +1048,62 @@ function merge(id) {
   renderLog();
 }
 
+/* ---------- Codes ---------- */
+function sha256(ascii) {
+  const rr = (v, n) => (v >>> n) | (v << (32 - n));
+  const maxWord = 2 ** 32, words = [], bitLen = ascii.length * 8;
+  let hash = [], k = [], pc = 0;
+  const comp = {};
+  for (let c = 2; pc < 64; c++) {
+    if (!comp[c]) {
+      for (let i = 0; i < 313; i += c) comp[i] = c;
+      hash[pc] = (Math.pow(c, .5) * maxWord) | 0;
+      k[pc++] = (Math.pow(c, 1 / 3) * maxWord) | 0;
+    }
+  }
+  hash = hash.slice(0, 8);
+  ascii += '\x80';
+  while (ascii.length % 64 - 56) ascii += '\x00';
+  for (let i = 0; i < ascii.length; i++) {
+    const j = ascii.charCodeAt(i);
+    if (j >> 8) return '';
+    words[i >> 2] |= j << ((3 - i) % 4) * 8;
+  }
+  words[words.length] = (bitLen / maxWord) | 0;
+  words[words.length] = bitLen;
+  for (let j = 0; j < words.length;) {
+    const w = words.slice(j, j += 16), old = hash;
+    hash = hash.slice(0, 8);
+    for (let i = 0; i < 64; i++) {
+      const w15 = w[i - 15], w2 = w[i - 2], a = hash[0], e = hash[4];
+      const t1 = hash[7] + (rr(e, 6) ^ rr(e, 11) ^ rr(e, 25)) + ((e & hash[5]) ^ (~e & hash[6])) + k[i]
+        + (w[i] = i < 16 ? w[i] : (w[i - 16] + (rr(w15, 7) ^ rr(w15, 18) ^ (w15 >>> 3)) + w[i - 7] + (rr(w2, 17) ^ rr(w2, 19) ^ (w2 >>> 10))) | 0);
+      const t2 = (rr(a, 2) ^ rr(a, 13) ^ rr(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+      hash = [(t1 + t2) | 0].concat(hash);
+      hash[4] = (hash[4] + t1) | 0;
+    }
+    for (let i = 0; i < 8; i++) hash[i] = (hash[i] + old[i]) | 0;
+  }
+  let out = '';
+  for (let i = 0; i < 8; i++) for (let j = 3; j + 1; j--) { const b = (hash[i] >> (j * 8)) & 255; out += (b < 16 ? '0' : '') + b.toString(16); }
+  return out;
+}
+function redeem() {
+  const input = $('codeInput'), msg = $('codeMsg'), val = String(input.value || '').trim();
+  if (!val) { msg.textContent = 'Gib zuerst einen Code ein.'; msg.className = 'codemsg bad'; return; }
+  const id = CODE_HASH[sha256(val)];
+  if (!id) { msg.textContent = 'Dieser Code ist ungültig.'; msg.className = 'codemsg bad'; tone(160, .25, 'triangle', .08, .7); return; }
+  if (codes.has(id)) { msg.textContent = 'Diesen Code hast du schon eingelöst.'; msg.className = 'codemsg bad'; return; }
+  codes.add(id); store.set('codes', Array.from(codes));
+  skinId = id; store.set('skin', skinId);
+  const k = skinById(id);
+  msg.textContent = k.name + ' freigeschaltet und angelegt. Sofort ★3!'; msg.className = 'codemsg ok';
+  input.value = '';
+  toast('Arctic-Skin: ' + k.name, 'Fähigkeit «' + k.ab + '» ist aktiv', 'arctic');
+  initAudio(); arp([1047, 1319, 1568, 2093, 2637], 90, 'sine', .07);
+  refreshMenu();
+}
+
 /* ---------- Logbuch ---------- */
 const LOG_TABS = [['creatures', 'Kreaturen'], ['zones', 'Zonen'], ['bosses', 'Bosse'], ['events', 'Ereignisse'], ['ach', 'Erfolge'], ['skins', 'Skins']];
 function logEntries(tab) {
@@ -1049,18 +1129,18 @@ function renderLog() {
     SKINS.forEach(k => {
       const s = skinStar(k.id), ok = s >= 1, a = ACH.find(x => x.skin === k.id), R = RAR[k.rar], dup = (inv[k.id] && inv[k.id].n) || 0;
       const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : ''));
-      const sw = el('i', 'swatch'), special = k.hue || k.prism, earn = k.rar === 'earn';
+      const sw = el('i', 'swatch'), special = k.hue || k.prism, earn = k.rar === 'earn' || k.rar === 'arctic', arc = k.rar === 'arctic';
       sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : k.range ? 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 30%,transparent 31%),linear-gradient(135deg,' + rgbToHex(hsl(k.range[0], 95, 66)) + ',' + rgbToHex(hsl(k.range[1], 95, 66)) + ')' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
       sw.style.boxShadow = '0 0 18px ' + (special ? '#b48cff' : k.glow);
       if (k.alpha) sw.style.opacity = '.6';
       d.appendChild(sw);
       const nm = el('strong', '', k.name);
-      if (ok && !earn) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
+      if (ok && (!earn || arc)) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
       d.appendChild(nm);
-      const rr = el('span', 'rar', earn ? 'Meilenstein, nicht in der Luckybox' : R.name + ', ' + pct(skinChance(k)) + ' pro Box'); rr.style.color = R.col; d.appendChild(rr);
+      const rr = el('span', 'rar', arc ? 'Arctic, nur per Code' : earn ? 'Meilenstein, nicht in der Luckybox' : R.name + ', ' + pct(skinChance(k)) + ' pro Box'); rr.style.color = R.col; d.appendChild(rr);
       const abText = earn ? (ok ? 'Immer aktiv: ' : 'Nach Freischaltung immer aktiv: ') + k.abd[0] : s >= 2 ? 'Aktiv: ' + k.abd[s - 2] + (s < 3 ? '. Mit ★3: ' + k.abd[1] : '') : 'Ab ★2: ' + k.abd[0] + '. Mit ★3: ' + k.abd[1];
       d.appendChild(el('span', 'ab' + (s >= 2 ? ' on' : ''), 'Fähigkeit «' + k.ab + '». ' + abText + '.'));
-      d.appendChild(el('span', '', earn ? (ok ? 'Verdient durch «' + a.name + '»' : 'Erfolg «' + a.name + '»: ' + a.desc) : ok ? (dup ? dup + (dup > 1 ? ' Duplikate' : ' Duplikat') : 'Keine Duplikate') : (a ? 'Erfolg «' + a.name + '» oder Luckybox' : 'Nur aus der Luckybox')));
+      d.appendChild(el('span', '', arc ? (ok ? 'Mit Code eingelöst, sofort ★3' : 'Nur mit einem geheimen Code unter «Code einlösen»') : earn ? (ok ? 'Verdient durch «' + a.name + '»' : 'Erfolg «' + a.name + '»: ' + a.desc) : ok ? (dup ? dup + (dup > 1 ? ' Duplikate' : ' Duplikat') : 'Keine Duplikate') : (a ? 'Erfolg «' + a.name + '» oder Luckybox' : 'Nur aus der Luckybox')));
       const row = el('div', 'row');
       const wear = el('button', 'btn2 sm', k.id === skinId ? 'Getragen' : 'Tragen'); wear.type = 'button';
       wear.disabled = !ok || k.id === skinId;
@@ -1193,6 +1273,9 @@ $('dLogBtn').addEventListener('click', () => openSub('logbook', 'dead'));
 $('boxBtn').addEventListener('click', () => openSub('box', 'menu'));
 $('dBoxBtn').addEventListener('click', () => openSub('box', 'dead'));
 $('boxBack').addEventListener('click', closeSub);
+$('codeBtn').addEventListener('click', () => { openSub('code', 'menu'); $('codeInput').value = ''; $('codeMsg').textContent = ''; $('codeMsg').className = 'codemsg'; setTimeout(() => $('codeInput').focus(), 30); });
+$('codeBack').addEventListener('click', closeSub);
+$('codeGo').addEventListener('click', redeem);
 $('openBtn').addEventListener('click', openBox);
 $('toSkinsBtn').addEventListener('click', () => { show('box', false); logTab = 'skins'; renderLog(); show('logbook', true); });
 $('logBack').addEventListener('click', closeSub);
@@ -1267,6 +1350,50 @@ function update(dt) {
     }
   }
 
+  // Permafrost (nur Arktisqualle)
+  if (P.frost) {
+    P.freezeT -= dt;
+    if (P.freezeT <= 0) {
+      P.freezeT = 6;
+      const R = P.pulseR * 1.4;
+      fx.push({ k: 'ring', x: P.x, y: P.y, r: R, t: 0, d: .6, col: '#9ff6ff' });
+      for (const e of enemies) {
+        if (e.dead || d2(e.x, e.y, P.x, P.y) > (R + e.r) * (R + e.r)) continue;
+        if (e.t === 'boss') e.chill = 2.5; else e.frozen = 2;
+        burst(e.x, e.y, '#dffcff', 5, 80);
+      }
+      burst(P.x, P.y, '#9ff6ff', 30, 260);
+      tone(1760, .5, 'sine', .05, .5); tone(2637, .35, 'triangle', .03, .7);
+    }
+  }
+  if (P.icicle) {
+    P.icicleT -= dt;
+    if (P.icicleT <= 0 && enemies.length) {
+      P.icicleT = .8;
+      const near = enemies.filter(e => !e.dead && d2(e.x, e.y, P.x, P.y) < 520 * 520).sort((a, b) => d2(a.x, a.y, P.x, P.y) - d2(b.x, b.y, P.x, P.y)).slice(0, 3);
+      near.forEach(tg => {
+        const a = Math.atan2(tg.y - P.y, tg.x - P.x);
+        ices.push({ x: P.x, y: P.y, vx: Math.cos(a) * 560, vy: Math.sin(a) * 560, life: 1.1, hit: new Set(), pierce: 3 });
+      });
+      if (near.length) tone(2200, .07, 'triangle', .02, 1.4);
+    }
+  }
+  for (const c of ices) {
+    c.life -= dt; c.x += c.vx * dt; c.y += c.vy * dt;
+    if (Math.random() < dt * 30) parts.push({ x: c.x, y: c.y, vx: rand(-10, 10), vy: rand(-10, 10), life: .35, max: .35, r: 2, col: '#dffcff' });
+    for (const e of enemies) {
+      if (e.dead || c.hit.has(e)) continue;
+      const rr = e.r + 6;
+      if (d2(e.x, e.y, c.x, c.y) < rr * rr) {
+        c.hit.add(e); hitEnemy(e, P.pulseDmg * .9);
+        if (!e.dead) { if (e.t === 'boss') e.chill = Math.max(e.chill || 0, 1); else if (Math.random() < .3) e.frozen = Math.max(e.frozen || 0, 1.2); }
+        burst(c.x, c.y, '#9ff6ff', 4, 90);
+        if (--c.pierce <= 0) { c.life = 0; break; }
+      }
+    }
+  }
+  ices = ices.filter(c => c.life > 0);
+
   // Sporen
   if (P.spore > 0) {
     P.sporeT -= dt;
@@ -1318,7 +1445,10 @@ function update(dt) {
   const sm = activeEv.frenzy ? 1.4 : 1, far = Math.hypot(W, H) * .9 + 300;
   for (const e of enemies) {
     if (e.dead) continue;
-    e.flash -= dt; e.orbHit -= dt; e.tm -= dt;
+    e.flash -= dt; e.orbHit -= dt;
+    if (e.chill > 0) e.chill -= dt;
+    if (e.frozen > 0) { e.frozen -= dt; e.vx = 0; e.vy = 0; continue; }
+    e.tm -= dt;
     switch (e.t) {
       case 'dart':
         if (e.st === 0) {
@@ -1349,7 +1479,7 @@ function update(dt) {
       case 'boss': updateBoss(e, dt); break;
       default: steer(e, P.x, P.y, e.spd * sm, 2, dt);
     }
-    const mv = P.slowAura && e.t !== 'boss' && d2(e.x, e.y, P.x, P.y) < P.pulseR * P.pulseR ? 1 - P.slowAura : 1;
+    const mv = (P.slowAura && e.t !== 'boss' && d2(e.x, e.y, P.x, P.y) < P.pulseR * P.pulseR ? 1 - P.slowAura : 1) * (e.chill > 0 ? .5 : 1);
     e.x += (e.vx * mv + cur.x * .6) * dt; e.y += (e.vy * mv + cur.y * .6) * dt;
 
     // Berührung
@@ -1555,6 +1685,15 @@ function render() {
     }
   }
 
+  // Eiszapfen
+  for (const c of ices) {
+    const sx = c.x + ox, sy = c.y + oy;
+    glow(sx, sy, 22, '#9ff6ff', .8);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.save(); ctx.translate(sx, sy); ctx.rotate(Math.atan2(c.vy, c.vx));
+    ctx.fillStyle = '#f2feff'; ctx.beginPath(); ctx.moveTo(14, 0); ctx.lineTo(-10, -4); ctx.lineTo(-7, 0); ctx.lineTo(-10, 4); ctx.closePath(); ctx.fill();
+    ctx.restore(); ctx.globalCompositeOperation = 'lighter';
+  }
   // Sporen
   for (const s of spores) { const sx = s.x + ox, sy = s.y + oy; glow(sx, sy, 16, '#b9ff9e', .9); glow(sx, sy, 5, '#ffffff', .8); }
 
@@ -1717,6 +1856,15 @@ function drawEnemy(e, sx, sy, ox, oy) {
     else if (e.t !== 'squid' && !(e.t === 'boss' && e.def.pattern === 'radial')) { ctx.beginPath(); ctx.arc(-ex, -r * .15, er, 0, TAU); ctx.arc(ex, -r * .15, er, 0, TAU); ctx.fill(); }
   }
   ctx.restore();
+  if (e.frozen > 0 || e.chill > 0) {
+    const fa = e.frozen > 0 ? Math.min(1, e.frozen * 2) : .45;
+    ctx.globalAlpha = .35 * fa; ctx.fillStyle = '#bff7ff';
+    ctx.beginPath(); ctx.arc(sx, sy, r * 1.35, 0, TAU); ctx.fill();
+    ctx.globalAlpha = .9 * fa; ctx.strokeStyle = '#e8feff'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) { const q = i / 6 * TAU + .3; ctx.moveTo(sx + Math.cos(q) * r * .5, sy + Math.sin(q) * r * .5); ctx.lineTo(sx + Math.cos(q) * r * 1.5, sy + Math.sin(q) * r * 1.5); }
+    ctx.stroke(); ctx.globalAlpha = 1;
+  }
   if (e.elite) { ctx.globalAlpha = .9; ctx.strokeStyle = '#ffd76a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(sx, sy, r * 1.6, 0, TAU); ctx.stroke(); }
   ctx.globalAlpha = 1;
 }
