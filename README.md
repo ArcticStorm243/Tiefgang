@@ -263,6 +263,8 @@ Für **5 Perlen** öffnest du eine Luckybox und bekommst einen zufälligen Skin.
 
 Meilenstein-Skins sind **nicht** in der Box, siehe [unten](#meilenstein-skins).
 
+Beim Öffnen läuft eine **Rolle** mit Skins durch, bremst ab und bleibt unter der goldenen Markierung auf deinem Gewinn stehen. Mit **Überspringen** siehst du das Ergebnis sofort. Verlässt du die Box während der Drehung, bekommst du den Skin trotzdem.
+
 Ist der Skin neu, wird er freigeschaltet. Hast du ihn schon, egal ob aus einer Box oder durch einen Erfolg, bekommst du ein **Duplikat**.
 
 ### Mergen und Spezialfähigkeiten
