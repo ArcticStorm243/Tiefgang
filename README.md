@@ -1,26 +1,222 @@
 # Tiefgang
 
-Endloses Tiefsee-Spiel im Browser. Du bist eine kleine Leuchtqualle und tauchst immer tiefer. Es gibt kein Ende, dafür ständig etwas Neues.
-
-## Spielen
+Endloses Tiefsee-Spiel im Browser. Du bist eine kleine Leuchtqualle und tauchst immer tiefer. Es gibt kein Ende, dafür ständig etwas Neues: Zonen, Kreaturen, Bosse, Ereignisse, Erfolge und Skins.
 
 **▶ [Jetzt spielen](https://arcticstorm243.github.io/Tiefgang/)** – läuft direkt im Browser, auch auf dem Handy.
 
 Offline: `index.html` herunterladen und im Browser öffnen.
 
-| Steuerung | |
+---
+
+## Inhalt
+
+- [Steuerung](#steuerung)
+- [Tutorial](#tutorial)
+- [So funktioniert das Spiel](#so-funktioniert-das-spiel)
+- [Zonen](#zonen)
+- [Kreaturen](#kreaturen)
+- [Bosse](#bosse)
+- [Ereignisse](#ereignisse)
+- [Mutationen](#mutationen)
+- [Erfolge und Skins](#erfolge-und-skins)
+- [Logbuch](#logbuch)
+- [Speicherstand](#speicherstand)
+- [Technik](#technik)
+
+---
+
+## Steuerung
+
+| Aktion | Standard | Änderbar |
+|---|---|---|
+| Schwimmen | Maus bewegen / Finger ziehen | – |
+| Nach oben / unten / links / rechts | W A S D oder Pfeiltasten | ✔ |
+| Sprint (kurz unverwundbar) | Leertaste oder Shift links, Rechtsklick, Doppeltipp | ✔ (Tasten) |
+| Pause | P oder Esc | ✔ |
+| Ton an/aus | M | ✔ |
+| Mutation wählen | 1 / 2 / 3 oder Klick | – |
+| Spiel starten | Enter | – |
+
+### Tasten ändern
+
+Die Tasten änderst du im **Hauptmenü → Steuerung** oder im **Pausemenü → Steuerung**.
+
+1. Klick auf das Tastenfeld einer Aktion. Jede Aktion hat zwei Felder.
+2. Drück die neue Taste.
+3. **Esc** bricht ab, **Entf** oder **Rücktaste** löscht die Belegung.
+
+Wenn eine Taste schon einer anderen Aktion zugewiesen ist, wird sie dort automatisch entfernt. **1, 2, 3** und **Enter** sind fest belegt. Mit **Standard wiederherstellen** setzt du alles zurück. Die Hinweise im Menü und im Tutorial zeigen immer deine aktuelle Belegung.
+
+---
+
+## Tutorial
+
+Beim allerersten Start fragt das Spiel, ob du ein kurzes Tutorial willst. Es dauert etwa eine Minute. Du kannst es jederzeit über **Tutorial überspringen** abbrechen oder später im Hauptmenü unter **Tutorial** erneut starten.
+
+| Schritt | Du lernst |
 |---|---|
-| Maus / Finger | Qualle schwimmt dorthin |
-| WASD / Pfeiltasten | Alternativ schwimmen |
-| Leertaste, Rechtsklick, Doppeltipp | Sprint (kurz unverwundbar) |
-| 1 / 2 / 3 | Mutation wählen |
-| P / M | Pause / Ton |
+| 1. Schwimmen | Maus, Finger oder Tastatur |
+| 2. Sprint | Sprint auslösen, Abklingzeit (violetter Balken) |
+| 3. Lichtpuls | Automatischer Angriff, vier Treiblinge besiegen |
+| 4. Plankton | Erfahrung einsammeln |
+| 5. Mutationen | Stufenaufstieg und Upgrade wählen |
+| 6. Ab in die Tiefe | Zonen, Logbuch, Erfolge und Skins |
 
-## Was passiert
+Im Tutorial sinkst du nicht, es spawnen keine Gegner von selbst, und du kannst nicht sterben. Wer es abschliesst, erhält den Erfolg **Gut vorbereitet** und den Skin **Perle**.
 
-- **Zonen:** Lichtzone, Dämmerzone, Mitternachtszone, Abyssal, Hadal. Danach folgen endlos prozedural generierte Zonen mit eigenen Farben.
-- **Bosse:** Bei jedem Zonenwechsel taucht ein Riese auf: Mutterqualle, Riesenkalmar oder Leviathan.
-- **8 Kreaturen** mit eigenem Verhalten, die mit der Tiefe freigeschaltet werden. Dazu kommen Elite-Varianten mit Goldring.
-- **Ereignisse** alle 30 bis 50 Sekunden: Planktonblüte, Strömung, Fischschwarm, Angriffswelle, Goldqualle, Fressrausch, Schwarzes Wasser.
-- **Mutationen** bei jedem Level-up: Lichtpuls, Leuchtfunken, Sporen, Kettenblitz, Heilung und mehr.
-- **Logbuch:** Jede neue Entdeckung wird gespeichert. Rekordtiefe und Logbuch bleiben im Browser erhalten.
+---
+
+## So funktioniert das Spiel
+
+- Du **sinkst automatisch** (2 m pro Sekunde). Die Tiefe ist dein Punktestand.
+- Dein **Lichtpuls** feuert automatisch und trifft alles im Umkreis. Du musst nur schwimmen, ausweichen und sammeln.
+- Besiegte Gegner lassen **Plankton** fallen. Plankton füllt den Balken unten. Ist er voll, wählst du eine **Mutation**.
+- Gegner werden mit der Tiefe **zäher, schneller und zahlreicher**.
+- **Elite-Gegner** mit Goldring haben dreifaches Leben und geben mehr Erfahrung.
+- Pfeile am Bildschirmrand zeigen, wo Bosse und Goldquallen sind.
+
+**HUD:** Oben links siehst du Tiefe, Zone, Leben (weiss) und Sprint (violett). Oben rechts stehen Stufe, Besiegte und Rekord. Unten ist der Erfahrungsbalken.
+
+---
+
+## Zonen
+
+| Zone | Ab | Stimmung |
+|---|---|---|
+| Lichtzone | 0 m | Sonnenstrahlen, ruhiger Anfang |
+| Dämmerzone | 150 m | Das letzte Tageslicht verblasst |
+| Mitternachtszone | 400 m | Ewige Nacht, nur Biolumineszenz |
+| Abyssal | 800 m | Eisige Kälte, seltsame Farben |
+| Hadal | 1400 m | Heisse Quellen, tiefste Gräben |
+| Prozedurale Zonen | ab 2200 m, alle 700 m | Kristallgraben, Echoschlund, Glimmerriff, Stille Weite, Nebelschlot, Sternenkluft, Rauschgrund, Aschemeer. Danach geht es mit nummerierten Varianten endlos weiter. |
+
+Jede Zone hat eigene Hintergrund- und Leuchtfarben. Bei jedem Zonenwechsel erscheint ein Boss.
+
+---
+
+## Kreaturen
+
+| Kreatur | Ab | Verhalten |
+|---|---|---|
+| Treibling | 0 m | Treibt langsam auf dich zu |
+| Pfeilfisch | 60 m | Lauert und schiesst dann blitzschnell los |
+| Kugelfisch | 200 m | Platzt beim Tod und verschiesst 8 Stacheln |
+| Anglerfisch | 450 m | Zäh und träge, mit leuchtendem Köder |
+| Schattenaal | 700 m | Schnell, schlängelt sich unberechenbar |
+| Tintenkalmar | 1000 m | Hält Abstand und spuckt Tinte |
+| Glasgeist | 1500 m | Wird regelmässig unsichtbar und unverwundbar |
+| Glutkrabbe | 2000 m | Sehr zäh, zerfällt in zwei kleine Krabben |
+
+---
+
+## Bosse
+
+Die Bosse wechseln sich bei jedem Zonenwechsel der Reihe nach ab. Wer einen Boss besiegt, erhält viel Erfahrung und wird zu 30 % geheilt.
+
+| Boss | Erstmals | Angriff |
+|---|---|---|
+| Mutterqualle | Dämmerzone | Ruft ständig Treiblinge herbei |
+| Riesenkalmar | Mitternachtszone | Feuert Tintenringe in alle Richtungen |
+| Leviathan | Abyssal | Zielt (Leuchtstreifen), dann rammt er |
+
+---
+
+## Ereignisse
+
+Alle 30 bis 50 Sekunden passiert zufällig etwas.
+
+| Ereignis | Ab | Effekt |
+|---|---|---|
+| Planktonblüte | 0 m | 80 Plankton rund um dich |
+| Starke Strömung | 0 m | 12 s lang treibt alles in eine Richtung |
+| Fischschwarm | 40 m | Ein Schwarm zieht vorbei, jeder Fisch gibt Erfahrung |
+| Angriffswelle | 80 m | Gegner kommen von allen Seiten gleichzeitig |
+| Goldqualle | 100 m | Eine flüchtende Goldqualle, fang sie für eine **doppelte** Mutation |
+| Fressrausch | 150 m | 12 s lang sind Gegner schneller, dafür gibt es doppelte Erfahrung |
+| Schwarzes Wasser | 300 m | 14 s lang siehst du nur dein eigenes Licht |
+
+---
+
+## Mutationen
+
+Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen.
+
+| Mutation | Effekt | Max. |
+|---|---|---|
+| Stärkerer Puls | +30 % Schaden für alle Angriffe | ∞ |
+| Weiter Puls | +18 % Pulsreichweite | 8 |
+| Schneller Puls | Puls 15 % häufiger | 8 |
+| Flossenschlag | +12 % Tempo | 6 |
+| Anziehung | Plankton aus 50 % grösserer Distanz | 6 |
+| Dicke Glocke | +25 max. Leben, 40 Heilung | 10 |
+| Selbstheilung | +1 Leben pro Sekunde | 6 |
+| Leuchtfunke | Kreisender Funke, der Gegner verbrennt | 8 |
+| Sporenwerfer | Zielsuchende Sporen | 6 |
+| Zitteraal | Kettenblitz zwischen Gegnern | 6 |
+| Rückstoss | Sprint 20 % schneller bereit | 5 |
+
+---
+
+## Erfolge und Skins
+
+Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin** für deine Qualle. Skins wählst du unter **Logbuch & Skins → Skins**. Sie ändern Körper, Leuchten und Pulsfarbe, einige haben Spezialeffekte.
+
+| Erfolg | Bedingung | Skin |
+|---|---|---|
+| Erster Tauchgang | Ersten Tauchgang beenden | – |
+| Gut vorbereitet | Tutorial abschliessen | Perle |
+| Dämmerung | 150 m erreichen | Dämmerlicht |
+| Mitternacht | 400 m erreichen | Mitternacht |
+| Abgrund | 800 m erreichen | Tiefseerose |
+| Hadal | 1400 m erreichen | Glut |
+| Ins Unbekannte | 2200 m erreichen | Polarlicht (Farbwechsel) |
+| Lichtbringer | 100 Gegner in einem Tauchgang | Minze |
+| Tausend Funken | Insgesamt 1000 Gegner | Glasgeist (durchsichtig) |
+| Riesentöter | Einen Boss besiegen | Schattenqualle |
+| Alle drei Riesen | Jeden Boss einmal besiegen | Sonnenfunke |
+| Goldfinger | Eine Goldqualle fangen | Goldqualle (funkelt) |
+| Mutant | Stufe 10 in einem Tauchgang | Giftgrün |
+| Unberührbar | 3 Minuten am Stück ohne Treffer | Kristall (funkelt) |
+| Funkenkranz | 8 Leuchtfunken gleichzeitig | – |
+| Stammgast | 10 Tauchgänge | – |
+| Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
+| Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
+
+Dazu kommt der Start-Skin **Klassisch**, insgesamt also 16 Skins.
+
+---
+
+## Logbuch
+
+Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. Es hat sechs Reiter:
+
+| Reiter | Inhalt |
+|---|---|
+| Kreaturen | Alle 8 Kreaturen mit Beschreibung |
+| Zonen | 5 feste und 8 prozedurale Zonen |
+| Bosse | Alle 3 Bosse, inklusive ob schon besiegt |
+| Ereignisse | Alle 7 Ereignisse |
+| Erfolge | Alle 18 Erfolge mit Bedingung und Belohnung |
+| Skins | Alle Skins, auswählbar sobald freigeschaltet |
+
+Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 31 Einträge.
+
+---
+
+## Speicherstand
+
+Alles wird lokal im Browser gespeichert (`localStorage`):
+Rekordtiefe, Logbuch, Erfolge, gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
+
+Der Fortschritt gilt pro Browser und Gerät. Wer die Browserdaten löscht, setzt alles zurück.
+
+---
+
+## Technik
+
+- Eine einzige Datei `index.html` mit HTML, CSS und JavaScript, ohne Frameworks und ohne Build.
+- Grafik über das Canvas 2D mit additivem Leuchten (vorgerenderte Glow-Sprites).
+- Sound entsteht live über die Web Audio API, es gibt keine Audiodateien.
+- Die Schrift „Bricolage Grotesque“ kommt von Google Fonts, offline greift eine Systemschrift.
+- Das Spiel respektiert `prefers-reduced-motion` (keine Bildschirmerschütterung).
+- Hosting über GitHub Pages aus dem `main`-Branch.
