@@ -117,6 +117,8 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .odds{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:22px}
 .odds div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;color:var(--muted)}
 .odds b{display:block;font-size:15px;margin-bottom:2px}
+.entry.skinc.star3{border:2px solid var(--gold);box-shadow:0 0 18px rgba(255,207,122,.3),inset 0 0 22px rgba(255,207,122,.08)}
+.entry.skinc.star3.on{border-color:var(--gold);background:rgba(255,207,122,.1);box-shadow:0 0 26px rgba(255,207,122,.45),inset 0 0 22px rgba(255,207,122,.1)}
 .entry.skinc.on{border-color:var(--glow);background:rgba(191,247,255,.1)}
 .entry strong .stars{font-size:14px;color:var(--gold);margin-left:8px;letter-spacing:1px}
 .entry span.rar{font-size:12px;font-weight:600}
@@ -1249,7 +1251,7 @@ function renderLog() {
     $('logSummary').textContent = F('{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier (3× ★1 = ★2, 3× ★2 = ★3). Perlen: {2}.', n, SKINS.length, pearls);
     SKINS.forEach(k => {
       const s = skinStar(k.id), ok = s >= 1, a = ACH.find(x => x.skin === k.id), R = RAR[k.rar], dup = (inv[k.id] && inv[k.id].n) || 0;
-      const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : ''));
+      const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : '') + (s >= 3 ? ' star3' : ''));
       const sw = el('i', 'swatch'), special = k.hue || k.prism, earn = k.rar === 'earn' || k.rar === 'arctic', arc = k.rar === 'arctic';
       sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : k.range ? 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 30%,transparent 31%),linear-gradient(135deg,' + rgbToHex(hsl(k.range[0], 95, 66)) + ',' + rgbToHex(hsl(k.range[1], 95, 66)) + ')' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
       sw.style.boxShadow = '0 0 18px ' + (special ? '#b48cff' : k.glow);
