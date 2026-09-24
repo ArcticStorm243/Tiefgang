@@ -122,7 +122,8 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .entry .row{margin-top:6px}
 .btn2.sm{font-size:13px;padding:6px 12px}
 .btn2:disabled{opacity:.4;cursor:default}
-@media (max-width:640px){#cards{grid-template-columns:1fr}.card{min-height:0}.bars{width:140px}.tr{font-size:13px}.panel{padding:24px 22px}}
+#cards.four{grid-template-columns:repeat(4,1fr)}#levelup.four .panel{width:min(1000px,100%)}
+@media (max-width:640px){#cards,#cards.four{grid-template-columns:1fr}.card{min-height:0}.bars{width:140px}.tr{font-size:13px}.panel{padding:24px 22px}}
 @media (prefers-reduced-motion:reduce){#banner.show{animation-duration:2.4s}.toast{animation:none}}
 </style>
 </head>
@@ -168,7 +169,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 <div class="screen" id="levelup" hidden>
   <div class="panel">
     <h2 id="luTitle"></h2>
-    <div class="muted">Klick eine Karte oder drück 1, 2 oder 3.</div>
+    <div class="muted">Klick eine Karte oder drück die Zahl auf der Karte.</div>
     <div id="cards"></div>
   </div>
 </div>
@@ -378,14 +379,28 @@ const SKINS = [
   { id: 'gold',    name: 'Goldqualle',    body: '#ffe3a0', glow: '#ffd76a', sparkle: true },
   { id: 'star',    name: 'Sternenstaub',  body: '#eef0ff', glow: '#b9c3ff', sparkle: true },
   { id: 'aurora',  name: 'Polarlicht',    body: '#ffffff', glow: '#7fe8ff', hue: true },
-  { id: 'prism',   name: 'Prisma',        body: '#ffffff', glow: '#ffffff', prism: true }
+  { id: 'prism',   name: 'Prisma',        body: '#ffffff', glow: '#ffffff', prism: true },
+  { id: 'nebula',  name: 'Nebelschleier', body: '#fff0fb', glow: '#ff8fe0', range: [285, 330], sparkle: true },
+  { id: 'thunder', name: 'Donnerqualle',  body: '#f4f8ff', glow: '#9fc8ff', sparkle: true },
+  { id: 'void',    name: 'Leere',         body: '#120a24', glow: '#7a3cff', sparkle: true },
+  { id: 'phoenix', name: 'Phönix',        body: '#fff1c9', glow: '#ff6a2a', range: [0, 45], sparkle: true },
+  { id: 'reaper',  name: 'Sensenqualle',  body: '#dfe6ee', glow: '#ff3b5c', sparkle: true },
+  { id: 'wander',  name: 'Tiefenwanderer', body: '#cfe9ff', glow: '#2f7bff' },
+  { id: 'titan',   name: 'Titanenqualle', body: '#fff0d6', glow: '#ffa23a', sparkle: true },
+  { id: 'hunter',  name: 'Kopfgeldjägerin', body: '#fff6d0', glow: '#f5c542' },
+  { id: 'diver',   name: 'Perlentaucherin', body: '#fff0f8', glow: '#ff9fd0', sparkle: true },
+  { id: 'veteran', name: 'Veteranin',     body: '#e3fffb', glow: '#2ee6d6' },
+  { id: 'eternal', name: 'Ewige Qualle',  body: '#ffffff', glow: '#7fe8ff', range: [180, 260] },
+  { id: 'queen',   name: 'Mutantenkönigin', body: '#f3ffe0', glow: '#9dff5d', range: [75, 140] },
+  { id: 'heart',   name: 'Abgrundherz',   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true }
 ];
 const RAR = {
   common: { name: 'Gewöhnlich', w: 30,  col: '#bfe9f2' },
   rare:   { name: 'Selten',     w: 16,  col: '#7fb2ff' },
   epic:   { name: 'Episch',     w: 8,   col: '#c9a4ff' },
   legend: { name: 'Legendär',   w: 4,   col: '#ffcf7a' },
-  myth:   { name: 'Mythisch',   w: 2,   col: '#ff7ac8' }
+  myth:   { name: 'Mythisch',   w: 2,   col: '#ff7ac8' },
+  earn:   { name: 'Meilenstein', w: 0,  col: '#7fffd4' }
 };
 const SKIN_META = {
   classic: ['common', 'Robust',         '+15 max. Leben', '+30 max. Leben'],
@@ -403,7 +418,20 @@ const SKIN_META = {
   star:    ['epic',   'Sternensog',     '+40 % Anziehung', '+80 % Anziehung'],
   gold:    ['legend', 'Goldrausch',     '+25 % Erfahrung', '+50 % Erfahrung'],
   aurora:  ['legend', 'Polarwind',      'Puls 10 % häufiger', 'Puls 20 % häufiger'],
-  prism:   ['myth',   'Prismakraft',    '+10 % Schaden, +5 % Tempo, +10 % Erfahrung', '+20 % Schaden, +10 % Tempo, +20 % Erfahrung']
+  prism:   ['myth',   'Prismakraft',    '+10 % Schaden, +5 % Tempo, +10 % Erfahrung', '+20 % Schaden, +10 % Tempo, +20 % Erfahrung'],
+  nebula:  ['legend', 'Nebelhülle',     '10 % Chance, Treffern auszuweichen', '20 % Chance, Treffern auszuweichen'],
+  thunder: ['legend', 'Gewitter',       'Zitteraal mit 1 Ziel mehr, 25 % häufiger', 'Zitteraal mit 2 Zielen mehr, 50 % häufiger'],
+  void:    ['myth',   'Ereignishorizont', 'Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden', 'Gegner in Pulsreichweite 40 % langsamer, +20 % Schaden'],
+  phoenix: ['myth',   'Wiedergeburt',   'Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle', 'Wiederbelebung mit 70 % Leben, doppelt starke Feuerwelle'],
+  reaper:  ['earn',   'Vollstrecker',   '+20 % Schaden, normale Gegner unter 15 % Leben sterben sofort', ''],
+  wander:  ['earn',   'Druckausgleich', 'Du nimmst 20 % weniger Schaden', ''],
+  titan:   ['earn',   'Riesenfluch',    '+60 % Schaden gegen Bosse', ''],
+  hunter:  ['earn',   'Kopfgeld',       'Elite-Gegner nehmen +50 % Schaden und lassen doppelt so oft Perlen fallen', ''],
+  diver:   ['earn',   'Perlensog',      'Perlen fliegen dir aus grosser Distanz zu, +25 % Perlenchance', ''],
+  veteran: ['earn',   'Routine',        'Start mit «Stärkerer Puls» und «Schneller Puls»', ''],
+  eternal: ['earn',   'Zeitlos',        '+2 % Schaden pro Minute im Tauchgang, maximal +60 %', ''],
+  queen:   ['earn',   'Genmutation',    'Bei jedem Level-up 4 statt 3 Mutationen zur Wahl', ''],
+  heart:   ['earn',   'Tiefendruck',    '+1 % Schaden pro 100 m Tiefe, maximal +50 %', '']
 };
 SKINS.forEach(k => { const m = SKIN_META[k.id]; k.rar = m[0]; k.ab = m[1]; k.abd = [m[2], m[3]]; });
 const RAR_SUM = SKINS.reduce((a, k) => a + RAR[k.rar].w, 0);
@@ -428,6 +456,15 @@ const ACH = [
   { id: 'box1',     name: 'Glückspilz',            desc: 'Öffne deine erste Luckybox.' },
   { id: 'merge',    name: 'Verschmolzen',          desc: 'Merge einen Skin auf ★2.' },
   { id: 'merge3',   name: 'Meisterform',           desc: 'Merge einen Skin auf ★3.' },
+  { id: 'k10000',   name: 'Sensenmann',            desc: 'Besiege insgesamt 10 000 Gegner.', skin: 'reaper' },
+  { id: 'm50000',   name: 'Tiefenwanderer',        desc: 'Tauche insgesamt 50 000 m.', skin: 'wander' },
+  { id: 'boss25',   name: 'Titanenfall',           desc: 'Besiege insgesamt 25 Bosse.', skin: 'titan' },
+  { id: 'elite250', name: 'Kopfgeldjagd',          desc: 'Besiege insgesamt 250 Elite-Gegner.', skin: 'hunter' },
+  { id: 'pearl100', name: 'Perlenfischer',         desc: 'Sammle insgesamt 100 Perlen.', skin: 'diver' },
+  { id: 'runs100',  name: 'Veteran',               desc: 'Tauche 100-mal ab.', skin: 'veteran' },
+  { id: 'time30',   name: 'Ewigkeit',              desc: 'Überlebe 30 Minuten in einem Tauchgang.', skin: 'eternal' },
+  { id: 'lvl30',    name: 'Hochmutiert',           desc: 'Erreiche Stufe 30 in einem Tauchgang.', skin: 'queen' },
+  { id: 'd5000',    name: 'Herz des Abgrunds',     desc: 'Erreiche 5000 m.', skin: 'heart' },
   { id: 'loghalf',  name: 'Forschungsdrang',       desc: 'Fülle das Logbuch zur Hälfte.', skin: 'star' },
   { id: 'logfull',  name: 'Vollständiges Logbuch', desc: 'Entdecke alles im Logbuch.', skin: 'prism' }
 ];
@@ -493,7 +530,9 @@ function newPlayer() {
     pulseDmg: 14, pulseR: 95, pulseInt: 1.3, pulseT: .6, bell: 0,
     magnet: 95, regen: 0, orbit: 0, orbA: 0, spore: 0, sporeT: 0, chain: 0, chainT: 0,
     dashCd: 2.5, dashT: 0, dashing: 0, inv: 0, lvl: 1, xp: 0, next: 8, ups: {},
-    xpMul: 1, pearlMul: 1, thorns: 0, shieldCd: 0, shieldT: 0, dashFlash: 0 };
+    xpMul: 1, pearlMul: 1, thorns: 0, shieldCd: 0, shieldT: 0, dashFlash: 0,
+    dmgMul: 1, bossMul: 1, eliteMul: 1, elitePearl: 1, execute: 0, armor: 1, dodge: 0, pearlMag: 0,
+    timeDmg: 0, depthDmg: 0, cards: 3, chainInt: 1.5, slowAura: 0, revive: 0, reviveHp: 0, novaMul: 0 };
 }
 function reset() {
   P = newPlayer(); applySkin(P);
@@ -533,7 +572,7 @@ function refreshMenu() {
   $('menuAch').textContent = achieved.size + ' / ' + ACH.length;
   $('menuPearls').textContent = String(pearls);
   const sk = skinById(skinId), ss = skinStar(skinId);
-  $('menuSkin').textContent = 'Skin: ' + sk.name + ' ' + '★'.repeat(ss) + (ss >= 2 ? ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[ss - 2] : ', ab ★2 mit Fähigkeit «' + sk.ab + '»');
+  $('menuSkin').textContent = sk.rar === 'earn' ? 'Skin: ' + sk.name + ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[0] : 'Skin: ' + sk.name + ' ' + '★'.repeat(ss) + (ss >= 2 ? ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[ss - 2] : ', ab ★2 mit Fähigkeit «' + sk.ab + '»');
   refreshBoxLabels();
   const mk = $('menuKeys'); mk.textContent = '';
   [['Maus oder Finger', 'Qualle schwimmt dorthin'],
@@ -638,7 +677,7 @@ function openLevelUp(gold) {
   state = 'levelup'; levelGold = gold;
   const bag = UPG.filter(u => (P.ups[u.id] || 0) < u.max);
   curOpts = [];
-  while (curOpts.length < 3 && bag.length) curOpts.push(bag.splice(Math.floor(Math.random() * bag.length), 1)[0]);
+  while (curOpts.length < P.cards && bag.length) curOpts.push(bag.splice(Math.floor(Math.random() * bag.length), 1)[0]);
   const box = $('cards'); box.textContent = '';
   curOpts.forEach((u, i) => {
     const lv = P.ups[u.id] || 0, b = document.createElement('button');
@@ -649,6 +688,8 @@ function openLevelUp(gold) {
   });
   $('luTitle').textContent = gold ? 'Goldene Mutation: wirkt doppelt' : 'Stufe ' + P.lvl + ': wähle eine Mutation';
   $('levelup').classList.toggle('gold', gold);
+  box.classList.toggle('four', curOpts.length > 3);
+  $('levelup').classList.toggle('four', curOpts.length > 3);
   show('levelup', true);
   arp(gold ? [523, 659, 784, 1047] : [523, 659, 784], 80, 'sine', .08);
 }
@@ -664,12 +705,18 @@ function choose(i) {
 /* ---------- Kampf ---------- */
 function hitEnemy(e, dmg) {
   if (e.dead || (e.t === 'wraith' && e.st === 1)) return;
-  e.hp -= dmg; e.flash = .08;
+  let m = P.dmgMul;
+  if (e.t === 'boss') m *= P.bossMul;
+  if (e.elite) m *= P.eliteMul;
+  if (P.timeDmg) m *= 1 + Math.min(.6, P.timeDmg * runTime / 60);
+  if (P.depthDmg) m *= 1 + Math.min(.5, P.depthDmg * depth / 100);
+  e.hp -= dmg * m; e.flash = .08;
+  if (P.execute && e.t !== 'boss' && e.hp > 0 && e.hp < e.max * P.execute) { e.hp = 0; burst(e.x, e.y, '#ff3b5c', 8, 140); }
   if (e.hp <= 0) killEnemy(e);
 }
 function killEnemy(e) {
   e.dead = true; kills++;
-  if (tut < 0) life.kills++; else tutData.kills = (tutData.kills || 0) + 1;
+  if (tut < 0) { life.kills++; if (e.elite) life.elites = (life.elites || 0) + 1; } else tutData.kills = (tutData.kills || 0) + 1;
   burst(e.x, e.y, e.col, e.t === 'boss' ? 80 : 14, e.t === 'boss' ? 380 : 170);
   const mult = activeEv.frenzy ? 2 : 1;
   if (e.t === 'boss') {
@@ -678,27 +725,38 @@ function killEnemy(e) {
     toast(e.def.name + ' besiegt', 'Du wurdest teilweise geheilt', 'boss');
     arp([392, 523, 659, 784, 1047], 90, 'triangle', .09);
     shake = Math.max(shake, 20); boss = null; $('bossbox').hidden = true;
-    runBosses++;
+    runBosses++; if (tut < 0) life.bossKills = (life.bossKills || 0) + 1;
     if (life.bossNames.indexOf(e.def.name) < 0) life.bossNames.push(e.def.name);
     if (tut < 0) { dropPearl(e.x - 20, e.y); dropPearl(e.x + 20, e.y); }
     saveLife(); checkAch();
     return;
   }
   dropXp(e.x, e.y, e.xp * mult, e.elite ? '#ffe9a8' : undefined);
-  if (tut < 0 && Math.random() < (e.elite ? .3 : .025) * P.pearlMul) dropPearl(e.x, e.y);
+  if (tut < 0 && Math.random() < (e.elite ? .3 * P.elitePearl : .025) * P.pearlMul) dropPearl(e.x, e.y);
   if (e.t === 'puffer') for (let i = 0; i < 8; i++) shoot(e.x, e.y, i / 8 * TAU, 210, '#a6ff9e', 5, e.dmg * .7);
   if (e.t === 'crab' && !e.small) { spawnEnemy('crab', e.x - 12, e.y, true); spawnEnemy('crab', e.x + 12, e.y, true); }
 }
 function hurtPlayer(dmg) {
   if (P.inv > 0 || P.dashing > 0 || state !== 'play') return false;
   if (P.shieldCd && P.shieldT <= 0) { P.shieldT = P.shieldCd; P.inv = .7; burst(P.x, P.y, '#8ff0ff', 22, 220); tone(1200, .2, 'triangle', .06, .5); return true; }
-  P.hp -= dmg; P.inv = .7; lastHit = runTime;
+  if (P.dodge && Math.random() < P.dodge) { P.inv = .35; burst(P.x, P.y, '#ffc2f0', 10, 140); tone(1500, .1, 'sine', .04, 1.5); return false; }
+  P.hp -= dmg * P.armor; P.inv = .7; lastHit = runTime;
   if (tut >= 0) P.hp = Math.max(1, P.hp);
   shake = Math.max(shake, 10);
   tone(140, .25, 'triangle', .22, .5);
   burst(P.x, P.y, '#ff6b8b', 14, 200);
-  if (P.hp <= 0) die();
+  if (P.hp <= 0) { if (P.revive > 0) revive(); else die(); }
   return true;
+}
+function revive() {
+  P.revive--; P.hp = P.maxHp * P.reviveHp; P.inv = 2.5;
+  burst(P.x, P.y, '#ff6a2a', 70, 360); burst(P.x, P.y, '#ffd76a', 40, 260);
+  fx.push({ k: 'ring', x: P.x, y: P.y, r: 320, t: 0, d: .7, col: '#ff6a2a' });
+  for (const e of enemies) if (!e.dead && d2(e.x, e.y, P.x, P.y) < 320 * 320) hitEnemy(e, P.pulseDmg * P.novaMul);
+  eproj = [];
+  shake = Math.max(shake, 22);
+  toast('Wiedergeburt', 'Der Phönix erhebt sich aus der Asche', 'gold');
+  arp([262, 392, 523, 784, 1047], 80, 'sawtooth', .07);
 }
 function dash() {
   if (state !== 'play' || P.dashT > 0) return;
@@ -717,7 +775,7 @@ function die() {
   tone(220, 1.2, 'sine', .15, .25);
   const d = Math.floor(depth), rec = d > best;
   if (rec) { best = d; store.set('best', best); }
-  life.runs++; saveLife(); checkAch(); refreshBoxLabels();
+  life.runs++; life.meters = (life.meters || 0) + d; saveLife(); checkAch(); refreshBoxLabels();
   const mm = Math.floor(runTime / 60), ss = String(Math.floor(runTime % 60)).padStart(2, '0');
   $('deadTitle').textContent = 'Getaucht bis ' + d + ' m';
   $('deadRecord').hidden = !rec;
@@ -743,7 +801,7 @@ window.addEventListener('keydown', e => {
   if (act === 'dash') dash();
   if (act === 'pause') togglePause();
   if (act === 'mute') setMuted(!muted);
-  if (state === 'levelup' && /^Digit[123]$/.test(e.code)) choose(+e.code.slice(5) - 1);
+  if (state === 'levelup' && /^Digit[1-4]$/.test(e.code)) choose(+e.code.slice(5) - 1);
   if (e.code === 'Enter' && !subOpen()) {
     if (state === 'menu' && !$('menu').hidden) askStart();
     else if (state === 'dead' && !$('dead').hidden) start(false);
@@ -811,11 +869,12 @@ function closeSub() {
 function saveLife() { store.set('life', life); }
 function skinById(id) { return SKINS.find(k => k.id === id) || SKINS[0]; }
 function achSkin(id) { const a = ACH.find(x => x.skin === id); return !!a && achieved.has(a.id); }
-function skinStar(id) { const s = (inv[id] && inv[id].s) || 0; return Math.max(s, id === 'classic' || achSkin(id) ? 1 : 0); }
+function skinStar(id) { if (SKIN_META[id] && SKIN_META[id][0] === 'earn') return achSkin(id) ? 2 : 0; const s = (inv[id] && inv[id].s) || 0; return Math.max(s, id === 'classic' || achSkin(id) ? 1 : 0); }
 function skinUnlocked(id) { return skinStar(id) >= 1; }
 if (!skinUnlocked(skinId)) skinId = 'classic';
 function look() {
   const k = skinById(skinId);
+  if (k.range) { const h = Math.round((k.range[0] + (Math.sin(t * 1.4) * .5 + .5) * (k.range[1] - k.range[0])) / 5) * 5; return { body: k.body, glow: rgbToHex(hsl(h, 95, 66)), alpha: 1, sparkle: !!k.sparkle }; }
   if (k.hue) { const h = Math.floor(t * 40 / 12) * 12 % 360; return { body: rgbToHex(hsl(h, 80, 88)), glow: rgbToHex(hsl(h, 90, 70)), alpha: 1 }; }
   if (k.prism) { const h = Math.floor(t * 60 / 12) * 12 % 360; return { body: '#ffffff', glow: rgbToHex(hsl(h, 90, 75)), tent: [0, 72, 144, 216, 288].map(o => rgbToHex(hsl((h + o) % 360, 90, 72))), alpha: 1 }; }
   return { body: k.body, glow: k.glow, alpha: k.alpha || 1, sparkle: !!k.sparkle };
@@ -830,13 +889,21 @@ function unlock(id) {
 function checkAch() {
   if (tut < 0 && state !== 'menu') {
     const d = Math.floor(depth);
-    [[150, 'd150'], [400, 'd400'], [800, 'd800'], [1400, 'd1400'], [2200, 'd2200']].forEach(([m, id]) => { if (d >= m) unlock(id); });
+    [[150, 'd150'], [400, 'd400'], [800, 'd800'], [1400, 'd1400'], [2200, 'd2200'], [5000, 'd5000']].forEach(([m, id]) => { if (d >= m) unlock(id); });
     if (kills >= 100) unlock('k100');
     if (P.lvl >= 10) unlock('lvl10');
+    if (P.lvl >= 30) unlock('lvl30');
+    if (runTime >= 1800) unlock('time30');
     if (P.orbit >= 8) unlock('orbit8');
     if (state === 'play' && runTime - lastHit >= 180) unlock('nohit');
   }
   if (life.kills >= 1000) unlock('k1000');
+  if (life.kills >= 10000) unlock('k10000');
+  if ((life.meters || 0) >= 50000) unlock('m50000');
+  if ((life.bossKills || 0) >= 25) unlock('boss25');
+  if ((life.elites || 0) >= 250) unlock('elite250');
+  if ((life.pearlsTotal || 0) >= 100) unlock('pearl100');
+  if (life.runs >= 100) unlock('runs100');
   if (life.bossNames.length) unlock('boss');
   if (BOSSES.every(b => life.bossNames.indexOf(b.name) >= 0)) unlock('boss3');
   if (life.goldens > 0) unlock('golden');
@@ -877,11 +944,24 @@ function applySkin(p) {
     case 'gold':    p.xpMul = 1 + .25 * lv; break;
     case 'aurora':  p.pulseInt *= 1 - .1 * lv; break;
     case 'prism':   p.pulseDmg *= 1 + .1 * lv; p.spd *= 1 + .05 * lv; p.xpMul = 1 + .1 * lv; break;
+    case 'nebula':  p.dodge = .1 * lv; break;
+    case 'thunder': p.chain += lv; p.chainInt = 1.5 / (1 + .25 * lv); break;
+    case 'void':    p.slowAura = lv === 1 ? .25 : .4; p.dmgMul *= 1 + .1 * lv; break;
+    case 'phoenix': p.revive = 1; p.reviveHp = lv === 1 ? .4 : .7; p.novaMul = lv === 1 ? 5 : 10; break;
+    case 'reaper':  p.dmgMul *= 1.2; p.execute = .15; break;
+    case 'wander':  p.armor = .8; break;
+    case 'titan':   p.bossMul = 1.6; break;
+    case 'hunter':  p.eliteMul = 1.5; p.elitePearl = 2; break;
+    case 'diver':   p.pearlMag = 650; p.pearlMul *= 1.25; break;
+    case 'veteran': ['pdmg', 'prate'].forEach(id => { const u = UPG.find(x => x.id === id); u.apply(p); p.ups[id] = 1; }); break;
+    case 'eternal': p.timeDmg = .02; break;
+    case 'queen':   p.cards = 4; break;
+    case 'heart':   p.depthDmg = .01; break;
   }
 }
 function dropPearl(x, y) { orbs.push({ x, y, vx: rand(-60, 60), vy: rand(-60, 60), val: 0, col: '#ffd9ef', pearl: true, age: 0 }); }
 function gotPearl() {
-  pearls++; runPearls++; store.set('pearls', pearls);
+  pearls++; runPearls++; store.set('pearls', pearls); life.pearlsTotal = (life.pearlsTotal || 0) + 1; saveLife(); checkAch();
   burst(P.x, P.y, '#ff9fd0', 16, 160);
   arp([784, 1047, 1319], 60, 'sine', .06);
   if (pearls % BOX_COST === 0) toast('Luckybox bereit', 'Du hast ' + pearls + ' Perlen. Öffne die Box im Menü oder nach dem Tauchgang.', 'gold');
@@ -892,7 +972,7 @@ function skinChance(k) { return RAR[k.rar].w / RAR_SUM * 100; }
 function invOf(id) { return inv[id] || (inv[id] = { s: 0, n: 0 }); }
 function rollSkin() {
   let r = Math.random() * RAR_SUM;
-  for (const k of SKINS) { r -= RAR[k.rar].w; if (r <= 0) return k; }
+  for (const k of SKINS) { if (!RAR[k.rar].w) continue; r -= RAR[k.rar].w; if (r <= 0) return k; }
   return SKINS[0];
 }
 function boxLabel() { const n = Math.floor(pearls / BOX_COST); return n ? 'Luckybox (' + n + ' bereit)' : 'Luckybox'; }
@@ -902,7 +982,7 @@ function renderBox() {
   $('openBtn').disabled = pearls < BOX_COST || opening;
   $('openBtn').textContent = pearls < BOX_COST ? 'Noch ' + (BOX_COST - pearls) + ' Perlen nötig' : 'Box öffnen (' + BOX_COST + ' Perlen)';
   const odds = $('odds'); odds.textContent = '';
-  Object.keys(RAR).forEach(r => {
+  Object.keys(RAR).filter(r => RAR[r].w).forEach(r => {
     const ks = SKINS.filter(k => k.rar === r), d = el('div');
     const b = el('b', '', RAR[r].name + ' ' + pct(ks.length * RAR[r].w / RAR_SUM * 100)); b.style.color = RAR[r].col;
     d.appendChild(b); d.appendChild(el('span', '', ks.map(k => k.name).join(', ')));
@@ -965,28 +1045,28 @@ function renderLog() {
   const grid = $('logGrid'); grid.textContent = '';
   if (logTab === 'skins') {
     const n = SKINS.filter(k => skinUnlocked(k.id)).length;
-    $('logSummary').textContent = n + ' von ' + SKINS.length + ' Skins freigeschaltet. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier. Perlen: ' + pearls + '.';
+    $('logSummary').textContent = n + ' von ' + SKINS.length + ' Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier. Perlen: ' + pearls + '.';
     SKINS.forEach(k => {
       const s = skinStar(k.id), ok = s >= 1, a = ACH.find(x => x.skin === k.id), R = RAR[k.rar], dup = (inv[k.id] && inv[k.id].n) || 0;
       const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : ''));
-      const sw = el('i', 'swatch'), special = k.hue || k.prism;
-      sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
+      const sw = el('i', 'swatch'), special = k.hue || k.prism, earn = k.rar === 'earn';
+      sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : k.range ? 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 30%,transparent 31%),linear-gradient(135deg,' + rgbToHex(hsl(k.range[0], 95, 66)) + ',' + rgbToHex(hsl(k.range[1], 95, 66)) + ')' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
       sw.style.boxShadow = '0 0 18px ' + (special ? '#b48cff' : k.glow);
       if (k.alpha) sw.style.opacity = '.6';
       d.appendChild(sw);
       const nm = el('strong', '', k.name);
-      if (ok) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
+      if (ok && !earn) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
       d.appendChild(nm);
-      const rr = el('span', 'rar', R.name + ', ' + pct(skinChance(k)) + ' pro Box'); rr.style.color = R.col; d.appendChild(rr);
-      const abText = s >= 2 ? 'Aktiv: ' + k.abd[s - 2] + (s < 3 ? '. Mit ★3: ' + k.abd[1] : '') : 'Ab ★2: ' + k.abd[0] + '. Mit ★3: ' + k.abd[1];
+      const rr = el('span', 'rar', earn ? 'Meilenstein, nicht in der Luckybox' : R.name + ', ' + pct(skinChance(k)) + ' pro Box'); rr.style.color = R.col; d.appendChild(rr);
+      const abText = earn ? (ok ? 'Immer aktiv: ' : 'Nach Freischaltung immer aktiv: ') + k.abd[0] : s >= 2 ? 'Aktiv: ' + k.abd[s - 2] + (s < 3 ? '. Mit ★3: ' + k.abd[1] : '') : 'Ab ★2: ' + k.abd[0] + '. Mit ★3: ' + k.abd[1];
       d.appendChild(el('span', 'ab' + (s >= 2 ? ' on' : ''), 'Fähigkeit «' + k.ab + '». ' + abText + '.'));
-      d.appendChild(el('span', '', ok ? (dup ? dup + (dup > 1 ? ' Duplikate' : ' Duplikat') : 'Keine Duplikate') : (a ? 'Erfolg «' + a.name + '» oder Luckybox' : 'Nur aus der Luckybox')));
+      d.appendChild(el('span', '', earn ? (ok ? 'Verdient durch «' + a.name + '»' : 'Erfolg «' + a.name + '»: ' + a.desc) : ok ? (dup ? dup + (dup > 1 ? ' Duplikate' : ' Duplikat') : 'Keine Duplikate') : (a ? 'Erfolg «' + a.name + '» oder Luckybox' : 'Nur aus der Luckybox')));
       const row = el('div', 'row');
       const wear = el('button', 'btn2 sm', k.id === skinId ? 'Getragen' : 'Tragen'); wear.type = 'button';
       wear.disabled = !ok || k.id === skinId;
       wear.addEventListener('click', () => { skinId = k.id; store.set('skin', skinId); renderLog(); });
       row.appendChild(wear);
-      if (ok && s < 3) {
+      if (ok && s < 3 && !earn) {
         const mb = el('button', 'btn2 sm', 'Mergen zu ★' + (s + 1) + ' (' + Math.min(dup, MERGE_COST[s]) + '/' + MERGE_COST[s] + ')'); mb.type = 'button';
         mb.disabled = !canMerge(k.id);
         mb.addEventListener('click', () => merge(k.id));
@@ -1037,7 +1117,7 @@ function renderBinds() {
 function finishCapture(code) {
   const c = capturing; capturing = null;
   if (code !== 'Escape') {
-    if (/^Digit[123]$/.test(code) || code === 'Enter') toast('Taste ist fest belegt', keyName(code) + ' wird für die Menüs gebraucht', 'bad');
+    if (/^Digit[1-4]$/.test(code) || code === 'Enter') toast('Taste ist fest belegt', keyName(code) + ' wird für die Menüs gebraucht', 'bad');
     else {
       const val = code === 'Delete' || code === 'Backspace' ? null : code;
       if (val) for (const a of ACTIONS) for (let k = 0; k < 2; k++) if (binds[a.id][k] === val) binds[a.id][k] = null;
@@ -1215,7 +1295,7 @@ function update(dt) {
   if (P.chain > 0) {
     P.chainT -= dt;
     if (P.chainT <= 0) {
-      P.chainT = 1.5;
+      P.chainT = P.chainInt;
       let fx0 = P.x, fy0 = P.y; const hit = new Set(), pts = [[P.x, P.y]];
       for (let i = 0; i <= P.chain; i++) {
         let bestE = null, bd = 270 * 270;
@@ -1269,7 +1349,8 @@ function update(dt) {
       case 'boss': updateBoss(e, dt); break;
       default: steer(e, P.x, P.y, e.spd * sm, 2, dt);
     }
-    e.x += (e.vx + cur.x * .6) * dt; e.y += (e.vy + cur.y * .6) * dt;
+    const mv = P.slowAura && e.t !== 'boss' && d2(e.x, e.y, P.x, P.y) < P.pulseR * P.pulseR ? 1 - P.slowAura : 1;
+    e.x += (e.vx * mv + cur.x * .6) * dt; e.y += (e.vy * mv + cur.y * .6) * dt;
 
     // Berührung
     const rr = e.r + P.r * .8;
@@ -1296,8 +1377,9 @@ function update(dt) {
   for (const o of orbs) {
     o.age += dt;
     const dd = d2(o.x, o.y, P.x, P.y);
-    if (dd < mg) {
-      const d = Math.sqrt(dd) || 1, pull = 900 * (1 - d / P.magnet) + 200;
+    const mR = o.pearl && P.pearlMag > P.magnet ? P.pearlMag : P.magnet;
+    if (dd < mR * mR) {
+      const d = Math.sqrt(dd) || 1, pull = 900 * (1 - d / mR) + 200;
       const f = Math.pow(.02, dt); o.vx *= f; o.vy *= f; o.fish = false;
       o.vx += (P.x - o.x) / d * pull * dt * 6; o.vy += (P.y - o.y) / d * pull * dt * 6;
     } else if (!o.fish) { const f = Math.pow(.15, dt); o.vx *= f; o.vy *= f; }
