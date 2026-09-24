@@ -347,17 +347,17 @@ const EVENTS = [
   { id: 'dark',    name: 'Schwarzes Wasser',     desc: 'Nur dein eigenes Licht bleibt.', at: 300, dur: 14 }
 ];
 const UPG = [
-  { id: 'pdmg',  name: 'Stärkerer Puls',  max: 99, desc: () => '+30 % Schaden für Puls, Funken, Sporen und Blitze.', apply: p => { p.pulseDmg *= 1.3; } },
-  { id: 'prad',  name: 'Weiter Puls',     max: 8,  desc: () => 'Dein Lichtpuls reicht 18 % weiter.', apply: p => { p.pulseR *= 1.18; } },
-  { id: 'prate', name: 'Schneller Puls',  max: 8,  desc: () => 'Du pulsierst 15 % häufiger.', apply: p => { p.pulseInt *= .85; } },
+  { id: 'pdmg',  name: 'Stärkerer Puls',  max: 99, desc: () => '+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.', apply: p => { p.pulseDmg *= 1.3; } },
+  { id: 'prad',  name: 'Weiter Puls',     max: 8,  desc: () => 'Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.', apply: p => { p.pulseR *= 1.18; } },
+  { id: 'prate', name: 'Schneller Puls',  max: 8,  desc: () => 'Du pulsierst 15 % häufiger. Beschleunigt auch Permafrost und Eiszapfen.', apply: p => { p.pulseInt *= .85; } },
   { id: 'spd',   name: 'Flossenschlag',   max: 6,  desc: () => '+12 % Schwimmtempo.', apply: p => { p.spd *= 1.12; } },
-  { id: 'mag',   name: 'Anziehung',       max: 6,  desc: () => 'Plankton fliegt dir aus 50 % grösserer Distanz zu.', apply: p => { p.magnet *= 1.5; } },
+  { id: 'mag',   name: 'Anziehung',       max: 6,  desc: () => 'Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.', apply: p => { p.magnet *= 1.5; } },
   { id: 'hp',    name: 'Dicke Glocke',    max: 10, desc: () => '+25 maximales Leben und 40 Heilung.', apply: p => { p.maxHp += 25; p.hp = Math.min(p.maxHp, p.hp + 40); } },
   { id: 'regen', name: 'Selbstheilung',   max: 6,  desc: () => '+1 Leben pro Sekunde.', apply: p => { p.regen += 1; } },
   { id: 'orbit', name: 'Leuchtfunke',     max: 8,  desc: l => l ? 'Ein weiterer Funke kreist um dich.' : 'Ein Funke kreist um dich und verbrennt alles, was er trifft.', apply: p => { p.orbit++; } },
-  { id: 'spore', name: 'Sporenwerfer',    max: 6,  desc: l => l ? 'Eine Spore mehr pro Salve.' : 'Schiesst zielsuchende Sporen auf nahe Gegner.', apply: p => { p.spore++; } },
+  { id: 'spore', name: 'Sporenwerfer',    max: 6,  desc: l => l ? 'Eine Spore mehr pro Salve (bei der Arktisqualle auch ein Eiszapfen mehr).' : 'Schiesst zielsuchende Sporen auf nahe Gegner (bei der Arktisqualle auch ein Eiszapfen mehr).', apply: p => { p.spore++; } },
   { id: 'chain', name: 'Zitteraal',       max: 6,  desc: l => l ? 'Der Blitz springt auf einen Gegner mehr.' : 'Ein Blitz springt zwischen zwei nahen Gegnern.', apply: p => { p.chain++; } },
-  { id: 'dash',  name: 'Rückstoss',       max: 5,  desc: () => 'Dein Sprint ist 20 % schneller wieder bereit.', apply: p => { p.dashCd *= .8; } }
+  { id: 'dash',  name: 'Rückstoss',       max: 5,  desc: () => 'Dein Sprint ist 20 % schneller wieder bereit. Gilt auch für den Kristallschild.', apply: p => { p.dashCd *= .8; } }
 ];
 const LOG_TOTAL = ZONES.length + PROC.length + Object.keys(TYPES).length + BOSSES.length + EVENTS.length;
 const INFO = {
@@ -760,7 +760,7 @@ function killEnemy(e) {
 }
 function hurtPlayer(dmg) {
   if (P.inv > 0 || P.dashing > 0 || state !== 'play') return false;
-  if (P.shieldCd && P.shieldT <= 0) { P.shieldT = P.shieldCd; P.inv = .7; burst(P.x, P.y, '#8ff0ff', 22, 220); tone(1200, .2, 'triangle', .06, .5); return true; }
+  if (P.shieldCd && P.shieldT <= 0) { P.shieldT = P.shieldCd * P.dashCd / 2.5; P.inv = .7; burst(P.x, P.y, '#8ff0ff', 22, 220); tone(1200, .2, 'triangle', .06, .5); return true; }
   if (P.dodge && Math.random() < P.dodge) { P.inv = .35; burst(P.x, P.y, '#ffc2f0', 10, 140); tone(1500, .1, 'sine', .04, 1.5); return false; }
   P.hp -= dmg * P.armor; P.inv = .7; lastHit = runTime;
   if (tut >= 0) P.hp = Math.max(1, P.hp);
@@ -773,8 +773,9 @@ function hurtPlayer(dmg) {
 function revive() {
   P.revive--; P.hp = P.maxHp * P.reviveHp; P.inv = 2.5;
   burst(P.x, P.y, '#ff6a2a', 70, 360); burst(P.x, P.y, '#ffd76a', 40, 260);
-  fx.push({ k: 'ring', x: P.x, y: P.y, r: 320, t: 0, d: .7, col: '#ff6a2a' });
-  for (const e of enemies) if (!e.dead && d2(e.x, e.y, P.x, P.y) < 320 * 320) hitEnemy(e, P.pulseDmg * P.novaMul);
+  const nR = 320 * P.pulseR / 95;
+  fx.push({ k: 'ring', x: P.x, y: P.y, r: nR, t: 0, d: .7, col: '#ff6a2a' });
+  for (const e of enemies) if (!e.dead && d2(e.x, e.y, P.x, P.y) < nR * nR) hitEnemy(e, P.pulseDmg * P.novaMul);
   eproj = [];
   shake = Math.max(shake, 22);
   toast('Wiedergeburt', 'Der Phönix erhebt sich aus der Asche', 'gold');
@@ -1354,7 +1355,7 @@ function update(dt) {
   if (P.frost) {
     P.freezeT -= dt;
     if (P.freezeT <= 0) {
-      P.freezeT = 6;
+      P.freezeT = 6 * P.pulseInt / 1.3;
       const R = P.pulseR * 1.4;
       fx.push({ k: 'ring', x: P.x, y: P.y, r: R, t: 0, d: .6, col: '#9ff6ff' });
       for (const e of enemies) {
@@ -1369,8 +1370,9 @@ function update(dt) {
   if (P.icicle) {
     P.icicleT -= dt;
     if (P.icicleT <= 0 && enemies.length) {
-      P.icicleT = .8;
-      const near = enemies.filter(e => !e.dead && d2(e.x, e.y, P.x, P.y) < 520 * 520).sort((a, b) => d2(a.x, a.y, P.x, P.y) - d2(b.x, b.y, P.x, P.y)).slice(0, 3);
+      P.icicleT = .8 * P.pulseInt / 1.3;
+      const iR = 520 * P.pulseR / 95;
+      const near = enemies.filter(e => !e.dead && d2(e.x, e.y, P.x, P.y) < iR * iR).sort((a, b) => d2(a.x, a.y, P.x, P.y) - d2(b.x, b.y, P.x, P.y)).slice(0, 3 + P.spore);
       near.forEach(tg => {
         const a = Math.atan2(tg.y - P.y, tg.x - P.x);
         ices.push({ x: P.x, y: P.y, vx: Math.cos(a) * 560, vy: Math.sin(a) * 560, life: 1.1, hit: new Set(), pierce: 3 });
@@ -1507,7 +1509,7 @@ function update(dt) {
   for (const o of orbs) {
     o.age += dt;
     const dd = d2(o.x, o.y, P.x, P.y);
-    const mR = o.pearl && P.pearlMag > P.magnet ? P.pearlMag : P.magnet;
+    const pM = P.pearlMag * P.magnet / 95, mR = o.pearl && pM > P.magnet ? pM : P.magnet;
     if (dd < mR * mR) {
       const d = Math.sqrt(dd) || 1, pull = 900 * (1 - d / mR) + 200;
       const f = Math.pow(.02, dt); o.vx *= f; o.vy *= f; o.fish = false;
