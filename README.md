@@ -130,6 +130,15 @@ Jede Zone hat eigene Hintergrund- und Leuchtfarben. Bei jedem Zonenwechsel ersch
 | Tintenkalmar | 1000 m | Hält Abstand und spuckt Tinte |
 | Glasgeist | 1500 m | Wird regelmässig unsichtbar und unverwundbar |
 | Glutkrabbe | 2000 m | Sehr zäh, zerfällt in zwei kleine Krabben |
+| Leuchtgarnele | 120 m | Kommt immer zu viert im Schwarm und zappelt wild umher |
+| Nesselqualle | 300 m | Lädt sich auf, wenn du nah bist (pinker Ring), und entlädt dann einen brennenden Ring |
+| Nautilus | 600 m | Langsam, der Panzer halbiert jeden Schaden |
+| Tarnkrake | 1200 m | Fast unsichtbar (nur zwei Augen im Dunkeln), schnellt aus der Nähe plötzlich hervor |
+| Seeigel | 1700 m | Kriecht langsam und schiesst alle 3 s Stacheln in 8 Richtungen |
+| Schleimaal | 2500 m | Hinterlässt beim Tod eine Schleimpfütze, die dich 45 % langsamer macht |
+| Geisterhai | 3000 m | Kreist um dich und stösst dann mit voller Wucht zu |
+
+Im Logbuch hat jede Kreatur und jeder Boss ein **Bild**. Es wird mit derselben Grafik wie im Spiel gezeichnet. Unentdeckte Einträge zeigen nur eine dunkle Silhouette.
 
 ---
 
@@ -158,6 +167,14 @@ Alle 30 bis 50 Sekunden passiert zufällig etwas.
 | Goldqualle | 100 m | Eine flüchtende Goldqualle, fang sie für eine **doppelte** Mutation |
 | Fressrausch | 150 m | 12 s lang sind Gegner schneller, dafür gibt es doppelte Erfahrung |
 | Schwarzes Wasser | 300 m | 14 s lang siehst du nur dein eigenes Licht |
+| Luftblasen | 0 m | 14 aufsteigende Blasen, jede heilt 12 Leben |
+| Stille | 0 m | 10 s lang keine neuen Gegner und +4 Leben pro Sekunde |
+| Sog der Tiefe | 0 m | 12 s lang dreifache Anziehung für Plankton und Perlen |
+| Elite-Patrouille | 200 m | Drei Elite-Gegner mit Goldring tauchen auf |
+| Perlenregen | 350 m | Zwei Perlen erscheinen in deiner Nähe |
+| Hydrothermale Schlote | 1000 m | 16 s lang brechen um dich 5 Schlote aus. Sie glühen vorher auf, weich ihnen aus. |
+| Tiefenbeben | 1400 m | 12 s lang fallen Felsbrocken. Rote Kreise mit Schatten zeigen den Einschlag. Die Felsen treffen auch Gegner. |
+| Tiefenriss | 2200 m | 6 Elite-Versionen der tiefsten Kreaturen strömen heraus |
 
 ---
 
@@ -337,10 +354,10 @@ Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. 
 
 | Reiter | Inhalt |
 |---|---|
-| Kreaturen | Alle 8 Kreaturen mit Beschreibung |
+| Kreaturen | Alle 15 Kreaturen mit Bild und Beschreibung |
 | Zonen | 5 feste und 8 prozedurale Zonen |
-| Bosse | Alle 3 Bosse, inklusive ob schon besiegt |
-| Ereignisse | Alle 7 Ereignisse |
+| Bosse | Alle 3 Bosse mit Bild, inklusive ob schon besiegt |
+| Ereignisse | Alle 15 Ereignisse |
 | Erfolge | Alle 30 Erfolge mit Bedingung und Belohnung |
 | Skins | Alle Skins mit Seltenheit, Box-Chance, Sternen, Fähigkeit, Tragen und Mergen |
 
