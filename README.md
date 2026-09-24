@@ -228,7 +228,7 @@ Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin*
 | Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
 | Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
 
-Dazu kommt der Start-Skin **Klassisch**, insgesamt also 30 Skins (16 aus Erfolgen und Box, 4 weitere Box-Skins, 9 Meilenstein-Skins, 1 Arctic-Skin).
+Dazu kommt der Start-Skin **Klassisch**, insgesamt also 31 Skins (16 aus Erfolgen und Box, 4 weitere Box-Skins, 9 Meilenstein-Skins, 2 Code-Skins).
 
 ---
 
@@ -340,6 +340,26 @@ Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**.
 
 ## Arctic-Skin und Codes
 
+### Schwarzes Loch (Seltenheit „Kosmisch“)
+
+Ebenfalls **nur per Code**, sofort **★3**. Eine tiefschwarze Qualle mit leuchtendem Akkretionsring und Photonenring. Der Ring ist rein kosmetisch und zählt **nicht** zur Hitbox.
+
+| | Singularität |
+|---|---|
+| Magnet ab Start | Zieht wie die Mutation *Magnet* alles auf der Karte ein. Die Mutation *Magnet* wird deshalb nicht mehr angeboten. |
+| Mini-Schwarzlöcher | Schiesst alle 2,4 s ein kleines schwarzes Loch auf nahe Gegner. Es saugt 2,2 s lang alle Gegner im Umkreis ein und verletzt sie. Bosse werden nur leicht gezogen. |
+
+Die Mini-Schwarzlöcher werden durch Mutationen verbessert:
+
+| Mutation | Wirkung |
+|---|---|
+| Stärkerer Puls | mehr Schaden |
+| Weiter Puls | grösserer Sog-Radius und grössere Zielreichweite |
+| Schneller Puls | häufiger |
+| Sporenwerfer | +1 Loch pro Salve und Stufe |
+
+### Arktisqualle
+
 **Arctic** ist die seltenste Stufe. Es gibt genau einen Skin darin, die **Arktisqualle**. Sie ist weder in der Luckybox noch über Erfolge zu bekommen, sondern **nur mit einem geheimen Code**.
 
 **So löst du einen Code ein:** Hauptmenü → **Code einlösen** → Code eingeben → **Einlösen** oder Enter. Gross- und Kleinschreibung zählt. Der Skin wird sofort angelegt.
@@ -353,6 +373,33 @@ Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**.
 Einfrieren und Eiszapfen sind **exklusiv**. Keine andere Qualle hat sie, und sie kommen nie als Mutation.
 
 Der Code steht nicht im Quelltext. Das Spiel speichert nur seinen SHA-256-Hash und vergleicht die Eingabe damit.
+
+---
+
+## Skin-Details
+
+Jeder Skin hat eigene, rein kosmetische Details, teils mit Partikeln. Einige Beispiele:
+
+| Skin | Details |
+|---|---|
+| Glut | Vulkan: dunkles Gestein mit Lavarissen, glühender Krater, aufsteigende Glut, Lava-Tentakel |
+| Perle | Perlenkette am Schirm |
+| Dämmerlicht | Sonnenuntergang im Schirm |
+| Mitternacht | funkelnde Sterne im Schirm |
+| Tiefseerose | Blütenblätter hinter dem Schirm |
+| Giftgrün | Giftflecken und tropfender Schleim |
+| Sonnenfunke | rotierende Sonnenkorona |
+| Kristall | Facettenschliff |
+| Goldqualle / Mutantenkönigin | Kronen |
+| Polarlicht | wehende Polarlicht-Bänder |
+| Donnerqualle | Gewitterwolke und Blitze |
+| Phönix | schlagende Feuerflügel |
+| Sensenqualle | schwebende Sense |
+| Tiefenwanderer | Laterne |
+| Perlentaucherin | Taucherbrille |
+| Abgrundherz | pulsierendes Herz |
+| Arktisqualle | Karbon mit Eiszapfen |
+| Schwarzes Loch | Akkretionsring und einfallende Materie |
 
 ---
 
