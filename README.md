@@ -98,7 +98,7 @@ Im Tutorial sinkst du nicht, es spawnen keine Gegner von selbst, und du kannst n
 | Oben links | Tiefe, aktuelle Zone und **Fortschritt zur nächsten Zone** („Noch 83 m bis Dämmerzone“, unentdeckte Zonen erscheinen als ???). Der Balken leuchtet auf, wenn weniger als 25 m fehlen. |
 | Darunter | Leben (weiss) und Sprint (violett) mit Text „Sprint in 1.4 s“ bzw. „Sprint bereit“ |
 | Um die Qualle | Ein **violetter Ring** füllt sich, während der Sprint auflädt. Ist er bereit, blitzt der Ring kurz auf und es gibt einen Ton. Mit dem Skin *Kristall* ab ★2 zeigt ein cyanfarbener Ring den bereiten Schild. |
-| Oben rechts | Stufe, Besiegte, Rekord und **Perlen** |
+| Oben rechts | Stufe, Besiegte, Rekordtiefe, **Kill-Rekord** (meiste besiegte Kreaturen in einem Tauchgang) und **Perlen** |
 | Unten | Erfahrungsbalken |
 
 ---
@@ -263,7 +263,7 @@ Für **5 Perlen** öffnest du eine Luckybox und bekommst einen zufälligen Skin.
 
 Meilenstein-Skins sind **nicht** in der Box, siehe [unten](#meilenstein-skins).
 
-Beim Öffnen läuft eine **Rolle** mit Skins durch, bremst ab und bleibt unter der goldenen Markierung auf deinem Gewinn stehen. Mit **Überspringen** siehst du das Ergebnis sofort. Verlässt du die Box während der Drehung, bekommst du den Skin trotzdem.
+Beim Öffnen läuft eine **Rolle** mit Skins durch, bremst ab und bleibt unter der goldenen Markierung auf deinem Gewinn stehen. Die Drehung dauert 3 Sekunden. Mit **Überspringen** siehst du das Ergebnis sofort. Verlässt du die Box während der Drehung, bekommst du den Skin trotzdem.
 
 Ist der Skin neu, wird er freigeschaltet. Hast du ihn schon, egal ob aus einer Box oder durch einen Erfolg, bekommst du ein **Duplikat**.
 
@@ -375,7 +375,7 @@ Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie finde
 ## Speicherstand
 
 Alles wird lokal im Browser gespeichert (`localStorage`):
-Rekordtiefe, Logbuch, Erfolge, Sprache, eingelöste Codes, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
+Rekordtiefe, Kill-Rekord, Logbuch, Erfolge, Sprache, eingelöste Codes, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
 
 Der Fortschritt gilt pro Browser und Gerät. Wer die Browserdaten löscht, setzt alles zurück.
 
