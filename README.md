@@ -272,8 +272,10 @@ Unter **Logbuch & Skins → Skins** mergst du Duplikate:
 | Stufe | Kosten | Wirkung |
 |---|---|---|
 | ★1 | – | Skin freigeschaltet, nur Aussehen |
-| ★2 | 2 Duplikate | Spezialfähigkeit aktiv |
-| ★3 | 3 weitere Duplikate | Spezialfähigkeit verstärkt |
+| ★2 | 3× ★1 (dein Skin + 2 Duplikate) | Spezialfähigkeit aktiv |
+| ★3 | 3× ★2 (9 Kopien insgesamt, also 6 weitere Duplikate ab ★2) | Spezialfähigkeit verstärkt |
+
+Der Merge-Knopf zeigt den Fortschritt in Kopien an, z. B. „Mergen zu ★3 (5/9 Kopien)“. Skins, die schon nach den alten Regeln gemergt wurden, behalten ihre Sterne.
 
 Die Fähigkeit wirkt nur, solange du den Skin **trägst**. Dein aktueller Skin und seine Fähigkeit stehen im Hauptmenü.
 
