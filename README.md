@@ -376,6 +376,14 @@ Der Code steht nicht im Quelltext. Das Spiel speichert nur seinen SHA-256-Hash u
 
 ---
 
+### Reset-Code
+
+Ein weiterer geheimer Code setzt den **gesamten Fortschritt** zurück: Rekorde, Kill-Rekord, Logbuch, Erfolge, Perlen, Skins, eingelöste Codes, Statistik und Tutorial-Status. Sprache, Tastenbelegung und Ton bleiben erhalten.
+
+Zur Sicherheit muss man den Code **zweimal innerhalb von 10 Sekunden** einlösen. Beim ersten Mal erscheint nur eine Warnung. Danach startet das Spiel neu.
+
+---
+
 ## Skin-Details
 
 Jeder Skin hat eigene, rein kosmetische Details, teils mit Partikeln. Einige Beispiele:
