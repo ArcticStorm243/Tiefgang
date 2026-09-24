@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" id="htmlRoot">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -121,6 +121,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .entry span.ab.on{color:var(--ink)}
 .entry .row{margin-top:6px}
 .btn2.sm{font-size:13px;padding:6px 12px}
+.langrow{margin-top:14px;display:flex;justify-content:flex-end}
 .btn2:disabled{opacity:.4;cursor:default}
 .btn2.danger{color:#ffb3c2;border-color:rgba(255,107,139,.35)}.btn2.danger:hover{background:rgba(255,107,139,.14);border-color:var(--coral)}
 .btn2.danger.armed{color:#fff;background:rgba(255,107,139,.3);border-color:var(--coral)}
@@ -171,6 +172,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
     </div>
     <p class="muted small" id="menuSkin"></p>
     <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="boxBtn" type="button">Luckybox</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button><button class="btn2" id="codeBtn" type="button">Code einlösen</button></div>
+    <div class="langrow"><button class="btn2 sm" id="langBtn" type="button" aria-label="Sprache wechseln / Change language"></button></div>
   </div>
 </div>
 
@@ -281,6 +283,25 @@ const store = {
   set(k, v) { try { localStorage.setItem('tiefgang:' + k, JSON.stringify(v)); } catch (e) {} }
 };
 
+/* ---------- Sprache ---------- */
+const lang = store.get('lang', (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en');
+const EN = {"Lichtzone": "Sunlight Zone","Dämmerzone": "Twilight Zone","Mitternachtszone": "Midnight Zone","Abyssal": "Abyssal Zone","Hadal": "Hadal Zone","Kristallgraben": "Crystal Trench","Echoschlund": "Echo Gorge","Glimmerriff": "Glimmer Reef","Stille Weite": "Silent Expanse","Nebelschlot": "Mist Vent","Sternenkluft": "Star Chasm","Rauschgrund": "Static Deep","Aschemeer": "Ash Sea","Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.": "Sunbeams still reach this far. A calm beginning.","Das letzte Tageslicht verblasst.": "The last daylight fades away.","Ewige Nacht. Nur noch Biolumineszenz.": "Eternal night. Only bioluminescence remains.","Eisige Kälte und seltsame Farben.": "Icy cold and strange colours.","Heisse Quellen in den tiefsten Gräben der Welt.": "Hot springs in the deepest trenches on earth.","Treibling": "Drifter","Pfeilfisch": "Dartfish","Kugelfisch": "Pufferfish","Anglerfisch": "Anglerfish","Schattenaal": "Shadow Eel","Tintenkalmar": "Ink Squid","Glasgeist": "Glass Ghost","Glutkrabbe": "Ember Crab","Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.": "Slowly drifts towards you. Harmless alone, dangerous in numbers.","Lauert kurz und schiesst dann blitzschnell auf dich zu.": "Lurks for a moment, then darts at you lightning-fast.","Platzt beim Tod und verschiesst Stacheln in alle Richtungen.": "Bursts on death and fires spikes in every direction.","Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.": "Tough and sluggish. Its lure glows brightly in the dark.","Schlängelt sich schnell und unberechenbar heran.": "Slithers in quickly and unpredictably.","Hält Abstand und spuckt Tintenkugeln nach dir.": "Keeps its distance and spits ink balls at you.","Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.": "Turns invisible regularly. You cannot hit it then.","Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.": "Very tough. Splits into two small, fast crabs on death.","Mutterqualle": "Mother Jelly","Riesenkalmar": "Giant Squid","Leviathan": "Leviathan","Ruft ständig neue Treiblinge herbei.": "Keeps summoning new drifters.","Feuert Tintenringe in alle Richtungen.": "Fires rings of ink in every direction.","Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.": "Takes aim briefly, then rams at full force. Watch for the glowing streak.","Planktonblüte": "Plankton Bloom","Das Wasser leuchtet. Sammeln!": "The water is glowing. Collect it!","Starke Strömung": "Strong Current","Alles treibt ab.": "Everything drifts away.","Fischschwarm": "Fish School","Schnapp dir so viele wie möglich.": "Catch as many as you can.","Angriffswelle": "Attack Wave","Sie kommen von allen Seiten.": "They come from all sides.","Goldqualle gesichtet": "Golden Jelly Spotted","Fang sie für eine doppelte Mutation.": "Catch it for a double mutation.","Fressrausch": "Feeding Frenzy","Gegner schneller, doppelte Erfahrung.": "Faster enemies, double experience.","Schwarzes Wasser": "Black Water","Nur dein eigenes Licht bleibt.": "Only your own light remains.","Stärkerer Puls": "Stronger Pulse","+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.": "+30% damage for pulse, sparks, spores, lightning and every skin ability that deals damage.","Weiter Puls": "Wider Pulse","Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.": "Your light pulse reaches 18% further. Also enlarges skin abilities that have a range.","Schneller Puls": "Faster Pulse","Du pulsierst 15 % häufiger. Beschleunigt auch Skin-Fähigkeiten, die regelmässig auslösen.": "You pulse 15% more often. Also speeds up skin abilities that trigger regularly.","Flossenschlag": "Fin Stroke","+12 % Schwimmtempo.": "+12% swim speed.","Anziehung": "Attraction","Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.": "Plankton and pearls fly to you from 50% further away.","Dicke Glocke": "Thick Bell","+25 maximales Leben und 40 Heilung.": "+25 max health and 40 healing.","Selbstheilung": "Self-Healing","+1 Leben pro Sekunde.": "+1 health per second.","Leuchtfunke": "Glow Spark","Ein weiterer Funke kreist um dich.": "Another spark circles around you.","Ein Funke kreist um dich und verbrennt alles, was er trifft.": "A spark circles around you and burns everything it touches.","Sporenwerfer": "Spore Launcher","Eine Spore mehr pro Salve. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "One more spore per volley. Also strengthens skin abilities that fire projectiles.","Schiesst zielsuchende Sporen auf nahe Gegner. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "Fires homing spores at nearby enemies. Also strengthens skin abilities that fire projectiles.","Zitteraal": "Electric Eel","Der Blitz springt auf einen Gegner mehr.": "The lightning jumps to one more enemy.","Ein Blitz springt zwischen zwei nahen Gegnern.": "Lightning jumps between two nearby enemies.","Rückstoss": "Recoil","Dein Sprint ist 20 % schneller wieder bereit. Lädt auch Schild-Fähigkeiten von Skins schneller.": "Your sprint recharges 20% faster. Also recharges skin shield abilities faster.","Klassisch": "Classic","Perle": "Pearl","Dämmerlicht": "Dusklight","Mitternacht": "Midnight","Tiefseerose": "Deep-Sea Rose","Glut": "Ember","Minze": "Mint","Giftgrün": "Toxic Green","Sonnenfunke": "Sunspark","Schattenqualle": "Shadow Jelly","Kristall": "Crystal","Goldqualle": "Golden Jelly","Sternenstaub": "Stardust","Polarlicht": "Aurora","Prisma": "Prism","Nebelschleier": "Nebula Veil","Donnerqualle": "Thunder Jelly","Leere": "Void","Phönix": "Phoenix","Sensenqualle": "Reaper Jelly","Tiefenwanderer": "Deep Wanderer","Titanenqualle": "Titan Jelly","Kopfgeldjägerin": "Bounty Huntress","Perlentaucherin": "Pearl Diver","Veteranin": "Veteran","Ewige Qualle": "Eternal Jelly","Mutantenkönigin": "Mutant Queen","Abgrundherz": "Abyss Heart","Arktisqualle": "Arctic Jelly","Gewöhnlich": "Common","Selten": "Rare","Episch": "Epic","Legendär": "Legendary","Mythisch": "Mythic","Meilenstein": "Milestone","Arctic": "Arctic","Robust": "Sturdy","+15 max. Leben": "+15 max health","+30 max. Leben": "+30 max health","Perlenglück": "Pearl Luck","+50 % Perlenchance": "+50% pearl chance","+100 % Perlenchance": "+100% pearl chance","Stromlinie": "Streamline","+8 % Tempo": "+8% speed","+16 % Tempo": "+16% speed","Frische": "Freshness","+0,7 Leben pro Sekunde": "+0.7 health per second","+1,4 Leben pro Sekunde": "+1.4 health per second","Dornen": "Thorns","Wer dich trifft, bekommt Pulsschaden zurück": "Whoever hits you takes pulse damage back","Wer dich trifft, bekommt doppelten Pulsschaden zurück": "Whoever hits you takes double pulse damage back","Weites Licht": "Wide Light","+10 % Pulsreichweite": "+10% pulse range","+20 % Pulsreichweite": "+20% pulse range","Glutpuls": "Ember Pulse","+12 % Schaden": "+12% damage","+24 % Schaden": "+24% damage","Giftsporen": "Toxic Spores","Start mit 1 Sporenwerfer": "Start with 1 Spore Launcher","Start mit 2 Sporenwerfern": "Start with 2 Spore Launchers","Sonnenkranz": "Sun Wreath","Start mit 1 Leuchtfunken": "Start with 1 Glow Spark","Start mit 2 Leuchtfunken": "Start with 2 Glow Sparks","Phasensprung": "Phase Leap","Sprint 18 % schneller bereit": "Sprint recharges 18% faster","Sprint 36 % schneller bereit": "Sprint recharges 36% faster","Schattenblitz": "Shadow Bolt","Start mit Zitteraal": "Start with Electric Eel","Start mit Zitteraal Stufe 2": "Start with Electric Eel level 2","Kristallschild": "Crystal Shield","Ein Schild blockt alle 20 s einen Treffer": "A shield blocks one hit every 20 s","Ein Schild blockt alle 12 s einen Treffer": "A shield blocks one hit every 12 s","Sternensog": "Star Pull","+40 % Anziehung": "+40% attraction","+80 % Anziehung": "+80% attraction","Goldrausch": "Gold Rush","+25 % Erfahrung": "+25% experience","+50 % Erfahrung": "+50% experience","Polarwind": "Polar Wind","Puls 10 % häufiger": "Pulse 10% more often","Puls 20 % häufiger": "Pulse 20% more often","Prismakraft": "Prism Power","+10 % Schaden, +5 % Tempo, +10 % Erfahrung": "+10% damage, +5% speed, +10% experience","+20 % Schaden, +10 % Tempo, +20 % Erfahrung": "+20% damage, +10% speed, +20% experience","Nebelhülle": "Mist Shroud","10 % Chance, Treffern auszuweichen": "10% chance to dodge hits","20 % Chance, Treffern auszuweichen": "20% chance to dodge hits","Gewitter": "Thunderstorm","Zitteraal mit 1 Ziel mehr, 25 % häufiger": "Electric Eel hits 1 more target, 25% more often","Zitteraal mit 2 Zielen mehr, 50 % häufiger": "Electric Eel hits 2 more targets, 50% more often","Ereignishorizont": "Event Horizon","Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden": "Enemies in pulse range 25% slower, +10% damage","Gegner in Pulsreichweite 40 % langsamer, +20 % Schaden": "Enemies in pulse range 40% slower, +20% damage","Wiedergeburt": "Rebirth","Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle": "Once per dive, revive with 40% health and a wave of fire","Wiederbelebung mit 70 % Leben, doppelt starke Feuerwelle": "Revive with 70% health, fire wave twice as strong","Vollstrecker": "Executioner","+20 % Schaden, normale Gegner unter 15 % Leben sterben sofort": "+20% damage, normal enemies below 15% health die instantly","Druckausgleich": "Pressure Balance","Du nimmst 20 % weniger Schaden": "You take 20% less damage","Riesenfluch": "Giant's Bane","+60 % Schaden gegen Bosse": "+60% damage against bosses","Kopfgeld": "Bounty","Elite-Gegner nehmen +50 % Schaden und lassen doppelt so oft Perlen fallen": "Elite enemies take +50% damage and drop pearls twice as often","Perlensog": "Pearl Pull","Perlen fliegen dir aus grosser Distanz zu, +25 % Perlenchance": "Pearls fly to you from far away, +25% pearl chance","Routine": "Routine","Start mit «Stärkerer Puls» und «Schneller Puls»": "Start with “Stronger Pulse” and “Faster Pulse”","Zeitlos": "Timeless","+2 % Schaden pro Minute im Tauchgang, maximal +60 %": "+2% damage per minute in the dive, up to +60%","Genmutation": "Gene Mutation","Bei jedem Level-up 4 statt 3 Mutationen zur Wahl": "Choose from 4 instead of 3 mutations on every level-up","Tiefendruck": "Deep Pressure","+1 % Schaden pro 100 m Tiefe, maximal +50 %": "+1% damage per 100 m of depth, up to +50%","Permafrost": "Permafrost","Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen": "Freezes enemies around you for 2 s every 6 s and constantly fires piercing icicles","Erster Tauchgang": "First Dive","Beende deinen ersten Tauchgang.": "Finish your first dive.","Gut vorbereitet": "Well Prepared","Schliess das Tutorial ab.": "Complete the tutorial.","Dämmerung": "Dusk","Erreiche 150 m.": "Reach 150 m.","Erreiche 400 m.": "Reach 400 m.","Abgrund": "Abyss","Erreiche 800 m.": "Reach 800 m.","Erreiche 1400 m.": "Reach 1400 m.","Ins Unbekannte": "Into the Unknown","Erreiche 2200 m.": "Reach 2200 m.","Lichtbringer": "Lightbringer","Besiege 100 Gegner in einem Tauchgang.": "Defeat 100 enemies in one dive.","Tausend Funken": "A Thousand Sparks","Besiege insgesamt 1000 Gegner.": "Defeat 1000 enemies in total.","Riesentöter": "Giant Slayer","Besiege einen Boss.": "Defeat a boss.","Alle drei Riesen": "All Three Giants","Besiege jeden der drei Bosse mindestens einmal.": "Defeat each of the three bosses at least once.","Goldfinger": "Goldfinger","Fang eine Goldqualle.": "Catch a golden jelly.","Mutant": "Mutant","Erreiche Stufe 10 in einem Tauchgang.": "Reach level 10 in one dive.","Unberührbar": "Untouchable","Überlebe 3 Minuten am Stück ohne Treffer.": "Survive 3 minutes in a row without being hit.","Funkenkranz": "Spark Wreath","Habe 8 Leuchtfunken gleichzeitig.": "Have 8 glow sparks at once.","Stammgast": "Regular","Tauche 10-mal ab.": "Dive 10 times.","Glückspilz": "Lucky Duck","Öffne deine erste Luckybox.": "Open your first luckybox.","Verschmolzen": "Fused","Merge einen Skin auf ★2.": "Merge a skin to ★2.","Meisterform": "Master Form","Merge einen Skin auf ★3.": "Merge a skin to ★3.","Sensenmann": "Grim Reaper","Besiege insgesamt 10 000 Gegner.": "Defeat 10,000 enemies in total.","Tauche insgesamt 50 000 m.": "Dive 50,000 m in total.","Titanenfall": "Titanfall","Besiege insgesamt 25 Bosse.": "Defeat 25 bosses in total.","Kopfgeldjagd": "Bounty Hunt","Besiege insgesamt 250 Elite-Gegner.": "Defeat 250 elite enemies in total.","Perlenfischer": "Pearl Fisher","Sammle insgesamt 100 Perlen.": "Collect 100 pearls in total.","Veteran": "Veteran","Tauche 100-mal ab.": "Dive 100 times.","Ewigkeit": "Eternity","Überlebe 30 Minuten in einem Tauchgang.": "Survive 30 minutes in one dive.","Hochmutiert": "Highly Mutated","Erreiche Stufe 30 in einem Tauchgang.": "Reach level 30 in one dive.","Herz des Abgrunds": "Heart of the Abyss","Erreiche 5000 m.": "Reach 5000 m.","Forschungsdrang": "Thirst for Knowledge","Fülle das Logbuch zur Hälfte.": "Fill half of the logbook.","Vollständiges Logbuch": "Complete Logbook","Entdecke alles im Logbuch.": "Discover everything in the logbook.","Nach oben": "Up","Nach unten": "Down","Nach links": "Left","Nach rechts": "Right","Sprint": "Sprint","Pause": "Pause","Ton an/aus": "Sound on/off","Leertaste": "Space","Shift links": "Left Shift","Shift rechts": "Right Shift","Strg links": "Left Ctrl","Strg rechts": "Right Ctrl","Alt Gr": "Alt Gr","Feststell": "Caps Lock","Taste drücken …": "Press a key …","Taste ist fest belegt": "Key is reserved","{0} wird für die Menüs gebraucht": "{0} is needed for the menus","Ton an": "Sound on","Ton aus": "Sound off","Neu im Logbuch": "New in logbook","Skin: {0} ★★★, Fähigkeit «{1}» aktiv": "Skin: {0} ★★★, ability “{1}” active","Skin: {0}, Fähigkeit «{1}» aktiv: {2}": "Skin: {0}, ability “{1}” active: {2}","Skin: {0} {1}, Fähigkeit «{2}» aktiv: {3}": "Skin: {0} {1}, ability “{2}” active: {3}","Skin: {0} {1}, ab ★2 mit Fähigkeit «{2}»": "Skin: {0} {1}, ability “{2}” from ★2","Maus oder Finger": "Mouse or finger","Qualle schwimmt dorthin": "The jellyfish swims there","Alternativ mit der Tastatur schwimmen": "Or swim with the keyboard","Sprint (auch Rechtsklick oder Doppeltipp)": "Sprint (also right-click or double-tap)","Pause / Ton": "Pause / sound","taucht aus der Tiefe auf": "rises from the deep","Stufe {0}": "Level {0}","Neu": "New"," · doppelt": " · double","Goldene Mutation: wirkt doppelt": "Golden mutation: counts twice","Stufe {0}: wähle eine Mutation": "Level {0}: choose a mutation","{0} besiegt": "{0} defeated","Du wurdest teilweise geheilt": "You were partially healed","Der Phönix erhebt sich aus der Asche": "The phoenix rises from the ashes","Getaucht bis {0} m": "Dived to {0} m","Zone": "Zone","Zeit": "Time","Stufe": "Level","Besiegt": "Defeated","Perlen": "Pearls","Tutorial beenden": "End tutorial","Tauchgang beenden": "End dive","Wirklich beenden? Nochmal klicken": "Really end? Click again","Tauchgang beendet bei {0} m": "Dive ended at {0} m","Erfolg: {0}": "Achievement: {0}","Neuer Skin freigeschaltet: {0}": "New skin unlocked: {0}","Luckybox bereit": "Luckybox ready","Du hast {0} Perlen. Öffne die Box im Menü oder nach dem Tauchgang.": "You have {0} pearls. Open the box in the menu or after the dive.","Perle gefunden": "Pearl found","{0} Perlen, noch {1} bis zur nächsten Luckybox": "{0} pearls, {1} more until the next luckybox","Luckybox": "Luckybox","Luckybox ({0} bereit)": "Luckybox ({0} ready)","{0} Perlen": "{0} pearls","Noch {0} Perlen nötig": "{0} more pearls needed","Box öffnen ({0} Perlen)": "Open box ({0} pearls)","Duplikat! Du hast jetzt {0}, für ★{1} brauchst du {2}.": "Duplicate! You now have {0}, you need {2} for ★{1}.","Duplikat! Du hast jetzt {0}.": "Duplicate! You now have {0}.","Neu freigeschaltet!": "Newly unlocked!","Fähigkeit «{0}»: {1}": "Ability “{0}”: {1}","Gib zuerst einen Code ein.": "Enter a code first.","Dieser Code ist ungültig.": "This code is invalid.","Diesen Code hast du schon eingelöst.": "You have already redeemed this code.","{0} freigeschaltet und angelegt. Sofort ★3!": "{0} unlocked and equipped. Instantly ★3!","Arctic-Skin: {0}": "Arctic skin: {0}","Fähigkeit «{0}» ist aktiv": "Ability “{0}” is active","Kreaturen": "Creatures","Zonen": "Zones","Bosse": "Bosses","Ereignisse": "Events","Erfolge": "Achievements","Skins": "Skins","Taucht ab {0} m auf": "Appears from {0} m"," Ab {0} m.": " From {0} m.","Ab {0} m": "From {0} m","Unerforschtes Gebiet jenseits der bekannten Zonen. Ab {0} m.": "Uncharted territory beyond the known zones. From {0} m."," Schon besiegt.": " Already defeated."," Noch nicht besiegt.": " Not defeated yet.","Erscheint erstmals beim Eintritt in die {0}": "First appears when entering the {0}","Möglich ab {0} m": "Possible from {0} m","Jederzeit möglich": "Possible at any time"," Belohnung: Skin «{0}».": " Reward: skin “{0}”.","{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier. Perlen: {2}.": "{0} of {1} skins unlocked. Milestone skins are earned by playing, their ability is active right away. From ★2 a skin has a special ability while you wear it. Merge luckybox duplicates here. Pearls: {2}.","Arctic, nur per Code": "Arctic, code only","Meilenstein, nicht in der Luckybox": "Milestone, not in the luckybox","{0} pro Box": "{0} per box","Immer aktiv: ": "Always active: ","Nach Freischaltung immer aktiv: ": "Always active once unlocked: ","Aktiv: ": "Active: ",". Mit ★3: ": ". With ★3: ","Ab ★2: ": "From ★2: ","Fähigkeit «{0}». {1}.": "Ability “{0}”. {1}.","Mit Code eingelöst, sofort ★3": "Redeemed with a code, instantly ★3","Nur mit einem geheimen Code unter «Code einlösen»": "Only with a secret code under “Redeem code”","Verdient durch «{0}»": "Earned through “{0}”","Erfolg «{0}»: {1}": "Achievement “{0}”: {1}","{0} Duplikate": "{0} duplicates","{0} Duplikat": "{0} duplicate","Keine Duplikate": "No duplicates","Erfolg «{0}» oder Luckybox": "Achievement “{0}” or luckybox","Nur aus der Luckybox": "Luckybox only","Getragen": "Equipped","Tragen": "Equip","Mergen zu ★{0} ({1}/{2})": "Merge to ★{0} ({1}/{2})","{0} von {1} erreicht.": "{0} of {1} achieved.","{0} von {1} entdeckt.": "{0} of {1} discovered.","Insgesamt {0} / {1} Einträge und {2} / {3} Erfolge.": "In total {0} / {1} entries and {2} / {3} achievements.","Schwimmen": "Swimming","Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit {0}. Schwimm ein bisschen herum.": "Move the mouse or drag your finger, the jellyfish follows you. On the keyboard use {0}. Swim around a little.","Drück {0}, mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.": "Press {0}, right-click or double-tap. While sprinting you are briefly invulnerable. The violet bar at the top left shows when it is ready again.","Lichtpuls": "Light Pulse","Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.": "You pulse automatically and hit everything around you. Swim to the four drifters and defeat them.","Plankton": "Plankton","Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.": "Defeated enemies leave glowing plankton behind. Collect it all. It fills the experience bar at the very bottom.","Mutationen": "Mutations","Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.": "When the bar is full you level up and choose a mutation. Click a card or press 1, 2 or 3.","Ab in die Tiefe": "Into the Deep","Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!": "In the real game you keep sinking deeper. New zones bring new creatures, events and bosses. Everything goes into the logbook, and achievements unlock new skins. Good luck!","Schritt {0} von {1}: {2}": "Step {0} of {1}: {2}","Du tauchst ab": "You dive down","{0} m unter der Oberfläche": "{0} m below the surface","Goldqualle gefangen": "Golden jelly caught","Deine nächste Mutation wirkt doppelt": "Your next mutation counts twice","Die Goldqualle ist entkommen": "The golden jelly escaped","Sprint bereit ({0})": "Sprint ready ({0})","Sprint in {0} s": "Sprint in {0} s","Noch {0} m bis {1}": "{0} m to {1}","Rekord": "Record","m": "m","Tutorial überspringen": "Skip tutorial","Los geht's": "Let's go","Du bist eine kleine Leuchtqualle. Tauch so tief du kannst. Jede Zone bringt neue Kreaturen, seltsame Ereignisse und einen Riesen, der dich aufhalten will.": "You are a small glowing jellyfish. Dive as deep as you can. Every zone brings new creatures, strange events and a giant that wants to stop you.","Rekordtiefe": "Record depth","Logbuch-Einträge": "Logbook entries","Abtauchen": "Dive","Tutorial": "Tutorial","Logbuch & Skins": "Logbook & skins","Steuerung": "Controls","Code einlösen": "Redeem code","Klick eine Karte oder drück die Zahl auf der Karte.": "Click a card or press the number shown on it.","Pausiert": "Paused","Die Tiefe wartet.": "The deep is waiting.","Weiter tauchen": "Keep diving","Logbuch": "Logbook","Neuer Rekord!": "New record!","Nochmal abtauchen": "Dive again","Hauptmenü": "Main menu","Zum ersten Mal hier?": "First time here?","Ein kurzes Tutorial zeigt dir in etwa einer Minute, wie alles funktioniert. Du kannst es jederzeit überspringen.": "A short tutorial shows you how everything works in about a minute. You can skip it at any time.","Tutorial starten": "Start tutorial","Direkt abtauchen": "Dive right in","Zurück": "Back","Manche Skins gibt es nur mit einem geheimen Code. Gross- und Kleinschreibung zählt.": "Some skins are only available with a secret code. Codes are case-sensitive.","Code eingeben": "Enter code","Einlösen": "Redeem","Perlen findest du beim Tauchen: selten bei normalen Gegnern, öfter bei Elites (Goldring), sicher bei Bossen. Für 5 Perlen öffnest du eine Box und bekommst einen zufälligen Skin. Doppelte Skins mergst du unter Skins zu ★2 und ★3. Das schaltet Spezialfähigkeiten frei.": "You find pearls while diving: rarely from normal enemies, more often from elites (gold ring), always from bosses. For 5 pearls you open a box and get a random skin. Merge duplicate skins under Skins to ★2 and ★3. This unlocks special abilities.","Box öffnen": "Open box","Zu den Skins": "Go to skins","Klick auf eine Taste und drück danach die neue. Esc bricht ab, Entf löscht die Belegung. Jede Aktion kann zwei Tasten haben.": "Click a key, then press the new one. Esc cancels, Delete clears the binding. Each action can have two keys.","Standard wiederherstellen": "Restore defaults","Fest belegt: 1, 2, 3 für Mutationen und Enter zum Starten. Maus: schwimmen, Rechtsklick: Sprint. Touch: Finger ziehen zum Schwimmen, Doppeltipp für Sprint.": "Reserved: 1, 2, 3 for mutations and Enter to start. Mouse: swim, right-click: sprint. Touch: drag to swim, double-tap to sprint."};
+const T = str => (lang === 'en' && Object.prototype.hasOwnProperty.call(EN, str)) ? EN[str] : str;
+const F = (tpl, ...a) => T(tpl).replace(/\{(\d)\}/g, (m, i) => a[+i]);
+function applyStaticLang() {
+  document.documentElement.lang = lang;
+  if (lang === 'de') return;
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (w.nextNode()) nodes.push(w.currentNode);
+  nodes.forEach(n => {
+    if (n.parentNode && /^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) return;
+    const raw = n.nodeValue, txt = raw.trim();
+    if (txt && Object.prototype.hasOwnProperty.call(EN, txt)) n.nodeValue = raw.replace(txt, EN[txt]);
+  });
+  document.querySelectorAll('[placeholder]').forEach(e => { e.placeholder = T(e.placeholder); });
+}
+
 /* ---------- Leucht-Sprites ---------- */
 const glowCache = new Map();
 function glowSprite(hex) {
@@ -303,123 +324,124 @@ function glow(x, y, r, hex, a) {
 
 /* ---------- Welt-Daten ---------- */
 const ZONES = [
-  { name: 'Lichtzone',        at: 0,    top: '#2a8fb0', bot: '#0d4a6b', glow: '#c8fbff', rays: 1 },
-  { name: 'Dämmerzone',       at: 150,  top: '#17577c', bot: '#08243f', glow: '#9fdcff', rays: .35 },
-  { name: 'Mitternachtszone', at: 400,  top: '#1c1f5c', bot: '#070a26', glow: '#c9a4ff', rays: 0 },
-  { name: 'Abyssal',          at: 800,  top: '#3b1352', bot: '#0c0418', glow: '#ff93d6', rays: 0 },
-  { name: 'Hadal',            at: 1400, top: '#4a1d0c', bot: '#120503', glow: '#ffb65e', rays: 0 }
+  { key: 'Lichtzone', name: T('Lichtzone'),        at: 0,    top: '#2a8fb0', bot: '#0d4a6b', glow: '#c8fbff', rays: 1 },
+  { key: 'Dämmerzone', name: T('Dämmerzone'),       at: 150,  top: '#17577c', bot: '#08243f', glow: '#9fdcff', rays: .35 },
+  { key: 'Mitternachtszone', name: T('Mitternachtszone'), at: 400,  top: '#1c1f5c', bot: '#070a26', glow: '#c9a4ff', rays: 0 },
+  { key: 'Abyssal', name: T('Abyssal'),          at: 800,  top: '#3b1352', bot: '#0c0418', glow: '#ff93d6', rays: 0 },
+  { key: 'Hadal', name: T('Hadal'),            at: 1400, top: '#4a1d0c', bot: '#120503', glow: '#ffb65e', rays: 0 }
 ];
-const PROC = ['Kristallgraben', 'Echoschlund', 'Glimmerriff', 'Stille Weite', 'Nebelschlot', 'Sternenkluft', 'Rauschgrund', 'Aschemeer'];
+const PROC_KEYS = ['Kristallgraben', 'Echoschlund', 'Glimmerriff', 'Stille Weite', 'Nebelschlot', 'Sternenkluft', 'Rauschgrund', 'Aschemeer'];
+const PROC = PROC_KEYS.map(T);
 const PROC_START = 2200, PROC_STEP = 700;
 function getZone(d) {
   if (d < PROC_START) {
     let i = ZONES.length - 1;
     while (ZONES[i].at > d) i--;
     const z = ZONES[i];
-    return { idx: i, key: z.name, name: z.name, top: hexToRgb(z.top), bot: hexToRgb(z.bot), glow: z.glow, rays: z.rays };
+    return { idx: i, key: z.key, name: z.name, top: hexToRgb(z.top), bot: hexToRgb(z.bot), glow: z.glow, rays: z.rays };
   }
   const k = Math.floor((d - PROC_START) / PROC_STEP);
   const h = (k * 67 + 200) % 360, n = Math.floor(k / PROC.length), base = PROC[k % PROC.length];
-  return { idx: ZONES.length + k, key: base, name: base + (n ? ' ' + (n + 1) : ''),
+  return { idx: ZONES.length + k, key: PROC_KEYS[k % PROC.length], name: base + (n ? ' ' + (n + 1) : ''),
     top: hsl(h, 45, 20), bot: hsl((h + 25) % 360, 60, 5), glow: rgbToHex(hsl((h + 10) % 360, 90, 76)), rays: 0 };
 }
 
 const TYPES = {
-  drifter: { name: 'Treibling',    hp: 18,  spd: 45, r: 12, col: '#7fe8ff', dmg: 8,  xp: 1, at: 0,    w: 10 },
-  dart:    { name: 'Pfeilfisch',   hp: 12,  spd: 60, r: 9,  col: '#ffe08a', dmg: 10, xp: 2, at: 60,   w: 6 },
-  puffer:  { name: 'Kugelfisch',   hp: 40,  spd: 32, r: 15, col: '#a6ff9e', dmg: 10, xp: 3, at: 200,  w: 4 },
-  angler:  { name: 'Anglerfisch',  hp: 85,  spd: 38, r: 19, col: '#ff9a6b', dmg: 16, xp: 5, at: 450,  w: 3 },
-  eel:     { name: 'Schattenaal',  hp: 55,  spd: 95, r: 10, col: '#b48cff', dmg: 12, xp: 4, at: 700,  w: 4 },
-  squid:   { name: 'Tintenkalmar', hp: 65,  spd: 55, r: 15, col: '#ff7ad9', dmg: 12, xp: 5, at: 1000, w: 3 },
-  wraith:  { name: 'Glasgeist',    hp: 50,  spd: 75, r: 13, col: '#e0f0ff', dmg: 14, xp: 5, at: 1500, w: 3 },
-  crab:    { name: 'Glutkrabbe',   hp: 150, spd: 40, r: 20, col: '#ff6a3d', dmg: 20, xp: 8, at: 2000, w: 2 }
+  drifter: { name: T('Treibling'),    hp: 18,  spd: 45, r: 12, col: '#7fe8ff', dmg: 8,  xp: 1, at: 0,    w: 10 },
+  dart:    { name: T('Pfeilfisch'),   hp: 12,  spd: 60, r: 9,  col: '#ffe08a', dmg: 10, xp: 2, at: 60,   w: 6 },
+  puffer:  { name: T('Kugelfisch'),   hp: 40,  spd: 32, r: 15, col: '#a6ff9e', dmg: 10, xp: 3, at: 200,  w: 4 },
+  angler:  { name: T('Anglerfisch'),  hp: 85,  spd: 38, r: 19, col: '#ff9a6b', dmg: 16, xp: 5, at: 450,  w: 3 },
+  eel:     { name: T('Schattenaal'),  hp: 55,  spd: 95, r: 10, col: '#b48cff', dmg: 12, xp: 4, at: 700,  w: 4 },
+  squid:   { name: T('Tintenkalmar'), hp: 65,  spd: 55, r: 15, col: '#ff7ad9', dmg: 12, xp: 5, at: 1000, w: 3 },
+  wraith:  { name: T('Glasgeist'),    hp: 50,  spd: 75, r: 13, col: '#e0f0ff', dmg: 14, xp: 5, at: 1500, w: 3 },
+  crab:    { name: T('Glutkrabbe'),   hp: 150, spd: 40, r: 20, col: '#ff6a3d', dmg: 20, xp: 8, at: 2000, w: 2 }
 };
 const BOSSES = [
-  { name: 'Mutterqualle', col: '#9ff3ff', hp: 700,  r: 46, spd: 55,  pattern: 'summon' },
-  { name: 'Riesenkalmar', col: '#ff7ad9', hp: 1100, r: 50, spd: 80,  pattern: 'radial' },
-  { name: 'Leviathan',    col: '#ffb65e', hp: 1600, r: 58, spd: 140, pattern: 'charge' }
+  { key: 'Mutterqualle', name: T('Mutterqualle'), col: '#9ff3ff', hp: 700,  r: 46, spd: 55,  pattern: 'summon' },
+  { key: 'Riesenkalmar', name: T('Riesenkalmar'), col: '#ff7ad9', hp: 1100, r: 50, spd: 80,  pattern: 'radial' },
+  { key: 'Leviathan', name: T('Leviathan'),    col: '#ffb65e', hp: 1600, r: 58, spd: 140, pattern: 'charge' }
 ];
 const EVENTS = [
-  { id: 'bloom',   name: 'Planktonblüte',        desc: 'Das Wasser leuchtet. Sammeln!', at: 0 },
-  { id: 'current', name: 'Starke Strömung',      desc: 'Alles treibt ab.', at: 0, dur: 12 },
-  { id: 'school',  name: 'Fischschwarm',         desc: 'Schnapp dir so viele wie möglich.', at: 40 },
-  { id: 'wave',    name: 'Angriffswelle',        desc: 'Sie kommen von allen Seiten.', at: 80 },
-  { id: 'golden',  name: 'Goldqualle gesichtet', desc: 'Fang sie für eine doppelte Mutation.', at: 100 },
-  { id: 'frenzy',  name: 'Fressrausch',          desc: 'Gegner schneller, doppelte Erfahrung.', at: 150, dur: 12 },
-  { id: 'dark',    name: 'Schwarzes Wasser',     desc: 'Nur dein eigenes Licht bleibt.', at: 300, dur: 14 }
+  { id: 'bloom',   name: T('Planktonblüte'),        desc: T('Das Wasser leuchtet. Sammeln!'), at: 0 },
+  { id: 'current', name: T('Starke Strömung'),      desc: T('Alles treibt ab.'), at: 0, dur: 12 },
+  { id: 'school',  name: T('Fischschwarm'),         desc: T('Schnapp dir so viele wie möglich.'), at: 40 },
+  { id: 'wave',    name: T('Angriffswelle'),        desc: T('Sie kommen von allen Seiten.'), at: 80 },
+  { id: 'golden',  name: T('Goldqualle gesichtet'), desc: T('Fang sie für eine doppelte Mutation.'), at: 100 },
+  { id: 'frenzy',  name: T('Fressrausch'),          desc: T('Gegner schneller, doppelte Erfahrung.'), at: 150, dur: 12 },
+  { id: 'dark',    name: T('Schwarzes Wasser'),     desc: T('Nur dein eigenes Licht bleibt.'), at: 300, dur: 14 }
 ];
 const UPG = [
-  { id: 'pdmg',  name: 'Stärkerer Puls',  max: 99, desc: () => '+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.', apply: p => { p.pulseDmg *= 1.3; } },
-  { id: 'prad',  name: 'Weiter Puls',     max: 8,  desc: () => 'Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.', apply: p => { p.pulseR *= 1.18; } },
-  { id: 'prate', name: 'Schneller Puls',  max: 8,  desc: () => 'Du pulsierst 15 % häufiger. Beschleunigt auch Permafrost und Eiszapfen.', apply: p => { p.pulseInt *= .85; } },
-  { id: 'spd',   name: 'Flossenschlag',   max: 6,  desc: () => '+12 % Schwimmtempo.', apply: p => { p.spd *= 1.12; } },
-  { id: 'mag',   name: 'Anziehung',       max: 6,  desc: () => 'Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.', apply: p => { p.magnet *= 1.5; } },
-  { id: 'hp',    name: 'Dicke Glocke',    max: 10, desc: () => '+25 maximales Leben und 40 Heilung.', apply: p => { p.maxHp += 25; p.hp = Math.min(p.maxHp, p.hp + 40); } },
-  { id: 'regen', name: 'Selbstheilung',   max: 6,  desc: () => '+1 Leben pro Sekunde.', apply: p => { p.regen += 1; } },
-  { id: 'orbit', name: 'Leuchtfunke',     max: 8,  desc: l => l ? 'Ein weiterer Funke kreist um dich.' : 'Ein Funke kreist um dich und verbrennt alles, was er trifft.', apply: p => { p.orbit++; } },
-  { id: 'spore', name: 'Sporenwerfer',    max: 6,  desc: l => l ? 'Eine Spore mehr pro Salve (bei der Arktisqualle auch ein Eiszapfen mehr).' : 'Schiesst zielsuchende Sporen auf nahe Gegner (bei der Arktisqualle auch ein Eiszapfen mehr).', apply: p => { p.spore++; } },
-  { id: 'chain', name: 'Zitteraal',       max: 6,  desc: l => l ? 'Der Blitz springt auf einen Gegner mehr.' : 'Ein Blitz springt zwischen zwei nahen Gegnern.', apply: p => { p.chain++; } },
-  { id: 'dash',  name: 'Rückstoss',       max: 5,  desc: () => 'Dein Sprint ist 20 % schneller wieder bereit. Gilt auch für den Kristallschild.', apply: p => { p.dashCd *= .8; } }
+  { id: 'pdmg',  name: T('Stärkerer Puls'),  max: 99, desc: () => T('+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.'), apply: p => { p.pulseDmg *= 1.3; } },
+  { id: 'prad',  name: T('Weiter Puls'),     max: 8,  desc: () => T('Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.'), apply: p => { p.pulseR *= 1.18; } },
+  { id: 'prate', name: T('Schneller Puls'),  max: 8,  desc: () => T('Du pulsierst 15 % häufiger. Beschleunigt auch Skin-Fähigkeiten, die regelmässig auslösen.'), apply: p => { p.pulseInt *= .85; } },
+  { id: 'spd',   name: T('Flossenschlag'),   max: 6,  desc: () => T('+12 % Schwimmtempo.'), apply: p => { p.spd *= 1.12; } },
+  { id: 'mag',   name: T('Anziehung'),       max: 6,  desc: () => T('Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.'), apply: p => { p.magnet *= 1.5; } },
+  { id: 'hp',    name: T('Dicke Glocke'),    max: 10, desc: () => T('+25 maximales Leben und 40 Heilung.'), apply: p => { p.maxHp += 25; p.hp = Math.min(p.maxHp, p.hp + 40); } },
+  { id: 'regen', name: T('Selbstheilung'),   max: 6,  desc: () => T('+1 Leben pro Sekunde.'), apply: p => { p.regen += 1; } },
+  { id: 'orbit', name: T('Leuchtfunke'),     max: 8,  desc: l => l ? T('Ein weiterer Funke kreist um dich.') : T('Ein Funke kreist um dich und verbrennt alles, was er trifft.'), apply: p => { p.orbit++; } },
+  { id: 'spore', name: T('Sporenwerfer'),    max: 6,  desc: l => l ? T('Eine Spore mehr pro Salve. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.') : T('Schiesst zielsuchende Sporen auf nahe Gegner. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.'), apply: p => { p.spore++; } },
+  { id: 'chain', name: T('Zitteraal'),       max: 6,  desc: l => l ? T('Der Blitz springt auf einen Gegner mehr.') : T('Ein Blitz springt zwischen zwei nahen Gegnern.'), apply: p => { p.chain++; } },
+  { id: 'dash',  name: T('Rückstoss'),       max: 5,  desc: () => T('Dein Sprint ist 20 % schneller wieder bereit. Lädt auch Schild-Fähigkeiten von Skins schneller.'), apply: p => { p.dashCd *= .8; } }
 ];
 const LOG_TOTAL = ZONES.length + PROC.length + Object.keys(TYPES).length + BOSSES.length + EVENTS.length;
 const INFO = {
-  drifter: 'Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.',
-  dart: 'Lauert kurz und schiesst dann blitzschnell auf dich zu.',
-  puffer: 'Platzt beim Tod und verschiesst Stacheln in alle Richtungen.',
-  angler: 'Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.',
-  eel: 'Schlängelt sich schnell und unberechenbar heran.',
-  squid: 'Hält Abstand und spuckt Tintenkugeln nach dir.',
-  wraith: 'Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.',
-  crab: 'Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.'
+  drifter: T('Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.'),
+  dart: T('Lauert kurz und schiesst dann blitzschnell auf dich zu.'),
+  puffer: T('Platzt beim Tod und verschiesst Stacheln in alle Richtungen.'),
+  angler: T('Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.'),
+  eel: T('Schlängelt sich schnell und unberechenbar heran.'),
+  squid: T('Hält Abstand und spuckt Tintenkugeln nach dir.'),
+  wraith: T('Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.'),
+  crab: T('Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.')
 };
-const BOSS_INFO = { summon: 'Ruft ständig neue Treiblinge herbei.', radial: 'Feuert Tintenringe in alle Richtungen.', charge: 'Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.' };
+const BOSS_INFO = { summon: T('Ruft ständig neue Treiblinge herbei.'), radial: T('Feuert Tintenringe in alle Richtungen.'), charge: T('Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.') };
 const ZONE_INFO = {
-  'Lichtzone': 'Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.',
-  'Dämmerzone': 'Das letzte Tageslicht verblasst.',
-  'Mitternachtszone': 'Ewige Nacht. Nur noch Biolumineszenz.',
-  'Abyssal': 'Eisige Kälte und seltsame Farben.',
-  'Hadal': 'Heisse Quellen in den tiefsten Gräben der Welt.'
+  'Lichtzone': T('Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.'),
+  'Dämmerzone': T('Das letzte Tageslicht verblasst.'),
+  'Mitternachtszone': T('Ewige Nacht. Nur noch Biolumineszenz.'),
+  'Abyssal': T('Eisige Kälte und seltsame Farben.'),
+  'Hadal': T('Heisse Quellen in den tiefsten Gräben der Welt.')
 };
 const SKINS = [
-  { id: 'classic', name: 'Klassisch',     body: '#e6fdff', glow: '#c8fbff' },
-  { id: 'pearl',   name: 'Perle',         body: '#fff0f6', glow: '#ffc2dc' },
-  { id: 'dusk',    name: 'Dämmerlicht',   body: '#d6e8ff', glow: '#7fb2ff' },
-  { id: 'violet',  name: 'Mitternacht',   body: '#eadcff', glow: '#b48cff' },
-  { id: 'rose',    name: 'Tiefseerose',   body: '#ffd9ee', glow: '#ff7ac8' },
-  { id: 'ember',   name: 'Glut',          body: '#ffe2c6', glow: '#ff8a3d' },
-  { id: 'mint',    name: 'Minze',         body: '#d9fff1', glow: '#5dffc0' },
-  { id: 'toxic',   name: 'Giftgrün',      body: '#efffc0', glow: '#b6ff3d' },
-  { id: 'sun',     name: 'Sonnenfunke',   body: '#fff3c8', glow: '#ffcf5a' },
-  { id: 'ghost',   name: 'Glasgeist',     body: '#ffffff', glow: '#e8f2ff', alpha: .45 },
-  { id: 'abyss',   name: 'Schattenqualle', body: '#3a3160', glow: '#8c7bff' },
-  { id: 'crystal', name: 'Kristall',      body: '#eaffff', glow: '#8ff0ff', sparkle: true },
-  { id: 'gold',    name: 'Goldqualle',    body: '#ffe3a0', glow: '#ffd76a', sparkle: true },
-  { id: 'star',    name: 'Sternenstaub',  body: '#eef0ff', glow: '#b9c3ff', sparkle: true },
-  { id: 'aurora',  name: 'Polarlicht',    body: '#ffffff', glow: '#7fe8ff', hue: true },
-  { id: 'prism',   name: 'Prisma',        body: '#ffffff', glow: '#ffffff', prism: true },
-  { id: 'nebula',  name: 'Nebelschleier', body: '#fff0fb', glow: '#ff8fe0', range: [285, 330], sparkle: true },
-  { id: 'thunder', name: 'Donnerqualle',  body: '#f4f8ff', glow: '#9fc8ff', sparkle: true },
-  { id: 'void',    name: 'Leere',         body: '#120a24', glow: '#7a3cff', sparkle: true },
-  { id: 'phoenix', name: 'Phönix',        body: '#fff1c9', glow: '#ff6a2a', range: [0, 45], sparkle: true },
-  { id: 'reaper',  name: 'Sensenqualle',  body: '#dfe6ee', glow: '#ff3b5c', sparkle: true },
-  { id: 'wander',  name: 'Tiefenwanderer', body: '#cfe9ff', glow: '#2f7bff' },
-  { id: 'titan',   name: 'Titanenqualle', body: '#fff0d6', glow: '#ffa23a', sparkle: true },
-  { id: 'hunter',  name: 'Kopfgeldjägerin', body: '#fff6d0', glow: '#f5c542' },
-  { id: 'diver',   name: 'Perlentaucherin', body: '#fff0f8', glow: '#ff9fd0', sparkle: true },
-  { id: 'veteran', name: 'Veteranin',     body: '#e3fffb', glow: '#2ee6d6' },
-  { id: 'eternal', name: 'Ewige Qualle',  body: '#ffffff', glow: '#7fe8ff', range: [180, 260] },
-  { id: 'queen',   name: 'Mutantenkönigin', body: '#f3ffe0', glow: '#9dff5d', range: [75, 140] },
-  { id: 'heart',   name: 'Abgrundherz',   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true },
-  { id: 'arctic',  name: 'Arktisqualle',  body: '#15181d', glow: '#5fd8ff', sparkle: true, fx: 'carbon', tent: ['#3f9fc4', '#2f86ad', '#4fb3d6'] }
+  { id: 'classic', name: T('Klassisch'),     body: '#e6fdff', glow: '#c8fbff' },
+  { id: 'pearl',   name: T('Perle'),         body: '#fff0f6', glow: '#ffc2dc' },
+  { id: 'dusk',    name: T('Dämmerlicht'),   body: '#d6e8ff', glow: '#7fb2ff' },
+  { id: 'violet',  name: T('Mitternacht'),   body: '#eadcff', glow: '#b48cff' },
+  { id: 'rose',    name: T('Tiefseerose'),   body: '#ffd9ee', glow: '#ff7ac8' },
+  { id: 'ember',   name: T('Glut'),          body: '#ffe2c6', glow: '#ff8a3d' },
+  { id: 'mint',    name: T('Minze'),         body: '#d9fff1', glow: '#5dffc0' },
+  { id: 'toxic',   name: T('Giftgrün'),      body: '#efffc0', glow: '#b6ff3d' },
+  { id: 'sun',     name: T('Sonnenfunke'),   body: '#fff3c8', glow: '#ffcf5a' },
+  { id: 'ghost',   name: T('Glasgeist'),     body: '#ffffff', glow: '#e8f2ff', alpha: .45 },
+  { id: 'abyss',   name: T('Schattenqualle'), body: '#3a3160', glow: '#8c7bff' },
+  { id: 'crystal', name: T('Kristall'),      body: '#eaffff', glow: '#8ff0ff', sparkle: true },
+  { id: 'gold',    name: T('Goldqualle'),    body: '#ffe3a0', glow: '#ffd76a', sparkle: true },
+  { id: 'star',    name: T('Sternenstaub'),  body: '#eef0ff', glow: '#b9c3ff', sparkle: true },
+  { id: 'aurora',  name: T('Polarlicht'),    body: '#ffffff', glow: '#7fe8ff', hue: true },
+  { id: 'prism',   name: T('Prisma'),        body: '#ffffff', glow: '#ffffff', prism: true },
+  { id: 'nebula',  name: T('Nebelschleier'), body: '#fff0fb', glow: '#ff8fe0', range: [285, 330], sparkle: true },
+  { id: 'thunder', name: T('Donnerqualle'),  body: '#f4f8ff', glow: '#9fc8ff', sparkle: true },
+  { id: 'void',    name: T('Leere'),         body: '#120a24', glow: '#7a3cff', sparkle: true },
+  { id: 'phoenix', name: T('Phönix'),        body: '#fff1c9', glow: '#ff6a2a', range: [0, 45], sparkle: true },
+  { id: 'reaper',  name: T('Sensenqualle'),  body: '#dfe6ee', glow: '#ff3b5c', sparkle: true },
+  { id: 'wander',  name: T('Tiefenwanderer'), body: '#cfe9ff', glow: '#2f7bff' },
+  { id: 'titan',   name: T('Titanenqualle'), body: '#fff0d6', glow: '#ffa23a', sparkle: true },
+  { id: 'hunter',  name: T('Kopfgeldjägerin'), body: '#fff6d0', glow: '#f5c542' },
+  { id: 'diver',   name: T('Perlentaucherin'), body: '#fff0f8', glow: '#ff9fd0', sparkle: true },
+  { id: 'veteran', name: T('Veteranin'),     body: '#e3fffb', glow: '#2ee6d6' },
+  { id: 'eternal', name: T('Ewige Qualle'),  body: '#ffffff', glow: '#7fe8ff', range: [180, 260] },
+  { id: 'queen',   name: T('Mutantenkönigin'), body: '#f3ffe0', glow: '#9dff5d', range: [75, 140] },
+  { id: 'heart',   name: T('Abgrundherz'),   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true },
+  { id: 'arctic',  name: T('Arktisqualle'),  body: '#15181d', glow: '#5fd8ff', sparkle: true, fx: 'carbon', tent: ['#3f9fc4', '#2f86ad', '#4fb3d6'] }
 ];
 const RAR = {
-  common: { name: 'Gewöhnlich', w: 30,  col: '#bfe9f2' },
-  rare:   { name: 'Selten',     w: 16,  col: '#7fb2ff' },
-  epic:   { name: 'Episch',     w: 8,   col: '#c9a4ff' },
-  legend: { name: 'Legendär',   w: 4,   col: '#ffcf7a' },
-  myth:   { name: 'Mythisch',   w: 2,   col: '#ff7ac8' },
-  earn:   { name: 'Meilenstein', w: 0,  col: '#7fffd4' },
-  arctic: { name: 'Arctic',      w: 0,  col: '#9ff6ff' }
+  common: { name: T('Gewöhnlich'), w: 30,  col: '#bfe9f2' },
+  rare:   { name: T('Selten'),     w: 16,  col: '#7fb2ff' },
+  epic:   { name: T('Episch'),     w: 8,   col: '#c9a4ff' },
+  legend: { name: T('Legendär'),   w: 4,   col: '#ffcf7a' },
+  myth:   { name: T('Mythisch'),   w: 2,   col: '#ff7ac8' },
+  earn:   { name: T('Meilenstein'), w: 0,  col: '#7fffd4' },
+  arctic: { name: T('Arctic'),      w: 0,  col: '#9ff6ff' }
 };
 const SKIN_META = {
   classic: ['common', 'Robust',         '+15 max. Leben', '+30 max. Leben'],
@@ -453,44 +475,44 @@ const SKIN_META = {
   heart:   ['earn',   'Tiefendruck',    '+1 % Schaden pro 100 m Tiefe, maximal +50 %', ''],
   arctic:  ['arctic', 'Permafrost',     'Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen', 'Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen']
 };
-SKINS.forEach(k => { const m = SKIN_META[k.id]; k.rar = m[0]; k.ab = m[1]; k.abd = [m[2], m[3]]; });
+SKINS.forEach(k => { const m = SKIN_META[k.id]; k.rar = m[0]; k.ab = T(m[1]); k.abd = [T(m[2]), T(m[3])]; });
 const RAR_SUM = SKINS.reduce((a, k) => a + RAR[k.rar].w, 0);
 const BOX_COST = 5, MERGE_COST = [0, 2, 3];
 const ACH = [
-  { id: 'first',    name: 'Erster Tauchgang',      desc: 'Beende deinen ersten Tauchgang.' },
-  { id: 'tutorial', name: 'Gut vorbereitet',       desc: 'Schliess das Tutorial ab.', skin: 'pearl' },
-  { id: 'd150',     name: 'Dämmerung',             desc: 'Erreiche 150 m.', skin: 'dusk' },
-  { id: 'd400',     name: 'Mitternacht',           desc: 'Erreiche 400 m.', skin: 'violet' },
-  { id: 'd800',     name: 'Abgrund',               desc: 'Erreiche 800 m.', skin: 'rose' },
-  { id: 'd1400',    name: 'Hadal',                 desc: 'Erreiche 1400 m.', skin: 'ember' },
-  { id: 'd2200',    name: 'Ins Unbekannte',        desc: 'Erreiche 2200 m.', skin: 'aurora' },
-  { id: 'k100',     name: 'Lichtbringer',          desc: 'Besiege 100 Gegner in einem Tauchgang.', skin: 'mint' },
-  { id: 'k1000',    name: 'Tausend Funken',        desc: 'Besiege insgesamt 1000 Gegner.', skin: 'ghost' },
-  { id: 'boss',     name: 'Riesentöter',           desc: 'Besiege einen Boss.', skin: 'abyss' },
-  { id: 'boss3',    name: 'Alle drei Riesen',      desc: 'Besiege jeden der drei Bosse mindestens einmal.', skin: 'sun' },
-  { id: 'golden',   name: 'Goldfinger',            desc: 'Fang eine Goldqualle.', skin: 'gold' },
-  { id: 'lvl10',    name: 'Mutant',                desc: 'Erreiche Stufe 10 in einem Tauchgang.', skin: 'toxic' },
-  { id: 'nohit',    name: 'Unberührbar',           desc: 'Überlebe 3 Minuten am Stück ohne Treffer.', skin: 'crystal' },
-  { id: 'orbit8',   name: 'Funkenkranz',           desc: 'Habe 8 Leuchtfunken gleichzeitig.' },
-  { id: 'runs10',   name: 'Stammgast',             desc: 'Tauche 10-mal ab.' },
-  { id: 'box1',     name: 'Glückspilz',            desc: 'Öffne deine erste Luckybox.' },
-  { id: 'merge',    name: 'Verschmolzen',          desc: 'Merge einen Skin auf ★2.' },
-  { id: 'merge3',   name: 'Meisterform',           desc: 'Merge einen Skin auf ★3.' },
-  { id: 'k10000',   name: 'Sensenmann',            desc: 'Besiege insgesamt 10 000 Gegner.', skin: 'reaper' },
-  { id: 'm50000',   name: 'Tiefenwanderer',        desc: 'Tauche insgesamt 50 000 m.', skin: 'wander' },
-  { id: 'boss25',   name: 'Titanenfall',           desc: 'Besiege insgesamt 25 Bosse.', skin: 'titan' },
-  { id: 'elite250', name: 'Kopfgeldjagd',          desc: 'Besiege insgesamt 250 Elite-Gegner.', skin: 'hunter' },
-  { id: 'pearl100', name: 'Perlenfischer',         desc: 'Sammle insgesamt 100 Perlen.', skin: 'diver' },
-  { id: 'runs100',  name: 'Veteran',               desc: 'Tauche 100-mal ab.', skin: 'veteran' },
-  { id: 'time30',   name: 'Ewigkeit',              desc: 'Überlebe 30 Minuten in einem Tauchgang.', skin: 'eternal' },
-  { id: 'lvl30',    name: 'Hochmutiert',           desc: 'Erreiche Stufe 30 in einem Tauchgang.', skin: 'queen' },
-  { id: 'd5000',    name: 'Herz des Abgrunds',     desc: 'Erreiche 5000 m.', skin: 'heart' },
-  { id: 'loghalf',  name: 'Forschungsdrang',       desc: 'Fülle das Logbuch zur Hälfte.', skin: 'star' },
-  { id: 'logfull',  name: 'Vollständiges Logbuch', desc: 'Entdecke alles im Logbuch.', skin: 'prism' }
+  { id: 'first',    name: T('Erster Tauchgang'),      desc: T('Beende deinen ersten Tauchgang.') },
+  { id: 'tutorial', name: T('Gut vorbereitet'),       desc: T('Schliess das Tutorial ab.'), skin: 'pearl' },
+  { id: 'd150',     name: T('Dämmerung'),             desc: T('Erreiche 150 m.'), skin: 'dusk' },
+  { id: 'd400',     name: T('Mitternacht'),           desc: T('Erreiche 400 m.'), skin: 'violet' },
+  { id: 'd800',     name: T('Abgrund'),               desc: T('Erreiche 800 m.'), skin: 'rose' },
+  { id: 'd1400',    name: T('Hadal'),                 desc: T('Erreiche 1400 m.'), skin: 'ember' },
+  { id: 'd2200',    name: T('Ins Unbekannte'),        desc: T('Erreiche 2200 m.'), skin: 'aurora' },
+  { id: 'k100',     name: T('Lichtbringer'),          desc: T('Besiege 100 Gegner in einem Tauchgang.'), skin: 'mint' },
+  { id: 'k1000',    name: T('Tausend Funken'),        desc: T('Besiege insgesamt 1000 Gegner.'), skin: 'ghost' },
+  { id: 'boss',     name: T('Riesentöter'),           desc: T('Besiege einen Boss.'), skin: 'abyss' },
+  { id: 'boss3',    name: T('Alle drei Riesen'),      desc: T('Besiege jeden der drei Bosse mindestens einmal.'), skin: 'sun' },
+  { id: 'golden',   name: T('Goldfinger'),            desc: T('Fang eine Goldqualle.'), skin: 'gold' },
+  { id: 'lvl10',    name: T('Mutant'),                desc: T('Erreiche Stufe 10 in einem Tauchgang.'), skin: 'toxic' },
+  { id: 'nohit',    name: T('Unberührbar'),           desc: T('Überlebe 3 Minuten am Stück ohne Treffer.'), skin: 'crystal' },
+  { id: 'orbit8',   name: T('Funkenkranz'),           desc: T('Habe 8 Leuchtfunken gleichzeitig.') },
+  { id: 'runs10',   name: T('Stammgast'),             desc: T('Tauche 10-mal ab.') },
+  { id: 'box1',     name: T('Glückspilz'),            desc: T('Öffne deine erste Luckybox.') },
+  { id: 'merge',    name: T('Verschmolzen'),          desc: T('Merge einen Skin auf ★2.') },
+  { id: 'merge3',   name: T('Meisterform'),           desc: T('Merge einen Skin auf ★3.') },
+  { id: 'k10000',   name: T('Sensenmann'),            desc: T('Besiege insgesamt 10 000 Gegner.'), skin: 'reaper' },
+  { id: 'm50000',   name: T('Tiefenwanderer'),        desc: T('Tauche insgesamt 50 000 m.'), skin: 'wander' },
+  { id: 'boss25',   name: T('Titanenfall'),           desc: T('Besiege insgesamt 25 Bosse.'), skin: 'titan' },
+  { id: 'elite250', name: T('Kopfgeldjagd'),          desc: T('Besiege insgesamt 250 Elite-Gegner.'), skin: 'hunter' },
+  { id: 'pearl100', name: T('Perlenfischer'),         desc: T('Sammle insgesamt 100 Perlen.'), skin: 'diver' },
+  { id: 'runs100',  name: T('Veteran'),               desc: T('Tauche 100-mal ab.'), skin: 'veteran' },
+  { id: 'time30',   name: T('Ewigkeit'),              desc: T('Überlebe 30 Minuten in einem Tauchgang.'), skin: 'eternal' },
+  { id: 'lvl30',    name: T('Hochmutiert'),           desc: T('Erreiche Stufe 30 in einem Tauchgang.'), skin: 'queen' },
+  { id: 'd5000',    name: T('Herz des Abgrunds'),     desc: T('Erreiche 5000 m.'), skin: 'heart' },
+  { id: 'loghalf',  name: T('Forschungsdrang'),       desc: T('Fülle das Logbuch zur Hälfte.'), skin: 'star' },
+  { id: 'logfull',  name: T('Vollständiges Logbuch'), desc: T('Entdecke alles im Logbuch.'), skin: 'prism' }
 ];
 const ACTIONS = [
-  { id: 'up', name: 'Nach oben' }, { id: 'down', name: 'Nach unten' }, { id: 'left', name: 'Nach links' }, { id: 'right', name: 'Nach rechts' },
-  { id: 'dash', name: 'Sprint' }, { id: 'pause', name: 'Pause' }, { id: 'mute', name: 'Ton an/aus' }
+  { id: 'up', name: T('Nach oben') }, { id: 'down', name: T('Nach unten') }, { id: 'left', name: T('Nach links') }, { id: 'right', name: T('Nach rechts') },
+  { id: 'dash', name: T('Sprint') }, { id: 'pause', name: T('Pause') }, { id: 'mute', name: T('Ton an/aus') }
 ];
 const DEFAULT_BINDS = { up: ['KeyW', 'ArrowUp'], down: ['KeyS', 'ArrowDown'], left: ['KeyA', 'ArrowLeft'], right: ['KeyD', 'ArrowRight'], dash: ['Space', 'ShiftLeft'], pause: ['KeyP', 'Escape'], mute: ['KeyM', null] };
 function loadBinds() {
@@ -523,7 +545,7 @@ function arp(notes, step, type, vol) { notes.forEach((n, i) => setTimeout(() => 
 function setMuted(m) {
   muted = m; store.set('muted', m);
   if (master) master.gain.value = m ? 0 : .5;
-  $('muteBtn').textContent = m ? 'Ton an' : 'Ton aus';
+  $('muteBtn').textContent = m ? T('Ton an') : T('Ton aus');
 }
 
 /* ---------- Spielzustand ---------- */
@@ -571,7 +593,7 @@ const diff = () => 1 + depth / 350;
 function discover(key, name) {
   if (discovered.has(key)) return;
   discovered.add(key); store.set('disc', Array.from(discovered)); newDisc++;
-  toast('Neu im Logbuch', name, 'new');
+  toast(T('Neu im Logbuch'), name, 'new');
 }
 
 /* ---------- UI ---------- */
@@ -595,13 +617,13 @@ function refreshMenu() {
   $('menuAch').textContent = achieved.size + ' / ' + ACH.length;
   $('menuPearls').textContent = String(pearls);
   const sk = skinById(skinId), ss = skinStar(skinId);
-  $('menuSkin').textContent = sk.rar === 'arctic' ? 'Skin: ' + sk.name + ' ★★★, Fähigkeit «' + sk.ab + '» aktiv' : sk.rar === 'earn' ? 'Skin: ' + sk.name + ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[0] : 'Skin: ' + sk.name + ' ' + '★'.repeat(ss) + (ss >= 2 ? ', Fähigkeit «' + sk.ab + '» aktiv: ' + sk.abd[ss - 2] : ', ab ★2 mit Fähigkeit «' + sk.ab + '»');
+  $('menuSkin').textContent = sk.rar === 'arctic' ? F('Skin: {0} ★★★, Fähigkeit «{1}» aktiv', sk.name, sk.ab) : sk.rar === 'earn' ? F('Skin: {0}, Fähigkeit «{1}» aktiv: {2}', sk.name, sk.ab, sk.abd[0]) : ss >= 2 ? F('Skin: {0} {1}, Fähigkeit «{2}» aktiv: {3}', sk.name, '★'.repeat(ss), sk.ab, sk.abd[ss - 2]) : F('Skin: {0} {1}, ab ★2 mit Fähigkeit «{2}»', sk.name, '★'.repeat(ss), sk.ab);
   refreshBoxLabels();
   const mk = $('menuKeys'); mk.textContent = '';
-  [['Maus oder Finger', 'Qualle schwimmt dorthin'],
-   [['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' '), 'Alternativ mit der Tastatur schwimmen'],
-   [keyName(binds.dash[0]), 'Sprint (auch Rechtsklick oder Doppeltipp)'],
-   [keyName(binds.pause[0]) + ' / ' + keyName(binds.mute[0]), 'Pause / Ton']].forEach(([k, v]) => {
+  [[T('Maus oder Finger'), T('Qualle schwimmt dorthin')],
+   [['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' '), T('Alternativ mit der Tastatur schwimmen')],
+   [keyName(binds.dash[0]), T('Sprint (auch Rechtsklick oder Doppeltipp)')],
+   [keyName(binds.pause[0]) + ' / ' + keyName(binds.mute[0]), T('Pause / Ton')]].forEach(([k, v]) => {
     const b = document.createElement('b'), sp = document.createElement('span');
     b.textContent = k; sp.textContent = v; mk.appendChild(b); mk.appendChild(sp);
   });
@@ -640,8 +662,8 @@ function spawnBoss() {
   boss.max = boss.hp;
   enemies.push(boss);
   $('bossName').textContent = def.name; $('bossbox').hidden = false;
-  toast(def.name, 'taucht aus der Tiefe auf', 'boss');
-  discover('b:' + def.name, def.name);
+  toast(def.name, T('taucht aus der Tiefe auf'), 'boss');
+  discover('b:' + def.key, def.name);
   tone(70, 1.4, 'sawtooth', .18, .6); shake = Math.max(shake, 14);
 }
 function shoot(x, y, a, spd, col, r, dmg) {
@@ -705,11 +727,11 @@ function openLevelUp(gold) {
   curOpts.forEach((u, i) => {
     const lv = P.ups[u.id] || 0, b = document.createElement('button');
     b.type = 'button'; b.className = 'card';
-    b.innerHTML = '<kbd>' + (i + 1) + '</kbd><strong>' + u.name + '</strong><span>' + u.desc(lv) + '</span><em>' + (lv ? 'Stufe ' + (lv + 1) : 'Neu') + (gold ? ' · doppelt' : '') + '</em>';
+    b.innerHTML = '<kbd>' + (i + 1) + '</kbd><strong>' + u.name + '</strong><span>' + u.desc(lv) + '</span><em>' + (lv ? F('Stufe {0}', lv + 1) : T('Neu')) + (gold ? T(' · doppelt') : '') + '</em>';
     b.addEventListener('click', () => choose(i));
     box.appendChild(b);
   });
-  $('luTitle').textContent = gold ? 'Goldene Mutation: wirkt doppelt' : 'Stufe ' + P.lvl + ': wähle eine Mutation';
+  $('luTitle').textContent = gold ? T('Goldene Mutation: wirkt doppelt') : F('Stufe {0}: wähle eine Mutation', P.lvl);
   $('levelup').classList.toggle('gold', gold);
   box.classList.toggle('four', curOpts.length > 3);
   $('levelup').classList.toggle('four', curOpts.length > 3);
@@ -746,11 +768,11 @@ function killEnemy(e) {
   if (e.t === 'boss') {
     for (let i = 0; i < 30; i++) dropXp(e.x + rand(-60, 60), e.y + rand(-60, 60), e.xp * diff() / 30 * mult, '#ffe9a8');
     P.hp = Math.min(P.maxHp, P.hp + P.maxHp * .3);
-    toast(e.def.name + ' besiegt', 'Du wurdest teilweise geheilt', 'boss');
+    toast(F('{0} besiegt', e.def.name), T('Du wurdest teilweise geheilt'), 'boss');
     arp([392, 523, 659, 784, 1047], 90, 'triangle', .09);
     shake = Math.max(shake, 20); boss = null; $('bossbox').hidden = true;
     runBosses++; if (tut < 0) life.bossKills = (life.bossKills || 0) + 1;
-    if (life.bossNames.indexOf(e.def.name) < 0) life.bossNames.push(e.def.name);
+    if (life.bossNames.indexOf(e.def.key) < 0) life.bossNames.push(e.def.key);
     if (tut < 0) { dropPearl(e.x - 20, e.y); dropPearl(e.x + 20, e.y); }
     saveLife(); checkAch();
     return;
@@ -780,7 +802,7 @@ function revive() {
   for (const e of enemies) if (!e.dead && d2(e.x, e.y, P.x, P.y) < nR * nR) hitEnemy(e, P.pulseDmg * P.novaMul);
   eproj = [];
   shake = Math.max(shake, 22);
-  toast('Wiedergeburt', 'Der Phönix erhebt sich aus der Asche', 'gold');
+  toast(T('Wiedergeburt'), T('Der Phönix erhebt sich aus der Asche'), 'gold');
   arp([262, 392, 523, 784, 1047], 80, 'sawtooth', .07);
 }
 function dash() {
@@ -802,12 +824,12 @@ function die() {
   if (rec) { best = d; store.set('best', best); }
   life.runs++; life.meters = (life.meters || 0) + d; saveLife(); checkAch(); refreshBoxLabels();
   const mm = Math.floor(runTime / 60), ss = String(Math.floor(runTime % 60)).padStart(2, '0');
-  $('deadTitle').textContent = 'Getaucht bis ' + d + ' m';
+  $('deadTitle').textContent = F('Getaucht bis {0} m', d);
   $('deadRecord').hidden = !rec;
   const st = $('deadStats'); st.textContent = '';
   [['Zone', zone.name], ['Zeit', mm + ':' + ss], ['Stufe', P.lvl], ['Besiegt', kills], ['Perlen', runPearls], ['Neu im Logbuch', newDisc]].forEach(([l, v]) => {
     const div = document.createElement('div'), s = document.createElement('strong');
-    s.textContent = v; div.appendChild(s); div.appendChild(document.createTextNode(l)); st.appendChild(div);
+    s.textContent = v; div.appendChild(s); div.appendChild(document.createTextNode(T(l))); st.appendChild(div);
   });
   $('bossbox').hidden = true;
   setTimeout(() => { if (state === 'dead') show('dead', true); }, 1100);
@@ -877,13 +899,13 @@ let endArmed = false, endTimer = 0;
 function disarmEnd() {
   endArmed = false; clearTimeout(endTimer);
   const b = $('endBtn'); b.classList.remove('armed');
-  b.textContent = tut >= 0 ? 'Tutorial beenden' : 'Tauchgang beenden';
+  b.textContent = tut >= 0 ? T('Tutorial beenden') : T('Tauchgang beenden');
 }
 function endRun() {
   if (state !== 'pause') return;
   if (!endArmed) {
     endArmed = true; $('endBtn').classList.add('armed');
-    $('endBtn').textContent = 'Wirklich beenden? Nochmal klicken';
+    $('endBtn').textContent = T('Wirklich beenden? Nochmal klicken');
     clearTimeout(endTimer); endTimer = setTimeout(disarmEnd, 3000);
     return;
   }
@@ -891,7 +913,7 @@ function endRun() {
   if (tut >= 0) { store.set('tutSeen', true); toMenu(); return; }
   state = 'play';
   die();
-  $('deadTitle').textContent = 'Tauchgang beendet bei ' + Math.floor(depth) + ' m';
+  $('deadTitle').textContent = F('Tauchgang beendet bei {0} m', Math.floor(depth));
 }
 function toMenu() {
   ['dead', 'pause', 'levelup', 'tutAsk'].forEach(id => show(id, false));
@@ -929,7 +951,7 @@ function unlock(id) {
   if (achieved.has(id)) return;
   const a = ACH.find(x => x.id === id); if (!a) return;
   achieved.add(id); store.set('ach', Array.from(achieved));
-  toast('Erfolg: ' + a.name, a.skin ? 'Neuer Skin freigeschaltet: ' + skinById(a.skin).name : a.desc, 'ach');
+  toast(F('Erfolg: {0}', a.name), a.skin ? F('Neuer Skin freigeschaltet: {0}', skinById(a.skin).name) : a.desc, 'ach');
   arp([659, 880, 1175], 90, 'triangle', .08);
 }
 function checkAch() {
@@ -951,7 +973,7 @@ function checkAch() {
   if ((life.pearlsTotal || 0) >= 100) unlock('pearl100');
   if (life.runs >= 100) unlock('runs100');
   if (life.bossNames.length) unlock('boss');
-  if (BOSSES.every(b => life.bossNames.indexOf(b.name) >= 0)) unlock('boss3');
+  if (BOSSES.every(b => life.bossNames.indexOf(b.key) >= 0)) unlock('boss3');
   if (life.goldens > 0) unlock('golden');
   if (life.runs >= 1) unlock('first');
   if (life.runs >= 10) unlock('runs10');
@@ -1011,10 +1033,10 @@ function gotPearl() {
   pearls++; runPearls++; store.set('pearls', pearls); life.pearlsTotal = (life.pearlsTotal || 0) + 1; saveLife(); checkAch();
   burst(P.x, P.y, '#ff9fd0', 16, 160);
   arp([784, 1047, 1319], 60, 'sine', .06);
-  if (pearls % BOX_COST === 0) toast('Luckybox bereit', 'Du hast ' + pearls + ' Perlen. Öffne die Box im Menü oder nach dem Tauchgang.', 'gold');
-  else toast('Perle gefunden', pearls + ' Perlen, noch ' + (BOX_COST - pearls % BOX_COST) + ' bis zur nächsten Luckybox', 'new');
+  if (pearls % BOX_COST === 0) toast(T('Luckybox bereit'), F('Du hast {0} Perlen. Öffne die Box im Menü oder nach dem Tauchgang.', pearls), 'gold');
+  else toast(T('Perle gefunden'), F('{0} Perlen, noch {1} bis zur nächsten Luckybox', pearls, BOX_COST - pearls % BOX_COST), 'new');
 }
-const pct = v => (v >= 1 ? v.toFixed(1) : v.toFixed(2)).replace('.', ',') + ' %';
+const pct = v => lang === 'en' ? (v >= 1 ? v.toFixed(1) : v.toFixed(2)) + '%' : (v >= 1 ? v.toFixed(1) : v.toFixed(2)).replace('.', ',') + ' %';
 function skinChance(k) { return RAR[k.rar].w / RAR_SUM * 100; }
 function invOf(id) { return inv[id] || (inv[id] = { s: 0, n: 0 }); }
 function rollSkin() {
@@ -1022,12 +1044,12 @@ function rollSkin() {
   for (const k of SKINS) { if (!RAR[k.rar].w) continue; r -= RAR[k.rar].w; if (r <= 0) return k; }
   return SKINS[0];
 }
-function boxLabel() { const n = Math.floor(pearls / BOX_COST); return n ? 'Luckybox (' + n + ' bereit)' : 'Luckybox'; }
+function boxLabel() { const n = Math.floor(pearls / BOX_COST); return n ? F('Luckybox ({0} bereit)', n) : T('Luckybox'); }
 function refreshBoxLabels() { $('boxBtn').textContent = boxLabel(); $('dBoxBtn').textContent = boxLabel(); }
 function renderBox() {
-  $('boxPearls').textContent = pearls + ' Perlen';
+  $('boxPearls').textContent = F('{0} Perlen', pearls);
   $('openBtn').disabled = pearls < BOX_COST || opening;
-  $('openBtn').textContent = pearls < BOX_COST ? 'Noch ' + (BOX_COST - pearls) + ' Perlen nötig' : 'Box öffnen (' + BOX_COST + ' Perlen)';
+  $('openBtn').textContent = pearls < BOX_COST ? F('Noch {0} Perlen nötig', BOX_COST - pearls) : F('Box öffnen ({0} Perlen)', BOX_COST);
   const odds = $('odds'); odds.textContent = '';
   Object.keys(RAR).filter(r => RAR[r].w).forEach(r => {
     const ks = SKINS.filter(k => k.rar === r), d = el('div');
@@ -1048,8 +1070,8 @@ function openBox() {
 function revealBox(k) {
   const was = skinStar(k.id), o = invOf(k.id), R = RAR[k.rar];
   let info;
-  if (was >= 1) info = 'Duplikat! Du hast jetzt ' + (++o.n) + (was < 3 ? ', für ★' + (was + 1) + ' brauchst du ' + MERGE_COST[was] + '.' : '.');
-  else { o.s = 1; info = 'Neu freigeschaltet!'; }
+  if (was >= 1) { o.n++; info = was < 3 ? F('Duplikat! Du hast jetzt {0}, für ★{1} brauchst du {2}.', o.n, was + 1, MERGE_COST[was]) : F('Duplikat! Du hast jetzt {0}.', o.n); }
+  else { o.s = 1; info = T('Neu freigeschaltet!'); }
   store.set('inv', inv);
   life.boxes = (life.boxes || 0) + 1; saveLife(); unlock('box1');
   const orb = $('orb'); orb.className = 'orb dim'; orb.style.boxShadow = '0 0 90px ' + R.col + ', 0 0 160px ' + k.glow;
@@ -1066,7 +1088,7 @@ function merge(id) {
   const s = skinStar(id), o = invOf(id), k = skinById(id);
   o.n -= MERGE_COST[s]; o.s = s + 1; store.set('inv', inv);
   unlock('merge'); if (o.s === 3) unlock('merge3');
-  toast(k.name + ' ★' + o.s, 'Fähigkeit «' + k.ab + '»: ' + k.abd[o.s - 2], 'gold');
+  toast(k.name + ' ★' + o.s, F('Fähigkeit «{0}»: {1}', k.ab, k.abd[o.s - 2]), 'gold');
   arp([392, 523, 659, 784, 1047], 70, 'triangle', .08);
   renderLog();
 }
@@ -1113,29 +1135,29 @@ function sha256(ascii) {
 }
 function redeem() {
   const input = $('codeInput'), msg = $('codeMsg'), val = String(input.value || '').trim();
-  if (!val) { msg.textContent = 'Gib zuerst einen Code ein.'; msg.className = 'codemsg bad'; return; }
+  if (!val) { msg.textContent = T('Gib zuerst einen Code ein.'); msg.className = 'codemsg bad'; return; }
   const id = CODE_HASH[sha256(val)];
-  if (!id) { msg.textContent = 'Dieser Code ist ungültig.'; msg.className = 'codemsg bad'; tone(160, .25, 'triangle', .08, .7); return; }
-  if (codes.has(id)) { msg.textContent = 'Diesen Code hast du schon eingelöst.'; msg.className = 'codemsg bad'; return; }
+  if (!id) { msg.textContent = T('Dieser Code ist ungültig.'); msg.className = 'codemsg bad'; tone(160, .25, 'triangle', .08, .7); return; }
+  if (codes.has(id)) { msg.textContent = T('Diesen Code hast du schon eingelöst.'); msg.className = 'codemsg bad'; return; }
   codes.add(id); store.set('codes', Array.from(codes));
   skinId = id; store.set('skin', skinId);
   const k = skinById(id);
-  msg.textContent = k.name + ' freigeschaltet und angelegt. Sofort ★3!'; msg.className = 'codemsg ok';
+  msg.textContent = F('{0} freigeschaltet und angelegt. Sofort ★3!', k.name); msg.className = 'codemsg ok';
   input.value = '';
-  toast('Arctic-Skin: ' + k.name, 'Fähigkeit «' + k.ab + '» ist aktiv', 'arctic');
+  toast(F('Arctic-Skin: {0}', k.name), F('Fähigkeit «{0}» ist aktiv', k.ab), 'arctic');
   initAudio(); arp([1047, 1319, 1568, 2093, 2637], 90, 'sine', .07);
   refreshMenu();
 }
 
 /* ---------- Logbuch ---------- */
-const LOG_TABS = [['creatures', 'Kreaturen'], ['zones', 'Zonen'], ['bosses', 'Bosse'], ['events', 'Ereignisse'], ['ach', 'Erfolge'], ['skins', 'Skins']];
+const LOG_TABS = [['creatures', T('Kreaturen')], ['zones', T('Zonen')], ['bosses', T('Bosse')], ['events', T('Ereignisse')], ['ach', T('Erfolge')], ['skins', T('Skins')]];
 function logEntries(tab) {
-  if (tab === 'creatures') return Object.keys(TYPES).map(k => ({ ok: discovered.has('e:' + k), name: TYPES[k].name, info: INFO[k], hint: 'Taucht ab ' + TYPES[k].at + ' m auf', col: TYPES[k].col }));
-  if (tab === 'zones') return ZONES.map(z => ({ ok: discovered.has('z:' + z.name), name: z.name, info: ZONE_INFO[z.name] + ' Ab ' + z.at + ' m.', hint: 'Ab ' + z.at + ' m', col: z.glow }))
-    .concat(PROC.map((n, k) => ({ ok: discovered.has('z:' + n), name: n, info: 'Unerforschtes Gebiet jenseits der bekannten Zonen. Ab ' + (PROC_START + k * PROC_STEP) + ' m.', hint: 'Ab ' + (PROC_START + k * PROC_STEP) + ' m', col: rgbToHex(hsl((k * 67 + 210) % 360, 90, 76)) })));
-  if (tab === 'bosses') return BOSSES.map((b, i) => ({ ok: discovered.has('b:' + b.name), name: b.name, info: BOSS_INFO[b.pattern] + (life.bossNames.indexOf(b.name) >= 0 ? ' Schon besiegt.' : ' Noch nicht besiegt.'), hint: 'Erscheint erstmals beim Eintritt in die ' + ZONES[i + 1].name, col: b.col }));
-  if (tab === 'events') return EVENTS.map(ev => ({ ok: discovered.has('v:' + ev.id), name: ev.name, info: ev.desc, hint: ev.at ? 'Möglich ab ' + ev.at + ' m' : 'Jederzeit möglich', col: '#7fe8ff' }));
-  return ACH.map(a => ({ ok: achieved.has(a.id), name: a.name, info: a.desc + (a.skin ? ' Belohnung: Skin «' + skinById(a.skin).name + '».' : ''), col: '#ffcf7a', always: true }));
+  if (tab === 'creatures') return Object.keys(TYPES).map(k => ({ ok: discovered.has('e:' + k), name: TYPES[k].name, info: INFO[k], hint: F('Taucht ab {0} m auf', TYPES[k].at), col: TYPES[k].col }));
+  if (tab === 'zones') return ZONES.map(z => ({ ok: discovered.has('z:' + z.key), name: z.name, info: ZONE_INFO[z.key] + F(' Ab {0} m.', z.at), hint: F('Ab {0} m', z.at), col: z.glow }))
+    .concat(PROC.map((n, k) => ({ ok: discovered.has('z:' + PROC_KEYS[k]), name: n, info: F('Unerforschtes Gebiet jenseits der bekannten Zonen. Ab {0} m.', PROC_START + k * PROC_STEP), hint: F('Ab {0} m', PROC_START + k * PROC_STEP), col: rgbToHex(hsl((k * 67 + 210) % 360, 90, 76)) })));
+  if (tab === 'bosses') return BOSSES.map((b, i) => ({ ok: discovered.has('b:' + b.key), name: b.name, info: BOSS_INFO[b.pattern] + (life.bossNames.indexOf(b.key) >= 0 ? T(' Schon besiegt.') : T(' Noch nicht besiegt.')), hint: F('Erscheint erstmals beim Eintritt in die {0}', ZONES[i + 1].name), col: b.col }));
+  if (tab === 'events') return EVENTS.map(ev => ({ ok: discovered.has('v:' + ev.id), name: ev.name, info: ev.desc, hint: ev.at ? F('Möglich ab {0} m', ev.at) : T('Jederzeit möglich'), col: '#7fe8ff' }));
+  return ACH.map(a => ({ ok: achieved.has(a.id), name: a.name, info: a.desc + (a.skin ? F(' Belohnung: Skin «{0}».', skinById(a.skin).name) : ''), col: '#ffcf7a', always: true }));
 }
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function renderLog() {
@@ -1148,7 +1170,7 @@ function renderLog() {
   const grid = $('logGrid'); grid.textContent = '';
   if (logTab === 'skins') {
     const n = SKINS.filter(k => skinUnlocked(k.id)).length;
-    $('logSummary').textContent = n + ' von ' + SKINS.length + ' Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier. Perlen: ' + pearls + '.';
+    $('logSummary').textContent = F('{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier. Perlen: {2}.', n, SKINS.length, pearls);
     SKINS.forEach(k => {
       const s = skinStar(k.id), ok = s >= 1, a = ACH.find(x => x.skin === k.id), R = RAR[k.rar], dup = (inv[k.id] && inv[k.id].n) || 0;
       const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : ''));
@@ -1161,17 +1183,17 @@ function renderLog() {
       const nm = el('strong', '', k.name);
       if (ok && (!earn || arc)) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
       d.appendChild(nm);
-      const rr = el('span', 'rar', arc ? 'Arctic, nur per Code' : earn ? 'Meilenstein, nicht in der Luckybox' : R.name + ', ' + pct(skinChance(k)) + ' pro Box'); rr.style.color = R.col; d.appendChild(rr);
-      const abText = earn ? (ok ? 'Immer aktiv: ' : 'Nach Freischaltung immer aktiv: ') + k.abd[0] : s >= 2 ? 'Aktiv: ' + k.abd[s - 2] + (s < 3 ? '. Mit ★3: ' + k.abd[1] : '') : 'Ab ★2: ' + k.abd[0] + '. Mit ★3: ' + k.abd[1];
-      d.appendChild(el('span', 'ab' + (s >= 2 ? ' on' : ''), 'Fähigkeit «' + k.ab + '». ' + abText + '.'));
-      d.appendChild(el('span', '', arc ? (ok ? 'Mit Code eingelöst, sofort ★3' : 'Nur mit einem geheimen Code unter «Code einlösen»') : earn ? (ok ? 'Verdient durch «' + a.name + '»' : 'Erfolg «' + a.name + '»: ' + a.desc) : ok ? (dup ? dup + (dup > 1 ? ' Duplikate' : ' Duplikat') : 'Keine Duplikate') : (a ? 'Erfolg «' + a.name + '» oder Luckybox' : 'Nur aus der Luckybox')));
+      const rr = el('span', 'rar', arc ? T('Arctic, nur per Code') : earn ? T('Meilenstein, nicht in der Luckybox') : R.name + ', ' + F('{0} pro Box', pct(skinChance(k)))); rr.style.color = R.col; d.appendChild(rr);
+      const abText = earn ? (ok ? T('Immer aktiv: ') : T('Nach Freischaltung immer aktiv: ')) + k.abd[0] : s >= 2 ? T('Aktiv: ') + k.abd[s - 2] + (s < 3 ? T('. Mit ★3: ') + k.abd[1] : '') : T('Ab ★2: ') + k.abd[0] + T('. Mit ★3: ') + k.abd[1];
+      d.appendChild(el('span', 'ab' + (s >= 2 ? ' on' : ''), F('Fähigkeit «{0}». {1}.', k.ab, abText)));
+      d.appendChild(el('span', '', arc ? (ok ? T('Mit Code eingelöst, sofort ★3') : T('Nur mit einem geheimen Code unter «Code einlösen»')) : earn ? (ok ? F('Verdient durch «{0}»', a.name) : F('Erfolg «{0}»: {1}', a.name, a.desc)) : ok ? (dup ? F(dup > 1 ? '{0} Duplikate' : '{0} Duplikat', dup) : T('Keine Duplikate')) : (a ? F('Erfolg «{0}» oder Luckybox', a.name) : T('Nur aus der Luckybox'))));
       const row = el('div', 'row');
-      const wear = el('button', 'btn2 sm', k.id === skinId ? 'Getragen' : 'Tragen'); wear.type = 'button';
+      const wear = el('button', 'btn2 sm', k.id === skinId ? T('Getragen') : T('Tragen')); wear.type = 'button';
       wear.disabled = !ok || k.id === skinId;
       wear.addEventListener('click', () => { skinId = k.id; store.set('skin', skinId); renderLog(); });
       row.appendChild(wear);
       if (ok && s < 3 && !earn) {
-        const mb = el('button', 'btn2 sm', 'Mergen zu ★' + (s + 1) + ' (' + Math.min(dup, MERGE_COST[s]) + '/' + MERGE_COST[s] + ')'); mb.type = 'button';
+        const mb = el('button', 'btn2 sm', F('Mergen zu ★{0} ({1}/{2})', s + 1, Math.min(dup, MERGE_COST[s]), MERGE_COST[s])); mb.type = 'button';
         mb.disabled = !canMerge(k.id);
         mb.addEventListener('click', () => merge(k.id));
         row.appendChild(mb);
@@ -1182,7 +1204,7 @@ function renderLog() {
     return;
   }
   const list = logEntries(logTab), got = list.filter(x => x.ok).length;
-  $('logSummary').textContent = got + ' von ' + list.length + (logTab === 'ach' ? ' erreicht.' : ' entdeckt.') + ' Insgesamt ' + discovered.size + ' / ' + LOG_TOTAL + ' Einträge und ' + achieved.size + ' / ' + ACH.length + ' Erfolge.';
+  $('logSummary').textContent = F(logTab === 'ach' ? '{0} von {1} erreicht.' : '{0} von {1} entdeckt.', got, list.length) + ' ' + F('Insgesamt {0} / {1} Einträge und {2} / {3} Erfolge.', discovered.size, LOG_TOTAL, achieved.size, ACH.length);
   list.forEach(x => {
     const d = el('div', 'entry' + (x.ok ? (x.always ? ' done' : '') : ' locked'));
     const dot = el('i', 'dot'); dot.style.background = x.ok ? x.col : 'transparent'; dot.style.boxShadow = x.ok ? '0 0 12px ' + x.col : 'none';
@@ -1194,7 +1216,7 @@ function renderLog() {
 }
 
 /* ---------- Tastenbelegung ---------- */
-const KEY_NAMES = { Space: 'Leertaste', Escape: 'Esc', ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', ShiftLeft: 'Shift links', ShiftRight: 'Shift rechts', ControlLeft: 'Strg links', ControlRight: 'Strg rechts', AltLeft: 'Alt', AltRight: 'Alt Gr', Tab: 'Tab', CapsLock: 'Feststell', Enter: 'Enter' };
+const KEY_NAMES = { Space: T('Leertaste'), Escape: 'Esc', ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', ShiftLeft: T('Shift links'), ShiftRight: T('Shift rechts'), ControlLeft: T('Strg links'), ControlRight: T('Strg rechts'), AltLeft: 'Alt', AltRight: T('Alt Gr'), Tab: 'Tab', CapsLock: T('Feststell'), Enter: 'Enter' };
 function keyName(c) {
   if (!c) return '–';
   if (KEY_NAMES[c]) return KEY_NAMES[c];
@@ -1211,7 +1233,7 @@ function renderBinds() {
     const tr = el('tr'); tr.appendChild(el('th', '', a.name));
     [0, 1].forEach(slot => {
       const td = el('td'), wait = capturing && capturing.id === a.id && capturing.slot === slot;
-      const b = el('button', 'keycap' + (wait ? ' wait' : ''), wait ? 'Taste drücken …' : keyName(binds[a.id][slot])); b.type = 'button';
+      const b = el('button', 'keycap' + (wait ? ' wait' : ''), wait ? T('Taste drücken …') : keyName(binds[a.id][slot])); b.type = 'button';
       b.addEventListener('click', () => { capturing = { id: a.id, slot }; renderBinds(); });
       td.appendChild(b); tr.appendChild(td);
     });
@@ -1221,7 +1243,7 @@ function renderBinds() {
 function finishCapture(code) {
   const c = capturing; capturing = null;
   if (code !== 'Escape') {
-    if (/^Digit[1-4]$/.test(code) || code === 'Enter') toast('Taste ist fest belegt', keyName(code) + ' wird für die Menüs gebraucht', 'bad');
+    if (/^Digit[1-4]$/.test(code) || code === 'Enter') toast(T('Taste ist fest belegt'), F('{0} wird für die Menüs gebraucht', keyName(code)), 'bad');
     else {
       const val = code === 'Delete' || code === 'Backspace' ? null : code;
       if (val) for (const a of ACTIONS) for (let k = 0; k < 2; k++) if (binds[a.id][k] === val) binds[a.id][k] = null;
@@ -1234,16 +1256,16 @@ function finishCapture(code) {
 
 /* ---------- Tutorial ---------- */
 const TUT = [
-  { title: 'Schwimmen', text: () => 'Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit ' + ['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' ') + '. Schwimm ein bisschen herum.' },
-  { title: 'Sprint', text: () => 'Drück ' + keyName(binds.dash[0]) + ', mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.' },
-  { title: 'Lichtpuls', text: () => 'Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.' },
-  { title: 'Plankton', text: () => 'Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.' },
-  { title: 'Mutationen', text: () => 'Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.' },
-  { title: 'Ab in die Tiefe', text: () => 'Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!' }
+  { title: T('Schwimmen'), text: () => F('Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit {0}. Schwimm ein bisschen herum.', ['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' ')) },
+  { title: T('Sprint'), text: () => F('Drück {0}, mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.', keyName(binds.dash[0])) },
+  { title: T('Lichtpuls'), text: () => T('Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.') },
+  { title: T('Plankton'), text: () => T('Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.') },
+  { title: T('Mutationen'), text: () => T('Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.') },
+  { title: T('Ab in die Tiefe'), text: () => T('Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!') }
 ];
 function tutShow() {
   const st = TUT[tut];
-  $('coachStep').textContent = 'Schritt ' + (tut + 1) + ' von ' + TUT.length + ': ' + st.title;
+  $('coachStep').textContent = F('Schritt {0} von {1}: {2}', tut + 1, TUT.length, st.title);
   $('coachText').textContent = st.text();
   $('coachGo').hidden = tut !== TUT.length - 1;
   $('coachSkip').hidden = tut === TUT.length - 1;
@@ -1297,6 +1319,8 @@ $('dLogBtn').addEventListener('click', () => openSub('logbook', 'dead'));
 $('boxBtn').addEventListener('click', () => openSub('box', 'menu'));
 $('dBoxBtn').addEventListener('click', () => openSub('box', 'dead'));
 $('boxBack').addEventListener('click', closeSub);
+$('langBtn').textContent = lang === 'en' ? '🌐 Deutsch' : '🌐 English';
+$('langBtn').addEventListener('click', () => { store.set('lang', lang === 'en' ? 'de' : 'en'); location.reload(); });
 $('endBtn').addEventListener('click', endRun);
 $('codeBtn').addEventListener('click', () => { openSub('code', 'menu'); $('codeInput').value = ''; $('codeMsg').textContent = ''; $('codeMsg').className = 'codemsg'; setTimeout(() => $('codeInput').focus(), 30); });
 $('codeBack').addEventListener('click', closeSub);
@@ -1323,7 +1347,7 @@ function update(dt) {
   if (z.idx !== zoneIdx) {
     const first = zoneIdx < 0;
     zoneIdx = z.idx; zone = z;
-    banner(z.name, first ? 'Du tauchst ab' : Math.floor(depth) + ' m unter der Oberfläche');
+    banner(z.name, first ? T('Du tauchst ab') : F('{0} m unter der Oberfläche', Math.floor(depth)));
     discover('z:' + z.key, z.name);
     if (!first && !boss) spawnBoss();
     if (!first) arp([196, 247, 294], 160, 'triangle', .07);
@@ -1560,8 +1584,8 @@ function update(dt) {
     g.vy = lerp(g.vy, dy / d * fleeSp + Math.sin(g.ph * 1.7) * 60, 1 - Math.exp(-dt * 3));
     g.x += g.vx * dt; g.y += g.vy * dt;
     if (Math.random() < dt * 20) parts.push({ x: g.x, y: g.y, vx: rand(-20, 20), vy: rand(10, 40), life: .8, max: .8, r: 3, col: '#ffd76a' });
-    if (d < P.r + 18) { golden = null; life.goldens++; saveLife(); checkAch(); burst(g.x, g.y, '#ffd76a', 40, 240); toast('Goldqualle gefangen', 'Deine nächste Mutation wirkt doppelt', 'gold'); openLevelUp(true); return; }
-    if (g.life <= 0) { golden = null; toast('Die Goldqualle ist entkommen', '', 'bad'); }
+    if (d < P.r + 18) { golden = null; life.goldens++; saveLife(); checkAch(); burst(g.x, g.y, '#ffd76a', 40, 240); toast(T('Goldqualle gefangen'), T('Deine nächste Mutation wirkt doppelt'), 'gold'); openLevelUp(true); return; }
+    if (g.life <= 0) { golden = null; toast(T('Die Goldqualle ist entkommen'), '', 'bad'); }
   }
 
   // Ereignisse
@@ -1963,11 +1987,11 @@ function hud() {
   setWidth('xpb', P.xp / P.next * 100);
   setWidth('dashb', (1 - P.dashT / P.dashCd) * 100);
   const ready = P.dashT <= 0;
-  setText('dashTxt', ready ? 'Sprint bereit (' + keyName(binds.dash[0] || binds.dash[1]) + ')' : 'Sprint in ' + P.dashT.toFixed(1) + ' s');
+  setText('dashTxt', ready ? F('Sprint bereit ({0})', keyName(binds.dash[0] || binds.dash[1])) : F('Sprint in {0} s', P.dashT.toFixed(1)));
   if (hudCache.dashReady !== ready) { hudCache.dashReady = ready; $('dashRow').classList.toggle('ready', ready); }
   const zb = zoneBounds(depth), nz = getZone(zb[1] + .01), left = Math.max(0, Math.ceil(zb[1] - depth));
   setWidth('nextb', (depth - zb[0]) / (zb[1] - zb[0]) * 100);
-  setText('nextTxt', 'Noch ' + left + ' m bis ' + (discovered.has('z:' + nz.key) ? nz.name : '???'));
+  setText('nextTxt', F('Noch {0} m bis {1}', left, discovered.has('z:' + nz.key) ? nz.name : '???'));
   const soon = left <= 25;
   if (hudCache.soon !== soon) { hudCache.soon = soon; $('nextRow').classList.toggle('soon', soon); }
   setText('pearlHud', String(pearls));
@@ -1984,6 +2008,7 @@ function frame(now) {
   hud();
   requestAnimationFrame(frame);
 }
+applyStaticLang();
 reset();
 setMuted(muted);
 refreshMenu();
