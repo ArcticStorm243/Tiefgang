@@ -6,10 +6,13 @@ Endloses Tiefsee-Spiel im Browser. Du bist eine kleine Leuchtqualle und tauchst 
 
 Offline: `index.html` herunterladen und im Browser öffnen.
 
+🇬🇧 **English:** The game is fully available in English. Switch the language with the **🌐 English / 🌐 Deutsch** button at the bottom of the main menu. On first launch the game picks the language of your browser.
+
 ---
 
 ## Inhalt
 
+- [Sprache](#sprache)
 - [Steuerung](#steuerung)
 - [Tutorial](#tutorial)
 - [So funktioniert das Spiel](#so-funktioniert-das-spiel)
@@ -24,6 +27,16 @@ Offline: `index.html` herunterladen und im Browser öffnen.
 - [Logbuch](#logbuch)
 - [Speicherstand](#speicherstand)
 - [Technik](#technik)
+
+---
+
+## Sprache
+
+Das Spiel gibt es komplett auf **Deutsch** und **Englisch**: Menüs, HUD, Tutorial, Logbuch, Erfolge, Skins, Mutationen und alle Meldungen.
+
+- Umschalten über den Knopf **🌐 English** bzw. **🌐 Deutsch** unten im Hauptmenü. Die Seite lädt dabei kurz neu.
+- Beim ersten Start wählt das Spiel automatisch die Sprache deines Browsers. Deutsch gilt für alle deutschsprachigen Browser, sonst Englisch.
+- Der Fortschritt bleibt beim Wechsel vollständig erhalten. Logbuch und Bosse werden intern sprachunabhängig gespeichert.
 
 ---
 
@@ -338,7 +351,7 @@ Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie finde
 ## Speicherstand
 
 Alles wird lokal im Browser gespeichert (`localStorage`):
-Rekordtiefe, Logbuch, Erfolge, eingelöste Codes, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
+Rekordtiefe, Logbuch, Erfolge, Sprache, eingelöste Codes, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
 
 Der Fortschritt gilt pro Browser und Gerät. Wer die Browserdaten löscht, setzt alles zurück.
 
