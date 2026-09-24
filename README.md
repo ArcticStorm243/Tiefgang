@@ -266,6 +266,21 @@ Die Fähigkeit wirkt nur, solange du den Skin **trägst**. Dein aktueller Skin u
 | Leere | Ereignishorizont | Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden | 40 % langsamer, +20 % Schaden |
 | Phönix | Wiedergeburt | Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle | 70 % Leben, doppelte Feuerwelle |
 
+### Zusammenspiel mit Mutationen
+
+Skin-Fähigkeiten werden durch Mutationen **mit verbessert**:
+
+| Mutation | Verbessert bei Skins |
+|---|---|
+| Stärkerer Puls | Schaden von Eiszapfen, Dornen und Phönix-Feuerwelle. Prozent-Boni wie Glutpuls oder Vollstrecker multiplizieren sich mit dem Pulsschaden, sie addieren sich also nicht bloss. |
+| Weiter Puls | Reichweite von Permafrost, Eiszapfen, Ereignishorizont und Phönix-Feuerwelle |
+| Schneller Puls | Permafrost und Eiszapfen kommen häufiger |
+| Sporenwerfer | Arktisqualle: pro Stufe ein Eiszapfen mehr pro Salve |
+| Zitteraal | Donnerqualle und Schattenqualle: zusätzliche Blitzziele |
+| Rückstoss | Kristallschild lädt schneller, Phasensprung stapelt sich damit |
+| Anziehung | Perlensog der Perlentaucherin reicht weiter |
+| Leuchtfunke | Sonnenkranz: zählt zu den Start-Funken dazu |
+
 ### Meilenstein-Skins
 
 Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**. Sie sind nicht in der Luckybox und können nicht gemergt werden. Der Fortschritt wird über alle Tauchgänge gezählt, ausser dort, wo „in einem Tauchgang“ steht.
