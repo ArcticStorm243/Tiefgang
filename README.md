@@ -20,6 +20,7 @@ Offline: `index.html` herunterladen und im Browser öffnen.
 - [Mutationen](#mutationen)
 - [Erfolge und Skins](#erfolge-und-skins)
 - [Perlen, Luckybox und Mergen](#perlen-luckybox-und-mergen)
+- [Arctic-Skin und Codes](#arctic-skin-und-codes)
 - [Logbuch](#logbuch)
 - [Speicherstand](#speicherstand)
 - [Technik](#technik)
@@ -195,7 +196,7 @@ Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin*
 | Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
 | Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
 
-Dazu kommt der Start-Skin **Klassisch**, insgesamt also 29 Skins (16 aus Erfolgen und Box, 4 neue Box-Skins, 9 Meilenstein-Skins).
+Dazu kommt der Start-Skin **Klassisch**, insgesamt also 30 Skins (16 aus Erfolgen und Box, 4 weitere Box-Skins, 9 Meilenstein-Skins, 1 Arctic-Skin).
 
 ---
 
@@ -283,6 +284,24 @@ Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**.
 
 ---
 
+## Arctic-Skin und Codes
+
+**Arctic** ist die seltenste Stufe. Es gibt genau einen Skin darin, die **Arktisqualle**. Sie ist weder in der Luckybox noch über Erfolge zu bekommen, sondern **nur mit einem geheimen Code**.
+
+**So löst du einen Code ein:** Hauptmenü → **Code einlösen** → Code eingeben → **Einlösen** oder Enter. Gross- und Kleinschreibung zählt. Der Skin wird sofort angelegt.
+
+| | Arktisqualle |
+|---|---|
+| Stufe | Sofort **★3**, kein Mergen nötig |
+| Permafrost | Alle 6 s friert eine Eiswelle alle Gegner in 1,4-facher Pulsreichweite **2 s lang ein**. Eingefrorene Gegner bewegen sich nicht, verursachen keinen Berührungsschaden und nehmen +25 % Schaden. Bosse werden stattdessen 2,5 s lang um 50 % verlangsamt. |
+| Eiszapfen | Von Anfang an schiesst sie alle 0,8 s bis zu 3 Eiszapfen auf die nächsten Gegner. Jeder durchbohrt bis zu 3 Gegner und friert mit 30 % Chance 1,2 s ein. |
+
+Einfrieren und Eiszapfen sind **exklusiv**. Keine andere Qualle hat sie, und sie kommen nie als Mutation.
+
+Der Code steht nicht im Quelltext. Das Spiel speichert nur seinen SHA-256-Hash und vergleicht die Eingabe damit.
+
+---
+
 ## Logbuch
 
 Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. Es hat sechs Reiter:
@@ -303,7 +322,7 @@ Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie finde
 ## Speicherstand
 
 Alles wird lokal im Browser gespeichert (`localStorage`):
-Rekordtiefe, Logbuch, Erfolge, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
+Rekordtiefe, Logbuch, Erfolge, eingelöste Codes, Perlen, Skin-Inventar (Sterne und Duplikate), gewählter Skin, Tastenbelegung, Ton-Einstellung, Lebenszeit-Statistik (Tauchgänge, besiegte Gegner, Bosse, Goldquallen) und ob das Tutorial schon angeboten wurde.
 
 Der Fortschritt gilt pro Browser und Gerät. Wer die Browserdaten löscht, setzt alles zurück.
 
