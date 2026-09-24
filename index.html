@@ -10,6 +10,14 @@
 :root{--ink:#e9fbff;--muted:#9cc3cf;--glow:#bff7ff;--gold:#ffcf7a;--coral:#ff6b8b;--violet:#c9a4ff;--panel:rgba(4,26,38,.78);--line:rgba(191,247,255,.16)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+/* Scrollleisten im Spielstil (Chrome, Edge, Safari) */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(191,247,255,.22);border-radius:999px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(191,247,255,.42);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-corner{background:transparent}
+/* Firefox */
+@supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(191,247,255,.3) transparent}}
 html,body{margin:0;height:100%;overflow:hidden;background:#0d4a6b;color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 #c{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
 #hud{position:fixed;inset:0;pointer-events:none;padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left))}
