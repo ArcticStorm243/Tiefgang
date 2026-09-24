@@ -35,6 +35,7 @@ Offline: `index.html` herunterladen und im Browser öffnen.
 | Nach oben / unten / links / rechts | W A S D oder Pfeiltasten | ✔ |
 | Sprint (kurz unverwundbar) | Leertaste oder Shift links, Rechtsklick, Doppeltipp | ✔ (Tasten) |
 | Pause | P oder Esc | ✔ |
+| Tauchgang beenden | Pausemenü → **Tauchgang beenden**, zur Sicherheit zweimal klicken. Der Run zählt normal (Rekord, Statistik, Erfolge) und du siehst die Zusammenfassung. Im Tutorial geht es zurück ins Hauptmenü. | – |
 | Ton an/aus | M | ✔ |
 | Mutation wählen | 1 / 2 / 3 (mit Mutantenkönigin auch 4) oder Klick | – |
 | Spiel starten | Enter | – |
