@@ -11,7 +11,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0;height:100%;overflow:hidden;background:#0d4a6b;color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
-canvas{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
 #hud{position:fixed;inset:0;pointer-events:none;padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left))}
 .depth{font-size:clamp(44px,8vw,84px);font-weight:800;line-height:.85;letter-spacing:-.045em;font-variant-numeric:tabular-nums;text-shadow:0 0 28px rgba(191,247,255,.35)}
 .depth small{font-size:.36em;font-weight:400;letter-spacing:0;margin-left:6px;color:var(--muted)}
@@ -78,7 +78,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:14px}
 .entry{font:inherit;color:var(--ink);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:rgba(191,247,255,.04);border:1px solid var(--line);border-radius:14px;padding:14px}
 .entry strong{font-size:16px}.entry span{font-size:13px;line-height:1.45;color:var(--muted)}
-.portrait{width:132px;height:96px;align-self:center;border-radius:10px;background:radial-gradient(ellipse at center,rgba(40,110,150,.28),rgba(2,12,20,0) 70%)}
+.portrait{display:block;position:static;flex:none;width:132px;height:96px;align-self:center;border-radius:10px;background:radial-gradient(ellipse at center,rgba(40,110,150,.28),rgba(2,12,20,0) 70%)}
 .entry.locked .portrait{filter:brightness(0) drop-shadow(0 0 1px rgba(191,247,255,.6));opacity:.7}
 .entry .dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
 .entry.locked{opacity:.55}.entry.locked strong{color:var(--muted)}
