@@ -35,7 +35,7 @@ Offline: `index.html` herunterladen und im Browser öffnen.
 | Sprint (kurz unverwundbar) | Leertaste oder Shift links, Rechtsklick, Doppeltipp | ✔ (Tasten) |
 | Pause | P oder Esc | ✔ |
 | Ton an/aus | M | ✔ |
-| Mutation wählen | 1 / 2 / 3 oder Klick | – |
+| Mutation wählen | 1 / 2 / 3 (mit Mutantenkönigin auch 4) oder Klick | – |
 | Spiel starten | Enter | – |
 
 ### Tasten ändern
@@ -190,11 +190,12 @@ Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin*
 | Glückspilz | Erste Luckybox öffnen | – |
 | Verschmolzen | Einen Skin auf ★2 mergen | – |
 | Meisterform | Einen Skin auf ★3 mergen | – |
+| Sensenmann, Tiefenwanderer, Titanenfall, Kopfgeldjagd, Perlenfischer, Veteran, Ewigkeit, Hochmutiert, Herz des Abgrunds | siehe [Meilenstein-Skins](#meilenstein-skins) | je ein Meilenstein-Skin |
 | Stammgast | 10 Tauchgänge | – |
 | Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
 | Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
 
-Dazu kommt der Start-Skin **Klassisch**, insgesamt also 16 Skins.
+Dazu kommt der Start-Skin **Klassisch**, insgesamt also 29 Skins (16 aus Erfolgen und Box, 4 neue Box-Skins, 9 Meilenstein-Skins).
 
 ---
 
@@ -219,11 +220,13 @@ Für **5 Perlen** öffnest du eine Luckybox und bekommst einen zufälligen Skin.
 
 | Seltenheit | Chance gesamt | Skins |
 |---|---|---|
-| Gewöhnlich | 58,6 % | Klassisch, Perle, Dämmerlicht, Minze, Tiefseerose |
-| Selten | 25,0 % | Mitternacht, Glut, Giftgrün, Sonnenfunke |
-| Episch | 12,5 % | Glasgeist, Schattenqualle, Kristall, Sternenstaub |
-| Legendär | 3,1 % | Goldqualle, Polarlicht |
-| Mythisch | 0,8 % | Prisma |
+| Gewöhnlich | 56,0 % | Klassisch, Perle, Dämmerlicht, Minze, Tiefseerose |
+| Selten | 23,9 % | Mitternacht, Glut, Giftgrün, Sonnenfunke |
+| Episch | 11,9 % | Glasgeist, Schattenqualle, Kristall, Sternenstaub |
+| Legendär | 6,0 % | Goldqualle, Polarlicht, Nebelschleier, Donnerqualle |
+| Mythisch | 2,2 % | Prisma, Leere, Phönix |
+
+Meilenstein-Skins sind **nicht** in der Box, siehe [unten](#meilenstein-skins).
 
 Ist der Skin neu, wird er freigeschaltet. Hast du ihn schon, egal ob aus einer Box oder durch einen Erfolg, bekommst du ein **Duplikat**.
 
@@ -257,6 +260,26 @@ Die Fähigkeit wirkt nur, solange du den Skin **trägst**. Dein aktueller Skin u
 | Goldqualle | Goldrausch | +25 % Erfahrung | +50 % |
 | Polarlicht | Polarwind | Puls 10 % häufiger | 20 % |
 | Prisma | Prismakraft | +10 % Schaden, +5 % Tempo, +10 % Erfahrung | doppelt so stark |
+| Nebelschleier | Nebelhülle | 10 % Chance, Treffern auszuweichen | 20 % |
+| Donnerqualle | Gewitter | Zitteraal +1 Ziel, 25 % häufiger | +2 Ziele, 50 % häufiger |
+| Leere | Ereignishorizont | Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden | 40 % langsamer, +20 % Schaden |
+| Phönix | Wiedergeburt | Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle | 70 % Leben, doppelte Feuerwelle |
+
+### Meilenstein-Skins
+
+Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**. Sie sind nicht in der Luckybox und können nicht gemergt werden. Der Fortschritt wird über alle Tauchgänge gezählt, ausser dort, wo „in einem Tauchgang“ steht.
+
+| Skin | Erfolg | Bedingung | Fähigkeit |
+|---|---|---|---|
+| Sensenqualle | Sensenmann | 10 000 Gegner insgesamt | +20 % Schaden, normale Gegner unter 15 % Leben sterben sofort |
+| Tiefenwanderer | Tiefenwanderer | 50 000 m insgesamt | 20 % weniger erlittener Schaden |
+| Titanenqualle | Titanenfall | 25 Bosse insgesamt | +60 % Schaden gegen Bosse |
+| Kopfgeldjägerin | Kopfgeldjagd | 250 Elite-Gegner insgesamt | Elites nehmen +50 % Schaden, doppelte Perlenchance bei Elites |
+| Perlentaucherin | Perlenfischer | 100 Perlen gesammelt | Perlen fliegen aus grosser Distanz zu, +25 % Perlenchance |
+| Veteranin | Veteran | 100 Tauchgänge | Start mit «Stärkerer Puls» und «Schneller Puls» |
+| Ewige Qualle | Ewigkeit | 30 Minuten in einem Tauchgang | +2 % Schaden pro Minute, max. +60 % |
+| Mutantenkönigin | Hochmutiert | Stufe 30 in einem Tauchgang | 4 statt 3 Mutationen pro Level-up |
+| Abgrundherz | Herz des Abgrunds | 5000 m erreichen | +1 % Schaden pro 100 m Tiefe, max. +50 % |
 
 ---
 
@@ -270,7 +293,7 @@ Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. 
 | Zonen | 5 feste und 8 prozedurale Zonen |
 | Bosse | Alle 3 Bosse, inklusive ob schon besiegt |
 | Ereignisse | Alle 7 Ereignisse |
-| Erfolge | Alle 21 Erfolge mit Bedingung und Belohnung |
+| Erfolge | Alle 30 Erfolge mit Bedingung und Belohnung |
 | Skins | Alle Skins mit Seltenheit, Box-Chance, Sternen, Fähigkeit, Tragen und Mergen |
 
 Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 31 Einträge.
