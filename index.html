@@ -408,7 +408,7 @@ const SKINS = [
   { id: 'eternal', name: 'Ewige Qualle',  body: '#ffffff', glow: '#7fe8ff', range: [180, 260] },
   { id: 'queen',   name: 'Mutantenkönigin', body: '#f3ffe0', glow: '#9dff5d', range: [75, 140] },
   { id: 'heart',   name: 'Abgrundherz',   body: '#2a0e1e', glow: '#ff2d6f', sparkle: true },
-  { id: 'arctic',  name: 'Arktisqualle',  body: '#f2feff', glow: '#9ff6ff', sparkle: true, snow: true }
+  { id: 'arctic',  name: 'Arktisqualle',  body: '#15181d', glow: '#5fd8ff', sparkle: true, fx: 'carbon', tent: ['#3f9fc4', '#2f86ad', '#4fb3d6'] }
 ];
 const RAR = {
   common: { name: 'Gewöhnlich', w: 30,  col: '#bfe9f2' },
@@ -901,7 +901,7 @@ function look() {
   if (k.range) { const h = Math.round((k.range[0] + (Math.sin(t * 1.4) * .5 + .5) * (k.range[1] - k.range[0])) / 5) * 5; return { body: k.body, glow: rgbToHex(hsl(h, 95, 66)), alpha: 1, sparkle: !!k.sparkle }; }
   if (k.hue) { const h = Math.floor(t * 40 / 12) * 12 % 360; return { body: rgbToHex(hsl(h, 80, 88)), glow: rgbToHex(hsl(h, 90, 70)), alpha: 1 }; }
   if (k.prism) { const h = Math.floor(t * 60 / 12) * 12 % 360; return { body: '#ffffff', glow: rgbToHex(hsl(h, 90, 75)), tent: [0, 72, 144, 216, 288].map(o => rgbToHex(hsl((h + o) % 360, 90, 72))), alpha: 1 }; }
-  return { body: k.body, glow: k.glow, alpha: k.alpha || 1, sparkle: !!k.sparkle };
+  return { body: k.body, glow: k.glow, alpha: k.alpha || 1, sparkle: !!k.sparkle, fx: k.fx, tent: k.tent };
 }
 function unlock(id) {
   if (achieved.has(id)) return;
@@ -1134,6 +1134,7 @@ function renderLog() {
       sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : k.range ? 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 30%,transparent 31%),linear-gradient(135deg,' + rgbToHex(hsl(k.range[0], 95, 66)) + ',' + rgbToHex(hsl(k.range[1], 95, 66)) + ')' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
       sw.style.boxShadow = '0 0 18px ' + (special ? '#b48cff' : k.glow);
       if (k.alpha) sw.style.opacity = '.6';
+      if (k.fx === 'carbon') { sw.style.background = 'radial-gradient(circle at 40% 30%,rgba(191,247,255,.35) 0 12%,transparent 13%),repeating-linear-gradient(45deg,#262b33 0 3px,#0c0e11 3px 6px)'; sw.style.boxShadow = '0 0 18px #5fd8ff, inset 0 0 0 2px #9ff6ff'; }
       d.appendChild(sw);
       const nm = el('strong', '', k.name);
       if (ok && (!earn || arc)) nm.appendChild(el('span', 'stars', '★'.repeat(s) + '☆'.repeat(3 - s)));
@@ -1710,7 +1711,7 @@ function render() {
     glow(sx, sy, 90 + P.bell * 40, lk.glow, .55);
     ctx.globalCompositeOperation = 'source-over';
     const blink = P.inv > 0 && state === 'play' && Math.floor(t * 20) % 2 === 0;
-    if (!blink) drawJelly(sx, sy, P.r, lk.body, t * 3, P.bell, P.vx, P.vy, lk.tent, lk.alpha);
+    if (!blink) drawJelly(sx, sy, P.r, lk.body, t * 3, P.bell, P.vx, P.vy, lk.tent, lk.alpha, lk.fx);
     if (state !== 'menu') {
       const R = P.r + 22;
       ctx.lineCap = 'round';
@@ -1757,7 +1758,7 @@ function render() {
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
 }
 
-function drawJelly(x, y, r, col, ph, bell, vx, vy, tent, alpha) {
+function drawJelly(x, y, r, col, ph, bell, vx, vy, tent, alpha, fx) {
   const am = alpha === undefined ? 1 : alpha;
   const sq = 1 - bell * .22, wide = 1 + bell * .18;
   ctx.save(); ctx.translate(x, y);
@@ -1772,12 +1773,54 @@ function drawJelly(x, y, r, col, ph, bell, vx, vy, tent, alpha) {
     }
     ctx.stroke();
   }
+  if (fx === 'carbon') { drawCarbonBell(r, sq, wide, ph); ctx.restore(); ctx.globalAlpha = 1; return; }
   ctx.globalAlpha = .9 * am;
   ctx.fillStyle = col;
   ctx.beginPath(); ctx.ellipse(0, 0, r * 1.2 * wide, r * sq, 0, Math.PI, TAU); ctx.quadraticCurveTo(0, r * .45, -r * 1.2 * wide, 0); ctx.fill();
   ctx.globalAlpha = .5 * Math.max(am, .6); ctx.fillStyle = '#ffffff';
   ctx.beginPath(); ctx.ellipse(-r * .35, -r * .45 * sq, r * .35, r * .18, -.4, 0, TAU); ctx.fill();
   ctx.restore(); ctx.globalAlpha = 1;
+}
+
+// Arktisqualle: Karbon-Schirm mit Eiszapfen (Koordinaten relativ zur Qualle)
+function drawCarbonBell(r, sq, wide, ph) {
+  const bw = r * 1.2 * wide, bh = r * sq;
+  const bellPath = () => { ctx.beginPath(); ctx.ellipse(0, 0, bw, bh, 0, Math.PI, TAU); ctx.quadraticCurveTo(0, r * .45, -bw, 0); };
+  // Eiskristalle oben
+  ctx.globalAlpha = .95; ctx.fillStyle = '#dffcff';
+  [[-.55, .28], [0, .42], [.55, .28]].forEach(([fx0, len]) => {
+    const px = fx0 * bw, py = -bh * Math.sqrt(Math.max(0, 1 - fx0 * fx0)) + 1;
+    ctx.beginPath(); ctx.moveTo(px - r * .12, py); ctx.lineTo(px + fx0 * r * .15, py - r * len); ctx.lineTo(px + r * .12, py); ctx.closePath(); ctx.fill();
+  });
+  // Schirm: Karbon
+  const g = ctx.createLinearGradient(0, -bh, 0, r * .45);
+  g.addColorStop(0, '#2f353f'); g.addColorStop(.55, '#15181d'); g.addColorStop(1, '#07080a');
+  ctx.globalAlpha = 1; ctx.fillStyle = g; bellPath(); ctx.fill();
+  // Karbon-Webmuster
+  ctx.save(); bellPath(); ctx.clip();
+  ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(255,255,255,.09)';
+  ctx.beginPath();
+  for (let d = -bw * 2; d < bw * 2; d += 3.2) { ctx.moveTo(d, -bh); ctx.lineTo(d + bh * 1.6, r * .45); }
+  ctx.stroke();
+  ctx.strokeStyle = 'rgba(0,0,0,.35)'; ctx.beginPath();
+  for (let d = -bw * 2; d < bw * 2; d += 3.2) { ctx.moveTo(d, r * .45); ctx.lineTo(d + bh * 1.6, -bh); }
+  ctx.stroke();
+  ctx.restore();
+  // Eisblauer Rand und Glanz
+  ctx.globalAlpha = .9; ctx.strokeStyle = '#9ff6ff'; ctx.lineWidth = 1.3; bellPath(); ctx.stroke();
+  ctx.globalAlpha = .55; ctx.fillStyle = '#bff7ff';
+  ctx.beginPath(); ctx.ellipse(-r * .38, -bh * .5, r * .32, r * .12, -.4, 0, TAU); ctx.fill();
+  // Eiszapfen am unteren Rand
+  const lens = [.55, .9, .65, 1.05, .6, .85, .5];
+  for (let i = 0; i < lens.length; i++) {
+    const q = (i + .5) / lens.length, tq = q, ix = (1 - 2 * tq) * bw * .92, iy = 2 * tq * (1 - tq) * r * .45;
+    const len = r * lens[i] * (1 + Math.sin(ph * .7 + i * 1.9) * .06), w = r * .11;
+    const ig = ctx.createLinearGradient(0, iy, 0, iy + len);
+    ig.addColorStop(0, '#ffffff'); ig.addColorStop(.6, '#dffcff'); ig.addColorStop(1, 'rgba(159,246,255,.7)');
+    ctx.globalAlpha = .95; ctx.fillStyle = ig;
+    ctx.beginPath(); ctx.moveTo(ix - w, iy - 1); ctx.lineTo(ix + w, iy - 1); ctx.lineTo(ix, iy + len); ctx.closePath(); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
 }
 
 function drawEnemy(e, sx, sy, ox, oy) {
