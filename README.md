@@ -195,6 +195,7 @@ Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen.
 | Sporenwerfer | Zielsuchende Sporen | 6 |
 | Zitteraal | Kettenblitz zwischen Gegnern | 6 |
 | Rückstoss | Sprint 20 % schneller bereit | 5 |
+| Magnet | Alles Plankton, alle Perlen und Blasen auf der ganzen Karte fliegen sofort zu dir. **Erst ab Stufe 5** in der Auswahl | 1 |
 
 ---
 
