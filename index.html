@@ -66,6 +66,35 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 .card em{font-style:normal;font-size:13px;color:var(--violet)}
 .card kbd{font:inherit;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 7px;align-self:flex-start}
 #levelup.gold .card{border-color:rgba(255,207,122,.4)}#levelup.gold h2{color:var(--gold)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn2{font:inherit;font-size:15px;font-weight:600;color:var(--ink);background:rgba(191,247,255,.07);border:1px solid var(--line);border-radius:999px;padding:11px 18px;cursor:pointer;transition:background .15s,border-color .15s}
+.btn2:hover{background:rgba(191,247,255,.14);border-color:rgba(191,247,255,.4)}
+.btn2:focus-visible,.tab:focus-visible,.entry:focus-visible,.keycap:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.panel.wide{width:min(920px,100%)}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.phead h2{margin:0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tab{font:inherit;font-size:14px;color:var(--muted);background:none;border:1px solid transparent;border-radius:999px;padding:6px 14px;cursor:pointer}
+.tab:hover{color:var(--ink)}.tab.on{color:var(--ink);border-color:var(--line);background:rgba(191,247,255,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:14px}
+.entry{font:inherit;color:var(--ink);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:rgba(191,247,255,.04);border:1px solid var(--line);border-radius:14px;padding:14px}
+.entry strong{font-size:16px}.entry span{font-size:13px;line-height:1.45;color:var(--muted)}
+.entry .dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
+.entry.locked{opacity:.55}.entry.locked strong{color:var(--muted)}
+.entry.done{border-color:rgba(255,207,122,.45)}
+.entry.skin{cursor:pointer}.entry.skin:disabled{cursor:default}.entry.skin:not(:disabled):hover{border-color:rgba(191,247,255,.45)}
+.entry.skin.on{border-color:var(--glow);background:rgba(191,247,255,.1)}
+.swatch{width:42px;height:42px;border-radius:50%;margin-bottom:4px}
+.entry.locked .swatch{filter:grayscale(1) brightness(.5);box-shadow:none!important}
+.binds{width:100%;border-collapse:collapse;margin:14px 0 18px}
+.binds th{text-align:left;font-weight:500;color:var(--muted);padding:6px 0}
+.binds td{padding:4px 0 4px 8px;width:34%}
+.keycap{font:inherit;width:100%;color:var(--ink);background:rgba(191,247,255,.06);border:1px solid var(--line);border-bottom-width:3px;border-radius:10px;padding:8px;cursor:pointer}
+.keycap:hover{border-color:rgba(191,247,255,.45)}.keycap.wait{border-color:var(--gold);color:var(--gold)}
+.small{font-size:13px;line-height:1.5}
+#coach{position:fixed;left:50%;bottom:calc(34px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(560px,92vw);background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-left:3px solid var(--glow);border-radius:16px;padding:16px 20px}
+#coachStep{font-size:13px;color:var(--glow);margin-bottom:4px}#coachText{font-size:16px;line-height:1.5;margin-bottom:12px}
+#coach .btn{font-size:15px;padding:10px 22px}#coach .btn2{font-size:13px;padding:8px 14px}
+.toast.ach{border-left-color:var(--gold)}.toast.ach b{color:var(--gold)}
 @media (max-width:640px){#cards{grid-template-columns:1fr}.card{min-height:0}.bars{width:140px}.tr{font-size:13px}.panel{padding:24px 22px}}
 @media (prefers-reduced-motion:reduce){#banner.show{animation-duration:2.4s}.toast{animation:none}}
 </style>
@@ -89,21 +118,19 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
 
 <div id="toasts"></div>
 <div id="banner"><div id="bTitle"></div><div id="bSub"></div></div>
+<div id="coach" hidden><div id="coachStep"></div><div id="coachText"></div><div class="row"><button class="btn2" id="coachSkip" type="button">Tutorial überspringen</button><button class="btn" id="coachGo" type="button" hidden>Los geht's</button></div></div>
 
 <div class="screen" id="menu">
   <div class="panel">
     <h1>Tiefgang</h1>
     <p class="lead">Du bist eine kleine Leuchtqualle. Tauch so tief du kannst. Jede Zone bringt neue Kreaturen, seltsame Ereignisse und einen Riesen, der dich aufhalten will.</p>
-    <div class="keys">
-      <b>Maus oder Finger</b><span>Qualle schwimmt dorthin (oder WASD / Pfeiltasten)</span>
-      <b>Leertaste</b><span>Sprint (auch Rechtsklick oder Doppeltipp)</span>
-      <b>P / M</b><span>Pause / Ton</span>
-    </div>
+    <div class="keys" id="menuKeys"></div>
     <div class="stats">
       <div><strong id="menuBest">0 m</strong>Rekordtiefe</div>
       <div><strong id="menuLog">0 / 0</strong>Logbuch-Einträge</div>
+      <div><strong id="menuAch">0 / 0</strong>Erfolge</div>
     </div>
-    <button class="btn" id="startBtn" type="button">Abtauchen</button>
+    <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button></div>
   </div>
 </div>
 
@@ -119,7 +146,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
   <div class="panel">
     <h2>Pausiert</h2>
     <p class="lead">Die Tiefe wartet.</p>
-    <button class="btn" id="resumeBtn" type="button">Weiter tauchen</button>
+    <div class="row"><button class="btn" id="resumeBtn" type="button">Weiter tauchen</button><button class="btn2" id="pLogBtn" type="button">Logbuch</button><button class="btn2" id="pKeysBtn" type="button">Steuerung</button></div>
   </div>
 </div>
 
@@ -128,7 +155,34 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
     <h2 id="deadTitle"></h2>
     <div class="record" id="deadRecord" hidden>Neuer Rekord!</div>
     <div class="stats" id="deadStats"></div>
-    <button class="btn" id="againBtn" type="button">Nochmal abtauchen</button>
+    <div class="row"><button class="btn" id="againBtn" type="button">Nochmal abtauchen</button><button class="btn2" id="dLogBtn" type="button">Logbuch & Skins</button><button class="btn2" id="dMenuBtn" type="button">Hauptmenü</button></div>
+  </div>
+</div>
+
+<div class="screen" id="tutAsk" hidden>
+  <div class="panel">
+    <h2>Zum ersten Mal hier?</h2>
+    <p class="lead">Ein kurzes Tutorial zeigt dir in etwa einer Minute, wie alles funktioniert. Du kannst es jederzeit überspringen.</p>
+    <div class="row"><button class="btn" id="tutYes" type="button">Tutorial starten</button><button class="btn2" id="tutNo" type="button">Direkt abtauchen</button></div>
+  </div>
+</div>
+
+<div class="screen" id="logbook" hidden>
+  <div class="panel wide">
+    <div class="phead"><h2>Logbuch</h2><button class="btn2" id="logBack" type="button">Zurück</button></div>
+    <div class="tabs" id="logTabs"></div>
+    <div class="muted small" id="logSummary"></div>
+    <div class="grid" id="logGrid"></div>
+  </div>
+</div>
+
+<div class="screen" id="keys" hidden>
+  <div class="panel">
+    <div class="phead"><h2>Steuerung</h2><button class="btn2" id="keysBack" type="button">Zurück</button></div>
+    <p class="muted small">Klick auf eine Taste und drück danach die neue. Esc bricht ab, Entf löscht die Belegung. Jede Aktion kann zwei Tasten haben.</p>
+    <table class="binds" id="bindTable"></table>
+    <div class="row"><button class="btn2" id="bindReset" type="button">Standard wiederherstellen</button></div>
+    <p class="muted small">Fest belegt: 1, 2, 3 für Mutationen und Enter zum Starten. Maus: schwimmen, Rechtsklick: Sprint. Touch: Finger ziehen zum Schwimmen, Doppeltipp für Sprint.</p>
   </div>
 </div>
 
@@ -249,6 +303,72 @@ const UPG = [
   { id: 'dash',  name: 'Rückstoss',       max: 5,  desc: () => 'Dein Sprint ist 20 % schneller wieder bereit.', apply: p => { p.dashCd *= .8; } }
 ];
 const LOG_TOTAL = ZONES.length + PROC.length + Object.keys(TYPES).length + BOSSES.length + EVENTS.length;
+const INFO = {
+  drifter: 'Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.',
+  dart: 'Lauert kurz und schiesst dann blitzschnell auf dich zu.',
+  puffer: 'Platzt beim Tod und verschiesst Stacheln in alle Richtungen.',
+  angler: 'Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.',
+  eel: 'Schlängelt sich schnell und unberechenbar heran.',
+  squid: 'Hält Abstand und spuckt Tintenkugeln nach dir.',
+  wraith: 'Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.',
+  crab: 'Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.'
+};
+const BOSS_INFO = { summon: 'Ruft ständig neue Treiblinge herbei.', radial: 'Feuert Tintenringe in alle Richtungen.', charge: 'Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.' };
+const ZONE_INFO = {
+  'Lichtzone': 'Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.',
+  'Dämmerzone': 'Das letzte Tageslicht verblasst.',
+  'Mitternachtszone': 'Ewige Nacht. Nur noch Biolumineszenz.',
+  'Abyssal': 'Eisige Kälte und seltsame Farben.',
+  'Hadal': 'Heisse Quellen in den tiefsten Gräben der Welt.'
+};
+const SKINS = [
+  { id: 'classic', name: 'Klassisch',     body: '#e6fdff', glow: '#c8fbff' },
+  { id: 'pearl',   name: 'Perle',         body: '#fff0f6', glow: '#ffc2dc' },
+  { id: 'dusk',    name: 'Dämmerlicht',   body: '#d6e8ff', glow: '#7fb2ff' },
+  { id: 'violet',  name: 'Mitternacht',   body: '#eadcff', glow: '#b48cff' },
+  { id: 'rose',    name: 'Tiefseerose',   body: '#ffd9ee', glow: '#ff7ac8' },
+  { id: 'ember',   name: 'Glut',          body: '#ffe2c6', glow: '#ff8a3d' },
+  { id: 'mint',    name: 'Minze',         body: '#d9fff1', glow: '#5dffc0' },
+  { id: 'toxic',   name: 'Giftgrün',      body: '#efffc0', glow: '#b6ff3d' },
+  { id: 'sun',     name: 'Sonnenfunke',   body: '#fff3c8', glow: '#ffcf5a' },
+  { id: 'ghost',   name: 'Glasgeist',     body: '#ffffff', glow: '#e8f2ff', alpha: .45 },
+  { id: 'abyss',   name: 'Schattenqualle', body: '#3a3160', glow: '#8c7bff' },
+  { id: 'crystal', name: 'Kristall',      body: '#eaffff', glow: '#8ff0ff', sparkle: true },
+  { id: 'gold',    name: 'Goldqualle',    body: '#ffe3a0', glow: '#ffd76a', sparkle: true },
+  { id: 'star',    name: 'Sternenstaub',  body: '#eef0ff', glow: '#b9c3ff', sparkle: true },
+  { id: 'aurora',  name: 'Polarlicht',    body: '#ffffff', glow: '#7fe8ff', hue: true },
+  { id: 'prism',   name: 'Prisma',        body: '#ffffff', glow: '#ffffff', prism: true }
+];
+const ACH = [
+  { id: 'first',    name: 'Erster Tauchgang',      desc: 'Beende deinen ersten Tauchgang.' },
+  { id: 'tutorial', name: 'Gut vorbereitet',       desc: 'Schliess das Tutorial ab.', skin: 'pearl' },
+  { id: 'd150',     name: 'Dämmerung',             desc: 'Erreiche 150 m.', skin: 'dusk' },
+  { id: 'd400',     name: 'Mitternacht',           desc: 'Erreiche 400 m.', skin: 'violet' },
+  { id: 'd800',     name: 'Abgrund',               desc: 'Erreiche 800 m.', skin: 'rose' },
+  { id: 'd1400',    name: 'Hadal',                 desc: 'Erreiche 1400 m.', skin: 'ember' },
+  { id: 'd2200',    name: 'Ins Unbekannte',        desc: 'Erreiche 2200 m.', skin: 'aurora' },
+  { id: 'k100',     name: 'Lichtbringer',          desc: 'Besiege 100 Gegner in einem Tauchgang.', skin: 'mint' },
+  { id: 'k1000',    name: 'Tausend Funken',        desc: 'Besiege insgesamt 1000 Gegner.', skin: 'ghost' },
+  { id: 'boss',     name: 'Riesentöter',           desc: 'Besiege einen Boss.', skin: 'abyss' },
+  { id: 'boss3',    name: 'Alle drei Riesen',      desc: 'Besiege jeden der drei Bosse mindestens einmal.', skin: 'sun' },
+  { id: 'golden',   name: 'Goldfinger',            desc: 'Fang eine Goldqualle.', skin: 'gold' },
+  { id: 'lvl10',    name: 'Mutant',                desc: 'Erreiche Stufe 10 in einem Tauchgang.', skin: 'toxic' },
+  { id: 'nohit',    name: 'Unberührbar',           desc: 'Überlebe 3 Minuten am Stück ohne Treffer.', skin: 'crystal' },
+  { id: 'orbit8',   name: 'Funkenkranz',           desc: 'Habe 8 Leuchtfunken gleichzeitig.' },
+  { id: 'runs10',   name: 'Stammgast',             desc: 'Tauche 10-mal ab.' },
+  { id: 'loghalf',  name: 'Forschungsdrang',       desc: 'Fülle das Logbuch zur Hälfte.', skin: 'star' },
+  { id: 'logfull',  name: 'Vollständiges Logbuch', desc: 'Entdecke alles im Logbuch.', skin: 'prism' }
+];
+const ACTIONS = [
+  { id: 'up', name: 'Nach oben' }, { id: 'down', name: 'Nach unten' }, { id: 'left', name: 'Nach links' }, { id: 'right', name: 'Nach rechts' },
+  { id: 'dash', name: 'Sprint' }, { id: 'pause', name: 'Pause' }, { id: 'mute', name: 'Ton an/aus' }
+];
+const DEFAULT_BINDS = { up: ['KeyW', 'ArrowUp'], down: ['KeyS', 'ArrowDown'], left: ['KeyA', 'ArrowLeft'], right: ['KeyD', 'ArrowRight'], dash: ['Space', 'ShiftLeft'], pause: ['KeyP', 'Escape'], mute: ['KeyM', null] };
+function loadBinds() {
+  const saved = store.get('binds', {}), b = {};
+  for (const a of ACTIONS) { const v = saved[a.id]; b[a.id] = Array.isArray(v) && v.length === 2 ? v.slice() : DEFAULT_BINDS[a.id].slice(); }
+  return b;
+}
 
 /* ---------- Audio ---------- */
 let AC = null, master = null, droneOsc = [], muted = store.get('muted', false), lastTick = 0;
@@ -286,6 +406,11 @@ let cur = { x: 0, y: 0 }, curT = { x: 0, y: 0 }, darkA = 0, frenzyA = 0;
 let bgTop = zone.top.slice(), bgBot = zone.bot.slice(), raysA = 1;
 let best = store.get('best', 0);
 const discovered = new Set(store.get('disc', []));
+const life = Object.assign({ runs: 0, kills: 0, goldens: 0, bossNames: [] }, store.get('life', {}));
+const achieved = new Set(store.get('ach', []));
+let skinId = store.get('skin', 'classic');
+let binds = loadBinds();
+let tut = -1, tutData = {}, runBosses = 0, lastHit = 0, achT = 0, capturing = null, backTo = null, logTab = 'creatures';
 const motes = [];
 for (let i = 0; i < 150; i++) motes.push({ x: rand(0, 3000), y: rand(0, 3000), z: rand(.15, 1), s: rand(.6, 2) });
 
@@ -301,6 +426,7 @@ function reset() {
   golden = null; boss = null; depth = 0; runTime = 0; kills = 0; zoneIdx = -1; newDisc = 0;
   eventT = 26; activeEv = {}; lastEv = ''; spawnT = 1;
   cur = { x: 0, y: 0 }; curT = { x: 0, y: 0 }; camX = 0; camY = 0;
+  runBosses = 0; lastHit = 0; achT = 0; zone = getZone(0);
   $('bossbox').hidden = true;
 }
 const diff = () => 1 + depth / 350;
@@ -329,6 +455,15 @@ function show(id, on) { $(id).hidden = !on; }
 function refreshMenu() {
   $('menuBest').textContent = best + ' m';
   $('menuLog').textContent = discovered.size + ' / ' + LOG_TOTAL;
+  $('menuAch').textContent = achieved.size + ' / ' + ACH.length;
+  const mk = $('menuKeys'); mk.textContent = '';
+  [['Maus oder Finger', 'Qualle schwimmt dorthin'],
+   [['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' '), 'Alternativ mit der Tastatur schwimmen'],
+   [keyName(binds.dash[0]), 'Sprint (auch Rechtsklick oder Doppeltipp)'],
+   [keyName(binds.pause[0]) + ' / ' + keyName(binds.mute[0]), 'Pause / Ton']].forEach(([k, v]) => {
+    const b = document.createElement('b'), sp = document.createElement('span');
+    b.textContent = k; sp.textContent = v; mk.appendChild(b); mk.appendChild(sp);
+  });
 }
 
 /* ---------- Spawnen ---------- */
@@ -442,7 +577,7 @@ function choose(i) {
   const u = curOpts[i]; if (!u) return;
   const n = levelGold ? 2 : 1;
   for (let k = 0; k < n; k++) if ((P.ups[u.id] || 0) < u.max) { u.apply(P); P.ups[u.id] = (P.ups[u.id] || 0) + 1; }
-  show('levelup', false); state = 'play';
+  show('levelup', false); state = 'play'; blurFocus();
   checkLevel();
 }
 
@@ -454,6 +589,7 @@ function hitEnemy(e, dmg) {
 }
 function killEnemy(e) {
   e.dead = true; kills++;
+  if (tut < 0) life.kills++; else tutData.kills = (tutData.kills || 0) + 1;
   burst(e.x, e.y, e.col, e.t === 'boss' ? 80 : 14, e.t === 'boss' ? 380 : 170);
   const mult = activeEv.frenzy ? 2 : 1;
   if (e.t === 'boss') {
@@ -462,6 +598,9 @@ function killEnemy(e) {
     toast(e.def.name + ' besiegt', 'Du wurdest teilweise geheilt', 'boss');
     arp([392, 523, 659, 784, 1047], 90, 'triangle', .09);
     shake = Math.max(shake, 20); boss = null; $('bossbox').hidden = true;
+    runBosses++;
+    if (life.bossNames.indexOf(e.def.name) < 0) life.bossNames.push(e.def.name);
+    saveLife(); checkAch();
     return;
   }
   dropXp(e.x, e.y, e.xp * mult, e.elite ? '#ffe9a8' : undefined);
@@ -470,7 +609,8 @@ function killEnemy(e) {
 }
 function hurtPlayer(dmg) {
   if (P.inv > 0 || P.dashing > 0 || state !== 'play') return;
-  P.hp -= dmg; P.inv = .7;
+  P.hp -= dmg; P.inv = .7; lastHit = runTime;
+  if (tut >= 0) P.hp = Math.max(1, P.hp);
   shake = Math.max(shake, 10);
   tone(140, .25, 'triangle', .22, .5);
   burst(P.x, P.y, '#ff6b8b', 14, 200);
@@ -478,6 +618,7 @@ function hurtPlayer(dmg) {
 }
 function dash() {
   if (state !== 'play' || P.dashT > 0) return;
+  if (tut === 1) tutData.dashed = true;
   P.dashT = P.dashCd; P.dashing = .2; P.inv = Math.max(P.inv, .3);
   let dx = P.vx, dy = P.vy;
   if (Math.hypot(dx, dy) < 10) { dx = 0; dy = -1; }
@@ -492,6 +633,7 @@ function die() {
   tone(220, 1.2, 'sine', .15, .25);
   const d = Math.floor(depth), rec = d > best;
   if (rec) { best = d; store.set('best', best); }
+  life.runs++; saveLife(); checkAch();
   const mm = Math.floor(runTime / 60), ss = String(Math.floor(runTime % 60)).padStart(2, '0');
   $('deadTitle').textContent = 'Getaucht bis ' + d + ' m';
   $('deadRecord').hidden = !rec;
@@ -509,13 +651,21 @@ const keys = {};
 const ptr = { x: 0, y: 0, active: false, touch: false };
 let lastTap = 0;
 window.addEventListener('keydown', e => {
+  if (capturing) { e.preventDefault(); finishCapture(e.code); return; }
+  if (e.code === 'Escape' && subOpen()) { closeSub(); return; }
   keys[e.code] = true;
-  if (e.code === 'Space') { e.preventDefault(); dash(); }
-  if (e.code === 'KeyP' || e.code === 'Escape') togglePause();
-  if (e.code === 'KeyM') setMuted(!muted);
+  const act = actionOf(e.code);
+  if (act && state === 'play') e.preventDefault();
+  if (act === 'dash') dash();
+  if (act === 'pause') togglePause();
+  if (act === 'mute') setMuted(!muted);
   if (state === 'levelup' && /^Digit[123]$/.test(e.code)) choose(+e.code.slice(5) - 1);
-  if ((state === 'menu' || state === 'dead') && e.code === 'Enter') start();
-  if (/^(Key[WASD]|Arrow)/.test(e.code)) ptr.active = false;
+  if (e.code === 'Enter' && !subOpen()) {
+    if (state === 'menu' && !$('menu').hidden) askStart();
+    else if (state === 'dead' && !$('dead').hidden) start(false);
+    else if (tut === TUT.length - 1) endTutorial(true);
+  }
+  if (act === 'up' || act === 'down' || act === 'left' || act === 'right') ptr.active = false;
 });
 window.addEventListener('keyup', e => { keys[e.code] = false; });
 cv.addEventListener('pointerdown', e => {
@@ -534,21 +684,234 @@ cv.addEventListener('pointercancel', endTouch);
 cv.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'play') togglePause(); });
 
+function blurFocus() { const a = document.activeElement; if (a && a.blur) a.blur(); }
+function subOpen() { return !$('logbook').hidden || !$('keys').hidden; }
 function togglePause() {
+  if (subOpen()) return;
   if (state === 'play') { state = 'pause'; show('pause', true); }
-  else if (state === 'pause') { state = 'play'; show('pause', false); }
+  else if (state === 'pause') { state = 'play'; show('pause', false); blurFocus(); }
 }
-function start() {
+function start(tutorial) {
   initAudio(); reset();
-  ['menu', 'dead', 'pause', 'levelup'].forEach(id => show(id, false));
+  ['menu', 'dead', 'pause', 'levelup', 'tutAsk', 'logbook', 'keys'].forEach(id => show(id, false));
   $('hud').hidden = false;
   state = 'play';
+  tut = tutorial ? 0 : -1; tutData = { dist: 0, kills: 0, stepT: 0 };
+  $('coach').hidden = !tutorial;
+  if (tutorial) tutShow();
+  blurFocus();
 }
-$('startBtn').addEventListener('click', start);
-$('againBtn').addEventListener('click', start);
+function askStart() {
+  if (store.get('tutSeen', false)) { start(false); return; }
+  show('menu', false); show('tutAsk', true);
+}
+function toMenu() {
+  ['dead', 'pause', 'levelup', 'tutAsk'].forEach(id => show(id, false));
+  state = 'menu'; tut = -1; $('coach').hidden = true; $('hud').hidden = true;
+  reset(); refreshMenu(); show('menu', true);
+}
+function openSub(id, from) {
+  backTo = from; show(from, false);
+  if (id === 'logbook') renderLog();
+  if (id === 'keys') { capturing = null; renderBinds(); }
+  show(id, true);
+}
+function closeSub() {
+  capturing = null; show('logbook', false); show('keys', false);
+  if (backTo) show(backTo, true);
+  refreshMenu();
+}
+
+/* ---------- Erfolge & Skins ---------- */
+function saveLife() { store.set('life', life); }
+function skinById(id) { return SKINS.find(k => k.id === id) || SKINS[0]; }
+function skinUnlocked(id) { if (id === 'classic') return true; const a = ACH.find(x => x.skin === id); return !!a && achieved.has(a.id); }
+if (!skinUnlocked(skinId)) skinId = 'classic';
+function look() {
+  const k = skinById(skinId);
+  if (k.hue) { const h = Math.floor(t * 40 / 12) * 12 % 360; return { body: rgbToHex(hsl(h, 80, 88)), glow: rgbToHex(hsl(h, 90, 70)), alpha: 1 }; }
+  if (k.prism) { const h = Math.floor(t * 60 / 12) * 12 % 360; return { body: '#ffffff', glow: rgbToHex(hsl(h, 90, 75)), tent: [0, 72, 144, 216, 288].map(o => rgbToHex(hsl((h + o) % 360, 90, 72))), alpha: 1 }; }
+  return { body: k.body, glow: k.glow, alpha: k.alpha || 1, sparkle: !!k.sparkle };
+}
+function unlock(id) {
+  if (achieved.has(id)) return;
+  const a = ACH.find(x => x.id === id); if (!a) return;
+  achieved.add(id); store.set('ach', Array.from(achieved));
+  toast('Erfolg: ' + a.name, a.skin ? 'Neuer Skin freigeschaltet: ' + skinById(a.skin).name : a.desc, 'ach');
+  arp([659, 880, 1175], 90, 'triangle', .08);
+}
+function checkAch() {
+  if (tut < 0 && state !== 'menu') {
+    const d = Math.floor(depth);
+    [[150, 'd150'], [400, 'd400'], [800, 'd800'], [1400, 'd1400'], [2200, 'd2200']].forEach(([m, id]) => { if (d >= m) unlock(id); });
+    if (kills >= 100) unlock('k100');
+    if (P.lvl >= 10) unlock('lvl10');
+    if (P.orbit >= 8) unlock('orbit8');
+    if (state === 'play' && runTime - lastHit >= 180) unlock('nohit');
+  }
+  if (life.kills >= 1000) unlock('k1000');
+  if (life.bossNames.length) unlock('boss');
+  if (BOSSES.every(b => life.bossNames.indexOf(b.name) >= 0)) unlock('boss3');
+  if (life.goldens > 0) unlock('golden');
+  if (life.runs >= 1) unlock('first');
+  if (life.runs >= 10) unlock('runs10');
+  if (discovered.size >= Math.ceil(LOG_TOTAL / 2)) unlock('loghalf');
+  if (discovered.size >= LOG_TOTAL) unlock('logfull');
+}
+
+/* ---------- Logbuch ---------- */
+const LOG_TABS = [['creatures', 'Kreaturen'], ['zones', 'Zonen'], ['bosses', 'Bosse'], ['events', 'Ereignisse'], ['ach', 'Erfolge'], ['skins', 'Skins']];
+function logEntries(tab) {
+  if (tab === 'creatures') return Object.keys(TYPES).map(k => ({ ok: discovered.has('e:' + k), name: TYPES[k].name, info: INFO[k], hint: 'Taucht ab ' + TYPES[k].at + ' m auf', col: TYPES[k].col }));
+  if (tab === 'zones') return ZONES.map(z => ({ ok: discovered.has('z:' + z.name), name: z.name, info: ZONE_INFO[z.name] + ' Ab ' + z.at + ' m.', hint: 'Ab ' + z.at + ' m', col: z.glow }))
+    .concat(PROC.map((n, k) => ({ ok: discovered.has('z:' + n), name: n, info: 'Unerforschtes Gebiet jenseits der bekannten Zonen. Ab ' + (PROC_START + k * PROC_STEP) + ' m.', hint: 'Ab ' + (PROC_START + k * PROC_STEP) + ' m', col: rgbToHex(hsl((k * 67 + 210) % 360, 90, 76)) })));
+  if (tab === 'bosses') return BOSSES.map((b, i) => ({ ok: discovered.has('b:' + b.name), name: b.name, info: BOSS_INFO[b.pattern] + (life.bossNames.indexOf(b.name) >= 0 ? ' Schon besiegt.' : ' Noch nicht besiegt.'), hint: 'Erscheint erstmals beim Eintritt in die ' + ZONES[i + 1].name, col: b.col }));
+  if (tab === 'events') return EVENTS.map(ev => ({ ok: discovered.has('v:' + ev.id), name: ev.name, info: ev.desc, hint: ev.at ? 'Möglich ab ' + ev.at + ' m' : 'Jederzeit möglich', col: '#7fe8ff' }));
+  return ACH.map(a => ({ ok: achieved.has(a.id), name: a.name, info: a.desc + (a.skin ? ' Belohnung: Skin «' + skinById(a.skin).name + '».' : ''), col: '#ffcf7a', always: true }));
+}
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function renderLog() {
+  const tabs = $('logTabs'); tabs.textContent = '';
+  LOG_TABS.forEach(([id, label]) => {
+    const b = el('button', 'tab' + (id === logTab ? ' on' : ''), label); b.type = 'button';
+    b.addEventListener('click', () => { logTab = id; renderLog(); });
+    tabs.appendChild(b);
+  });
+  const grid = $('logGrid'); grid.textContent = '';
+  if (logTab === 'skins') {
+    const n = SKINS.filter(k => skinUnlocked(k.id)).length;
+    $('logSummary').textContent = n + ' von ' + SKINS.length + ' Skins freigeschaltet. Klick einen freigeschalteten Skin, um ihn zu tragen.';
+    SKINS.forEach(k => {
+      const ok = skinUnlocked(k.id), a = ACH.find(x => x.skin === k.id);
+      const b = el('button', 'entry skin' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : '')); b.type = 'button'; b.disabled = !ok;
+      const sw = el('i', 'swatch'), special = k.hue || k.prism;
+      sw.style.background = special ? 'conic-gradient(#ff7ab6,#ffd76a,#7fffb0,#7fe8ff,#b48cff,#ff7ab6)' : 'radial-gradient(circle at 40% 35%,' + k.body + ' 0 35%,' + k.glow + ' 75%)';
+      sw.style.boxShadow = '0 0 18px ' + (special ? '#b48cff' : k.glow);
+      if (k.alpha) sw.style.opacity = '.6';
+      b.appendChild(sw); b.appendChild(el('strong', '', k.name));
+      b.appendChild(el('span', '', ok ? (k.id === skinId ? 'Getragen' : 'Freigeschaltet') : 'Erfolg «' + a.name + '»: ' + a.desc));
+      b.addEventListener('click', () => { if (!ok) return; skinId = k.id; store.set('skin', skinId); renderLog(); });
+      grid.appendChild(b);
+    });
+    return;
+  }
+  const list = logEntries(logTab), got = list.filter(x => x.ok).length;
+  $('logSummary').textContent = got + ' von ' + list.length + (logTab === 'ach' ? ' erreicht.' : ' entdeckt.') + ' Insgesamt ' + discovered.size + ' / ' + LOG_TOTAL + ' Einträge und ' + achieved.size + ' / ' + ACH.length + ' Erfolge.';
+  list.forEach(x => {
+    const d = el('div', 'entry' + (x.ok ? (x.always ? ' done' : '') : ' locked'));
+    const dot = el('i', 'dot'); dot.style.background = x.ok ? x.col : 'transparent'; dot.style.boxShadow = x.ok ? '0 0 12px ' + x.col : 'none';
+    d.appendChild(dot);
+    d.appendChild(el('strong', '', x.ok || x.always ? x.name : '???'));
+    d.appendChild(el('span', '', x.ok || x.always ? x.info : x.hint));
+    grid.appendChild(d);
+  });
+}
+
+/* ---------- Tastenbelegung ---------- */
+const KEY_NAMES = { Space: 'Leertaste', Escape: 'Esc', ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', ShiftLeft: 'Shift links', ShiftRight: 'Shift rechts', ControlLeft: 'Strg links', ControlRight: 'Strg rechts', AltLeft: 'Alt', AltRight: 'Alt Gr', Tab: 'Tab', CapsLock: 'Feststell', Enter: 'Enter' };
+function keyName(c) {
+  if (!c) return '–';
+  if (KEY_NAMES[c]) return KEY_NAMES[c];
+  if (/^Key[A-Z]$/.test(c)) return c.slice(3);
+  if (/^Digit\d$/.test(c)) return c.slice(5);
+  if (/^Numpad/.test(c)) return 'Num ' + c.slice(6);
+  return c;
+}
+function actionOf(code) { for (const a of ACTIONS) if (binds[a.id].indexOf(code) >= 0) return a.id; return null; }
+function pressed(id) { const b = binds[id]; return !!((b[0] && keys[b[0]]) || (b[1] && keys[b[1]])); }
+function renderBinds() {
+  const tb = $('bindTable'); tb.textContent = '';
+  ACTIONS.forEach(a => {
+    const tr = el('tr'); tr.appendChild(el('th', '', a.name));
+    [0, 1].forEach(slot => {
+      const td = el('td'), wait = capturing && capturing.id === a.id && capturing.slot === slot;
+      const b = el('button', 'keycap' + (wait ? ' wait' : ''), wait ? 'Taste drücken …' : keyName(binds[a.id][slot])); b.type = 'button';
+      b.addEventListener('click', () => { capturing = { id: a.id, slot }; renderBinds(); });
+      td.appendChild(b); tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+}
+function finishCapture(code) {
+  const c = capturing; capturing = null;
+  if (code !== 'Escape') {
+    if (/^Digit[123]$/.test(code) || code === 'Enter') toast('Taste ist fest belegt', keyName(code) + ' wird für die Menüs gebraucht', 'bad');
+    else {
+      const val = code === 'Delete' || code === 'Backspace' ? null : code;
+      if (val) for (const a of ACTIONS) for (let k = 0; k < 2; k++) if (binds[a.id][k] === val) binds[a.id][k] = null;
+      binds[c.id][c.slot] = val;
+      store.set('binds', binds);
+    }
+  }
+  renderBinds(); refreshMenu();
+}
+
+/* ---------- Tutorial ---------- */
+const TUT = [
+  { title: 'Schwimmen', text: () => 'Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit ' + ['up', 'left', 'down', 'right'].map(a => keyName(binds[a][0])).join(' ') + '. Schwimm ein bisschen herum.' },
+  { title: 'Sprint', text: () => 'Drück ' + keyName(binds.dash[0]) + ', mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.' },
+  { title: 'Lichtpuls', text: () => 'Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.' },
+  { title: 'Plankton', text: () => 'Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.' },
+  { title: 'Mutationen', text: () => 'Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.' },
+  { title: 'Ab in die Tiefe', text: () => 'Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!' }
+];
+function tutShow() {
+  const st = TUT[tut];
+  $('coachStep').textContent = 'Schritt ' + (tut + 1) + ' von ' + TUT.length + ': ' + st.title;
+  $('coachText').textContent = st.text();
+  $('coachGo').hidden = tut !== TUT.length - 1;
+  $('coachSkip').hidden = tut === TUT.length - 1;
+}
+function tutNext() {
+  tut++; tutData.stepT = 0;
+  tone(660, .15, 'sine', .06);
+  if (tut === 2) {
+    tutData.kills = 0;
+    for (let i = 0; i < 4; i++) { const a = i / 4 * TAU + .4, e = spawnEnemy('drifter', P.x + Math.cos(a) * 260, P.y + Math.sin(a) * 260); e.hp = e.max = 12; e.spd = 22; e.dmg = 5; }
+  }
+  if (tut === 3) for (let i = 0; i < 14; i++) { const a = Math.random() * TAU, r = rand(90, 260); orbs.push({ x: P.x + Math.cos(a) * r, y: P.y + Math.sin(a) * r, vx: 0, vy: 0, val: .3, col: '#d6fff6', age: 0 }); }
+  if (tut === 4) P.xp = Math.max(P.xp, P.next);
+  tutShow();
+}
+function tutUpdate(dt) {
+  tutData.stepT += dt;
+  if (tut === 0) tutData.dist += Math.hypot(P.vx, P.vy) * dt;
+  if (tutData.stepT < 2) return;
+  if (tut === 0) { if (tutData.dist > 600) tutNext(); }
+  else if (tut === 1) { if (tutData.dashed) tutNext(); }
+  else if (tut === 2) { if (tutData.kills >= 4 || !enemies.length) tutNext(); }
+  else if (tut === 3) { if (!orbs.length) tutNext(); }
+  else if (tut === 4) { if (Object.keys(P.ups).length) tutNext(); }
+}
+function endTutorial(done) {
+  if (tut < 0) return;
+  store.set('tutSeen', true);
+  if (done) unlock('tutorial');
+  tut = -1; $('coach').hidden = true;
+  start(false);
+}
+
+/* ---------- Knöpfe ---------- */
+$('startBtn').addEventListener('click', askStart);
+$('tutBtn').addEventListener('click', () => { store.set('tutSeen', true); start(true); });
+$('tutYes').addEventListener('click', () => { store.set('tutSeen', true); start(true); });
+$('tutNo').addEventListener('click', () => { store.set('tutSeen', true); start(false); });
+$('coachSkip').addEventListener('click', () => endTutorial(false));
+$('coachGo').addEventListener('click', () => endTutorial(true));
+$('againBtn').addEventListener('click', () => start(false));
+$('dMenuBtn').addEventListener('click', toMenu);
 $('resumeBtn').addEventListener('click', togglePause);
 $('pauseBtn').addEventListener('click', togglePause);
 $('muteBtn').addEventListener('click', () => { initAudio(); setMuted(!muted); });
+$('logBtn').addEventListener('click', () => openSub('logbook', 'menu'));
+$('keysBtn').addEventListener('click', () => openSub('keys', 'menu'));
+$('pLogBtn').addEventListener('click', () => openSub('logbook', 'pause'));
+$('pKeysBtn').addEventListener('click', () => openSub('keys', 'pause'));
+$('dLogBtn').addEventListener('click', () => openSub('logbook', 'dead'));
+$('logBack').addEventListener('click', closeSub);
+$('keysBack').addEventListener('click', closeSub);
+$('bindReset').addEventListener('click', () => { binds = loadBinds.call(null); for (const a of ACTIONS) binds[a.id] = DEFAULT_BINDS[a.id].slice(); store.set('binds', binds); renderBinds(); refreshMenu(); });
+
 
 /* ---------- Update ---------- */
 function steer(e, tx, ty, spd, k, dt) {
@@ -558,7 +921,7 @@ function steer(e, tx, ty, spd, k, dt) {
 }
 function update(dt) {
   runTime += dt;
-  depth += dt * 2;
+  if (tut < 0) depth += dt * 2;
 
   // Zone
   const z = getZone(depth);
@@ -573,10 +936,10 @@ function update(dt) {
 
   // Spieler
   let ix = 0, iy = 0;
-  if (keys.KeyA || keys.ArrowLeft) ix--;
-  if (keys.KeyD || keys.ArrowRight) ix++;
-  if (keys.KeyW || keys.ArrowUp) iy--;
-  if (keys.KeyS || keys.ArrowDown) iy++;
+  if (pressed('left')) ix--;
+  if (pressed('right')) ix++;
+  if (pressed('up')) iy--;
+  if (pressed('down')) iy++;
   let mag = 1;
   if (ix || iy) { const n = Math.hypot(ix, iy); ix /= n; iy /= n; }
   else if (ptr.active) {
@@ -594,7 +957,7 @@ function update(dt) {
   P.pulseT -= dt;
   if (P.pulseT <= 0) {
     P.pulseT = P.pulseInt; P.bell = 1;
-    fx.push({ k: 'ring', x: P.x, y: P.y, r: P.pulseR, t: 0, d: .45, col: '#c8fbff' });
+    fx.push({ k: 'ring', x: P.x, y: P.y, r: P.pulseR, t: 0, d: .45, col: look().glow });
     for (const e of enemies) {
       const rr = P.pulseR + e.r;
       if (!e.dead && d2(e.x, e.y, P.x, P.y) < rr * rr) {
@@ -658,7 +1021,7 @@ function update(dt) {
 
   // Gegner spawnen
   spawnT -= dt;
-  if (spawnT <= 0) {
+  if (spawnT <= 0 && tut < 0) {
     spawnT = Math.max(.14, (runTime < 25 ? 1.5 : 1.1) / (1 + depth / 220));
     if (enemies.length < 220) { const [x, y] = ringPos(); spawnEnemy(pickType(), x, y); }
   }
@@ -750,12 +1113,12 @@ function update(dt) {
     g.vy = lerp(g.vy, dy / d * fleeSp + Math.sin(g.ph * 1.7) * 60, 1 - Math.exp(-dt * 3));
     g.x += g.vx * dt; g.y += g.vy * dt;
     if (Math.random() < dt * 20) parts.push({ x: g.x, y: g.y, vx: rand(-20, 20), vy: rand(10, 40), life: .8, max: .8, r: 3, col: '#ffd76a' });
-    if (d < P.r + 18) { golden = null; burst(g.x, g.y, '#ffd76a', 40, 240); toast('Goldqualle gefangen', 'Deine nächste Mutation wirkt doppelt', 'gold'); openLevelUp(true); return; }
+    if (d < P.r + 18) { golden = null; life.goldens++; saveLife(); checkAch(); burst(g.x, g.y, '#ffd76a', 40, 240); toast('Goldqualle gefangen', 'Deine nächste Mutation wirkt doppelt', 'gold'); openLevelUp(true); return; }
     if (g.life <= 0) { golden = null; toast('Die Goldqualle ist entkommen', '', 'bad'); }
   }
 
   // Ereignisse
-  eventT -= dt;
+  if (tut < 0) eventT -= dt;
   if (eventT <= 0) { eventT = rand(30, 48); triggerEvent(); }
   for (const id in activeEv) {
     activeEv[id] -= dt;
@@ -768,6 +1131,9 @@ function update(dt) {
   const kf = 1 - Math.exp(-dt * 6);
   camX += (P.x - camX) * kf; camY += (P.y - camY) * kf;
 
+  if (tut >= 0) tutUpdate(dt);
+  achT -= dt;
+  if (achT <= 0) { achT = .5; saveLife(); checkAch(); }
   checkLevel();
 }
 
@@ -812,7 +1178,8 @@ function ambient(dt) {
   for (const e of fx) e.t += dt;
   fx = fx.filter(e => e.t < e.d);
   shake = Math.max(0, shake - dt * 40);
-  if (state === 'menu') { P.bell = Math.max(0, P.bell - dt * 3); P.pulseT -= dt; if (P.pulseT <= 0) { P.pulseT = 1.8; P.bell = 1; fx.push({ k: 'ring', x: P.x, y: P.y, r: 95, t: 0, d: .6, col: '#c8fbff' }); } P.y = Math.sin(t * .8) * 10; }
+  if (state !== 'dead') { const lk = look(); if (lk.sparkle && Math.random() < dt * 18) parts.push({ x: P.x + rand(-14, 14), y: P.y + rand(-12, 8), vx: rand(-15, 15), vy: rand(10, 35), life: .9, max: .9, r: 2.2, col: lk.glow }); }
+  if (state === 'menu') { P.bell = Math.max(0, P.bell - dt * 3); P.pulseT -= dt; if (P.pulseT <= 0) { P.pulseT = 1.8; P.bell = 1; fx.push({ k: 'ring', x: P.x, y: P.y, r: 95, t: 0, d: .6, col: look().glow }); } P.y = Math.sin(t * .8) * 10; }
 }
 
 /* ---------- Zeichnen ---------- */
@@ -878,7 +1245,7 @@ function render() {
   for (const f of fx) {
     const k = f.t / f.d;
     if (f.k === 'ring') {
-      ctx.strokeStyle = 'rgba(200,251,255,' + (.55 * (1 - k)) + ')';
+      ctx.strokeStyle = rgba(hexToRgb(f.col), .55 * (1 - k));
       ctx.lineWidth = 10 * (1 - k) + 1;
       ctx.beginPath(); ctx.arc(f.x + ox, f.y + oy, f.r * (.25 + .75 * Math.sqrt(k)), 0, TAU); ctx.stroke();
     } else if (f.k === 'bolt') {
@@ -904,10 +1271,11 @@ function render() {
       const a = P.orbA + k / P.orbit * TAU;
       glow(sx + Math.cos(a) * 64, sy + Math.sin(a) * 64, 20, '#fff4c2', .95);
     }
-    glow(sx, sy, 90 + P.bell * 40, '#c8fbff', .55);
+    const lk = look();
+    glow(sx, sy, 90 + P.bell * 40, lk.glow, .55);
     ctx.globalCompositeOperation = 'source-over';
     const blink = P.inv > 0 && state === 'play' && Math.floor(t * 20) % 2 === 0;
-    if (!blink) drawJelly(sx, sy, P.r, '#e6fdff', t * 3, P.bell, P.vx, P.vy);
+    if (!blink) drawJelly(sx, sy, P.r, lk.body, t * 3, P.bell, P.vx, P.vy, lk.tent, lk.alpha);
   }
 
   // Partikel
@@ -934,12 +1302,14 @@ function render() {
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
 }
 
-function drawJelly(x, y, r, col, ph, bell, vx, vy) {
+function drawJelly(x, y, r, col, ph, bell, vx, vy, tent, alpha) {
+  const am = alpha === undefined ? 1 : alpha;
   const sq = 1 - bell * .22, wide = 1 + bell * .18;
   ctx.save(); ctx.translate(x, y);
-  ctx.strokeStyle = col; ctx.globalAlpha = .7; ctx.lineWidth = 1.6; ctx.lineCap = 'round';
+  ctx.strokeStyle = col; ctx.globalAlpha = .7 * Math.max(am, .6); ctx.lineWidth = 1.6; ctx.lineCap = 'round';
   for (let i = 0; i < 5; i++) {
     const bx = (i - 2) * r * .38;
+    if (tent) ctx.strokeStyle = tent[i % tent.length];
     ctx.beginPath(); ctx.moveTo(bx, r * .2);
     for (let s = 1; s <= 7; s++) {
       const q = s / 7;
@@ -947,10 +1317,10 @@ function drawJelly(x, y, r, col, ph, bell, vx, vy) {
     }
     ctx.stroke();
   }
-  ctx.globalAlpha = .9;
+  ctx.globalAlpha = .9 * am;
   ctx.fillStyle = col;
   ctx.beginPath(); ctx.ellipse(0, 0, r * 1.2 * wide, r * sq, 0, Math.PI, TAU); ctx.quadraticCurveTo(0, r * .45, -r * 1.2 * wide, 0); ctx.fill();
-  ctx.globalAlpha = .5; ctx.fillStyle = '#ffffff';
+  ctx.globalAlpha = .5 * Math.max(am, .6); ctx.fillStyle = '#ffffff';
   ctx.beginPath(); ctx.ellipse(-r * .35, -r * .45 * sq, r * .35, r * .18, -.4, 0, TAU); ctx.fill();
   ctx.restore(); ctx.globalAlpha = 1;
 }
