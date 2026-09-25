@@ -144,13 +144,19 @@ Im Logbuch hat jede Kreatur und jeder Boss ein **Bild**. Es wird mit derselben G
 
 ## Bosse
 
-Die Bosse wechseln sich bei jedem Zonenwechsel der Reihe nach ab. Wer einen Boss besiegt, erhält viel Erfahrung und wird zu 30 % geheilt.
+Am **Ende jeder Welt** wartet ein Boss. Erst wenn er besiegt ist, geht es in die nächste Welt. Bis dahin bleibt die Tiefe stehen, und oben links steht „Besiege …, um in die nächste Welt zu kommen“. Wer einen Boss besiegt, erhält viel Erfahrung und wird zu 30 % geheilt.
 
-| Boss | Erstmals | Angriff |
+| Welt | Boss | Angriff |
 |---|---|---|
-| Mutterqualle | Dämmerzone | Ruft ständig Treiblinge herbei |
-| Riesenkalmar | Mitternachtszone | Feuert Tintenringe in alle Richtungen |
-| Leviathan | Abyssal | Zielt (Leuchtstreifen), dann rammt er |
+| 1 | Mutterqualle | Ruft ständig Treiblinge herbei |
+| 2 | Riesenkalmar | Feuert Tintenringe in alle Richtungen |
+| 3 | Leviathan | Zielt (Leuchtstreifen), dann rammt er |
+| 4 | Tiefseeschlange | Ganzer Körper verletzt, spuckt Giftfächer, stürmt los |
+| 5 | Kristallkoloss | Kreisende Kristallsplitter, Spiralen aus Geschossen |
+| 6 | Abgrundauge | Salven und ein Laserstrahl mit roter Warnlinie |
+| 7 | Königin der Tiefe | Ruft Elite-Kreaturen, dichte Geschossringe |
+
+Ab Welt 8 kommen die Bosse als **erwachte** Varianten zurück: mehr Leben, mehr Schaden, schnellere Angriffe und mehr Geschosse. Mit jeder weiteren Runde werden sie stärker.
 
 ---
 
@@ -180,7 +186,7 @@ Alle 30 bis 50 Sekunden passiert zufällig etwas.
 
 ## Mutationen
 
-Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen.
+Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen. Unten links im HUD siehst du während des ganzen Tauchgangs alle Mutationen mit ihrer Stufe, zum Beispiel „Leuchtfunke 3/8“.
 
 | Mutation | Effekt | Max. |
 |---|---|---|
@@ -188,14 +194,15 @@ Bei jedem Stufenaufstieg wählst du eine von drei zufälligen Mutationen.
 | Weiter Puls | +18 % Pulsreichweite | 8 |
 | Schneller Puls | Puls 15 % häufiger | 8 |
 | Flossenschlag | +12 % Tempo | 6 |
-| Anziehung | Plankton aus 50 % grösserer Distanz | 6 |
+| Anziehung | Plankton aus 50 % grösserer Distanz. Wird nicht mehr angeboten, sobald du Magnet hast (Mutation oder Skin) | 6 |
 | Dicke Glocke | +25 max. Leben, 40 Heilung | 10 |
-| Selbstheilung | +1 Leben pro Sekunde | 6 |
+| Selbstheilung | Pro Stufe so viele Leben pro Sekunde wie die Nummer der Welt: Welt 1 = +1, Welt 2 = +2 usw. | 6 |
 | Leuchtfunke | Kreisender Funke, der Gegner verbrennt | 8 |
 | Sporenwerfer | Zielsuchende Sporen | 6 |
 | Zitteraal | Kettenblitz zwischen Gegnern | 6 |
 | Rückstoss | Sprint 20 % schneller bereit | 5 |
-| Magnet | Alles Plankton, alle Perlen und Blasen auf der ganzen Karte fliegen sofort zu dir. **Erst ab Stufe 5** in der Auswahl | 1 |
+| Magnet | Alles Plankton, alle Perlen und Blasen auf der ganzen Karte fliegen sofort zu dir. **Erst ab Welt 5** in der Auswahl | 1 |
+| Mehrfachschuss | Jede Spore (und jedes andere zielsuchende Geschoss) wird pro Stufe zu einem Geschoss mehr, gefächert. **Nur mit Sporenwerfer** | 4 |
 
 ---
 
@@ -228,7 +235,7 @@ Erfolge werden automatisch freigeschaltet. Die meisten geben einen neuen **Skin*
 | Forschungsdrang | Logbuch zur Hälfte gefüllt | Sternenstaub (funkelt) |
 | Vollständiges Logbuch | Alles entdeckt | Prisma (Regenbogen) |
 
-Dazu kommt der Start-Skin **Klassisch**, insgesamt also 31 Skins (16 aus Erfolgen und Box, 4 weitere Box-Skins, 9 Meilenstein-Skins, 2 Code-Skins).
+Dazu kommt der Start-Skin **Klassisch**, insgesamt also 35 Skins (16 aus Erfolgen und Box, 5 weitere Box-Skins, 9 Meilenstein-Skins, 5 Code-Skins).
 
 ---
 
@@ -256,10 +263,10 @@ Für **5 Perlen** öffnest du eine Luckybox und bekommst einen zufälligen Skin.
 
 | Seltenheit | Chance gesamt | Skins |
 |---|---|---|
-| Gewöhnlich | 56,0 % | Klassisch, Perle, Dämmerlicht, Minze, Tiefseerose |
-| Selten | 23,9 % | Mitternacht, Glut, Giftgrün, Sonnenfunke |
-| Episch | 11,9 % | Glasgeist, Schattenqualle, Kristall, Sternenstaub |
-| Legendär | 6,0 % | Goldqualle, Polarlicht, Nebelschleier, Donnerqualle |
+| Gewöhnlich | 55,1 % | Klassisch, Perle, Dämmerlicht, Minze, Tiefseerose |
+| Selten | 23,5 % | Mitternacht, Glut, Giftgrün, Sonnenfunke |
+| Episch | 11,8 % | Glasgeist, Schattenqualle, Kristall, Sternenstaub |
+| Legendär | 7,4 % | Goldqualle, Polarlicht, Nebelschleier, Donnerqualle, Tiefenrausch |
 | Mythisch | 2,2 % | Prisma, Leere, Phönix |
 
 Meilenstein-Skins sind **nicht** in der Box, siehe [unten](#meilenstein-skins).
@@ -339,6 +346,34 @@ Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**.
 ---
 
 ## Arctic-Skin und Codes
+
+Während eines Tauchgangs lässt sich der Skin **nicht wechseln**, auch nicht über das Logbuch im Pausemenü.
+
+### Tiefenrausch (Luckybox, legendär)
+
+Schon ab ★1: **doppelte Meter**. ★2: zusätzlich +10 % Tempo. ★3: +20 % Tempo und +20 % Erfahrung. Grüne Qualle mit Speed-Streifen und Tiefenpfeilen.
+
+### Herzensbrecher (Seltenheit „Geheim“, nur per Code, sofort ★3)
+
+Dunkelrote Qualle mit gebrochenem Herz.
+
+| Fähigkeit | Wirkung |
+|---|---|
+| Lebensraub | Jeder Kill heilt 10 % der verlorenen Leben |
+| Gebrochene Herzen | Zielsuchende Herzen, die beim Treffer in zwei Hälften zerspringen und weitere Gegner treffen. Stärker mit Stärkerer Puls, häufiger mit Schneller Puls, mehr mit Sporenwerfer und Mehrfachschuss |
+
+### Regenbogen (Seltenheit „Geheim“, nur per Code, sofort ★3)
+
+Farbwechselnde Qualle mit Regenbogenbogen.
+
+| Fähigkeit | Wirkung |
+|---|---|
+| Regenbogenspur | Hinterlässt eine Spur, die Gegner verletzt (stärker mit Stärkerer Puls, breiter mit Weiter Puls) |
+| Spektrum | Wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls. Die aktuelle Farbe steht im HUD. |
+
+### Admin (nur per Code, sofort ★3)
+
+Dunkelroter Schild-Skin: **unendlich Leben**, besiegt **jedes Monster und jeden Boss mit einem Treffer** und sinkt **doppelt so schnell**. Admin-Runs zählen nicht für Rekorde, Erfolge, Statistik und Perlen.
 
 ### Schwarzes Loch (Seltenheit „Kosmisch“)
 
