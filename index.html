@@ -665,9 +665,9 @@ const life = Object.assign({ runs: 0, kills: 0, goldens: 0, bossNames: [] }, sto
 const achieved = new Set(store.get('ach', []));
 let skinId = store.get('skin', 'classic');
 const codes = new Set(store.get('codes', []));
-const CODE_HASH = { c6a3dfda6198033ac361f19b7b50b80e310ae8208dd8a65f3b4f8acdf89b80e6: 'arctic', '9e126aaf208ba3a0aa51720838b9064f1adcde28e9ab7f61c27fd0a949e9ef0a': 'blackhole', '8a90f12fd2561408d796ec3260a93b4cdb438663eaf208acc3b1a71c10b6ea65': 'siphon', '40cfc578ec675c0d521dd6b93bd9292d48b8b86b6bc8cdc46a67422d9c8af802': 'rainbow', '04ca1be509c07c9ed6d3ed4da15eb9d8cfd23ce34394c0f8a35c2a4644f7bf72': 'admin', dcf059f4718f5c1eb3ea130e5b66e36e8d86f0481f570b5d000fa2b0ab07d6de: 'pearls30' };
+const CODE_HASH = { c6a3dfda6198033ac361f19b7b50b80e310ae8208dd8a65f3b4f8acdf89b80e6: 'arctic', '9e126aaf208ba3a0aa51720838b9064f1adcde28e9ab7f61c27fd0a949e9ef0a': 'blackhole', '8a90f12fd2561408d796ec3260a93b4cdb438663eaf208acc3b1a71c10b6ea65': 'siphon', '40cfc578ec675c0d521dd6b93bd9292d48b8b86b6bc8cdc46a67422d9c8af802': 'rainbow', '04ca1be509c07c9ed6d3ed4da15eb9d8cfd23ce34394c0f8a35c2a4644f7bf72': 'admin', dcf059f4718f5c1eb3ea130e5b66e36e8d86f0481f570b5d000fa2b0ab07d6de: 'pearls30', '39b0521346d0c898b256f9d74ce789885e66e079e659b0c0a77297884f1b2b0b': 'pearls100a', '790ebd38b0c8a2ab28c9f6ccc6cc051ec0ec042dd7de77cc6cab545cca0acfe6': 'pearls100b' };
 // Belohnungs-Codes (einmalig): Perlen statt Skin
-const CODE_PEARLS = { pearls30: 30 };
+const CODE_PEARLS = { pearls30: 30, pearls100a: 100, pearls100b: 100 };
 const CODE_RAR = ['arctic', 'cosmic', 'secret', 'admin'];
 const SPECTRUM = [[T('Rot'), '#ff4f5a', T('+40 % Schaden')], [T('Grün'), '#5dff8a', T('+3 Leben pro Sekunde')], [T('Blau'), '#5fa8ff', T('+25 % Tempo')], [T('Gelb'), '#ffd84f', T('+50 % Erfahrung')], [T('Violett'), '#b58cff', T('30 % schnellerer Puls')]];
 let pearls = store.get('pearls', 0), runPearls = 0, opening = false;
