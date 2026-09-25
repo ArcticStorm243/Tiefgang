@@ -557,6 +557,9 @@ const SKIN_TENT = {
   gold: ['#ffd76a', '#ffe9a8', '#e6b84a'], rose: ['#ff7ac8', '#ffb3de', '#ff4fa8'], queen: ['#9dff5d', '#c4a0ff', '#7ae04a']
 };
 SKINS.forEach(k => { if (SKIN_TENT[k.id] && !k.tent) k.tent = SKIN_TENT[k.id]; });
+// Feste Sortierung nach Seltenheit (innerhalb einer Seltenheit bleibt die Reihenfolge erhalten)
+const RAR_ORDER = ['common', 'rare', 'epic', 'legend', 'myth', 'earn', 'secret', 'cosmic', 'arctic', 'admin'];
+SKINS.sort((a, b) => RAR_ORDER.indexOf(a.rar) - RAR_ORDER.indexOf(b.rar));
 const RAR_SUM = SKINS.reduce((a, k) => a + RAR[k.rar].w, 0);
 const BOX_COST = 5, MERGE_COST = [0, 2, 6];
 // Jede Kopie zählt als ★1: 3× ★1 = ★2, 3× ★2 = ★3 (9 Kopien insgesamt)
