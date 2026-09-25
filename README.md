@@ -154,7 +154,24 @@ Am **Ende jeder Welt** wartet ein Boss. Erst wenn er besiegt ist, geht es in die
 | 4 | Tiefseeschlange | Ganzer Körper verletzt, spuckt Giftfächer, stürmt los |
 | 5 | Kristallkoloss | Kreisende Kristallsplitter, Spiralen aus Geschossen |
 | 6 | Abgrundauge | Salven und ein Laserstrahl mit roter Warnlinie |
-| 7 | Königin der Tiefe | Ruft Elite-Kreaturen, dichte Geschossringe |
+| 7 | Königin der Tiefe | Endboss mit Heilerfischen und Schild, siehe unten |
+
+### Königin der Tiefe
+
+Die Königin ist von **5 Heilerfischen** umgeben (grüne Fische mit weissem Kreuz). Solange auch nur einer lebt,
+- schützt sie ein **Schild**, der jeden Schaden abprallen lässt (im HUD steht „– geschützt“), und
+- heilen die Fische sie über grüne Strahlen.
+
+Erst wenn **alle Heiler tot** sind, bricht der Schild, und die Königin ist **12 Sekunden verwundbar**. Danach ruft sie neue Heiler. Dazu setzt sie im Wechsel vier Fähigkeiten ein:
+
+| Fähigkeit | Wirkung |
+|---|---|
+| Tentakelschläge | Rote Warnkreise um dich, nach 1 s schlagen dort Tentakel aus der Tiefe |
+| Sog | Zieht dich 2 s lang zu sich heran, schwimm dagegen an |
+| Elite-Ruf | Ruft Elite-Kreaturen herbei |
+| Geschossringe | Dichter Ring aus Geschossen |
+
+Die Heilerfische erscheinen nur bei der Königin und stehen auch im Logbuch.
 
 Ab Welt 8 kommen die Bosse als **erwachte** Varianten zurück: mehr Leben, mehr Schaden, schnellere Angriffe und mehr Geschosse. Mit jeder weiteren Runde werden sie stärker.
 
@@ -461,7 +478,7 @@ Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. 
 | Erfolge | Alle 30 Erfolge mit Bedingung und Belohnung |
 | Skins | Alle Skins mit Seltenheit, Box-Chance, Sternen, Fähigkeit, Tragen und Mergen |
 
-Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 46 Einträge (13 Zonen, 15 Kreaturen, 3 Bosse, 15 Ereignisse).
+Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 51 Einträge (13 Zonen, 16 Kreaturen, 7 Bosse, 15 Ereignisse).
 
 ---
 
