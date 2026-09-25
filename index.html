@@ -1451,9 +1451,11 @@ function renderLog() {
   });
   const grid = $('logGrid'); grid.textContent = '';
   if (logTab === 'skins') {
-    const n = SKINS.filter(k => skinUnlocked(k.id)).length;
-    $('logSummary').textContent = F('{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier (3× ★1 = ★2, 3× ★2 = ★3). Perlen: {2}.', n, SKINS.length, pearls);
-    SKINS.forEach(k => {
+    // Admin-Skin bleibt unsichtbar, bis er freigeschaltet ist
+    const shown = SKINS.filter(k => k.rar !== 'admin' || skinUnlocked(k.id));
+    const n = shown.filter(k => skinUnlocked(k.id)).length;
+    $('logSummary').textContent = F('{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier (3× ★1 = ★2, 3× ★2 = ★3). Perlen: {2}.', n, shown.length, pearls);
+    shown.forEach(k => {
       const s = skinStar(k.id), ok = s >= 1, a = ACH.find(x => x.skin === k.id), R = RAR[k.rar], dup = (inv[k.id] && inv[k.id].n) || 0;
       const d = el('div', 'entry skinc' + (ok ? '' : ' locked') + (k.id === skinId ? ' on' : '') + (s >= 3 ? ' star3' : ''));
       const sw = skinSwatch(k), arc = CODE_RAR.indexOf(k.rar) >= 0, earn = k.rar === 'earn' || arc;
