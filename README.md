@@ -256,6 +256,32 @@ Dazu kommt der Start-Skin **Klassisch**, insgesamt also 35 Skins (16 aus Erfolge
 
 ---
 
+### Schwere Erfolge
+
+Diese Erfolge sind im Logbuch **rot** markiert und belohnen mit **Perlen**, insgesamt 240.
+
+| Erfolg | Bedingung | Perlen |
+|---|---|---|
+| Königsmord | Besiege die Königin der Tiefe | 10 |
+| Albtraum | Besiege einen erwachten Boss | 15 |
+| Makellos | Besiege einen Boss, ohne während des Kampfes getroffen zu werden | 10 |
+| Jenseits der Krone | Erreiche Welt 8 | 10 |
+| Marianengraben | Erreiche 10 000 m | 25 |
+| Massaker | 1000 Gegner in einem Tauchgang | 10 |
+| Legende der Tiefe | 50 000 Gegner insgesamt | 25 |
+| Übermutant | Stufe 50 in einem Tauchgang | 15 |
+| Geist der Tiefe | 10 Minuten am Stück ohne Treffer | 20 |
+| Sturzflug | 1400 m in unter 15 Minuten | 10 |
+| Alleskönner | Jede Mutation mindestens einmal in einem Tauchgang | 15 |
+| Perlenkönig | 500 Perlen insgesamt | 10 |
+| Glücksspieler | 50 Luckyboxen geöffnet | 10 |
+| Sammlerstück | 5 Luckybox-Skins auf ★3 | 15 |
+| Mythenjäger | Einen mythischen Skin aus der Luckybox ziehen | 5 |
+| Goldgräber | 25 Goldquallen insgesamt | 10 |
+| Unendliche Tiefe | 60 Minuten in einem Tauchgang | 25 |
+
+---
+
 ## Perlen, Luckybox und Mergen
 
 ### Perlen
@@ -475,7 +501,7 @@ Das Logbuch öffnest du im Hauptmenü, im Pausemenü oder nach einem Tauchgang. 
 | Zonen | 5 feste und 8 prozedurale Zonen |
 | Bosse | Alle 3 Bosse mit Bild, inklusive ob schon besiegt |
 | Ereignisse | Alle 15 Ereignisse |
-| Erfolge | Alle 30 Erfolge mit Bedingung und Belohnung |
+| Erfolge | Alle 47 Erfolge mit Bedingung und Belohnung |
 | Skins | Alle Skins mit Seltenheit, Box-Chance, Sternen, Fähigkeit, Tragen und Mergen |
 
 Unentdeckte Einträge erscheinen als **???** mit einem Hinweis, wo man sie findet, zum Beispiel „Taucht ab 450 m auf“. Neue Einträge meldet das Spiel während des Tauchgangs mit „Neu im Logbuch“. Insgesamt gibt es 51 Einträge (13 Zonen, 16 Kreaturen, 7 Bosse, 15 Ereignisse).
