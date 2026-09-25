@@ -349,11 +349,13 @@ Diese Skins bekommst du nur durch Spielen. Ihre Fähigkeit ist **sofort aktiv**.
 
 Während eines Tauchgangs lässt sich der Skin **nicht wechseln**, auch nicht über das Logbuch im Pausemenü.
 
+Im Logbuch steht bei allen geheimen Skins nur **„Freischalten: ?“**.
+
 ### Tiefenrausch (Luckybox, legendär)
 
 Schon ab ★1: **doppelte Meter**. ★2: zusätzlich +10 % Tempo. ★3: +20 % Tempo und +20 % Erfahrung. Grüne Qualle mit Speed-Streifen und Tiefenpfeilen.
 
-### Herzensbrecher (Seltenheit „Geheim“, nur per Code, sofort ★3)
+### Herzensbrecher (Seltenheit „Geheim“, Freischaltung geheim, sofort ★3)
 
 Dunkelrote Qualle mit gebrochenem Herz.
 
@@ -362,7 +364,7 @@ Dunkelrote Qualle mit gebrochenem Herz.
 | Lebensraub | Jeder Kill heilt 10 % der verlorenen Leben |
 | Gebrochene Herzen | Zielsuchende Herzen, die beim Treffer in zwei Hälften zerspringen und weitere Gegner treffen. Stärker mit Stärkerer Puls, häufiger mit Schneller Puls, mehr mit Sporenwerfer und Mehrfachschuss |
 
-### Regenbogen (Seltenheit „Geheim“, nur per Code, sofort ★3)
+### Regenbogen (Seltenheit „Geheim“, Freischaltung geheim, sofort ★3)
 
 Farbwechselnde Qualle mit Regenbogenbogen.
 
@@ -371,13 +373,13 @@ Farbwechselnde Qualle mit Regenbogenbogen.
 | Regenbogenspur | Hinterlässt eine Spur, die Gegner verletzt (stärker mit Stärkerer Puls, breiter mit Weiter Puls) |
 | Spektrum | Wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls. Die aktuelle Farbe steht im HUD. |
 
-### Admin (nur per Code, sofort ★3)
+### Admin (Freischaltung geheim, sofort ★3)
 
-Dunkelroter Schild-Skin: **unendlich Leben**, besiegt **jedes Monster und jeden Boss mit einem Treffer** und sinkt **doppelt so schnell**. Admin-Runs zählen nicht für Rekorde, Erfolge, Statistik und Perlen.
+Dunkelroter Schild-Skin: **unendlich Leben**, schiesst **von Anfang an zielsuchende Schildblitze**, besiegt **jedes Monster und jeden Boss mit einem Treffer** und sinkt **fünfmal so schnell**. Es gibt **keine Mutationen** (keine Level-ups). Admin-Runs zählen nicht für Rekorde, Erfolge, Statistik und Perlen.
 
 ### Schwarzes Loch (Seltenheit „Kosmisch“)
 
-Ebenfalls **nur per Code**, sofort **★3**. Eine tiefschwarze Qualle mit leuchtendem Akkretionsring und Photonenring. Der Ring ist rein kosmetisch und zählt **nicht** zur Hitbox.
+Freischaltung **geheim**, sofort **★3**. Eine tiefschwarze Qualle mit leuchtendem Akkretionsring und Photonenring. Der Ring ist rein kosmetisch und zählt **nicht** zur Hitbox.
 
 | | Singularität |
 |---|---|
@@ -395,7 +397,7 @@ Die Mini-Schwarzlöcher werden durch Mutationen verbessert:
 
 ### Arktisqualle
 
-**Arctic** ist die seltenste Stufe. Es gibt genau einen Skin darin, die **Arktisqualle**. Sie ist weder in der Luckybox noch über Erfolge zu bekommen, sondern **nur mit einem geheimen Code**.
+**Arctic** ist die seltenste Stufe. Es gibt genau einen Skin darin, die **Arktisqualle**. Sie ist weder in der Luckybox noch über Erfolge zu bekommen. Wie man sie freischaltet, bleibt geheim.
 
 **So löst du einen Code ein:** Hauptmenü → **Code einlösen** → Code eingeben → **Einlösen** oder Enter. Gross- und Kleinschreibung zählt. Der Skin wird sofort angelegt.
 
