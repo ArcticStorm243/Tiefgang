@@ -199,7 +199,7 @@ h2{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em;line-heig
       <div><strong id="menuPearls">0</strong>Perlen</div>
     </div>
     <p class="muted small" id="menuSkin"></p>
-    <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="boxBtn" type="button">Luckybox</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button><button class="btn2" id="codeBtn" type="button">Code einlösen</button></div>
+    <div class="row"><button class="btn" id="startBtn" type="button">Abtauchen</button><button class="btn2" id="tutBtn" type="button">Tutorial</button><button class="btn2" id="boxBtn" type="button">Luckybox</button><button class="btn2" id="logBtn" type="button">Logbuch & Skins</button><button class="btn2" id="keysBtn" type="button">Steuerung</button><button class="btn2" id="codeBtn" type="button">Code einlösen</button><button class="btn2" id="worldBtn" type="button" hidden></button></div>
     <div class="langrow"><button class="btn2 sm" id="langBtn" type="button" aria-label="Sprache wechseln / Change language"></button></div>
   </div>
 </div>
@@ -315,7 +315,7 @@ const store = {
 
 /* ---------- Sprache ---------- */
 const lang = store.get('lang', (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en');
-const EN = {"+{0} Perlen gutgeschrieben!": "+{0} pearls added!", "Du hast jetzt {0} Perlen": "You now have {0} pearls", "+{0} Perlen": "+{0} pearls", " Belohnung: {0} Perlen.": " Reward: {0} pearls.", "Königsmord": "Regicide", "Besiege die Königin der Tiefe.": "Defeat the Queen of the Deep.", "Albtraum": "Nightmare", "Besiege einen erwachten Boss.": "Defeat an awakened boss.", "Makellos": "Flawless", "Besiege einen Boss, ohne während des Kampfes getroffen zu werden.": "Defeat a boss without getting hit during the fight.", "Jenseits der Krone": "Beyond the Crown", "Erreiche Welt 8.": "Reach world 8.", "Marianengraben": "Mariana Trench", "Erreiche 10 000 m.": "Reach 10,000 m.", "Massaker": "Massacre", "Besiege 1000 Gegner in einem Tauchgang.": "Defeat 1000 enemies in one dive.", "Legende der Tiefe": "Legend of the Deep", "Besiege insgesamt 50 000 Gegner.": "Defeat 50,000 enemies in total.", "Übermutant": "Supermutant", "Erreiche Stufe 50 in einem Tauchgang.": "Reach level 50 in one dive.", "Geist der Tiefe": "Ghost of the Deep", "Überlebe 10 Minuten am Stück ohne Treffer.": "Survive 10 minutes in a row without being hit.", "Sturzflug": "Nosedive", "Erreiche 1400 m in unter 15 Minuten.": "Reach 1400 m in under 15 minutes.", "Alleskönner": "Jack of All Trades", "Habe in einem Tauchgang jede Mutation mindestens einmal.": "Have every mutation at least once in one dive.", "Perlenkönig": "Pearl King", "Sammle insgesamt 500 Perlen.": "Collect 500 pearls in total.", "Glücksspieler": "Gambler", "Öffne 50 Luckyboxen.": "Open 50 luckyboxes.", "Sammlerstück": "Collector's Item", "Bringe 5 Skins aus der Luckybox auf ★3.": "Bring 5 luckybox skins to ★3.", "Mythenjäger": "Myth Hunter", "Ziehe einen mythischen Skin aus der Luckybox.": "Pull a mythic skin from the luckybox.", "Goldgräber": "Gold Digger", "Fange insgesamt 25 Goldquallen.": "Catch 25 golden jellies in total.", "Unendliche Tiefe": "Endless Deep", "Überlebe 60 Minuten in einem Tauchgang.": "Survive 60 minutes in one dive.", "Heilerfisch": "Healer Fish", "Begleitet die Königin der Tiefe, heilt sie und hält ihren Schild aufrecht. Töte alle Heiler, um den Schild zu brechen.": "Accompanies the Queen of the Deep, heals her and keeps her shield up. Kill all healers to break the shield.", "Umgeben von Heilerfischen, die sie heilen und mit einem Schild schützen. Erst wenn alle Heiler tot sind, ist sie verwundbar. Lässt Tentakel aus der Tiefe schlagen, zieht dich mit einem Sog an, ruft Elite-Kreaturen und feuert Geschossringe.": "Surrounded by healer fish that heal her and protect her with a shield. She only becomes vulnerable once all healers are dead. Makes tentacles strike from the deep, pulls you in with a vortex, summons elite creatures and fires rings of projectiles.", "Schild gebrochen!": "Shield broken!", "Die Königin ist jetzt verwundbar": "The queen is vulnerable now", "Heilerfische": "Healer fish", "Töte die Heiler, um den Schild der Königin zu brechen": "Kill the healers to break the queen's shield", "{0} – geschützt": "{0} – shielded", "Sog der Königin": "Queen's vortex", "Schwimm dagegen an!": "Swim against it!", "Freigeschaltet, sofort ★3": "Unlocked, instantly ★3", "Freischalten: ?": "Unlock: ?", "+25 % Tempo": "+25% speed", "+3 Leben pro Sekunde": "+3 health per second", "+40 % Schaden": "+40% damage", "+{0} Leben pro Sekunde pro Stufe. Wächst mit jeder Welt: Welt 1 = +1, Welt 2 = +2 usw.": "+{0} health per second per level. Grows with every world: world 1 = +1, world 2 = +2 and so on.", ". Mit ★2: ": ". With ★2: ", "30 % schnellerer Puls": "30% faster pulse", "Abgrundauge": "Abyssal Eye", "Alle Riesen": "All Giants", "Besiege jeden Boss mindestens einmal.": "Defeat every boss at least once.", "Besiege {0}, um in die nächste Welt zu kommen": "Defeat {0} to reach the next world", "Bewacht das Ende von Welt {0} ({1})": "Guards the end of world {0} ({1})", "Blau": "Blue", "Der Weg in die nächste Welt ist frei": "The way to the next world is open", "Doppelte Meter": "Double meters", "Doppelte Meter, +10 % Tempo": "Double meters, +10% speed", "Doppelte Meter, +20 % Tempo, +20 % Erfahrung": "Double meters, +20% speed, +20% experience", "Geheim": "Secret", "Gelb": "Yellow", "Grün": "Green", "Heilt bei jedem Kill 10 % der verlorenen Leben und schiesst zielsuchende gebrochene Herzen, die beim Treffer in zwei Hälften zerspringen": "Heals 10% of missing health on every kill and fires homing broken hearts that split into two halves on impact", "Herzensbrecher": "Heartbreaker", "Hinterlässt eine schädliche Regenbogenspur und wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls": "Leaves a damaging rainbow trail and changes colour every 6 s: red +40% damage, green +3 health/s, blue +25% speed, yellow +50% experience, violet 30% faster pulse", "Hält Abstand und feuert Salven. Lädt einen Laserstrahl auf: Weiche der roten Linie aus!": "Keeps its distance and fires volleys. Charges a laser beam: dodge the red line!", "Im Tauchgang gesperrt": "Locked during a dive", "Immer: ": "Always: ", "Jede Spore wird zu {0} Sporen, gefächert abgefeuert. Gilt für alle zielsuchenden Geschosse. Nur mit Sporenwerfer.": "Every spore becomes {0} spores, fired in a fan. Applies to all homing projectiles. Requires Spore Launcher.", "Kristallkoloss": "Crystal Colossus", "Königin der Tiefe": "Queen of the Deep", "Lebensraub": "Life Steal", "Mehrfachschuss": "Multishot", "Regenbogen": "Rainbow", "Rot": "Red", "Ruft Elite-Kreaturen herbei und feuert abwechselnd dichte Geschossringe.": "Summons elite creatures and alternates with dense rings of projectiles.", "Sammelt ab sofort alles Plankton, alle Perlen und Blasen auf der ganzen Karte direkt ein. Einmalig, ohne Stufen. Erst ab Welt 5.": "From now on, instantly pulls in all plankton, pearls and bubbles on the whole map. One-time, no levels. From world 5 on.", "Schlängelt sich heran, ihr ganzer Körper ist gefährlich. Spuckt Giftfächer und stürmt immer wieder los.": "Slithers closer and its whole body is dangerous. Spits fans of venom and keeps lunging forward.", "Spektrum": "Spectrum", "Spektrum: {0}, {1} ({2} s)": "Spectrum: {0}, {1} ({2} s)", "Tiefenrausch": "Depth Rush", "Tiefseeschlange": "Sea Serpent", "Umgeben von kreisenden Kristallsplittern. Feuert Spiralen aus Kristallgeschossen.": "Surrounded by orbiting crystal shards. Fires spirals of crystal projectiles.", "Unbesiegbar": "Invincible", "Unendlich Leben, schiesst von Anfang an zielsuchende Schildblitze, besiegt jedes Monster mit einem Treffer und sinkt fünfmal so schnell. Keine Mutationen. Zählt nicht für Rekorde, Erfolge, Statistik und Perlen": "Infinite health, fires homing shield bolts from the start, defeats every monster in one hit and sinks five times as fast. No mutations. Does not count for records, achievements, statistics or pearls", "Violett": "Violet", "Welt {0} · {1}": "World {0} · {1}", "versperrt den Weg in die nächste Welt": "blocks the way to the next world", "{0} (erwacht)": "{0} (awakened)", "Achtung: Dieser Code löscht deinen gesamten Fortschritt (Rekorde, Logbuch, Erfolge, Perlen, Skins). Klick zur Bestätigung innerhalb von 10 Sekunden nochmal auf «Einlösen».": "Warning: this code deletes all your progress (records, logbook, achievements, pearls, skins). Click “Redeem” again within 10 seconds to confirm.", "Fortschritt zurückgesetzt. Das Spiel startet neu …": "Progress reset. The game is restarting …", "Schwarzes Loch": "Black Hole", "Kosmisch": "Cosmic", "Singularität": "Singularity", "Zieht von Anfang an alles ein wie der Magnet und schiesst kleine schwarze Löcher, die Gegner in ihrer Nähe einsaugen und verletzen": "Pulls in everything from the start like Magnet and fires small black holes that suck in and damage nearby enemies", "{0}, nur per Code": "{0}, code only", "Code-Skin: {0}": "Code skin: {0}", "Magnet": "Magnet", "Sammelt ab sofort alles Plankton, alle Perlen und Blasen auf der ganzen Karte direkt ein. Einmalig, ohne Stufen.": "From now on, instantly pulls in all plankton, pearls and bubbles on the whole map. One-time, no levels.", "Kill-Rekord": "Kill record", "Neuer Kill-Rekord!": "New kill record!", "Überspringen": "Skip", "Leuchtgarnele": "Glow Shrimp", "Nesselqualle": "Nettle Jelly", "Nautilus": "Nautilus", "Tarnkrake": "Mimic Octopus", "Seeigel": "Sea Urchin", "Schleimaal": "Hagfish", "Geisterhai": "Ghost Shark", "Klein und flink. Kommt immer im Schwarm und zappelt wild umher.": "Small and quick. Always comes in a swarm and darts around wildly.", "Lädt sich auf, wenn du nah bist, und entlädt dann einen brennenden Ring. Halte Abstand, wenn sie leuchtet.": "Charges up when you get close, then releases a burning ring. Keep your distance while it glows.", "Sein Panzer halbiert jeden Schaden. Langsam, aber kaum zu knacken.": "Its shell halves all damage. Slow, but very hard to crack.", "Fast unsichtbar, bis sie nah genug ist. Dann schnellt sie plötzlich hervor. Achte auf zwei Augen im Dunkeln.": "Nearly invisible until it gets close enough, then it suddenly lunges. Watch for two eyes in the dark.", "Kriecht langsam heran und schiesst regelmässig Stacheln in alle Richtungen.": "Crawls slowly closer and regularly fires spines in every direction.", "Hinterlässt beim Tod eine Schleimpfütze, die dich stark verlangsamt.": "Leaves a slime puddle on death that slows you down a lot.", "Kreist um dich und stösst dann mit brutaler Wucht zu.": "Circles around you, then strikes with brutal force.", "Luftblasen": "Air Bubbles", "Heilende Blasen steigen auf.": "Healing bubbles are rising.", "Stille": "Calm", "Keine neuen Gegner und schnelle Heilung.": "No new enemies and fast healing.", "Sog der Tiefe": "Pull of the Deep", "Du ziehst Plankton und Perlen von weit her an.": "You attract plankton and pearls from far away.", "Elite-Patrouille": "Elite Patrol", "Drei starke Gegner mit Goldring nähern sich.": "Three strong enemies with gold rings approach.", "Perlenregen": "Pearl Rain", "Irgendwo in der Nähe glitzert eine Perle.": "A pearl is glittering somewhere nearby.", "Hydrothermale Schlote": "Hydrothermal Vents", "Weiche den heissen Fontänen aus!": "Dodge the hot eruptions!", "Tiefenbeben": "Deep Quake", "Felsbrocken stürzen herab. Achte auf die Schatten!": "Boulders are falling. Watch the shadows!", "Tiefenriss": "Deep Rift", "Ein Riss öffnet sich und spuckt Elite-Kreaturen aus.": "A rift opens and spits out elite creatures.","Lichtzone": "Sunlight Zone","Dämmerzone": "Twilight Zone","Mitternachtszone": "Midnight Zone","Abyssal": "Abyssal Zone","Hadal": "Hadal Zone","Kristallgraben": "Crystal Trench","Echoschlund": "Echo Gorge","Glimmerriff": "Glimmer Reef","Stille Weite": "Silent Expanse","Nebelschlot": "Mist Vent","Sternenkluft": "Star Chasm","Rauschgrund": "Static Deep","Aschemeer": "Ash Sea","Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.": "Sunbeams still reach this far. A calm beginning.","Das letzte Tageslicht verblasst.": "The last daylight fades away.","Ewige Nacht. Nur noch Biolumineszenz.": "Eternal night. Only bioluminescence remains.","Eisige Kälte und seltsame Farben.": "Icy cold and strange colours.","Heisse Quellen in den tiefsten Gräben der Welt.": "Hot springs in the deepest trenches on earth.","Treibling": "Drifter","Pfeilfisch": "Dartfish","Kugelfisch": "Pufferfish","Anglerfisch": "Anglerfish","Schattenaal": "Shadow Eel","Tintenkalmar": "Ink Squid","Glasgeist": "Glass Ghost","Glutkrabbe": "Ember Crab","Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.": "Slowly drifts towards you. Harmless alone, dangerous in numbers.","Lauert kurz und schiesst dann blitzschnell auf dich zu.": "Lurks for a moment, then darts at you lightning-fast.","Platzt beim Tod und verschiesst Stacheln in alle Richtungen.": "Bursts on death and fires spikes in every direction.","Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.": "Tough and sluggish. Its lure glows brightly in the dark.","Schlängelt sich schnell und unberechenbar heran.": "Slithers in quickly and unpredictably.","Hält Abstand und spuckt Tintenkugeln nach dir.": "Keeps its distance and spits ink balls at you.","Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.": "Turns invisible regularly. You cannot hit it then.","Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.": "Very tough. Splits into two small, fast crabs on death.","Mutterqualle": "Mother Jelly","Riesenkalmar": "Giant Squid","Leviathan": "Leviathan","Ruft ständig neue Treiblinge herbei.": "Keeps summoning new drifters.","Feuert Tintenringe in alle Richtungen.": "Fires rings of ink in every direction.","Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.": "Takes aim briefly, then rams at full force. Watch for the glowing streak.","Planktonblüte": "Plankton Bloom","Das Wasser leuchtet. Sammeln!": "The water is glowing. Collect it!","Starke Strömung": "Strong Current","Alles treibt ab.": "Everything drifts away.","Fischschwarm": "Fish School","Schnapp dir so viele wie möglich.": "Catch as many as you can.","Angriffswelle": "Attack Wave","Sie kommen von allen Seiten.": "They come from all sides.","Goldqualle gesichtet": "Golden Jelly Spotted","Fang sie für eine doppelte Mutation.": "Catch it for a double mutation.","Fressrausch": "Feeding Frenzy","Gegner schneller, doppelte Erfahrung.": "Faster enemies, double experience.","Schwarzes Wasser": "Black Water","Nur dein eigenes Licht bleibt.": "Only your own light remains.","Stärkerer Puls": "Stronger Pulse","+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.": "+30% damage for pulse, sparks, spores, lightning and every skin ability that deals damage.","Weiter Puls": "Wider Pulse","Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.": "Your light pulse reaches 18% further. Also enlarges skin abilities that have a range.","Schneller Puls": "Faster Pulse","Du pulsierst 15 % häufiger. Beschleunigt auch Skin-Fähigkeiten, die regelmässig auslösen.": "You pulse 15% more often. Also speeds up skin abilities that trigger regularly.","Flossenschlag": "Fin Stroke","+12 % Schwimmtempo.": "+12% swim speed.","Anziehung": "Attraction","Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.": "Plankton and pearls fly to you from 50% further away.","Dicke Glocke": "Thick Bell","+25 maximales Leben und 40 Heilung.": "+25 max health and 40 healing.","Selbstheilung": "Self-Healing","+1 Leben pro Sekunde.": "+1 health per second.","Leuchtfunke": "Glow Spark","Ein weiterer Funke kreist um dich.": "Another spark circles around you.","Ein Funke kreist um dich und verbrennt alles, was er trifft.": "A spark circles around you and burns everything it touches.","Sporenwerfer": "Spore Launcher","Eine Spore mehr pro Salve. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "One more spore per volley. Also strengthens skin abilities that fire projectiles.","Schiesst zielsuchende Sporen auf nahe Gegner. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "Fires homing spores at nearby enemies. Also strengthens skin abilities that fire projectiles.","Zitteraal": "Electric Eel","Der Blitz springt auf einen Gegner mehr.": "The lightning jumps to one more enemy.","Ein Blitz springt zwischen zwei nahen Gegnern.": "Lightning jumps between two nearby enemies.","Rückstoss": "Recoil","Dein Sprint ist 20 % schneller wieder bereit. Lädt auch Schild-Fähigkeiten von Skins schneller.": "Your sprint recharges 20% faster. Also recharges skin shield abilities faster.","Klassisch": "Classic","Perle": "Pearl","Dämmerlicht": "Dusklight","Mitternacht": "Midnight","Tiefseerose": "Deep-Sea Rose","Glut": "Ember","Minze": "Mint","Giftgrün": "Toxic Green","Sonnenfunke": "Sunspark","Schattenqualle": "Shadow Jelly","Kristall": "Crystal","Goldqualle": "Golden Jelly","Sternenstaub": "Stardust","Polarlicht": "Aurora","Prisma": "Prism","Nebelschleier": "Nebula Veil","Donnerqualle": "Thunder Jelly","Leere": "Void","Phönix": "Phoenix","Sensenqualle": "Reaper Jelly","Tiefenwanderer": "Deep Wanderer","Titanenqualle": "Titan Jelly","Kopfgeldjägerin": "Bounty Huntress","Perlentaucherin": "Pearl Diver","Veteranin": "Veteran","Ewige Qualle": "Eternal Jelly","Mutantenkönigin": "Mutant Queen","Abgrundherz": "Abyss Heart","Arktisqualle": "Arctic Jelly","Gewöhnlich": "Common","Selten": "Rare","Episch": "Epic","Legendär": "Legendary","Mythisch": "Mythic","Meilenstein": "Milestone","Arctic": "Arctic","Robust": "Sturdy","+15 max. Leben": "+15 max health","+30 max. Leben": "+30 max health","Perlenglück": "Pearl Luck","+50 % Perlenchance": "+50% pearl chance","+100 % Perlenchance": "+100% pearl chance","Stromlinie": "Streamline","+8 % Tempo": "+8% speed","+16 % Tempo": "+16% speed","Frische": "Freshness","+0,7 Leben pro Sekunde": "+0.7 health per second","+1,4 Leben pro Sekunde": "+1.4 health per second","Dornen": "Thorns","Wer dich trifft, bekommt Pulsschaden zurück": "Whoever hits you takes pulse damage back","Wer dich trifft, bekommt doppelten Pulsschaden zurück": "Whoever hits you takes double pulse damage back","Weites Licht": "Wide Light","+10 % Pulsreichweite": "+10% pulse range","+20 % Pulsreichweite": "+20% pulse range","Glutpuls": "Ember Pulse","+12 % Schaden": "+12% damage","+24 % Schaden": "+24% damage","Giftsporen": "Toxic Spores","Start mit 1 Sporenwerfer": "Start with 1 Spore Launcher","Start mit 2 Sporenwerfern": "Start with 2 Spore Launchers","Sonnenkranz": "Sun Wreath","Start mit 1 Leuchtfunken": "Start with 1 Glow Spark","Start mit 2 Leuchtfunken": "Start with 2 Glow Sparks","Phasensprung": "Phase Leap","Sprint 18 % schneller bereit": "Sprint recharges 18% faster","Sprint 36 % schneller bereit": "Sprint recharges 36% faster","Schattenblitz": "Shadow Bolt","Start mit Zitteraal": "Start with Electric Eel","Start mit Zitteraal Stufe 2": "Start with Electric Eel level 2","Kristallschild": "Crystal Shield","Ein Schild blockt alle 20 s einen Treffer": "A shield blocks one hit every 20 s","Ein Schild blockt alle 12 s einen Treffer": "A shield blocks one hit every 12 s","Sternensog": "Star Pull","+40 % Anziehung": "+40% attraction","+80 % Anziehung": "+80% attraction","Goldrausch": "Gold Rush","+25 % Erfahrung": "+25% experience","+50 % Erfahrung": "+50% experience","Polarwind": "Polar Wind","Puls 10 % häufiger": "Pulse 10% more often","Puls 20 % häufiger": "Pulse 20% more often","Prismakraft": "Prism Power","+10 % Schaden, +5 % Tempo, +10 % Erfahrung": "+10% damage, +5% speed, +10% experience","+20 % Schaden, +10 % Tempo, +20 % Erfahrung": "+20% damage, +10% speed, +20% experience","Nebelhülle": "Mist Shroud","10 % Chance, Treffern auszuweichen": "10% chance to dodge hits","20 % Chance, Treffern auszuweichen": "20% chance to dodge hits","Gewitter": "Thunderstorm","Zitteraal mit 1 Ziel mehr, 25 % häufiger": "Electric Eel hits 1 more target, 25% more often","Zitteraal mit 2 Zielen mehr, 50 % häufiger": "Electric Eel hits 2 more targets, 50% more often","Ereignishorizont": "Event Horizon","Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden": "Enemies in pulse range 25% slower, +10% damage","Gegner in Pulsreichweite 40 % langsamer, +20 % Schaden": "Enemies in pulse range 40% slower, +20% damage","Wiedergeburt": "Rebirth","Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle": "Once per dive, revive with 40% health and a wave of fire","Wiederbelebung mit 70 % Leben, doppelt starke Feuerwelle": "Revive with 70% health, fire wave twice as strong","Vollstrecker": "Executioner","+20 % Schaden, normale Gegner unter 15 % Leben sterben sofort": "+20% damage, normal enemies below 15% health die instantly","Druckausgleich": "Pressure Balance","Du nimmst 20 % weniger Schaden": "You take 20% less damage","Riesenfluch": "Giant's Bane","+60 % Schaden gegen Bosse": "+60% damage against bosses","Kopfgeld": "Bounty","Elite-Gegner nehmen +50 % Schaden und lassen doppelt so oft Perlen fallen": "Elite enemies take +50% damage and drop pearls twice as often","Perlensog": "Pearl Pull","Perlen fliegen dir aus grosser Distanz zu, +25 % Perlenchance": "Pearls fly to you from far away, +25% pearl chance","Routine": "Routine","Start mit «Stärkerer Puls» und «Schneller Puls»": "Start with “Stronger Pulse” and “Faster Pulse”","Zeitlos": "Timeless","+2 % Schaden pro Minute im Tauchgang, maximal +60 %": "+2% damage per minute in the dive, up to +60%","Genmutation": "Gene Mutation","Bei jedem Level-up 4 statt 3 Mutationen zur Wahl": "Choose from 4 instead of 3 mutations on every level-up","Tiefendruck": "Deep Pressure","+1 % Schaden pro 100 m Tiefe, maximal +50 %": "+1% damage per 100 m of depth, up to +50%","Permafrost": "Permafrost","Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen": "Freezes enemies around you for 2 s every 6 s and constantly fires piercing icicles","Erster Tauchgang": "First Dive","Beende deinen ersten Tauchgang.": "Finish your first dive.","Gut vorbereitet": "Well Prepared","Schliess das Tutorial ab.": "Complete the tutorial.","Dämmerung": "Dusk","Erreiche 150 m.": "Reach 150 m.","Erreiche 400 m.": "Reach 400 m.","Abgrund": "Abyss","Erreiche 800 m.": "Reach 800 m.","Erreiche 1400 m.": "Reach 1400 m.","Ins Unbekannte": "Into the Unknown","Erreiche 2200 m.": "Reach 2200 m.","Lichtbringer": "Lightbringer","Besiege 100 Gegner in einem Tauchgang.": "Defeat 100 enemies in one dive.","Tausend Funken": "A Thousand Sparks","Besiege insgesamt 1000 Gegner.": "Defeat 1000 enemies in total.","Riesentöter": "Giant Slayer","Besiege einen Boss.": "Defeat a boss.","Alle drei Riesen": "All Three Giants","Besiege jeden der drei Bosse mindestens einmal.": "Defeat each of the three bosses at least once.","Goldfinger": "Goldfinger","Fang eine Goldqualle.": "Catch a golden jelly.","Mutant": "Mutant","Erreiche Stufe 10 in einem Tauchgang.": "Reach level 10 in one dive.","Unberührbar": "Untouchable","Überlebe 3 Minuten am Stück ohne Treffer.": "Survive 3 minutes in a row without being hit.","Funkenkranz": "Spark Wreath","Habe 8 Leuchtfunken gleichzeitig.": "Have 8 glow sparks at once.","Stammgast": "Regular","Tauche 10-mal ab.": "Dive 10 times.","Glückspilz": "Lucky Duck","Öffne deine erste Luckybox.": "Open your first luckybox.","Verschmolzen": "Fused","Merge einen Skin auf ★2.": "Merge a skin to ★2.","Meisterform": "Master Form","Merge einen Skin auf ★3.": "Merge a skin to ★3.","Sensenmann": "Grim Reaper","Besiege insgesamt 10 000 Gegner.": "Defeat 10,000 enemies in total.","Tauche insgesamt 50 000 m.": "Dive 50,000 m in total.","Titanenfall": "Titanfall","Besiege insgesamt 25 Bosse.": "Defeat 25 bosses in total.","Kopfgeldjagd": "Bounty Hunt","Besiege insgesamt 250 Elite-Gegner.": "Defeat 250 elite enemies in total.","Perlenfischer": "Pearl Fisher","Sammle insgesamt 100 Perlen.": "Collect 100 pearls in total.","Veteran": "Veteran","Tauche 100-mal ab.": "Dive 100 times.","Ewigkeit": "Eternity","Überlebe 30 Minuten in einem Tauchgang.": "Survive 30 minutes in one dive.","Hochmutiert": "Highly Mutated","Erreiche Stufe 30 in einem Tauchgang.": "Reach level 30 in one dive.","Herz des Abgrunds": "Heart of the Abyss","Erreiche 5000 m.": "Reach 5000 m.","Forschungsdrang": "Thirst for Knowledge","Fülle das Logbuch zur Hälfte.": "Fill half of the logbook.","Vollständiges Logbuch": "Complete Logbook","Entdecke alles im Logbuch.": "Discover everything in the logbook.","Nach oben": "Up","Nach unten": "Down","Nach links": "Left","Nach rechts": "Right","Sprint": "Sprint","Pause": "Pause","Ton an/aus": "Sound on/off","Leertaste": "Space","Shift links": "Left Shift","Shift rechts": "Right Shift","Strg links": "Left Ctrl","Strg rechts": "Right Ctrl","Alt Gr": "Alt Gr","Feststell": "Caps Lock","Taste drücken …": "Press a key …","Taste ist fest belegt": "Key is reserved","{0} wird für die Menüs gebraucht": "{0} is needed for the menus","Ton an": "Sound on","Ton aus": "Sound off","Neu im Logbuch": "New in logbook","Skin: {0} ★★★, Fähigkeit «{1}» aktiv": "Skin: {0} ★★★, ability “{1}” active","Skin: {0}, Fähigkeit «{1}» aktiv: {2}": "Skin: {0}, ability “{1}” active: {2}","Skin: {0} {1}, Fähigkeit «{2}» aktiv: {3}": "Skin: {0} {1}, ability “{2}” active: {3}","Skin: {0} {1}, ab ★2 mit Fähigkeit «{2}»": "Skin: {0} {1}, ability “{2}” from ★2","Maus oder Finger": "Mouse or finger","Qualle schwimmt dorthin": "The jellyfish swims there","Alternativ mit der Tastatur schwimmen": "Or swim with the keyboard","Sprint (auch Rechtsklick oder Doppeltipp)": "Sprint (also right-click or double-tap)","Pause / Ton": "Pause / sound","taucht aus der Tiefe auf": "rises from the deep","Stufe {0}": "Level {0}","Neu": "New"," · doppelt": " · double","Goldene Mutation: wirkt doppelt": "Golden mutation: counts twice","Stufe {0}: wähle eine Mutation": "Level {0}: choose a mutation","{0} besiegt": "{0} defeated","Du wurdest teilweise geheilt": "You were partially healed","Der Phönix erhebt sich aus der Asche": "The phoenix rises from the ashes","Getaucht bis {0} m": "Dived to {0} m","Zone": "Zone","Zeit": "Time","Stufe": "Level","Besiegt": "Defeated","Perlen": "Pearls","Tutorial beenden": "End tutorial","Tauchgang beenden": "End dive","Wirklich beenden? Nochmal klicken": "Really end? Click again","Tauchgang beendet bei {0} m": "Dive ended at {0} m","Erfolg: {0}": "Achievement: {0}","Neuer Skin freigeschaltet: {0}": "New skin unlocked: {0}","Luckybox bereit": "Luckybox ready","Du hast {0} Perlen. Öffne die Box im Menü oder nach dem Tauchgang.": "You have {0} pearls. Open the box in the menu or after the dive.","Perle gefunden": "Pearl found","{0} Perlen, noch {1} bis zur nächsten Luckybox": "{0} pearls, {1} more until the next luckybox","Luckybox": "Luckybox","Luckybox ({0} bereit)": "Luckybox ({0} ready)","{0} Perlen": "{0} pearls","Noch {0} Perlen nötig": "{0} more pearls needed","Box öffnen ({0} Perlen)": "Open box ({0} pearls)","Duplikat! Kopien: {0}/{1} für ★{2}.": "Duplicate! Copies: {0}/{1} for ★{2}.","Duplikat! Du hast jetzt {0}.": "Duplicate! You now have {0}.","Neu freigeschaltet!": "Newly unlocked!","Fähigkeit «{0}»: {1}": "Ability “{0}”: {1}","Gib zuerst einen Code ein.": "Enter a code first.","Dieser Code ist ungültig.": "This code is invalid.","Diesen Code hast du schon eingelöst.": "You have already redeemed this code.","{0} freigeschaltet und angelegt. Sofort ★3!": "{0} unlocked and equipped. Instantly ★3!","Arctic-Skin: {0}": "Arctic skin: {0}","Fähigkeit «{0}» ist aktiv": "Ability “{0}” is active","Kreaturen": "Creatures","Zonen": "Zones","Bosse": "Bosses","Ereignisse": "Events","Erfolge": "Achievements","Skins": "Skins","Taucht ab {0} m auf": "Appears from {0} m"," Ab {0} m.": " From {0} m.","Ab {0} m": "From {0} m","Unerforschtes Gebiet jenseits der bekannten Zonen. Ab {0} m.": "Uncharted territory beyond the known zones. From {0} m."," Schon besiegt.": " Already defeated."," Noch nicht besiegt.": " Not defeated yet.","Erscheint erstmals beim Eintritt in die {0}": "First appears when entering the {0}","Möglich ab {0} m": "Possible from {0} m","Jederzeit möglich": "Possible at any time"," Belohnung: Skin «{0}».": " Reward: skin “{0}”.","{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier (3× ★1 = ★2, 3× ★2 = ★3). Perlen: {2}.": "{0} of {1} skins unlocked. Milestone skins are earned by playing, their ability is active right away. From ★2 a skin has a special ability while you wear it. Merge luckybox duplicates here (3× ★1 = ★2, 3× ★2 = ★3). Pearls: {2}.","Arctic, nur per Code": "Arctic, code only","Meilenstein, nicht in der Luckybox": "Milestone, not in the luckybox","{0} pro Box": "{0} per box","Immer aktiv: ": "Always active: ","Nach Freischaltung immer aktiv: ": "Always active once unlocked: ","Aktiv: ": "Active: ",". Mit ★3: ": ". With ★3: ","Ab ★2: ": "From ★2: ","Fähigkeit «{0}». {1}.": "Ability “{0}”. {1}.","Mit Code eingelöst, sofort ★3": "Redeemed with a code, instantly ★3","Nur mit einem geheimen Code unter «Code einlösen»": "Only with a secret code under “Redeem code”","Verdient durch «{0}»": "Earned through “{0}”","Erfolg «{0}»: {1}": "Achievement “{0}”: {1}","{0} Duplikate": "{0} duplicates","{0} Duplikat": "{0} duplicate","Keine Duplikate": "No duplicates","Erfolg «{0}» oder Luckybox": "Achievement “{0}” or luckybox","Nur aus der Luckybox": "Luckybox only","Getragen": "Equipped","Tragen": "Equip","Mergen zu ★{0} ({1}/{2} Kopien)": "Merge to ★{0} ({1}/{2} copies)","{0} von {1} erreicht.": "{0} of {1} achieved.","{0} von {1} entdeckt.": "{0} of {1} discovered.","Insgesamt {0} / {1} Einträge und {2} / {3} Erfolge.": "In total {0} / {1} entries and {2} / {3} achievements.","Schwimmen": "Swimming","Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit {0}. Schwimm ein bisschen herum.": "Move the mouse or drag your finger, the jellyfish follows you. On the keyboard use {0}. Swim around a little.","Drück {0}, mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.": "Press {0}, right-click or double-tap. While sprinting you are briefly invulnerable. The violet bar at the top left shows when it is ready again.","Lichtpuls": "Light Pulse","Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.": "You pulse automatically and hit everything around you. Swim to the four drifters and defeat them.","Plankton": "Plankton","Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.": "Defeated enemies leave glowing plankton behind. Collect it all. It fills the experience bar at the very bottom.","Mutationen": "Mutations","Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.": "When the bar is full you level up and choose a mutation. Click a card or press 1, 2 or 3.","Ab in die Tiefe": "Into the Deep","Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!": "In the real game you keep sinking deeper. New zones bring new creatures, events and bosses. Everything goes into the logbook, and achievements unlock new skins. Good luck!","Schritt {0} von {1}: {2}": "Step {0} of {1}: {2}","Du tauchst ab": "You dive down","{0} m unter der Oberfläche": "{0} m below the surface","Goldqualle gefangen": "Golden jelly caught","Deine nächste Mutation wirkt doppelt": "Your next mutation counts twice","Die Goldqualle ist entkommen": "The golden jelly escaped","Sprint bereit ({0})": "Sprint ready ({0})","Sprint in {0} s": "Sprint in {0} s","Noch {0} m bis {1}": "{0} m to {1}","Rekord": "Record","m": "m","Tutorial überspringen": "Skip tutorial","Los geht's": "Let's go","Du bist eine kleine Leuchtqualle. Tauch so tief du kannst. Jede Zone bringt neue Kreaturen, seltsame Ereignisse und einen Riesen, der dich aufhalten will.": "You are a small glowing jellyfish. Dive as deep as you can. Every zone brings new creatures, strange events and a giant that wants to stop you.","Rekordtiefe": "Record depth","Logbuch-Einträge": "Logbook entries","Abtauchen": "Dive","Tutorial": "Tutorial","Logbuch & Skins": "Logbook & skins","Steuerung": "Controls","Code einlösen": "Redeem code","Klick eine Karte oder drück die Zahl auf der Karte.": "Click a card or press the number shown on it.","Pausiert": "Paused","Die Tiefe wartet.": "The deep is waiting.","Weiter tauchen": "Keep diving","Logbuch": "Logbook","Neuer Rekord!": "New record!","Nochmal abtauchen": "Dive again","Hauptmenü": "Main menu","Zum ersten Mal hier?": "First time here?","Ein kurzes Tutorial zeigt dir in etwa einer Minute, wie alles funktioniert. Du kannst es jederzeit überspringen.": "A short tutorial shows you how everything works in about a minute. You can skip it at any time.","Tutorial starten": "Start tutorial","Direkt abtauchen": "Dive right in","Zurück": "Back","Manche Skins gibt es nur mit einem geheimen Code. Gross- und Kleinschreibung zählt.": "Some skins are only available with a secret code. Codes are case-sensitive.","Code eingeben": "Enter code","Einlösen": "Redeem","Perlen findest du beim Tauchen: selten bei normalen Gegnern, öfter bei Elites (Goldring), sicher bei Bossen. Für 5 Perlen öffnest du eine Box und bekommst einen zufälligen Skin. Doppelte Skins mergst du unter Skins: 3× ★1 ergeben ★2, 3× ★2 ergeben ★3. Das schaltet Spezialfähigkeiten frei.": "You find pearls while diving: rarely from normal enemies, more often from elites (gold ring), always from bosses. For 5 pearls you open a box and get a random skin. Merge duplicate skins under Skins: 3× ★1 make ★2, 3× ★2 make ★3. This unlocks special abilities.","Box öffnen": "Open box","Zu den Skins": "Go to skins","Klick auf eine Taste und drück danach die neue. Esc bricht ab, Entf löscht die Belegung. Jede Aktion kann zwei Tasten haben.": "Click a key, then press the new one. Esc cancels, Delete clears the binding. Each action can have two keys.","Standard wiederherstellen": "Restore defaults","Fest belegt: 1, 2, 3 für Mutationen und Enter zum Starten. Maus: schwimmen, Rechtsklick: Sprint. Touch: Finger ziehen zum Schwimmen, Doppeltipp für Sprint.": "Reserved: 1, 2, 3 for mutations and Enter to start. Mouse: swim, right-click: sprint. Touch: drag to swim, double-tap to sprint."};
+const EN = {"Korallenfriedhof": "Coral Graveyard", "Lavaschlund": "Lava Maw", "Eisabgrund": "Ice Abyss", "Leerenmeer": "Void Sea", "Glitzernde Kristallwände werfen dein Licht zurück.": "Glittering crystal walls reflect your light.", "Jedes Geräusch hallt endlos wider. Etwas lauscht.": "Every sound echoes endlessly. Something is listening.", "Ausgebleichte Riesenkorallen, zwischen denen neues Leben wuchert.": "Bleached giant corals with new life growing between them.", "Glühende Magma-Adern und kochendes Wasser.": "Glowing magma veins and boiling water.", "Gefrorene Strömungen. Hier wird selbst die Zeit langsam.": "Frozen currents. Even time slows down here.", "Das Ende der bekannten Tiefe. Das Licht verschwindet einfach.": "The end of the known deep. Light simply vanishes.", "Korallenpolyp": "Coral Polyp", "Abyssspinne": "Abyss Spider", "Feuerfisch": "Firefish", "Eisrochen": "Ice Ray", "Leerenauge": "Void Eye", "Wurzelt fast an Ort und Stelle und schiesst gezielte Dreiersalven.": "Barely moves and fires aimed three-shot volleys.", "Springt dich aus der Distanz an. Der rote Kreis zeigt, wo sie landet.": "Leaps at you from a distance. The red circle shows where it lands.", "Schnell und heiss: explodiert kurz nach dem Tod. Halte Abstand!": "Fast and hot: explodes shortly after death. Keep your distance!", "Gleitet in Wellen und schiesst Eissplitter, die dich verlangsamen.": "Glides in waves and fires ice shards that slow you down.", "Teleportiert sich neben dich und feuert sofort.": "Teleports next to you and fires right away.", "Korallenhydra": "Coral Hydra", "Magmawal": "Magma Whale", "Frostwyrm": "Frost Wyrm", "Weltenfresser": "World Devourer", "Mehrere Köpfe feuern abwechselnd auf dich. Lässt Korallenspitzen aus dem Boden schiessen und ruft Polypen. Jedes Mal, wenn sie die Hälfte ihrer Leben verliert, wächst ein Kopf nach.": "Several heads take turns firing at you. Makes coral spikes burst from the ground and summons polyps. A new head grows when she drops to half health.", "Rammt quer durch die Arena und hinterlässt brennende Lavapfützen. Dazwischen regnet es Meteore.": "Rams across the arena and leaves burning lava pools behind. Meteors rain down in between.", "Eisiger Drache mit gefährlichem Körper. Frostatem verlangsamt dich, dazu Eisspitzen und Eiszapfenregen.": "Icy dragon with a dangerous body. Frost breath slows you, plus ice spikes and icicle rain.", "Der letzte Wächter. Öffnet Schwerkraftbrunnen, teleportiert sich, ruft Leerenaugen und feuert Spiralen. Unter halben Leben wird er rasend.": "The last guardian. Opens gravity wells, teleports, summons void eyes and fires spirals. Below half health he goes berserk.", "Ein neuer Kopf wächst nach!": "A new head grows back!", "Der Weltenfresser wird rasend!": "The World Devourer goes berserk!", "Schwerkraftbrunnen": "Gravity well", "Schwimm aus dem Sog!": "Swim out of the pull!", "Seegras": "Seagrass", "Koralle": "Coral", "Magmaqualle": "Magma Jelly", "Raureif": "Hoarfrost", "Sternschnuppe": "Shooting Star", "Supernova": "Supernova", "Tarnung": "Camouflage", "7 % weniger Schaden": "7% less damage taken", "14 % weniger Schaden": "14% less damage taken", "Splitter": "Splinters", "30 % Chance: Besiegte Gegner verschiessen 3 Splitter": "30% chance: defeated enemies burst into 3 splinters", "50 % Chance: Besiegte Gegner verschiessen 3 Splitter": "50% chance: defeated enemies burst into 3 splinters", "Lavaspur": "Lava Trail", "Hinterlässt eine brennende Spur": "Leaves a burning trail", "Hinterlässt eine doppelt so heisse Spur": "Leaves a trail twice as hot", "Frostpuls": "Frost Pulse", "Der Puls friert Gegner mit 10 % Chance ein": "Your pulse freezes enemies with a 10% chance", "Der Puls friert Gegner mit 20 % Chance ein": "Your pulse freezes enemies with a 20% chance", "Kometenhagel": "Comet Shower", "Alle 4 s schlägt ein Komet bei einem Gegner ein": "Every 4 s a comet strikes an enemy", "Alle 2,5 s schlägt ein Komet bei einem Gegner ein": "Every 2.5 s a comet strikes an enemy", "Sternenexplosion": "Stellar Burst", "Alle 10 s eine riesige Explosion um dich": "A huge explosion around you every 10 s", "Alle 7 s eine noch stärkere Explosion um dich": "An even stronger explosion around you every 7 s", "Startwelt: {0}": "Start world: {0}", "Startwelt bis Welt {0} freigeschaltet! Wähle sie im Hauptmenü.": "Start world up to world {0} unlocked! Pick it in the main menu.", "Startwelt freigeschaltet": "Start world unlocked", "Du kannst jetzt bis Welt {0} direkt starten": "You can now start directly up to world {0}", "Am Rand der Leere": "At the Edge of the Void", "Erreiche Welt 11.": "Reach world 11.", "Jenseits der Leere": "Beyond the Void", "Erreiche Welt 12.": "Reach world 12.", "Weltenende": "End of Worlds", "Besiege den Weltenfresser.": "Defeat the World Devourer.", "Kopfjäger": "Head Hunter", "Besiege die Korallenhydra.": "Defeat the Coral Hydra.", "Vulkanausbruch": "Eruption", "Besiege den Magmawal in unter 60 Sekunden Kampfzeit.": "Defeat the Magma Whale in under 60 seconds of fighting.", "Eisbrecher": "Icebreaker", "Besiege den Frostwyrm.": "Defeat the Frost Wyrm.", "Erdkern": "Earth Core", "Erreiche 20 000 m.": "Reach 20,000 m.", "Vernichtung": "Annihilation", "Besiege 2500 Gegner in einem Tauchgang.": "Defeat 2500 enemies in one dive.", "Neue Strömung": "New Current", "Besitze Seegras, Koralle, Magmaqualle, Raureif, Sternschnuppe und Supernova.": "Own Seagrass, Coral, Magma Jelly, Hoarfrost, Shooting Star and Supernova.", "Sternenkind": "Child of the Stars", "Bringe die Supernova auf ★3.": "Bring Supernova to ★3.", "Perlenimperium": "Pearl Empire", "Sammle insgesamt 1000 Perlen.": "Collect 1000 pearls in total.", "Ehrlicher Taucher": "Honest Diver", "Erreiche Welt 9, ohne in einer späteren Welt zu starten.": "Reach world 9 without starting in a later world.", "+{0} Perlen gutgeschrieben!": "+{0} pearls added!", "Du hast jetzt {0} Perlen": "You now have {0} pearls", "+{0} Perlen": "+{0} pearls", " Belohnung: {0} Perlen.": " Reward: {0} pearls.", "Königsmord": "Regicide", "Besiege die Königin der Tiefe.": "Defeat the Queen of the Deep.", "Albtraum": "Nightmare", "Besiege einen erwachten Boss.": "Defeat an awakened boss.", "Makellos": "Flawless", "Besiege einen Boss, ohne während des Kampfes getroffen zu werden.": "Defeat a boss without getting hit during the fight.", "Jenseits der Krone": "Beyond the Crown", "Erreiche Welt 8.": "Reach world 8.", "Marianengraben": "Mariana Trench", "Erreiche 10 000 m.": "Reach 10,000 m.", "Massaker": "Massacre", "Besiege 1000 Gegner in einem Tauchgang.": "Defeat 1000 enemies in one dive.", "Legende der Tiefe": "Legend of the Deep", "Besiege insgesamt 50 000 Gegner.": "Defeat 50,000 enemies in total.", "Übermutant": "Supermutant", "Erreiche Stufe 50 in einem Tauchgang.": "Reach level 50 in one dive.", "Geist der Tiefe": "Ghost of the Deep", "Überlebe 10 Minuten am Stück ohne Treffer.": "Survive 10 minutes in a row without being hit.", "Sturzflug": "Nosedive", "Erreiche 1400 m in unter 15 Minuten.": "Reach 1400 m in under 15 minutes.", "Alleskönner": "Jack of All Trades", "Habe in einem Tauchgang jede Mutation mindestens einmal.": "Have every mutation at least once in one dive.", "Perlenkönig": "Pearl King", "Sammle insgesamt 500 Perlen.": "Collect 500 pearls in total.", "Glücksspieler": "Gambler", "Öffne 50 Luckyboxen.": "Open 50 luckyboxes.", "Sammlerstück": "Collector's Item", "Bringe 5 Skins aus der Luckybox auf ★3.": "Bring 5 luckybox skins to ★3.", "Mythenjäger": "Myth Hunter", "Ziehe einen mythischen Skin aus der Luckybox.": "Pull a mythic skin from the luckybox.", "Goldgräber": "Gold Digger", "Fange insgesamt 25 Goldquallen.": "Catch 25 golden jellies in total.", "Unendliche Tiefe": "Endless Deep", "Überlebe 60 Minuten in einem Tauchgang.": "Survive 60 minutes in one dive.", "Heilerfisch": "Healer Fish", "Begleitet die Königin der Tiefe, heilt sie und hält ihren Schild aufrecht. Töte alle Heiler, um den Schild zu brechen.": "Accompanies the Queen of the Deep, heals her and keeps her shield up. Kill all healers to break the shield.", "Umgeben von Heilerfischen, die sie heilen und mit einem Schild schützen. Erst wenn alle Heiler tot sind, ist sie verwundbar. Lässt Tentakel aus der Tiefe schlagen, zieht dich mit einem Sog an, ruft Elite-Kreaturen und feuert Geschossringe.": "Surrounded by healer fish that heal her and protect her with a shield. She only becomes vulnerable once all healers are dead. Makes tentacles strike from the deep, pulls you in with a vortex, summons elite creatures and fires rings of projectiles.", "Schild gebrochen!": "Shield broken!", "Die Königin ist jetzt verwundbar": "The queen is vulnerable now", "Heilerfische": "Healer fish", "Töte die Heiler, um den Schild der Königin zu brechen": "Kill the healers to break the queen's shield", "{0} – geschützt": "{0} – shielded", "Sog der Königin": "Queen's vortex", "Schwimm dagegen an!": "Swim against it!", "Freigeschaltet, sofort ★3": "Unlocked, instantly ★3", "Freischalten: ?": "Unlock: ?", "+25 % Tempo": "+25% speed", "+3 Leben pro Sekunde": "+3 health per second", "+40 % Schaden": "+40% damage", "+{0} Leben pro Sekunde pro Stufe. Wächst mit jeder Welt: Welt 1 = +1, Welt 2 = +2 usw.": "+{0} health per second per level. Grows with every world: world 1 = +1, world 2 = +2 and so on.", ". Mit ★2: ": ". With ★2: ", "30 % schnellerer Puls": "30% faster pulse", "Abgrundauge": "Abyssal Eye", "Alle Riesen": "All Giants", "Besiege jeden Boss mindestens einmal.": "Defeat every boss at least once.", "Besiege {0}, um in die nächste Welt zu kommen": "Defeat {0} to reach the next world", "Bewacht das Ende von Welt {0} ({1})": "Guards the end of world {0} ({1})", "Blau": "Blue", "Der Weg in die nächste Welt ist frei": "The way to the next world is open", "Doppelte Meter": "Double meters", "Doppelte Meter, +10 % Tempo": "Double meters, +10% speed", "Doppelte Meter, +20 % Tempo, +20 % Erfahrung": "Double meters, +20% speed, +20% experience", "Geheim": "Secret", "Gelb": "Yellow", "Grün": "Green", "Heilt bei jedem Kill 10 % der verlorenen Leben und schiesst zielsuchende gebrochene Herzen, die beim Treffer in zwei Hälften zerspringen": "Heals 10% of missing health on every kill and fires homing broken hearts that split into two halves on impact", "Herzensbrecher": "Heartbreaker", "Hinterlässt eine schädliche Regenbogenspur und wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls": "Leaves a damaging rainbow trail and changes colour every 6 s: red +40% damage, green +3 health/s, blue +25% speed, yellow +50% experience, violet 30% faster pulse", "Hält Abstand und feuert Salven. Lädt einen Laserstrahl auf: Weiche der roten Linie aus!": "Keeps its distance and fires volleys. Charges a laser beam: dodge the red line!", "Im Tauchgang gesperrt": "Locked during a dive", "Immer: ": "Always: ", "Jede Spore wird zu {0} Sporen, gefächert abgefeuert. Gilt für alle zielsuchenden Geschosse. Nur mit Sporenwerfer.": "Every spore becomes {0} spores, fired in a fan. Applies to all homing projectiles. Requires Spore Launcher.", "Kristallkoloss": "Crystal Colossus", "Königin der Tiefe": "Queen of the Deep", "Lebensraub": "Life Steal", "Mehrfachschuss": "Multishot", "Regenbogen": "Rainbow", "Rot": "Red", "Ruft Elite-Kreaturen herbei und feuert abwechselnd dichte Geschossringe.": "Summons elite creatures and alternates with dense rings of projectiles.", "Sammelt ab sofort alles Plankton, alle Perlen und Blasen auf der ganzen Karte direkt ein. Einmalig, ohne Stufen. Erst ab Welt 5.": "From now on, instantly pulls in all plankton, pearls and bubbles on the whole map. One-time, no levels. From world 5 on.", "Schlängelt sich heran, ihr ganzer Körper ist gefährlich. Spuckt Giftfächer und stürmt immer wieder los.": "Slithers closer and its whole body is dangerous. Spits fans of venom and keeps lunging forward.", "Spektrum": "Spectrum", "Spektrum: {0}, {1} ({2} s)": "Spectrum: {0}, {1} ({2} s)", "Tiefenrausch": "Depth Rush", "Tiefseeschlange": "Sea Serpent", "Umgeben von kreisenden Kristallsplittern. Feuert Spiralen aus Kristallgeschossen.": "Surrounded by orbiting crystal shards. Fires spirals of crystal projectiles.", "Unbesiegbar": "Invincible", "Unendlich Leben, schiesst von Anfang an zielsuchende Schildblitze, besiegt jedes Monster mit einem Treffer und sinkt fünfmal so schnell. Keine Mutationen. Zählt nicht für Rekorde, Erfolge, Statistik und Perlen": "Infinite health, fires homing shield bolts from the start, defeats every monster in one hit and sinks five times as fast. No mutations. Does not count for records, achievements, statistics or pearls", "Violett": "Violet", "Welt {0} · {1}": "World {0} · {1}", "versperrt den Weg in die nächste Welt": "blocks the way to the next world", "{0} (erwacht)": "{0} (awakened)", "Achtung: Dieser Code löscht deinen gesamten Fortschritt (Rekorde, Logbuch, Erfolge, Perlen, Skins). Klick zur Bestätigung innerhalb von 10 Sekunden nochmal auf «Einlösen».": "Warning: this code deletes all your progress (records, logbook, achievements, pearls, skins). Click “Redeem” again within 10 seconds to confirm.", "Fortschritt zurückgesetzt. Das Spiel startet neu …": "Progress reset. The game is restarting …", "Schwarzes Loch": "Black Hole", "Kosmisch": "Cosmic", "Singularität": "Singularity", "Zieht von Anfang an alles ein wie der Magnet und schiesst kleine schwarze Löcher, die Gegner in ihrer Nähe einsaugen und verletzen": "Pulls in everything from the start like Magnet and fires small black holes that suck in and damage nearby enemies", "{0}, nur per Code": "{0}, code only", "Code-Skin: {0}": "Code skin: {0}", "Magnet": "Magnet", "Sammelt ab sofort alles Plankton, alle Perlen und Blasen auf der ganzen Karte direkt ein. Einmalig, ohne Stufen.": "From now on, instantly pulls in all plankton, pearls and bubbles on the whole map. One-time, no levels.", "Kill-Rekord": "Kill record", "Neuer Kill-Rekord!": "New kill record!", "Überspringen": "Skip", "Leuchtgarnele": "Glow Shrimp", "Nesselqualle": "Nettle Jelly", "Nautilus": "Nautilus", "Tarnkrake": "Mimic Octopus", "Seeigel": "Sea Urchin", "Schleimaal": "Hagfish", "Geisterhai": "Ghost Shark", "Klein und flink. Kommt immer im Schwarm und zappelt wild umher.": "Small and quick. Always comes in a swarm and darts around wildly.", "Lädt sich auf, wenn du nah bist, und entlädt dann einen brennenden Ring. Halte Abstand, wenn sie leuchtet.": "Charges up when you get close, then releases a burning ring. Keep your distance while it glows.", "Sein Panzer halbiert jeden Schaden. Langsam, aber kaum zu knacken.": "Its shell halves all damage. Slow, but very hard to crack.", "Fast unsichtbar, bis sie nah genug ist. Dann schnellt sie plötzlich hervor. Achte auf zwei Augen im Dunkeln.": "Nearly invisible until it gets close enough, then it suddenly lunges. Watch for two eyes in the dark.", "Kriecht langsam heran und schiesst regelmässig Stacheln in alle Richtungen.": "Crawls slowly closer and regularly fires spines in every direction.", "Hinterlässt beim Tod eine Schleimpfütze, die dich stark verlangsamt.": "Leaves a slime puddle on death that slows you down a lot.", "Kreist um dich und stösst dann mit brutaler Wucht zu.": "Circles around you, then strikes with brutal force.", "Luftblasen": "Air Bubbles", "Heilende Blasen steigen auf.": "Healing bubbles are rising.", "Stille": "Calm", "Keine neuen Gegner und schnelle Heilung.": "No new enemies and fast healing.", "Sog der Tiefe": "Pull of the Deep", "Du ziehst Plankton und Perlen von weit her an.": "You attract plankton and pearls from far away.", "Elite-Patrouille": "Elite Patrol", "Drei starke Gegner mit Goldring nähern sich.": "Three strong enemies with gold rings approach.", "Perlenregen": "Pearl Rain", "Irgendwo in der Nähe glitzert eine Perle.": "A pearl is glittering somewhere nearby.", "Hydrothermale Schlote": "Hydrothermal Vents", "Weiche den heissen Fontänen aus!": "Dodge the hot eruptions!", "Tiefenbeben": "Deep Quake", "Felsbrocken stürzen herab. Achte auf die Schatten!": "Boulders are falling. Watch the shadows!", "Tiefenriss": "Deep Rift", "Ein Riss öffnet sich und spuckt Elite-Kreaturen aus.": "A rift opens and spits out elite creatures.","Lichtzone": "Sunlight Zone","Dämmerzone": "Twilight Zone","Mitternachtszone": "Midnight Zone","Abyssal": "Abyssal Zone","Hadal": "Hadal Zone","Kristallgraben": "Crystal Trench","Echoschlund": "Echo Gorge","Glimmerriff": "Glimmer Reef","Stille Weite": "Silent Expanse","Nebelschlot": "Mist Vent","Sternenkluft": "Star Chasm","Rauschgrund": "Static Deep","Aschemeer": "Ash Sea","Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.": "Sunbeams still reach this far. A calm beginning.","Das letzte Tageslicht verblasst.": "The last daylight fades away.","Ewige Nacht. Nur noch Biolumineszenz.": "Eternal night. Only bioluminescence remains.","Eisige Kälte und seltsame Farben.": "Icy cold and strange colours.","Heisse Quellen in den tiefsten Gräben der Welt.": "Hot springs in the deepest trenches on earth.","Treibling": "Drifter","Pfeilfisch": "Dartfish","Kugelfisch": "Pufferfish","Anglerfisch": "Anglerfish","Schattenaal": "Shadow Eel","Tintenkalmar": "Ink Squid","Glasgeist": "Glass Ghost","Glutkrabbe": "Ember Crab","Treibt langsam auf dich zu. Allein harmlos, in Massen gefährlich.": "Slowly drifts towards you. Harmless alone, dangerous in numbers.","Lauert kurz und schiesst dann blitzschnell auf dich zu.": "Lurks for a moment, then darts at you lightning-fast.","Platzt beim Tod und verschiesst Stacheln in alle Richtungen.": "Bursts on death and fires spikes in every direction.","Zäh und träge. Sein Köder leuchtet hell in der Dunkelheit.": "Tough and sluggish. Its lure glows brightly in the dark.","Schlängelt sich schnell und unberechenbar heran.": "Slithers in quickly and unpredictably.","Hält Abstand und spuckt Tintenkugeln nach dir.": "Keeps its distance and spits ink balls at you.","Wird regelmässig unsichtbar. Dann kannst du ihn nicht treffen.": "Turns invisible regularly. You cannot hit it then.","Sehr zäh. Zerfällt beim Tod in zwei kleine, schnelle Krabben.": "Very tough. Splits into two small, fast crabs on death.","Mutterqualle": "Mother Jelly","Riesenkalmar": "Giant Squid","Leviathan": "Leviathan","Ruft ständig neue Treiblinge herbei.": "Keeps summoning new drifters.","Feuert Tintenringe in alle Richtungen.": "Fires rings of ink in every direction.","Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.": "Takes aim briefly, then rams at full force. Watch for the glowing streak.","Planktonblüte": "Plankton Bloom","Das Wasser leuchtet. Sammeln!": "The water is glowing. Collect it!","Starke Strömung": "Strong Current","Alles treibt ab.": "Everything drifts away.","Fischschwarm": "Fish School","Schnapp dir so viele wie möglich.": "Catch as many as you can.","Angriffswelle": "Attack Wave","Sie kommen von allen Seiten.": "They come from all sides.","Goldqualle gesichtet": "Golden Jelly Spotted","Fang sie für eine doppelte Mutation.": "Catch it for a double mutation.","Fressrausch": "Feeding Frenzy","Gegner schneller, doppelte Erfahrung.": "Faster enemies, double experience.","Schwarzes Wasser": "Black Water","Nur dein eigenes Licht bleibt.": "Only your own light remains.","Stärkerer Puls": "Stronger Pulse","+30 % Schaden für Puls, Funken, Sporen, Blitze und alle Skin-Fähigkeiten mit Schaden.": "+30% damage for pulse, sparks, spores, lightning and every skin ability that deals damage.","Weiter Puls": "Wider Pulse","Dein Lichtpuls reicht 18 % weiter. Vergrössert auch Skin-Fähigkeiten mit Reichweite.": "Your light pulse reaches 18% further. Also enlarges skin abilities that have a range.","Schneller Puls": "Faster Pulse","Du pulsierst 15 % häufiger. Beschleunigt auch Skin-Fähigkeiten, die regelmässig auslösen.": "You pulse 15% more often. Also speeds up skin abilities that trigger regularly.","Flossenschlag": "Fin Stroke","+12 % Schwimmtempo.": "+12% swim speed.","Anziehung": "Attraction","Plankton und Perlen fliegen dir aus 50 % grösserer Distanz zu.": "Plankton and pearls fly to you from 50% further away.","Dicke Glocke": "Thick Bell","+25 maximales Leben und 40 Heilung.": "+25 max health and 40 healing.","Selbstheilung": "Self-Healing","+1 Leben pro Sekunde.": "+1 health per second.","Leuchtfunke": "Glow Spark","Ein weiterer Funke kreist um dich.": "Another spark circles around you.","Ein Funke kreist um dich und verbrennt alles, was er trifft.": "A spark circles around you and burns everything it touches.","Sporenwerfer": "Spore Launcher","Eine Spore mehr pro Salve. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "One more spore per volley. Also strengthens skin abilities that fire projectiles.","Schiesst zielsuchende Sporen auf nahe Gegner. Verstärkt auch Skin-Fähigkeiten, die Geschosse abfeuern.": "Fires homing spores at nearby enemies. Also strengthens skin abilities that fire projectiles.","Zitteraal": "Electric Eel","Der Blitz springt auf einen Gegner mehr.": "The lightning jumps to one more enemy.","Ein Blitz springt zwischen zwei nahen Gegnern.": "Lightning jumps between two nearby enemies.","Rückstoss": "Recoil","Dein Sprint ist 20 % schneller wieder bereit. Lädt auch Schild-Fähigkeiten von Skins schneller.": "Your sprint recharges 20% faster. Also recharges skin shield abilities faster.","Klassisch": "Classic","Perle": "Pearl","Dämmerlicht": "Dusklight","Mitternacht": "Midnight","Tiefseerose": "Deep-Sea Rose","Glut": "Ember","Minze": "Mint","Giftgrün": "Toxic Green","Sonnenfunke": "Sunspark","Schattenqualle": "Shadow Jelly","Kristall": "Crystal","Goldqualle": "Golden Jelly","Sternenstaub": "Stardust","Polarlicht": "Aurora","Prisma": "Prism","Nebelschleier": "Nebula Veil","Donnerqualle": "Thunder Jelly","Leere": "Void","Phönix": "Phoenix","Sensenqualle": "Reaper Jelly","Tiefenwanderer": "Deep Wanderer","Titanenqualle": "Titan Jelly","Kopfgeldjägerin": "Bounty Huntress","Perlentaucherin": "Pearl Diver","Veteranin": "Veteran","Ewige Qualle": "Eternal Jelly","Mutantenkönigin": "Mutant Queen","Abgrundherz": "Abyss Heart","Arktisqualle": "Arctic Jelly","Gewöhnlich": "Common","Selten": "Rare","Episch": "Epic","Legendär": "Legendary","Mythisch": "Mythic","Meilenstein": "Milestone","Arctic": "Arctic","Robust": "Sturdy","+15 max. Leben": "+15 max health","+30 max. Leben": "+30 max health","Perlenglück": "Pearl Luck","+50 % Perlenchance": "+50% pearl chance","+100 % Perlenchance": "+100% pearl chance","Stromlinie": "Streamline","+8 % Tempo": "+8% speed","+16 % Tempo": "+16% speed","Frische": "Freshness","+0,7 Leben pro Sekunde": "+0.7 health per second","+1,4 Leben pro Sekunde": "+1.4 health per second","Dornen": "Thorns","Wer dich trifft, bekommt Pulsschaden zurück": "Whoever hits you takes pulse damage back","Wer dich trifft, bekommt doppelten Pulsschaden zurück": "Whoever hits you takes double pulse damage back","Weites Licht": "Wide Light","+10 % Pulsreichweite": "+10% pulse range","+20 % Pulsreichweite": "+20% pulse range","Glutpuls": "Ember Pulse","+12 % Schaden": "+12% damage","+24 % Schaden": "+24% damage","Giftsporen": "Toxic Spores","Start mit 1 Sporenwerfer": "Start with 1 Spore Launcher","Start mit 2 Sporenwerfern": "Start with 2 Spore Launchers","Sonnenkranz": "Sun Wreath","Start mit 1 Leuchtfunken": "Start with 1 Glow Spark","Start mit 2 Leuchtfunken": "Start with 2 Glow Sparks","Phasensprung": "Phase Leap","Sprint 18 % schneller bereit": "Sprint recharges 18% faster","Sprint 36 % schneller bereit": "Sprint recharges 36% faster","Schattenblitz": "Shadow Bolt","Start mit Zitteraal": "Start with Electric Eel","Start mit Zitteraal Stufe 2": "Start with Electric Eel level 2","Kristallschild": "Crystal Shield","Ein Schild blockt alle 20 s einen Treffer": "A shield blocks one hit every 20 s","Ein Schild blockt alle 12 s einen Treffer": "A shield blocks one hit every 12 s","Sternensog": "Star Pull","+40 % Anziehung": "+40% attraction","+80 % Anziehung": "+80% attraction","Goldrausch": "Gold Rush","+25 % Erfahrung": "+25% experience","+50 % Erfahrung": "+50% experience","Polarwind": "Polar Wind","Puls 10 % häufiger": "Pulse 10% more often","Puls 20 % häufiger": "Pulse 20% more often","Prismakraft": "Prism Power","+10 % Schaden, +5 % Tempo, +10 % Erfahrung": "+10% damage, +5% speed, +10% experience","+20 % Schaden, +10 % Tempo, +20 % Erfahrung": "+20% damage, +10% speed, +20% experience","Nebelhülle": "Mist Shroud","10 % Chance, Treffern auszuweichen": "10% chance to dodge hits","20 % Chance, Treffern auszuweichen": "20% chance to dodge hits","Gewitter": "Thunderstorm","Zitteraal mit 1 Ziel mehr, 25 % häufiger": "Electric Eel hits 1 more target, 25% more often","Zitteraal mit 2 Zielen mehr, 50 % häufiger": "Electric Eel hits 2 more targets, 50% more often","Ereignishorizont": "Event Horizon","Gegner in Pulsreichweite 25 % langsamer, +10 % Schaden": "Enemies in pulse range 25% slower, +10% damage","Gegner in Pulsreichweite 40 % langsamer, +20 % Schaden": "Enemies in pulse range 40% slower, +20% damage","Wiedergeburt": "Rebirth","Einmal pro Tauchgang Wiederbelebung mit 40 % Leben und Feuerwelle": "Once per dive, revive with 40% health and a wave of fire","Wiederbelebung mit 70 % Leben, doppelt starke Feuerwelle": "Revive with 70% health, fire wave twice as strong","Vollstrecker": "Executioner","+20 % Schaden, normale Gegner unter 15 % Leben sterben sofort": "+20% damage, normal enemies below 15% health die instantly","Druckausgleich": "Pressure Balance","Du nimmst 20 % weniger Schaden": "You take 20% less damage","Riesenfluch": "Giant's Bane","+60 % Schaden gegen Bosse": "+60% damage against bosses","Kopfgeld": "Bounty","Elite-Gegner nehmen +50 % Schaden und lassen doppelt so oft Perlen fallen": "Elite enemies take +50% damage and drop pearls twice as often","Perlensog": "Pearl Pull","Perlen fliegen dir aus grosser Distanz zu, +25 % Perlenchance": "Pearls fly to you from far away, +25% pearl chance","Routine": "Routine","Start mit «Stärkerer Puls» und «Schneller Puls»": "Start with “Stronger Pulse” and “Faster Pulse”","Zeitlos": "Timeless","+2 % Schaden pro Minute im Tauchgang, maximal +60 %": "+2% damage per minute in the dive, up to +60%","Genmutation": "Gene Mutation","Bei jedem Level-up 4 statt 3 Mutationen zur Wahl": "Choose from 4 instead of 3 mutations on every level-up","Tiefendruck": "Deep Pressure","+1 % Schaden pro 100 m Tiefe, maximal +50 %": "+1% damage per 100 m of depth, up to +50%","Permafrost": "Permafrost","Friert alle 6 s Gegner um dich 2 s lang ein und schiesst ständig durchbohrende Eiszapfen": "Freezes enemies around you for 2 s every 6 s and constantly fires piercing icicles","Erster Tauchgang": "First Dive","Beende deinen ersten Tauchgang.": "Finish your first dive.","Gut vorbereitet": "Well Prepared","Schliess das Tutorial ab.": "Complete the tutorial.","Dämmerung": "Dusk","Erreiche 150 m.": "Reach 150 m.","Erreiche 400 m.": "Reach 400 m.","Abgrund": "Abyss","Erreiche 800 m.": "Reach 800 m.","Erreiche 1400 m.": "Reach 1400 m.","Ins Unbekannte": "Into the Unknown","Erreiche 2200 m.": "Reach 2200 m.","Lichtbringer": "Lightbringer","Besiege 100 Gegner in einem Tauchgang.": "Defeat 100 enemies in one dive.","Tausend Funken": "A Thousand Sparks","Besiege insgesamt 1000 Gegner.": "Defeat 1000 enemies in total.","Riesentöter": "Giant Slayer","Besiege einen Boss.": "Defeat a boss.","Alle drei Riesen": "All Three Giants","Besiege jeden der drei Bosse mindestens einmal.": "Defeat each of the three bosses at least once.","Goldfinger": "Goldfinger","Fang eine Goldqualle.": "Catch a golden jelly.","Mutant": "Mutant","Erreiche Stufe 10 in einem Tauchgang.": "Reach level 10 in one dive.","Unberührbar": "Untouchable","Überlebe 3 Minuten am Stück ohne Treffer.": "Survive 3 minutes in a row without being hit.","Funkenkranz": "Spark Wreath","Habe 8 Leuchtfunken gleichzeitig.": "Have 8 glow sparks at once.","Stammgast": "Regular","Tauche 10-mal ab.": "Dive 10 times.","Glückspilz": "Lucky Duck","Öffne deine erste Luckybox.": "Open your first luckybox.","Verschmolzen": "Fused","Merge einen Skin auf ★2.": "Merge a skin to ★2.","Meisterform": "Master Form","Merge einen Skin auf ★3.": "Merge a skin to ★3.","Sensenmann": "Grim Reaper","Besiege insgesamt 10 000 Gegner.": "Defeat 10,000 enemies in total.","Tauche insgesamt 50 000 m.": "Dive 50,000 m in total.","Titanenfall": "Titanfall","Besiege insgesamt 25 Bosse.": "Defeat 25 bosses in total.","Kopfgeldjagd": "Bounty Hunt","Besiege insgesamt 250 Elite-Gegner.": "Defeat 250 elite enemies in total.","Perlenfischer": "Pearl Fisher","Sammle insgesamt 100 Perlen.": "Collect 100 pearls in total.","Veteran": "Veteran","Tauche 100-mal ab.": "Dive 100 times.","Ewigkeit": "Eternity","Überlebe 30 Minuten in einem Tauchgang.": "Survive 30 minutes in one dive.","Hochmutiert": "Highly Mutated","Erreiche Stufe 30 in einem Tauchgang.": "Reach level 30 in one dive.","Herz des Abgrunds": "Heart of the Abyss","Erreiche 5000 m.": "Reach 5000 m.","Forschungsdrang": "Thirst for Knowledge","Fülle das Logbuch zur Hälfte.": "Fill half of the logbook.","Vollständiges Logbuch": "Complete Logbook","Entdecke alles im Logbuch.": "Discover everything in the logbook.","Nach oben": "Up","Nach unten": "Down","Nach links": "Left","Nach rechts": "Right","Sprint": "Sprint","Pause": "Pause","Ton an/aus": "Sound on/off","Leertaste": "Space","Shift links": "Left Shift","Shift rechts": "Right Shift","Strg links": "Left Ctrl","Strg rechts": "Right Ctrl","Alt Gr": "Alt Gr","Feststell": "Caps Lock","Taste drücken …": "Press a key …","Taste ist fest belegt": "Key is reserved","{0} wird für die Menüs gebraucht": "{0} is needed for the menus","Ton an": "Sound on","Ton aus": "Sound off","Neu im Logbuch": "New in logbook","Skin: {0} ★★★, Fähigkeit «{1}» aktiv": "Skin: {0} ★★★, ability “{1}” active","Skin: {0}, Fähigkeit «{1}» aktiv: {2}": "Skin: {0}, ability “{1}” active: {2}","Skin: {0} {1}, Fähigkeit «{2}» aktiv: {3}": "Skin: {0} {1}, ability “{2}” active: {3}","Skin: {0} {1}, ab ★2 mit Fähigkeit «{2}»": "Skin: {0} {1}, ability “{2}” from ★2","Maus oder Finger": "Mouse or finger","Qualle schwimmt dorthin": "The jellyfish swims there","Alternativ mit der Tastatur schwimmen": "Or swim with the keyboard","Sprint (auch Rechtsklick oder Doppeltipp)": "Sprint (also right-click or double-tap)","Pause / Ton": "Pause / sound","taucht aus der Tiefe auf": "rises from the deep","Stufe {0}": "Level {0}","Neu": "New"," · doppelt": " · double","Goldene Mutation: wirkt doppelt": "Golden mutation: counts twice","Stufe {0}: wähle eine Mutation": "Level {0}: choose a mutation","{0} besiegt": "{0} defeated","Du wurdest teilweise geheilt": "You were partially healed","Der Phönix erhebt sich aus der Asche": "The phoenix rises from the ashes","Getaucht bis {0} m": "Dived to {0} m","Zone": "Zone","Zeit": "Time","Stufe": "Level","Besiegt": "Defeated","Perlen": "Pearls","Tutorial beenden": "End tutorial","Tauchgang beenden": "End dive","Wirklich beenden? Nochmal klicken": "Really end? Click again","Tauchgang beendet bei {0} m": "Dive ended at {0} m","Erfolg: {0}": "Achievement: {0}","Neuer Skin freigeschaltet: {0}": "New skin unlocked: {0}","Luckybox bereit": "Luckybox ready","Du hast {0} Perlen. Öffne die Box im Menü oder nach dem Tauchgang.": "You have {0} pearls. Open the box in the menu or after the dive.","Perle gefunden": "Pearl found","{0} Perlen, noch {1} bis zur nächsten Luckybox": "{0} pearls, {1} more until the next luckybox","Luckybox": "Luckybox","Luckybox ({0} bereit)": "Luckybox ({0} ready)","{0} Perlen": "{0} pearls","Noch {0} Perlen nötig": "{0} more pearls needed","Box öffnen ({0} Perlen)": "Open box ({0} pearls)","Duplikat! Kopien: {0}/{1} für ★{2}.": "Duplicate! Copies: {0}/{1} for ★{2}.","Duplikat! Du hast jetzt {0}.": "Duplicate! You now have {0}.","Neu freigeschaltet!": "Newly unlocked!","Fähigkeit «{0}»: {1}": "Ability “{0}”: {1}","Gib zuerst einen Code ein.": "Enter a code first.","Dieser Code ist ungültig.": "This code is invalid.","Diesen Code hast du schon eingelöst.": "You have already redeemed this code.","{0} freigeschaltet und angelegt. Sofort ★3!": "{0} unlocked and equipped. Instantly ★3!","Arctic-Skin: {0}": "Arctic skin: {0}","Fähigkeit «{0}» ist aktiv": "Ability “{0}” is active","Kreaturen": "Creatures","Zonen": "Zones","Bosse": "Bosses","Ereignisse": "Events","Erfolge": "Achievements","Skins": "Skins","Taucht ab {0} m auf": "Appears from {0} m"," Ab {0} m.": " From {0} m.","Ab {0} m": "From {0} m","Unerforschtes Gebiet jenseits der bekannten Zonen. Ab {0} m.": "Uncharted territory beyond the known zones. From {0} m."," Schon besiegt.": " Already defeated."," Noch nicht besiegt.": " Not defeated yet.","Erscheint erstmals beim Eintritt in die {0}": "First appears when entering the {0}","Möglich ab {0} m": "Possible from {0} m","Jederzeit möglich": "Possible at any time"," Belohnung: Skin «{0}».": " Reward: skin “{0}”.","{0} von {1} Skins freigeschaltet. Meilenstein-Skins verdienst du durch Spielen, ihre Fähigkeit ist sofort aktiv. Ab ★2 hat ein Skin eine Spezialfähigkeit, solange du ihn trägst. Duplikate aus der Luckybox mergst du hier (3× ★1 = ★2, 3× ★2 = ★3). Perlen: {2}.": "{0} of {1} skins unlocked. Milestone skins are earned by playing, their ability is active right away. From ★2 a skin has a special ability while you wear it. Merge luckybox duplicates here (3× ★1 = ★2, 3× ★2 = ★3). Pearls: {2}.","Arctic, nur per Code": "Arctic, code only","Meilenstein, nicht in der Luckybox": "Milestone, not in the luckybox","{0} pro Box": "{0} per box","Immer aktiv: ": "Always active: ","Nach Freischaltung immer aktiv: ": "Always active once unlocked: ","Aktiv: ": "Active: ",". Mit ★3: ": ". With ★3: ","Ab ★2: ": "From ★2: ","Fähigkeit «{0}». {1}.": "Ability “{0}”. {1}.","Mit Code eingelöst, sofort ★3": "Redeemed with a code, instantly ★3","Nur mit einem geheimen Code unter «Code einlösen»": "Only with a secret code under “Redeem code”","Verdient durch «{0}»": "Earned through “{0}”","Erfolg «{0}»: {1}": "Achievement “{0}”: {1}","{0} Duplikate": "{0} duplicates","{0} Duplikat": "{0} duplicate","Keine Duplikate": "No duplicates","Erfolg «{0}» oder Luckybox": "Achievement “{0}” or luckybox","Nur aus der Luckybox": "Luckybox only","Getragen": "Equipped","Tragen": "Equip","Mergen zu ★{0} ({1}/{2} Kopien)": "Merge to ★{0} ({1}/{2} copies)","{0} von {1} erreicht.": "{0} of {1} achieved.","{0} von {1} entdeckt.": "{0} of {1} discovered.","Insgesamt {0} / {1} Einträge und {2} / {3} Erfolge.": "In total {0} / {1} entries and {2} / {3} achievements.","Schwimmen": "Swimming","Beweg die Maus oder zieh mit dem Finger, die Qualle folgt dir. Mit der Tastatur geht es mit {0}. Schwimm ein bisschen herum.": "Move the mouse or drag your finger, the jellyfish follows you. On the keyboard use {0}. Swim around a little.","Drück {0}, mach einen Rechtsklick oder tippe doppelt. Beim Sprint bist du kurz unverwundbar. Der violette Balken oben links zeigt, wann er wieder bereit ist.": "Press {0}, right-click or double-tap. While sprinting you are briefly invulnerable. The violet bar at the top left shows when it is ready again.","Lichtpuls": "Light Pulse","Du pulsierst automatisch und triffst alles in deinem Umkreis. Schwimm zu den vier Treiblingen und besiege sie.": "You pulse automatically and hit everything around you. Swim to the four drifters and defeat them.","Plankton": "Plankton","Besiegte Gegner hinterlassen leuchtendes Plankton. Sammle alles ein. Es füllt den Erfahrungsbalken ganz unten.": "Defeated enemies leave glowing plankton behind. Collect it all. It fills the experience bar at the very bottom.","Mutationen": "Mutations","Ist der Balken voll, steigst du eine Stufe auf und wählst eine Mutation. Klick eine Karte oder drück 1, 2 oder 3.": "When the bar is full you level up and choose a mutation. Click a card or press 1, 2 or 3.","Ab in die Tiefe": "Into the Deep","Im echten Spiel sinkst du ständig tiefer. Neue Zonen bringen neue Kreaturen, Ereignisse und Bosse. Alles landet im Logbuch, und Erfolge schalten neue Skins frei. Viel Glück!": "In the real game you keep sinking deeper. New zones bring new creatures, events and bosses. Everything goes into the logbook, and achievements unlock new skins. Good luck!","Schritt {0} von {1}: {2}": "Step {0} of {1}: {2}","Du tauchst ab": "You dive down","{0} m unter der Oberfläche": "{0} m below the surface","Goldqualle gefangen": "Golden jelly caught","Deine nächste Mutation wirkt doppelt": "Your next mutation counts twice","Die Goldqualle ist entkommen": "The golden jelly escaped","Sprint bereit ({0})": "Sprint ready ({0})","Sprint in {0} s": "Sprint in {0} s","Noch {0} m bis {1}": "{0} m to {1}","Rekord": "Record","m": "m","Tutorial überspringen": "Skip tutorial","Los geht's": "Let's go","Du bist eine kleine Leuchtqualle. Tauch so tief du kannst. Jede Zone bringt neue Kreaturen, seltsame Ereignisse und einen Riesen, der dich aufhalten will.": "You are a small glowing jellyfish. Dive as deep as you can. Every zone brings new creatures, strange events and a giant that wants to stop you.","Rekordtiefe": "Record depth","Logbuch-Einträge": "Logbook entries","Abtauchen": "Dive","Tutorial": "Tutorial","Logbuch & Skins": "Logbook & skins","Steuerung": "Controls","Code einlösen": "Redeem code","Klick eine Karte oder drück die Zahl auf der Karte.": "Click a card or press the number shown on it.","Pausiert": "Paused","Die Tiefe wartet.": "The deep is waiting.","Weiter tauchen": "Keep diving","Logbuch": "Logbook","Neuer Rekord!": "New record!","Nochmal abtauchen": "Dive again","Hauptmenü": "Main menu","Zum ersten Mal hier?": "First time here?","Ein kurzes Tutorial zeigt dir in etwa einer Minute, wie alles funktioniert. Du kannst es jederzeit überspringen.": "A short tutorial shows you how everything works in about a minute. You can skip it at any time.","Tutorial starten": "Start tutorial","Direkt abtauchen": "Dive right in","Zurück": "Back","Manche Skins gibt es nur mit einem geheimen Code. Gross- und Kleinschreibung zählt.": "Some skins are only available with a secret code. Codes are case-sensitive.","Code eingeben": "Enter code","Einlösen": "Redeem","Perlen findest du beim Tauchen: selten bei normalen Gegnern, öfter bei Elites (Goldring), sicher bei Bossen. Für 5 Perlen öffnest du eine Box und bekommst einen zufälligen Skin. Doppelte Skins mergst du unter Skins: 3× ★1 ergeben ★2, 3× ★2 ergeben ★3. Das schaltet Spezialfähigkeiten frei.": "You find pearls while diving: rarely from normal enemies, more often from elites (gold ring), always from bosses. For 5 pearls you open a box and get a random skin. Merge duplicate skins under Skins: 3× ★1 make ★2, 3× ★2 make ★3. This unlocks special abilities.","Box öffnen": "Open box","Zu den Skins": "Go to skins","Klick auf eine Taste und drück danach die neue. Esc bricht ab, Entf löscht die Belegung. Jede Aktion kann zwei Tasten haben.": "Click a key, then press the new one. Esc cancels, Delete clears the binding. Each action can have two keys.","Standard wiederherstellen": "Restore defaults","Fest belegt: 1, 2, 3 für Mutationen und Enter zum Starten. Maus: schwimmen, Rechtsklick: Sprint. Touch: Finger ziehen zum Schwimmen, Doppeltipp für Sprint.": "Reserved: 1, 2, 3 for mutations and Enter to start. Mouse: swim, right-click: sprint. Touch: drag to swim, double-tap to sprint."};
 const T = str => (lang === 'en' && Object.prototype.hasOwnProperty.call(EN, str)) ? EN[str] : str;
 const F = (tpl, ...a) => T(tpl).replace(/\{(\d)\}/g, (m, i) => a[+i]);
 function applyStaticLang() {
@@ -358,11 +358,18 @@ const ZONES = [
   { key: 'Dämmerzone', name: T('Dämmerzone'),       at: 150,  top: '#17577c', bot: '#08243f', glow: '#9fdcff', rays: .35 },
   { key: 'Mitternachtszone', name: T('Mitternachtszone'), at: 400,  top: '#1c1f5c', bot: '#070a26', glow: '#c9a4ff', rays: 0 },
   { key: 'Abyssal', name: T('Abyssal'),          at: 800,  top: '#3b1352', bot: '#0c0418', glow: '#ff93d6', rays: 0 },
-  { key: 'Hadal', name: T('Hadal'),            at: 1400, top: '#4a1d0c', bot: '#120503', glow: '#ffb65e', rays: 0 }
+  { key: 'Hadal', name: T('Hadal'),            at: 1400, top: '#4a1d0c', bot: '#120503', glow: '#ffb65e', rays: 0 },
+  { key: 'Kristallgraben', name: T('Kristallgraben'), at: 2200, top: '#1b3f52', bot: '#04121a', glow: '#8ff0ff', rays: 0 },
+  { key: 'Echoschlund', name: T('Echoschlund'),  at: 2900, top: '#2c1f52', bot: '#0a0618', glow: '#b48cff', rays: 0 },
+  { key: 'Korallenfriedhof', name: T('Korallenfriedhof'), at: 3600, top: '#4a2230', bot: '#14060b', glow: '#ff9f8a', rays: .15 },
+  { key: 'Lavaschlund', name: T('Lavaschlund'),  at: 4300, top: '#5a1a06', bot: '#160401', glow: '#ff6a1a', rays: 0 },
+  { key: 'Eisabgrund', name: T('Eisabgrund'),    at: 5000, top: '#3e6478', bot: '#081620', glow: '#dff8ff', rays: .25 },
+  { key: 'Leerenmeer', name: T('Leerenmeer'),    at: 5700, top: '#160a2e', bot: '#02010a', glow: '#9a6bff', rays: 0 }
 ];
-const PROC_KEYS = ['Kristallgraben', 'Echoschlund', 'Glimmerriff', 'Stille Weite', 'Nebelschlot', 'Sternenkluft', 'Rauschgrund', 'Aschemeer'];
+const PROC_KEYS = ['Glimmerriff', 'Stille Weite', 'Nebelschlot', 'Sternenkluft', 'Rauschgrund', 'Aschemeer'];
 const PROC = PROC_KEYS.map(T);
-const PROC_START = 2200, PROC_STEP = 700;
+const PROC_START = 6400, PROC_STEP = 700;
+function worldStart(i) { return i < ZONES.length ? ZONES[i].at : PROC_START + (i - ZONES.length) * PROC_STEP; }
 function getZone(d) {
   if (d < PROC_START) {
     let i = ZONES.length - 1;
@@ -392,6 +399,11 @@ const TYPES = {
   urchin:  { name: T('Seeigel'),       hp: 70,  spd: 18, r: 13, col: '#9fd0ff', dmg: 12, xp: 5, at: 1700, w: 3 },
   slime:   { name: T('Schleimaal'),    hp: 90,  spd: 70, r: 11, col: '#b8ff9e', dmg: 12, xp: 6, at: 2500, w: 3 },
   shark:   { name: T('Geisterhai'),    hp: 140, spd: 90, r: 18, col: '#cfe0ff', dmg: 24, xp: 9, at: 3000, w: 2 },
+  polyp:   { name: T('Korallenpolyp'),   hp: 120, spd: 14, r: 15, col: '#ff9f8a', dmg: 14, xp: 7, at: 3600, w: 3 },
+  spider:  { name: T('Abyssspinne'),     hp: 130, spd: 50, r: 15, col: '#c9a4ff', dmg: 22, xp: 8, at: 3200, w: 3 },
+  firefish:{ name: T('Feuerfisch'),      hp: 70,  spd: 110, r: 11, col: '#ff6a1a', dmg: 16, xp: 6, at: 4300, w: 4 },
+  iceray:  { name: T('Eisrochen'),       hp: 150, spd: 75, r: 17, col: '#dff8ff', dmg: 18, xp: 9, at: 5000, w: 3 },
+  voideye: { name: T('Leerenauge'),      hp: 110, spd: 40, r: 13, col: '#9a6bff', dmg: 20, xp: 10, at: 5700, w: 3 },
   healer:  { name: T('Heilerfisch'),   hp: 90,  spd: 80, r: 11, col: '#7dffb0', dmg: 8,  xp: 3, at: 3600, w: 0, only: true }
 };
 const BOSSES = [
@@ -401,7 +413,11 @@ const BOSSES = [
   { key: 'Tiefseeschlange', name: T('Tiefseeschlange'), col: '#5fffc8', hp: 1500, r: 30, spd: 150, pattern: 'serpent' },
   { key: 'Kristallkoloss', name: T('Kristallkoloss'), col: '#9ff6ff', hp: 2400, r: 50, spd: 40, pattern: 'colossus' },
   { key: 'Abgrundauge', name: T('Abgrundauge'), col: '#ff4f6a', hp: 2000, r: 40, spd: 90, pattern: 'eye' },
-  { key: 'Königin der Tiefe', name: T('Königin der Tiefe'), col: '#c4a0ff', hp: 3200, r: 56, spd: 60, pattern: 'queen' }
+  { key: 'Königin der Tiefe', name: T('Königin der Tiefe'), col: '#c4a0ff', hp: 3200, r: 56, spd: 60, pattern: 'queen' },
+  { key: 'Korallenhydra', name: T('Korallenhydra'), col: '#ff7f6a', hp: 3600, r: 46, spd: 45, pattern: 'hydra' },
+  { key: 'Magmawal', name: T('Magmawal'), col: '#ff5a1a', hp: 4200, r: 58, spd: 80, pattern: 'magma' },
+  { key: 'Frostwyrm', name: T('Frostwyrm'), col: '#bfefff', hp: 4400, r: 32, spd: 140, pattern: 'frost' },
+  { key: 'Weltenfresser', name: T('Weltenfresser'), col: '#9a6bff', hp: 6000, r: 62, spd: 55, pattern: 'devourer' }
 ];
 const EVENTS = [
   { id: 'bloom',   name: T('Planktonblüte'),        desc: T('Das Wasser leuchtet. Sammeln!'), at: 0 },
@@ -452,15 +468,26 @@ const INFO = {
   urchin: T('Kriecht langsam heran und schiesst regelmässig Stacheln in alle Richtungen.'),
   slime: T('Hinterlässt beim Tod eine Schleimpfütze, die dich stark verlangsamt.'),
   shark: T('Kreist um dich und stösst dann mit brutaler Wucht zu.'),
+  polyp: T('Wurzelt fast an Ort und Stelle und schiesst gezielte Dreiersalven.'),
+  spider: T('Springt dich aus der Distanz an. Der rote Kreis zeigt, wo sie landet.'),
+  firefish: T('Schnell und heiss: explodiert kurz nach dem Tod. Halte Abstand!'),
+  iceray: T('Gleitet in Wellen und schiesst Eissplitter, die dich verlangsamen.'),
+  voideye: T('Teleportiert sich neben dich und feuert sofort.'),
   healer: T('Begleitet die Königin der Tiefe, heilt sie und hält ihren Schild aufrecht. Töte alle Heiler, um den Schild zu brechen.')
 };
-const BOSS_INFO = { summon: T('Ruft ständig neue Treiblinge herbei.'), radial: T('Feuert Tintenringe in alle Richtungen.'), charge: T('Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.'), serpent: T('Schlängelt sich heran, ihr ganzer Körper ist gefährlich. Spuckt Giftfächer und stürmt immer wieder los.'), colossus: T('Umgeben von kreisenden Kristallsplittern. Feuert Spiralen aus Kristallgeschossen.'), eye: T('Hält Abstand und feuert Salven. Lädt einen Laserstrahl auf: Weiche der roten Linie aus!'), queen: T('Umgeben von Heilerfischen, die sie heilen und mit einem Schild schützen. Erst wenn alle Heiler tot sind, ist sie verwundbar. Lässt Tentakel aus der Tiefe schlagen, zieht dich mit einem Sog an, ruft Elite-Kreaturen und feuert Geschossringe.') };
+const BOSS_INFO = { summon: T('Ruft ständig neue Treiblinge herbei.'), radial: T('Feuert Tintenringe in alle Richtungen.'), charge: T('Zielt kurz, dann rammt er mit voller Wucht. Achte auf den Leuchtstreifen.'), serpent: T('Schlängelt sich heran, ihr ganzer Körper ist gefährlich. Spuckt Giftfächer und stürmt immer wieder los.'), colossus: T('Umgeben von kreisenden Kristallsplittern. Feuert Spiralen aus Kristallgeschossen.'), eye: T('Hält Abstand und feuert Salven. Lädt einen Laserstrahl auf: Weiche der roten Linie aus!'), queen: T('Umgeben von Heilerfischen, die sie heilen und mit einem Schild schützen. Erst wenn alle Heiler tot sind, ist sie verwundbar. Lässt Tentakel aus der Tiefe schlagen, zieht dich mit einem Sog an, ruft Elite-Kreaturen und feuert Geschossringe.'), hydra: T('Mehrere Köpfe feuern abwechselnd auf dich. Lässt Korallenspitzen aus dem Boden schiessen und ruft Polypen. Jedes Mal, wenn sie die Hälfte ihrer Leben verliert, wächst ein Kopf nach.'), magma: T('Rammt quer durch die Arena und hinterlässt brennende Lavapfützen. Dazwischen regnet es Meteore.'), frost: T('Eisiger Drache mit gefährlichem Körper. Frostatem verlangsamt dich, dazu Eisspitzen und Eiszapfenregen.'), devourer: T('Der letzte Wächter. Öffnet Schwerkraftbrunnen, teleportiert sich, ruft Leerenaugen und feuert Spiralen. Unter halben Leben wird er rasend.') };
 const ZONE_INFO = {
   'Lichtzone': T('Sonnenstrahlen reichen bis hierher. Ein ruhiger Anfang.'),
   'Dämmerzone': T('Das letzte Tageslicht verblasst.'),
   'Mitternachtszone': T('Ewige Nacht. Nur noch Biolumineszenz.'),
   'Abyssal': T('Eisige Kälte und seltsame Farben.'),
-  'Hadal': T('Heisse Quellen in den tiefsten Gräben der Welt.')
+  'Hadal': T('Heisse Quellen in den tiefsten Gräben der Welt.'),
+  'Kristallgraben': T('Glitzernde Kristallwände werfen dein Licht zurück.'),
+  'Echoschlund': T('Jedes Geräusch hallt endlos wider. Etwas lauscht.'),
+  'Korallenfriedhof': T('Ausgebleichte Riesenkorallen, zwischen denen neues Leben wuchert.'),
+  'Lavaschlund': T('Glühende Magma-Adern und kochendes Wasser.'),
+  'Eisabgrund': T('Gefrorene Strömungen. Hier wird selbst die Zeit langsam.'),
+  'Leerenmeer': T('Das Ende der bekannten Tiefe. Das Licht verschwindet einfach.')
 };
 const SKINS = [
   { id: 'classic', name: T('Klassisch'),     body: '#e6fdff', glow: '#c8fbff' },
@@ -497,6 +524,12 @@ const SKINS = [
   { id: 'rainbow', name: T('Regenbogen'),     body: '#ffffff', glow: '#ffffff', rainbow: true, sparkle: true },
   { id: 'admin',   name: 'Admin',             body: '#4a0710', glow: '#ff2b3d', fx: 'admin', tent: ['#8a0f1f', '#c0283f', '#5a0a14'] },
   { id: 'rush',    name: T('Tiefenrausch'),   body: '#e8fff4', glow: '#3dffb0', sparkle: true, innate: T('Doppelte Meter') },
+  { id: 'kelp',    name: T('Seegras'),     body: '#e6ffd9', glow: '#5fd36a', tent: ['#3fae55', '#5fd36a', '#2f8a44'] },
+  { id: 'coralskin', name: T('Koralle'),   body: '#ffd2c4', glow: '#ff7f6a', tent: ['#ff9f8a', '#ff7f6a', '#ffc2b0'] },
+  { id: 'lava',    name: T('Magmaqualle'),  body: '#2a120a', glow: '#ff5a1a', sparkle: true, tent: ['#ff5a1a', '#ff8a3d', '#c23a0a'] },
+  { id: 'rime',    name: T('Raureif'),      body: '#f0fbff', glow: '#9fe8ff', sparkle: true, tent: ['#bfefff', '#e8feff', '#9fe8ff'] },
+  { id: 'comet',   name: T('Sternschnuppe'), body: '#fff6e0', glow: '#ffd27a', sparkle: true, tent: ['#ffd27a', '#fff2b0', '#ffb35a'] },
+  { id: 'nova',    name: T('Supernova'),    body: '#ffffff', glow: '#ff9fe8', sparkle: true, tent: ['#ff9fe8', '#b58cff', '#7fe8ff'] },
   { id: 'blackhole', name: T('Schwarzes Loch'), body: '#000000', glow: '#9a6bff', fx: 'hole', tent: ['#6b4bd6', '#8a5cff', '#b58cff'] }
 ];
 const RAR = {
@@ -546,6 +579,12 @@ const SKIN_META = {
   rainbow: ['secret', 'Spektrum', 'Hinterlässt eine schädliche Regenbogenspur und wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls', 'Hinterlässt eine schädliche Regenbogenspur und wechselt alle 6 s die Farbe: Rot +40 % Schaden, Grün +3 Leben/s, Blau +25 % Tempo, Gelb +50 % Erfahrung, Violett 30 % schnellerer Puls'],
   admin:   ['admin', 'Unbesiegbar', 'Unendlich Leben, schiesst von Anfang an zielsuchende Schildblitze, besiegt jedes Monster mit einem Treffer und sinkt fünfmal so schnell. Keine Mutationen. Zählt nicht für Rekorde, Erfolge, Statistik und Perlen', 'Unendlich Leben, schiesst von Anfang an zielsuchende Schildblitze, besiegt jedes Monster mit einem Treffer und sinkt fünfmal so schnell. Keine Mutationen. Zählt nicht für Rekorde, Erfolge, Statistik und Perlen'],
   rush:    ['legend', 'Tiefenrausch', 'Doppelte Meter, +10 % Tempo', 'Doppelte Meter, +20 % Tempo, +20 % Erfahrung'],
+  kelp:    ['common', 'Tarnung', '7 % weniger Schaden', '14 % weniger Schaden'],
+  coralskin: ['rare', 'Splitter', '30 % Chance: Besiegte Gegner verschiessen 3 Splitter', '50 % Chance: Besiegte Gegner verschiessen 3 Splitter'],
+  lava:    ['epic', 'Lavaspur', 'Hinterlässt eine brennende Spur', 'Hinterlässt eine doppelt so heisse Spur'],
+  rime:    ['epic', 'Frostpuls', 'Der Puls friert Gegner mit 10 % Chance ein', 'Der Puls friert Gegner mit 20 % Chance ein'],
+  comet:   ['legend', 'Kometenhagel', 'Alle 4 s schlägt ein Komet bei einem Gegner ein', 'Alle 2,5 s schlägt ein Komet bei einem Gegner ein'],
+  nova:    ['myth', 'Sternenexplosion', 'Alle 10 s eine riesige Explosion um dich', 'Alle 7 s eine noch stärkere Explosion um dich'],
   blackhole: ['cosmic', 'Singularität', 'Zieht von Anfang an alles ein wie der Magnet und schiesst kleine schwarze Löcher, die Gegner in ihrer Nähe einsaugen und verletzen', 'Zieht von Anfang an alles ein wie der Magnet und schiesst kleine schwarze Löcher, die Gegner in ihrer Nähe einsaugen und verletzen']
 };
 SKINS.forEach(k => { const m = SKIN_META[k.id]; k.rar = m[0]; k.ab = T(m[1]); k.abd = [T(m[2]), T(m[3])]; });
@@ -611,7 +650,19 @@ const ACH = [
   { id: 'star5', name: T('Sammlerstück'), desc: T('Bringe 5 Skins aus der Luckybox auf ★3.'), pearls: 15, hard: true },
   { id: 'mythic', name: T('Mythenjäger'), desc: T('Ziehe einen mythischen Skin aus der Luckybox.'), pearls: 5, hard: true },
   { id: 'golden25', name: T('Goldgräber'), desc: T('Fange insgesamt 25 Goldquallen.'), pearls: 10, hard: true },
-  { id: 'time60', name: T('Unendliche Tiefe'), desc: T('Überlebe 60 Minuten in einem Tauchgang.'), pearls: 25, hard: true }
+  { id: 'time60', name: T('Unendliche Tiefe'), desc: T('Überlebe 60 Minuten in einem Tauchgang.'), pearls: 25, hard: true },
+  { id: 'w11', name: T('Am Rand der Leere'), desc: T('Erreiche Welt 11.'), pearls: 15, hard: true },
+  { id: 'w12', name: T('Jenseits der Leere'), desc: T('Erreiche Welt 12.'), pearls: 25, hard: true },
+  { id: 'devour', name: T('Weltenende'), desc: T('Besiege den Weltenfresser.'), pearls: 25, hard: true },
+  { id: 'hydra', name: T('Kopfjäger'), desc: T('Besiege die Korallenhydra.'), pearls: 10, hard: true },
+  { id: 'magma60', name: T('Vulkanausbruch'), desc: T('Besiege den Magmawal in unter 60 Sekunden Kampfzeit.'), pearls: 15, hard: true },
+  { id: 'frost', name: T('Eisbrecher'), desc: T('Besiege den Frostwyrm.'), pearls: 10, hard: true },
+  { id: 'd20000', name: T('Erdkern'), desc: T('Erreiche 20 000 m.'), pearls: 30, hard: true },
+  { id: 'k2500r', name: T('Vernichtung'), desc: T('Besiege 2500 Gegner in einem Tauchgang.'), pearls: 15, hard: true },
+  { id: 'newbox', name: T('Neue Strömung'), desc: T('Besitze Seegras, Koralle, Magmaqualle, Raureif, Sternschnuppe und Supernova.'), pearls: 15, hard: true },
+  { id: 'nova3', name: T('Sternenkind'), desc: T('Bringe die Supernova auf ★3.'), pearls: 20, hard: true },
+  { id: 'pearl1000', name: T('Perlenimperium'), desc: T('Sammle insgesamt 1000 Perlen.'), pearls: 15, hard: true },
+  { id: 'noskip', name: T('Ehrlicher Taucher'), desc: T('Erreiche Welt 9, ohne in einer späteren Welt zu starten.'), pearls: 20, hard: true }
 ];
 const ACTIONS = [
   { id: 'up', name: T('Nach oben') }, { id: 'down', name: T('Nach unten') }, { id: 'left', name: T('Nach links') }, { id: 'right', name: T('Nach rechts') },
@@ -664,9 +715,11 @@ const discovered = new Set(store.get('disc', []));
 const life = Object.assign({ runs: 0, kills: 0, goldens: 0, bossNames: [] }, store.get('life', {}));
 const achieved = new Set(store.get('ach', []));
 let skinId = store.get('skin', 'classic');
+let startMax = store.get('startMax', 1), startWorld = Math.min(store.get('startWorld', 1), startMax);
 const codes = new Set(store.get('codes', []));
-const CODE_HASH = { c6a3dfda6198033ac361f19b7b50b80e310ae8208dd8a65f3b4f8acdf89b80e6: 'arctic', '9e126aaf208ba3a0aa51720838b9064f1adcde28e9ab7f61c27fd0a949e9ef0a': 'blackhole', '8a90f12fd2561408d796ec3260a93b4cdb438663eaf208acc3b1a71c10b6ea65': 'siphon', '40cfc578ec675c0d521dd6b93bd9292d48b8b86b6bc8cdc46a67422d9c8af802': 'rainbow', '04ca1be509c07c9ed6d3ed4da15eb9d8cfd23ce34394c0f8a35c2a4644f7bf72': 'admin', dcf059f4718f5c1eb3ea130e5b66e36e8d86f0481f570b5d000fa2b0ab07d6de: 'pearls30', '39b0521346d0c898b256f9d74ce789885e66e079e659b0c0a77297884f1b2b0b': 'pearls100a', '790ebd38b0c8a2ab28c9f6ccc6cc051ec0ec042dd7de77cc6cab545cca0acfe6': 'pearls100b' };
+const CODE_HASH = { c6a3dfda6198033ac361f19b7b50b80e310ae8208dd8a65f3b4f8acdf89b80e6: 'arctic', '9e126aaf208ba3a0aa51720838b9064f1adcde28e9ab7f61c27fd0a949e9ef0a': 'blackhole', '8a90f12fd2561408d796ec3260a93b4cdb438663eaf208acc3b1a71c10b6ea65': 'siphon', '40cfc578ec675c0d521dd6b93bd9292d48b8b86b6bc8cdc46a67422d9c8af802': 'rainbow', '04ca1be509c07c9ed6d3ed4da15eb9d8cfd23ce34394c0f8a35c2a4644f7bf72': 'admin', dcf059f4718f5c1eb3ea130e5b66e36e8d86f0481f570b5d000fa2b0ab07d6de: 'pearls30', '788d985db394ebfc142e6f98cf9ce8a640776e46e20c17fa289e1068c216c31a': 'w3', '6d6f9e0272b8ce88eaac8907af8ed9fa5d8e0ea2337fccc5655bd95c15c66ed5': 'w5', '1bda961446a87f25dde3f7d945d0cc0905597ac261294822e8a9d15c2ac08409': 'w8', '7c932756c5bc2a59694a44dae579fcc84b5574f0e96478cb4d4e18c70d56e740': 'w11', '39b0521346d0c898b256f9d74ce789885e66e079e659b0c0a77297884f1b2b0b': 'pearls100a', '790ebd38b0c8a2ab28c9f6ccc6cc051ec0ec042dd7de77cc6cab545cca0acfe6': 'pearls100b' };
 // Belohnungs-Codes (einmalig): Perlen statt Skin
+const CODE_START = {w3: 3, w5: 5, w8: 8, w11: 11};
 const CODE_PEARLS = { pearls30: 30, pearls100a: 100, pearls100b: 100 };
 const CODE_RAR = ['arctic', 'cosmic', 'secret', 'admin'];
 const SPECTRUM = [[T('Rot'), '#ff4f5a', T('+40 % Schaden')], [T('Grün'), '#5dff8a', T('+3 Leben pro Sekunde')], [T('Blau'), '#5fa8ff', T('+25 % Tempo')], [T('Gelb'), '#ffd84f', T('+50 % Erfahrung')], [T('Violett'), '#b58cff', T('30 % schnellerer Puls')]];
@@ -686,6 +739,7 @@ function newPlayer() {
     dmgMul: 1, bossMul: 1, eliteMul: 1, elitePearl: 1, execute: 0, armor: 1, dodge: 0, pearlMag: 0,
     timeDmg: 0, depthDmg: 0, cards: 3, chainInt: 1.5, slowAura: 0, revive: 0, reviveHp: 0, novaMul: 0,
     frost: false, freezeT: 0, icicle: false, icicleT: 0, bh: false, bhT: 0,
+    shardCh: 0, trailDmg: 0, trailCol: null, rime: 0, cometInt: 0, cometT: 0, novaInt: 0, novaT: 0, novaDmg: 0, skipStart: 0,
     depthMul: 1, multi: 0, siphon: false, heartT: 0, rainbow: false, spec: 0, specT: 6, trailT: 0, god: false };
 }
 function reset() {
@@ -722,6 +776,7 @@ function banner(title, sub) {
 }
 function show(id, on) { $(id).hidden = !on; }
 function refreshMenu() {
+  $('worldBtn').hidden = startMax <= 1; $('worldBtn').textContent = F('Startwelt: {0}', startWorld);
   $('menuBest').textContent = best + ' m';
   $('menuBestKills').textContent = String(bestKills);
   $('menuLog').textContent = discovered.size + ' / ' + LOG_TOTAL;
@@ -926,6 +981,10 @@ function killEnemy(e) {
     if (life.bossNames.indexOf(e.def.key) < 0) life.bossNames.push(e.def.key);
     if (tut < 0 && !P.god) {
       if (e.def.key === 'Königin der Tiefe') unlock('queen');
+      if (e.def.key === 'Weltenfresser') unlock('devour');
+      if (e.def.key === 'Korallenhydra') unlock('hydra');
+      if (e.def.key === 'Frostwyrm') unlock('frost');
+      if (e.def.key === 'Magmawal' && runTime - (e.t0 || 0) < 60) unlock('magma60');
       if (e.cyc) unlock('awake');
       if (lastHit < (e.t0 || 0)) unlock('nohitboss');
     }
@@ -937,6 +996,8 @@ function killEnemy(e) {
   if (tut < 0 && e.t !== 'shrimp' && !e.small && Math.random() < (e.elite ? .035 * P.elitePearl : .0025) * P.pearlMul) dropPearl(e.x, e.y);
   if (e.t === 'puffer') for (let i = 0; i < 8; i++) shoot(e.x, e.y, i / 8 * TAU, 210, '#a6ff9e', 5, e.dmg * .7);
   if (e.t === 'slime') hazards.push({ k: 'slime', x: e.x, y: e.y, r: 70, life: 7, t: 0 });
+  if (e.t === 'firefish') hazards.push({ k: 'boom', x: e.x, y: e.y, r: 62, t: .35, dmg: e.dmg, col: '#ff8a3d' });
+  if (P.shardCh && Math.random() < P.shardCh) for (let i = 0; i < 3; i++) { const a = Math.random() * TAU; spores.push({ x: e.x, y: e.y, vx: Math.cos(a) * 380, vy: Math.sin(a) * 380, tg: null, life: .9 }); }
   if (e.t === 'crab' && !e.small) { spawnEnemy('crab', e.x - 12, e.y, true); spawnEnemy('crab', e.x + 12, e.y, true); }
 }
 function hurtPlayer(dmg) {
@@ -1050,6 +1111,13 @@ function start(tutorial) {
   tut = tutorial ? 0 : -1; tutData = { dist: 0, kills: 0, stepT: 0 };
   $('coach').hidden = !tutorial;
   if (tutorial) tutShow();
+  else if (startWorld > 1) {
+    // Direkt in einer späteren Welt starten: frühere Bosse gelten als besiegt, dafür gibt es Erfahrung für Mutationen
+    const wi = startWorld - 1; depth = worldStart(wi); gateCleared = wi - 1; P.skipStart = startWorld;
+    let lv = P.lvl, nx = P.next, tot = 0;
+    for (let k = 0; k < wi * 3; k++) { tot += nx; lv++; nx = Math.floor(7 + lv * 3 + lv * lv * .3); }
+    P.xp = tot;
+  }
   blurFocus();
 }
 function askStart() {
@@ -1134,13 +1202,21 @@ function checkAch() {
     if (P.lvl >= 50) unlock('lvl50');
     if (runTime >= 3600) unlock('time60');
     if (zoneIdx >= 7) unlock('w8');
-    if (d >= 1400 && runTime < 900) unlock('speed');
+    if (d >= 1400 && runTime < 900 && !P.skipStart) unlock('speed');
+    if (zoneIdx >= 10) unlock('w11');
+    if (zoneIdx >= 11) unlock('w12');
+    if (zoneIdx >= 8 && !P.skipStart) unlock('noskip');
+    if (d >= 20000) unlock('d20000');
+    if (kills >= 2500) unlock('k2500r');
     if (UPG.every(u => (P.ups[u.id] || 0) >= 1)) unlock('allmut');
   }
   if (life.kills >= 1000) unlock('k1000');
   if (life.kills >= 10000) unlock('k10000');
   if (life.kills >= 50000) unlock('k50000');
   if ((life.pearlsTotal || 0) >= 500) unlock('pearl500');
+  if ((life.pearlsTotal || 0) >= 1000) unlock('pearl1000');
+  if (['kelp', 'coralskin', 'lava', 'rime', 'comet', 'nova'].every(id => skinStar(id) >= 1)) unlock('newbox');
+  if (skinStar('nova') >= 3) unlock('nova3');
   if ((life.boxes || 0) >= 50) unlock('box50');
   if ((life.goldens || 0) >= 25) unlock('golden25');
   if (SKINS.filter(k => RAR[k.rar] && RAR[k.rar].w > 0 && skinStar(k.id) >= 3).length >= 5) unlock('star5');
@@ -1207,6 +1283,12 @@ function applySkin(p) {
     case 'siphon':  p.siphon = true; p.heartT = 1; break;
     case 'rainbow': p.rainbow = true; p.spec = 0; p.specT = 6; break;
     case 'admin':   p.god = true; p.depthMul = 5; p.spore = 3; p.multi = 1; p.sporeCol = '#ff2b3d'; break;
+    case 'kelp':    p.armor *= 1 - .07 * lv; break;
+    case 'coralskin': p.shardCh = lv === 1 ? .3 : .5; break;
+    case 'lava':    p.trailDmg = .3 * lv; p.trailCol = 'lava'; break;
+    case 'rime':    p.rime = .1 * lv; break;
+    case 'comet':   p.cometInt = lv === 1 ? 4 : 2.5; p.cometT = 2; break;
+    case 'nova':    p.novaInt = lv === 1 ? 10 : 7; p.novaDmg = lv === 1 ? 2.5 : 4; p.novaT = 4; break;
     case 'rush':    p.spd *= 1 + .1 * lv; if (lv === 2) p.xpMul *= 1.2; break;
     case 'arctic':  p.frost = true; p.freezeT = 3; p.icicle = true; p.icicleT = .8; break;
   }
@@ -1396,6 +1478,12 @@ function redeem() {
   if (!id) { msg.textContent = T('Dieser Code ist ungültig.'); msg.className = 'codemsg bad'; tone(160, .25, 'triangle', .08, .7); return; }
   if (codes.has(id)) { msg.textContent = T('Diesen Code hast du schon eingelöst.'); msg.className = 'codemsg bad'; return; }
   codes.add(id); store.set('codes', Array.from(codes));
+  if (CODE_START[id]) {
+    startMax = Math.max(startMax, CODE_START[id]); store.set('startMax', startMax); startWorld = startMax; store.set('startWorld', startWorld);
+    msg.textContent = F('Startwelt bis Welt {0} freigeschaltet! Wähle sie im Hauptmenü.', CODE_START[id]); msg.className = 'codemsg ok'; input.value = '';
+    toast(T('Startwelt freigeschaltet'), F('Du kannst jetzt bis Welt {0} direkt starten', startMax), 'gold');
+    initAudio(); arp([523, 659, 784, 1047], 80, 'sine', .07); refreshMenu(); return;
+  }
   if (CODE_PEARLS[id]) {
     pearls += CODE_PEARLS[id]; store.set('pearls', pearls);
     msg.textContent = F('+{0} Perlen gutgeschrieben!', CODE_PEARLS[id]); msg.className = 'codemsg ok'; input.value = '';
@@ -1436,7 +1524,10 @@ function portrait(kind, key) {
       const def = BOSSES.find(b => b.key === key);
       e = { t: 'boss', def, x: 0, y: 0, vx: 1, vy: 0, r: 17, col: def.col, flash: 0, ph: 0, st: 0, tm: 1, trail: [], ax: 1, ay: 0 };
       if (def.pattern === 'summon' || def.pattern === 'queen') cy = 34;
-      if (def.pattern === 'serpent') { e.x = 30; e.r = 12; for (let i = 0; i < 44; i++) e.trail.push(30 - i * 2.2, Math.sin(i * .25) * 10); }
+      if (def.pattern === 'magma') e.r = 13;
+      if (def.pattern === 'devourer') e.r = 18;
+      if (def.pattern === 'hydra') { e.r = 17; cy = 60; }
+      if (def.pattern === 'serpent' || def.pattern === 'frost') { e.x = 30; e.r = 12; for (let i = 0; i < 44; i++) e.trail.push(30 - i * 2.2, Math.sin(i * .25) * 10); }
       if (def.pattern === 'colossus') e.r = 13;
     } else {
       const Tt = TYPES[key];
@@ -1613,6 +1704,7 @@ $('boxBack').addEventListener('click', closeSub);
 $('langBtn').textContent = lang === 'en' ? '🌐 Deutsch' : '🌐 English';
 $('langBtn').addEventListener('click', () => { store.set('lang', lang === 'en' ? 'de' : 'en'); location.reload(); });
 $('endBtn').addEventListener('click', endRun);
+$('worldBtn').addEventListener('click', () => { startWorld = startWorld >= startMax ? 1 : startWorld + 1; store.set('startWorld', startWorld); refreshMenu(); });
 $('codeBtn').addEventListener('click', () => { openSub('code', 'menu'); $('codeInput').value = ''; $('codeMsg').textContent = ''; $('codeMsg').className = 'codemsg'; setTimeout(() => $('codeInput').focus(), 30); });
 $('codeBack').addEventListener('click', closeSub);
 $('codeGo').addEventListener('click', redeem);
@@ -1678,6 +1770,7 @@ function update(dt) {
       const rr = P.pulseR + e.r;
       if (!e.dead && d2(e.x, e.y, P.x, P.y) < rr * rr) {
         hitEnemy(e, P.pulseDmg);
+        if (P.rime && e.t !== 'boss' && !e.dead && Math.random() < P.rime) e.frozen = Math.max(e.frozen || 0, 1.5);
         if (e.t !== 'boss') { const dx = e.x - P.x, dy = e.y - P.y, d = Math.hypot(dx, dy) || 1; e.vx += dx / d * 140; e.vy += dy / d * 140; }
       }
     }
@@ -1723,16 +1816,37 @@ function update(dt) {
   if (P.rainbow) {
     P.specT -= dt;
     if (P.specT <= 0) { P.specT = 6; P.spec = (P.spec + 1) % 5; const sp = SPECTRUM[P.spec]; toast(sp[0], sp[2], 'event'); burst(P.x, P.y, sp[1], 20, 200); }
+  }
+  if (P.rainbow || P.trailDmg) {
     P.trailT -= dt;
     if (!rtrail.length || d2(rtrail[rtrail.length - 1].x, rtrail[rtrail.length - 1].y, P.x, P.y) > 64) rtrail.push({ x: P.x, y: P.y, life: 1.4 });
     if (P.trailT <= 0) {
       P.trailT = .3;
       const w = 16 + P.pulseR * .08;
-      for (const e of enemies) { if (e.dead) continue; for (let i = 0; i < rtrail.length; i += 2) { const rr = w + e.r; if (d2(e.x, e.y, rtrail[i].x, rtrail[i].y) < rr * rr) { hitEnemy(e, P.pulseDmg * .35); break; } } }
+      for (const e of enemies) { if (e.dead) continue; for (let i = 0; i < rtrail.length; i += 2) { const rr = w + e.r; if (d2(e.x, e.y, rtrail[i].x, rtrail[i].y) < rr * rr) { hitEnemy(e, P.pulseDmg * (P.trailDmg || .35)); break; } } }
     }
   }
   for (const p of rtrail) p.life -= dt;
   rtrail = rtrail.filter(p => p.life > 0);
+  // Kometenhagel (Sternschnuppe) und Sternenexplosion (Supernova): skalieren mit Stärkerer/Weiter/Schneller Puls
+  if (P.cometInt) {
+    P.cometT -= dt;
+    if (P.cometT <= 0) {
+      P.cometT = P.cometInt * P.pulseInt / 1.3;
+      const near = enemies.filter(e => !e.dead && d2(e.x, e.y, P.x, P.y) < 520 * 520);
+      if (near.length) { const tg = near[Math.floor(Math.random() * near.length)]; hazards.push({ k: 'comet', x: tg.x, y: tg.y, r: 70 * P.pulseR / 95, t: 0, dmg: P.pulseDmg * 3 }); }
+    }
+  }
+  if (P.novaInt) {
+    P.novaT -= dt;
+    if (P.novaT <= 0) {
+      P.novaT = P.novaInt * P.pulseInt / 1.3;
+      const R = 260 * P.pulseR / 95;
+      fx.push({ k: 'ring', x: P.x, y: P.y, r: R, t: 0, d: .7, col: '#ff9fe8' }); burst(P.x, P.y, '#ff9fe8', 40, 320); burst(P.x, P.y, '#ffffff', 20, 200);
+      for (const e of enemies) if (!e.dead && d2(e.x, e.y, P.x, P.y) < (R + e.r) ** 2) hitEnemy(e, P.pulseDmg * P.novaDmg);
+      P.inv = Math.max(P.inv, .5); shake = Math.max(shake, 8); tone(220, .6, 'sine', .08, 2.5);
+    }
+  }
   if (P.bh) {
     P.bhT -= dt;
     if (P.bhT <= 0 && enemies.length) {
@@ -1873,7 +1987,23 @@ function update(dt) {
         h.fired = c; burst(h.x, h.y, '#ff8a3d', 18, 260); tone(140, .35, 'sawtooth', .04, .6);
         if (d2(h.x, h.y, P.x, P.y) < (h.r + P.r) ** 2) hurtPlayer(14 * (1 + depth / 1200));
       }
-    } else if (h.k === 'slam') {
+    } else if (h.k === 'lava') {
+      h.life -= dt; if (h.life <= 0) h.dead = true;
+      if (d2(h.x, h.y, P.x, P.y) < (h.r + P.r * .5) ** 2) hurtPlayer(h.dmg);
+    } else if (h.k === 'well') {
+      h.life -= dt; if (h.life <= 0) h.dead = true;
+      const wd = Math.hypot(h.x - P.x, h.y - P.y) || 1;
+      if (wd < h.r) { P.x += (h.x - P.x) / wd * 120 * dt; P.y += (h.y - P.y) / wd * 120 * dt; if (wd < 32) hurtPlayer(h.dmg); }
+    } else if (h.k === 'comet') {
+      if (!h.hit && h.t >= .6) { h.hit = true; burst(h.x, h.y, '#ffd27a', 26, 260); tone(180, .3, 'triangle', .05, .5); for (const e of enemies) if (!e.dead && d2(e.x, e.y, h.x, h.y) < (h.r + e.r) ** 2) hitEnemy(e, h.dmg); }
+      if (h.t > 1) h.dead = true;
+    } else if (h.k === 'slam' || h.k === 'boom') {
+      if (!h.hit && h.t >= 1) {
+        h.hit = true; burst(h.x, h.y, h.col || '#c4a0ff', 26, 260); shake = Math.max(shake, 8); tone(90, .35, 'square', .06, .5);
+        if (d2(h.x, h.y, P.x, P.y) < (h.r + P.r) ** 2) hurtPlayer(h.dmg);
+      }
+      if (h.t > 1.45) h.dead = true;
+    } else if (h.k === '__old_slam') {
       if (!h.hit && h.t >= 1) {
         h.hit = true; burst(h.x, h.y, '#c4a0ff', 26, 260); shake = Math.max(shake, 8); tone(90, .35, 'square', .06, .5);
         if (d2(h.x, h.y, P.x, P.y) < (h.r + P.r) ** 2) hurtPlayer(h.dmg);
@@ -1966,6 +2096,34 @@ function update(dt) {
         steer(e, P.x, P.y, e.spd * sm, 1, dt); e.ph += dt * .8;
         if (e.tm <= 0) { e.tm = 3; for (let i = 0; i < 8; i++) shoot(e.x, e.y, i / 8 * TAU + e.ph, 190, '#9fd0ff', 5, e.dmg * .7); }
         break;
+      case 'polyp':
+        steer(e, P.x, P.y, e.spd * sm, 1, dt);
+        if (e.tm <= 0) { e.tm = 2.2; const a = Math.atan2(P.y - e.y, P.x - e.x); for (let i = -1; i <= 1; i++) shoot(e.x, e.y, a + i * .18, 200, '#ff9f8a', 6, e.dmg * .6); }
+        break;
+      case 'spider': {
+        const d = Math.hypot(P.x - e.x, P.y - e.y);
+        if (e.st === 0) { steer(e, P.x, P.y, e.spd * sm, 2, dt); if (d < 320 && e.tm <= 0) { e.st = 1; e.jt = 0; e.jx = e.x; e.jy = e.y; e.tx = P.x + P.vx * .4; e.ty = P.y + P.vy * .4; hazards.push({ k: 'boom', x: e.tx, y: e.ty, r: 60, t: 0, dmg: e.dmg, col: '#ff5a8a' }); } }
+        else { e.jt += dt; const q = Math.min(1, e.jt / 1); e.x = lerp(e.jx, e.tx, q); e.y = lerp(e.jy, e.ty, q) - Math.sin(q * Math.PI) * 80; e.vx = 0; e.vy = 0; e.air = q < 1; if (q >= 1) { e.st = 0; e.tm = 2.5; e.air = false; } }
+        break;
+      }
+      case 'firefish':
+        steer(e, P.x, P.y, e.spd * sm, 3, dt);
+        e.vx += Math.sin(runTime * 6 + e.ph) * 120 * dt;
+        break;
+      case 'iceray': {
+        steer(e, P.x, P.y, e.spd * sm, 1.5, dt);
+        const n = Math.hypot(e.vx, e.vy) || 1, w = Math.sin(runTime * 2 + e.ph) * 90;
+        e.x += -e.vy / n * w * dt; e.y += e.vx / n * w * dt;
+        if (e.tm <= 0) { e.tm = 2.6; const a = Math.atan2(P.y - e.y, P.x - e.x); for (let i = -1; i <= 1; i += 2) { shoot(e.x, e.y, a + i * .12, 230, '#dff8ff', 6, e.dmg * .55); eproj[eproj.length - 1].slow = 1.4; } }
+        break;
+      }
+      case 'voideye':
+        steer(e, P.x, P.y, e.spd * sm, 1, dt);
+        if (e.tm <= 0) {
+          if (e.st === 0) { e.st = 1; e.tm = .45; burst(e.x, e.y, '#9a6bff', 12, 140); const a = Math.random() * TAU; e.x = P.x + Math.cos(a) * 170; e.y = P.y + Math.sin(a) * 170; burst(e.x, e.y, '#9a6bff', 12, 140); }
+          else { e.st = 0; e.tm = 3.2; const a = Math.atan2(P.y - e.y, P.x - e.x); for (let i = 0; i < 3; i++) shoot(e.x, e.y, a + (i - 1) * .1, 260, '#b58cff', 6, e.dmg * .5); }
+        }
+        break;
       case 'boss': updateBoss(e, dt); break;
       default: steer(e, P.x, P.y, e.spd * sm, 2, dt);
     }
@@ -1974,7 +2132,7 @@ function update(dt) {
 
     // Berührung
     const rr = e.r + P.r * .8;
-    if (!(e.t === 'wraith' && e.st === 1) && d2(e.x, e.y, P.x, P.y) < rr * rr) {
+    if (!(e.t === 'wraith' && e.st === 1) && !e.air && d2(e.x, e.y, P.x, P.y) < rr * rr) {
       if (hurtPlayer(e.dmg) && P.thorns) hitEnemy(e, P.pulseDmg * P.thorns);
       if (e.t !== 'boss') { const dx = e.x - P.x, dy = e.y - P.y, d = Math.hypot(dx, dy) || 1; e.vx = dx / d * 260; e.vy = dy / d * 260; }
     }
@@ -1988,7 +2146,7 @@ function update(dt) {
   for (const p of eproj) {
     p.life -= dt; p.x += (p.vx + cur.x * .5) * dt; p.y += (p.vy + cur.y * .5) * dt;
     const rr = p.r + P.r * .7;
-    if (d2(p.x, p.y, P.x, P.y) < rr * rr) { hurtPlayer(p.dmg); p.life = 0; }
+    if (d2(p.x, p.y, P.x, P.y) < rr * rr) { if (hurtPlayer(p.dmg) && p.slow) P.slimed = Math.max(P.slimed || 0, p.slow); p.life = 0; }
   }
   eproj = eproj.filter(p => p.life > 0);
 
@@ -2055,6 +2213,7 @@ function update(dt) {
 function updateBoss(e, dt) {
   const def = e.def;
   if (['serpent', 'colossus', 'eye', 'queen'].indexOf(def.pattern) >= 0) { updateBossNew(e, dt); return; }
+  if (['hydra', 'magma', 'frost', 'devourer'].indexOf(def.pattern) >= 0) { updateBossDeep(e, dt); return; }
   if (def.pattern === 'summon') {
     steer(e, P.x, P.y, e.spd, 1, dt);
     if (e.tm <= 0) {
@@ -2151,6 +2310,62 @@ function updateBossNew(e, dt) {
     }
   }
 }
+function hydraHead(e, i, n) {
+  const a = -Math.PI / 2 + (i - (n - 1) / 2) * .62 + Math.sin(t * 1.5 + i) * .12, R = e.r * 1.6;
+  return [e.x + Math.cos(a) * R, e.y + Math.sin(a) * R * .9 - e.r * .2];
+}
+function updateBossDeep(e, dt) {
+  const def = e.def, rate = e.rate || 1, cyc = e.cyc || 0;
+  const dx = e.x - P.x, dy = e.y - P.y, d = Math.hypot(dx, dy) || 1;
+  if (def.pattern === 'hydra') {
+    if (!e.heads) e.heads = 3 + cyc;
+    if (!e.regrew && e.hp < e.max * .5) { e.regrew = true; e.heads++; toast(e.name, T('Ein neuer Kopf wächst nach!'), 'boss'); burst(e.x, e.y - e.r, '#ff7f6a', 30, 240); }
+    steer(e, P.x + dx / d * 260, P.y + dy / d * 260, e.spd, 1, dt);
+    e.sh = (e.sh || 0) - dt;
+    if (e.sh <= 0) { e.sh = .55 * rate; e.hi = ((e.hi || 0) + 1) % e.heads; const hp = hydraHead(e, e.hi, e.heads), a = Math.atan2(P.y - hp[1], P.x - hp[0]); for (let i = -1; i <= 1; i++) shoot(hp[0], hp[1], a + i * .14, 230, '#ff9f8a', 7, e.dmg * .4); }
+    if (e.tm <= 0) {
+      e.tm = 3.4 * rate; e.st = (e.st + 1) % 2;
+      if (e.st === 0) { const n = 6 + cyc * 2; for (let i = 0; i < n; i++) { const a = i / n * TAU + Math.random(); hazards.push({ k: 'slam', x: P.x + Math.cos(a) * 120, y: P.y + Math.sin(a) * 120, r: 48, t: 0, dmg: e.dmg * .7, col: '#ff9f8a' }); } hazards.push({ k: 'slam', x: P.x, y: P.y, r: 48, t: 0, dmg: e.dmg * .7, col: '#ff9f8a' }); tone(130, .5, 'square', .06, .6); }
+      else { for (let i = 0; i < 2 + cyc; i++) if (enemies.length < 240) { const a = Math.random() * TAU; spawnEnemy('polyp', e.x + Math.cos(a) * 140, e.y + Math.sin(a) * 140); } }
+    }
+  } else if (def.pattern === 'magma') {
+    if (e.st === 0) {
+      steer(e, P.x + Math.cos(runTime * .5) * 320, P.y + Math.sin(runTime * .5) * 320, e.spd, 1.2, dt);
+      if (e.tm <= 0) { e.st = 1; e.tm = .9; const a = Math.atan2(P.y - e.y, P.x - e.x); e.ax = Math.cos(a); e.ay = Math.sin(a); tone(70, .9, 'sawtooth', .08, 2); }
+    } else if (e.st === 1) {
+      const f = Math.pow(.05, dt); e.vx *= f; e.vy *= f;
+      if (e.tm <= 0) { e.st = 2; e.tm = .9; e.vx = e.ax * 720; e.vy = e.ay * 720; e.lv = 0; shake = Math.max(shake, 8); }
+    } else if (e.st === 2) {
+      e.lv -= dt; if (e.lv <= 0) { e.lv = .09; hazards.push({ k: 'lava', x: e.x, y: e.y, r: 44, t: 0, life: 6 + cyc * 2, dmg: e.dmg * .35 }); }
+      if (e.tm <= 0) { e.st = 3; e.tm = 1.6 * rate; for (let i = 0; i < 4 + cyc * 2; i++) hazards.push({ k: 'rock', x: P.x + rand(-200, 200), y: P.y + rand(-160, 160), r: 46, t: rand(-.5, 0) }); }
+    } else { const f = Math.pow(.1, dt); e.vx *= f; e.vy *= f; if (e.tm <= 0) { e.st = 0; e.tm = 2 * rate; } }
+  } else if (def.pattern === 'frost') {
+    steer(e, P.x + dx / d * 200 - dy / d * 140, P.y + dy / d * 200 + dx / d * 140, e.spd * (e.st === 1 ? .3 : 1), 1.4, dt);
+    const n = Math.hypot(e.vx, e.vy) || 1, w = Math.sin(runTime * 3 + e.ph) * 120;
+    e.x += -e.vy / n * w * dt; e.y += e.vx / n * w * dt;
+    e.trail.unshift(e.x, e.y); if (e.trail.length > 70) e.trail.length = 70;
+    for (let i = 8; i < e.trail.length; i += 8) { const rr = e.r * .7 + P.r * .7; if (d2(e.trail[i], e.trail[i + 1], P.x, P.y) < rr * rr) { if (hurtPlayer(e.dmg * .5)) P.slimed = 1; break; } }
+    if (e.st === 1) { e.br -= dt; e.sh = (e.sh || 0) - dt; if (e.sh <= 0) { e.sh = .07; const a = Math.atan2(P.y - e.y, P.x - e.x) + rand(-.35, .35); shoot(e.x, e.y, a, 280, '#dff8ff', 6, e.dmg * .3); eproj[eproj.length - 1].slow = 1.2; } if (e.br <= 0) e.st = 0; }
+    if (e.tm <= 0) {
+      e.tm = 2.8 * rate; e.cy = ((e.cy || 0) + 1) % 3;
+      if (e.cy === 0) { e.st = 1; e.br = 1.6; tone(900, 1.4, 'sine', .04, .3); }
+      else if (e.cy === 1) { const k = 8 + cyc * 2; for (let i = 0; i < k; i++) { const a = i / k * TAU; hazards.push({ k: 'slam', x: P.x + Math.cos(a) * 150, y: P.y + Math.sin(a) * 150, r: 44, t: 0, dmg: e.dmg * .6, col: '#bfefff' }); } }
+      else { for (let i = 0; i < 6 + cyc * 2; i++) hazards.push({ k: 'rock', x: P.x + rand(-220, 220), y: P.y + rand(-170, 170), r: 40, t: rand(-.6, 0), ice: true }); }
+    }
+  } else if (def.pattern === 'devourer') {
+    const rage = e.hp < e.max * .5 ? .65 : 1;
+    if (rage < 1 && !e.raged) { e.raged = true; toast(e.name, T('Der Weltenfresser wird rasend!'), 'boss'); shake = Math.max(shake, 18); tone(50, 1.5, 'sawtooth', .12, .6); }
+    steer(e, P.x + dx / d * 280, P.y + dy / d * 280, e.spd, 1, dt);
+    if (e.spir > 0) { e.spir -= dt; e.sh = (e.sh || 0) - dt; if (e.sh <= 0) { e.sh = .06; e.ph += .37; for (let k = 0; k < 3; k++) shoot(e.x, e.y, e.ph + k * TAU / 3, 190, '#b58cff', 7, e.dmg * .35); } }
+    if (e.tm <= 0) {
+      e.tm = 2.6 * rate * rage; e.cy = ((e.cy || 0) + 1) % 4;
+      if (e.cy === 0) { for (let i = 0; i < 2 + cyc; i++) hazards.push({ k: 'well', x: P.x + rand(-160, 160), y: P.y + rand(-160, 160), r: 170, t: 0, life: 5, dmg: e.dmg * .5 }); toast(T('Schwerkraftbrunnen'), T('Schwimm aus dem Sog!'), 'bad'); }
+      else if (e.cy === 1) { burst(e.x, e.y, '#9a6bff', 30, 260); const a = Math.atan2(P.vy || 1, P.vx || 0) + Math.PI; e.x = P.x + Math.cos(a) * 220; e.y = P.y + Math.sin(a) * 220; burst(e.x, e.y, '#9a6bff', 30, 260); const k = 16; for (let i = 0; i < k; i++) shoot(e.x, e.y, i / k * TAU, 170, '#9a6bff', 7, e.dmg * .4); tone(200, .4, 'sine', .07, .4); }
+      else if (e.cy === 2) { for (let i = 0; i < 2 + cyc + (rage < 1 ? 1 : 0); i++) if (enemies.length < 240) { const a = Math.random() * TAU; spawnEnemy('voideye', e.x + Math.cos(a) * 120, e.y + Math.sin(a) * 120); } }
+      else { e.spir = 2.2; }
+    }
+  }
+}
 function summonHealers(e) {
   const n = 5 + (e.cyc || 0);
   e.healers = [];
@@ -2225,6 +2440,23 @@ function render() {
       ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter';
       glow(sx, sy, h.r * .9, '#ff6a2a', (.25 + heat * .8) * fa);
       if (ph > 2.6) glow(sx, sy, h.r * 2.4, '#ffb65e', (1 - (ph - 2.6) / .4) * fa);
+    } else if (h.k === 'lava') {
+      const fa = Math.min(1, h.life);
+      ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = .55 * fa; ctx.fillStyle = '#3a0c02'; ctx.beginPath(); ctx.ellipse(sx, sy, h.r, h.r * .8, 0, 0, TAU); ctx.fill();
+      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter'; glow(sx, sy, h.r * 1.2, '#ff6a1a', (.4 + .15 * Math.sin(t * 6 + h.x)) * fa);
+    } else if (h.k === 'well') {
+      const fa = Math.min(1, h.life, h.t * 2);
+      ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = .35 * fa; ctx.fillStyle = '#05010c'; ctx.beginPath(); ctx.arc(sx, sy, h.r, 0, TAU); ctx.fill();
+      ctx.strokeStyle = '#9a6bff'; ctx.lineWidth = 2; for (let k = 0; k < 4; k++) { const q = (t * 1.2 + k / 4) % 1; ctx.globalAlpha = q * fa * .8; ctx.beginPath(); ctx.arc(sx, sy, h.r * (1 - q * .85), t * 2 + k, t * 2 + k + 3.5); ctx.stroke(); }
+      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter'; glow(sx, sy, 40, '#ff4f8b', .5 * fa);
+    } else if (h.k === 'comet') {
+      if (h.t < .6) { const q = h.t / .6, cx0 = sx + (1 - q) * 260, cy0 = sy - (1 - q) * 360; ctx.strokeStyle = 'rgba(255,210,122,.7)'; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(cx0, cy0); ctx.lineTo(cx0 + 50, cy0 - 70); ctx.stroke(); glow(cx0, cy0, 22, '#fff2b0', 1); }
+      else glow(sx, sy, h.r * 1.5, '#ffd27a', 1 - (h.t - .6) / .4);
+    } else if (h.k === 'boom') {
+      ctx.globalCompositeOperation = 'source-over';
+      if (h.t < 1) { const k = Math.max(0, h.t); ctx.globalAlpha = .12 + .2 * k; ctx.fillStyle = h.col; ctx.beginPath(); ctx.arc(sx, sy, h.r * k, 0, TAU); ctx.fill(); ctx.globalAlpha = .6 + .4 * Math.sin(t * 20); ctx.strokeStyle = h.col; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(sx, sy, h.r, 0, TAU); ctx.stroke(); }
+      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter';
+      if (h.t >= 1) glow(sx, sy, h.r * 1.6, h.col, 1 - (h.t - 1) / .45);
     } else if (h.k === 'slam') {
       ctx.globalCompositeOperation = 'source-over';
       if (h.t < 1) {
@@ -2233,11 +2465,11 @@ function render() {
         ctx.globalAlpha = .6 + .4 * Math.sin(t * 20); ctx.strokeStyle = '#ff5a8a'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(sx, sy, h.r, 0, TAU); ctx.stroke();
       } else {
         const k = (h.t - 1) / .45;
-        ctx.globalAlpha = 1 - k; ctx.fillStyle = '#c4a0ff'; ctx.strokeStyle = '#c4a0ff'; ctx.lineWidth = 7; ctx.lineCap = 'round';
+        ctx.globalAlpha = 1 - k; ctx.fillStyle = h.col || '#c4a0ff'; ctx.strokeStyle = h.col || '#c4a0ff'; ctx.lineWidth = 7; ctx.lineCap = 'round';
         for (let i = 0; i < 4; i++) { const a = i / 4 * TAU + h.x; ctx.beginPath(); ctx.moveTo(sx + Math.cos(a) * h.r * .9, sy + Math.sin(a) * h.r * .9); ctx.quadraticCurveTo(sx + Math.cos(a + .6) * h.r * .3, sy - h.r * (.6 + k * .4), sx + Math.cos(a) * 4, sy - h.r * (1 + k * .3)); ctx.stroke(); }
       }
       ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter';
-      if (h.t >= 1) glow(sx, sy, h.r * 1.4, '#c4a0ff', .6 * (1 - (h.t - 1) / .45));
+      if (h.t >= 1) glow(sx, sy, h.r * 1.4, h.col || '#c4a0ff', .6 * (1 - (h.t - 1) / .45));
     } else if (h.k === 'rock' && h.t < 1) {
       const k = h.t;
       ctx.globalCompositeOperation = 'source-over';
@@ -2314,7 +2546,7 @@ function render() {
     ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     for (let i = 1; i < rtrail.length; i++) {
       const a = rtrail[i - 1], b = rtrail[i];
-      ctx.strokeStyle = rgba(hsl((i * 22 + t * 120) % 360, 95, 62), Math.min(.55, b.life * .5)); ctx.lineWidth = 10 + P.pulseR * .05;
+      ctx.strokeStyle = rgba(P.trailCol ? hsl(12 + (i * 9 + t * 80) % 30, 100, 55) : hsl((i * 22 + t * 120) % 360, 95, 62), Math.min(.55, b.life * .5)); ctx.lineWidth = 10 + P.pulseR * .05;
       ctx.beginPath(); ctx.moveTo(a.x + ox, a.y + oy); ctx.lineTo(b.x + ox, b.y + oy); ctx.stroke();
     }
   }
@@ -2519,6 +2751,15 @@ function drawDeco(layer, id, x, y, r, bell, vx, vy) {
         for (let k = 0; k < 3; k++) { const q = (t * .8 + k / 3) % 1; ctx.globalAlpha = q; ctx.beginPath(); ctx.arc(x, y, r * (3.2 - q * 1.8), 0, TAU); ctx.stroke(); }
         break;
       case 'blackhole': drawDisk(x, y, r, 'back'); break;
+      case 'comet': {
+        let ax = -(vx || 0), ay = -(vy || 0); const n = Math.hypot(ax, ay); if (n < 20) { ax = -.6; ay = -.8; } else { ax /= n; ay /= n; }
+        const g = ctx.createLinearGradient(x, y, x + ax * r * 4, y + ay * r * 4); g.addColorStop(0, 'rgba(255,214,122,.75)'); g.addColorStop(1, 'rgba(255,214,122,0)');
+        ctx.strokeStyle = g; ctx.lineCap = 'round'; ctx.lineWidth = r * 1.4; ctx.beginPath(); ctx.moveTo(x, y - r * .3); ctx.lineTo(x + ax * r * 4, y + ay * r * 4 - r * .3); ctx.stroke(); break;
+      }
+      case 'nova':
+        ctx.lineWidth = 2;
+        for (let k = 0; k < 3; k++) { const q = (t * .7 + k / 3) % 1; ctx.strokeStyle = rgba(hsl((300 + k * 60) % 360, 95, 70), .5 * (1 - q)); ctx.beginPath(); ctx.arc(x, y - r * .2, r * (1.3 + q * 1.8), 0, TAU); ctx.stroke(); }
+        break;
       case 'admin':
         ctx.strokeStyle = 'rgba(255,43,61,' + (.35 + .2 * Math.sin(t * 4)) + ')'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y - r * .2, r * 2.1, 0, TAU); ctx.stroke();
         ctx.strokeStyle = 'rgba(255,207,90,.4)'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 8]); ctx.lineDashOffset = t * 30; ctx.beginPath(); ctx.arc(x, y - r * .2, r * 2.5, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
@@ -2619,6 +2860,25 @@ function drawDeco(layer, id, x, y, r, bell, vx, vy) {
         gl(x, y0 - s0 * .2, s0 * 2.2, '#ff2d6f', .6); break;
       }
       case 'blackhole': drawDisk(x, y, r, 'front'); break;
+      case 'kelp':
+        ctx.fillStyle = '#3fae55';
+        for (const sd of [-1, 1]) { ctx.beginPath(); ctx.ellipse(x + sd * r * .3, top - r * .25, r * .2, r * .55, sd * .5 + Math.sin(t * 2 + sd) * .15, 0, TAU); ctx.fill(); }
+        ctx.strokeStyle = '#2f8a44'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x - r * .6, y - bh * .3); ctx.quadraticCurveTo(x, y - bh * .6, x + r * .6, y - bh * .3); ctx.stroke(); break;
+      case 'coralskin':
+        ctx.strokeStyle = '#ff7f6a'; ctx.lineWidth = 2.2; ctx.lineCap = 'round';
+        [[-.4, -1], [0, -1.25], [.4, -1]].forEach(([a, h]) => { const bx = x + a * bw * .8; ctx.beginPath(); ctx.moveTo(bx, top + 2); ctx.lineTo(bx, top + h * r * .7); ctx.moveTo(bx, top + h * r * .35); ctx.lineTo(bx - r * .25, top + h * r * .6); ctx.moveTo(bx, top + h * r * .45); ctx.lineTo(bx + r * .25, top + h * r * .75); ctx.stroke(); });
+        break;
+      case 'lava':
+        ctx.save(); bellClip(x, y, bw, r);
+        ctx.strokeStyle = '#ff6a1a'; ctx.lineWidth = 1.8; ctx.globalAlpha = .7 + .3 * Math.sin(t * 4);
+        ctx.beginPath(); ctx.moveTo(x - bw, y - bh * .3); ctx.lineTo(x - bw * .4, y - bh * .6); ctx.lineTo(x, y - bh * .25); ctx.lineTo(x + bw * .5, y - bh * .7); ctx.lineTo(x + bw, y - bh * .4); ctx.moveTo(x - bw * .4, y - bh * .6); ctx.lineTo(x - bw * .2, top); ctx.stroke();
+        ctx.restore(); gl(x, y - bh * .5, r * 1.1, '#ff5a1a', .45); break;
+      case 'rime':
+        ctx.fillStyle = '#ffffff';
+        for (let i = 0; i < 9; i++) { const a = Math.PI + (i + .5) / 9 * Math.PI, px = x + Math.cos(a) * bw, py = y + Math.sin(a) * bh, L = r * (.25 + (i % 3) * .12); ctx.beginPath(); ctx.moveTo(px - 2, py); ctx.lineTo(px + Math.cos(a) * L, py + Math.sin(a) * L); ctx.lineTo(px + 2, py); ctx.fill(); }
+        gl(x, y - bh * .5, r, '#bfefff', .3); break;
+      case 'comet': ctx.fillStyle = '#fff2b0'; star4(x, y - bh * .45, r * .32); gl(x, y - bh * .45, r * .9, '#ffd27a', .7); break;
+      case 'nova': { const s0 = r * (.35 + .08 * Math.sin(t * 5)); ctx.fillStyle = '#ffffff'; star4(x, y - bh * .45, s0); gl(x, y - bh * .45, r * 1.3, '#ff9fe8', .8); break; }
       case 'siphon': {
         const s0 = r * .5, y0 = y - bh * .4, gap = 1.5 + Math.sin(t * 3) * .8;
         for (const sd of [-1, 1]) {
@@ -2656,6 +2916,10 @@ function emitDeco(dt) {
   if (id === 'rainbow' && Math.random() < dt * 14) add(x + rand(-16, 16), y + rand(-14, 10), rand(-25, 25), rand(-25, 25), .8, 2.2, rgbToHex(hsl(Math.floor(Math.random() * 12) * 30, 95, 65)));
   if (id === 'rush' && Math.random() < dt * 18) add(x + rand(-12, 12), y - 16, rand(-6, 6), rand(-160, -110), .5, 1.8, '#bfffe6');
   if (id === 'admin' && Math.random() < dt * 6) { const a = Math.random() * TAU; add(x + Math.cos(a) * 30, y + Math.sin(a) * 30 - 3, 0, -20, .6, 2, '#ff2b3d'); }
+  if (id === 'lava' && Math.random() < dt * 8) add(x + rand(-12, 12), y + 6, rand(-6, 6), rand(40, 80), .7, 2.4, Math.random() < .5 ? '#ff5a1a' : '#ffb35a');
+  if (id === 'rime' && Math.random() < dt * 8) add(x + rand(-20, 20), y + rand(-16, 10), rand(-10, 10), rand(10, 30), 1.1, 1.8, '#ffffff');
+  if (id === 'comet' && Math.random() < dt * 10) add(x + rand(-8, 8), y - 6, rand(-30, 30), rand(-30, 30), .5, 2, '#ffd27a');
+  if (id === 'kelp' && Math.random() < dt * 3) add(x + rand(-10, 10), y - 14, rand(-5, 5), rand(-35, -20), 1.2, 1.8, '#d9ffe0');
   if (id === 'heart' && Math.random() < dt * 2) add(x + rand(-8, 8), y - 10, rand(-8, 8), rand(-30, -15), 1, 2, '#ff6b95');
 }
 
@@ -2747,7 +3011,7 @@ function drawEnemy(e, sx, sy, ox, oy) {
     }
   }
   if (e.t === 'boss' && e.def.pattern === 'colossus') { const nS = 6 + (e.cyc || 0) * 2, R = r * 2.3; for (let i = 0; i < nS; i++) { const a = e.ph + i / nS * TAU; glow(sx + Math.cos(a) * R, sy + Math.sin(a) * R, 22, '#9ff6ff', .8); } }
-  if (e.t === 'boss' && e.def.pattern === 'serpent' && e.trail.length > 8) {
+  if (e.t === 'boss' && (e.def.pattern === 'serpent' || e.def.pattern === 'frost') && e.trail.length > 8) {
     ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = e.col;
     for (let i = e.trail.length - 2; i >= 6; i -= 4) { const q = i / e.trail.length; ctx.globalAlpha = .9 - q * .4; ctx.beginPath(); ctx.arc(e.trail[i] + ox, e.trail[i + 1] + oy, r * (.95 - q * .55), 0, TAU); ctx.fill(); }
     ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'lighter';
@@ -2810,6 +3074,37 @@ function drawEnemy(e, sx, sy, ox, oy) {
       for (let i = 0; i < 18; i++) { const q = i / 18 * TAU + e.ph, L = r * (1.8 + (i % 2) * .45); ctx.moveTo(Math.cos(q) * r * .7, Math.sin(q) * r * .7); ctx.lineTo(Math.cos(q) * L, Math.sin(q) * L); }
       ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, r * .85, 0, TAU); ctx.fill();
       break;
+    case 'polyp':
+      ctx.fillRect(-r * .25, 0, r * .5, r * 1.3);
+      ctx.beginPath(); ctx.arc(0, 0, r * .8, 0, TAU); ctx.fill();
+      ctx.lineWidth = 2.2; ctx.lineCap = 'round';
+      for (let i = 0; i < 8; i++) { const a = -Math.PI / 2 + (i - 3.5) * .32; ctx.beginPath(); ctx.moveTo(Math.cos(a) * r * .6, Math.sin(a) * r * .6); ctx.quadraticCurveTo(Math.cos(a) * r * 1.3 + Math.sin(t * 4 + i) * 3, Math.sin(a) * r * 1.3, Math.cos(a) * r * 1.8, Math.sin(a) * r * 1.8); ctx.stroke(); }
+      break;
+    case 'spider':
+      ctx.lineWidth = 2; ctx.lineCap = 'round';
+      for (const s of [-1, 1]) for (let i = 0; i < 4; i++) { const a = (i - 1.5) * .45, sw = Math.sin(t * 9 + i) * .15; ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(s * r * 1.3, -r * .9 + a * r, s * r * 1.9, r * .2 + (a + sw) * r * 1.3); ctx.stroke(); }
+      ctx.beginPath(); ctx.ellipse(0, 0, r * .85, r * .7, 0, 0, TAU); ctx.fill();
+      ctx.beginPath(); ctx.arc(0, -r * .75, r * .45, 0, TAU); ctx.fill();
+      break;
+    case 'firefish':
+      ctx.rotate(ang);
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 1.4, r * .75, 0, 0, TAU); ctx.fill();
+      ctx.beginPath(); for (let i = 0; i < 5; i++) { const bx = -r * .9 + i * r * .45; ctx.moveTo(bx, -r * .5); ctx.lineTo(bx + r * .2, -r * 1.5 - Math.sin(t * 8 + i) * 2); ctx.lineTo(bx + r * .4, -r * .5); ctx.moveTo(bx, r * .5); ctx.lineTo(bx + r * .2, r * 1.5 + Math.sin(t * 8 + i) * 2); ctx.lineTo(bx + r * .4, r * .5); } ctx.fill();
+      ctx.beginPath(); ctx.moveTo(-r * 1.2, 0); ctx.lineTo(-r * 2.1, -r * .7); ctx.lineTo(-r * 2.1, r * .7); ctx.fill();
+      break;
+    case 'iceray': {
+      ctx.rotate(ang);
+      const fl = Math.sin(t * 5 + e.ph) * .25;
+      ctx.beginPath(); ctx.moveTo(r * 1.1, 0); ctx.quadraticCurveTo(0, -r * (1.9 + fl), -r * .9, 0); ctx.quadraticCurveTo(0, r * (1.9 - fl), r * 1.1, 0); ctx.fill();
+      ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(-r * .8, 0); ctx.quadraticCurveTo(-r * 1.8, Math.sin(t * 4) * r * .4, -r * 2.6, 0); ctx.stroke();
+      break;
+    }
+    case 'voideye':
+      ctx.lineWidth = 2;
+      for (let i = 0; i < 6; i++) { const a = i / 6 * TAU + t; ctx.beginPath(); ctx.arc(0, 0, r * 1.5, a, a + .5); ctx.stroke(); }
+      ctx.fillStyle = '#12061f'; ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fill();
+      ctx.fillStyle = col; ctx.beginPath(); ctx.ellipse(0, 0, r * .25, r * .7, 0, 0, TAU); ctx.fill();
+      break;
     case 'healer':
       ctx.rotate(ang);
       ctx.beginPath(); ctx.ellipse(0, 0, r * 1.4, r * .8, 0, 0, TAU); ctx.moveTo(-r * 1.2, 0); ctx.lineTo(-r * 2.1, -r * .8); ctx.lineTo(-r * 2.1, r * .8); ctx.fill();
@@ -2861,6 +3156,30 @@ function drawEnemy(e, sx, sy, ox, oy) {
         ctx.lineWidth = 3; for (let i = 0; i < 10; i++) { const bx = (i - 4.5) * r * .26; ctx.beginPath(); ctx.moveTo(bx, r * .2); ctx.quadraticCurveTo(bx + Math.sin(t * 2 + i) * 14, r * 1.4, bx + Math.sin(t * 2 + i + 1) * 20, r * 2.4); ctx.stroke(); }
         crown(0, -r * .95, r * .62, r * .6, 4, '#ffd76a', '#9dff5d');
       }
+      else if (p === 'hydra') {
+        const nH = 3 + (e.cyc || 0);
+        ctx.lineWidth = r * .32; ctx.lineCap = 'round';
+        for (let i = 0; i < nH; i++) { const hp = hydraHead(e, i, nH); ctx.beginPath(); ctx.moveTo(0, r * .3); ctx.quadraticCurveTo((hp[0] - e.x) * .3, (hp[1] - e.y) * .9, hp[0] - e.x, hp[1] - e.y); ctx.stroke(); }
+        ctx.beginPath(); ctx.ellipse(0, r * .3, r * 1.1, r * .8, 0, 0, TAU); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,240,230,.55)'; ctx.lineWidth = 2; for (let i = 0; i < 5; i++) { ctx.beginPath(); ctx.moveTo((i - 2) * r * .4, r * .9); ctx.lineTo((i - 2) * r * .5, r * 1.6 + Math.sin(t * 2 + i) * 4); ctx.stroke(); }
+        for (let i = 0; i < nH; i++) { const hp = hydraHead(e, i, nH), hx = hp[0] - e.x, hy = hp[1] - e.y; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(hx, hy, r * .38, 0, TAU); ctx.fill(); ctx.fillStyle = '#2a0805'; ctx.beginPath(); ctx.arc(hx - r * .12, hy - r * .08, r * .08, 0, TAU); ctx.arc(hx + r * .12, hy - r * .08, r * .08, 0, TAU); ctx.fill(); }
+      }
+      else if (p === 'magma') {
+        ctx.rotate(ang);
+        ctx.beginPath(); ctx.ellipse(0, 0, r * 1.7, r * .9, 0, 0, TAU); ctx.moveTo(-r * 1.4, 0); ctx.lineTo(-r * 2.6, -r * 1.1); ctx.lineTo(-r * 2.3, 0); ctx.lineTo(-r * 2.6, r * 1.1); ctx.fill();
+        ctx.strokeStyle = '#ffd76a'; ctx.lineWidth = 2.5; ctx.globalAlpha = .6 + .4 * Math.sin(t * 6);
+        ctx.beginPath(); ctx.moveTo(-r * 1.2, -r * .2); ctx.lineTo(-r * .5, r * .2); ctx.lineTo(r * .2, -r * .3); ctx.lineTo(r * .9, r * .1); ctx.moveTo(-r * .6, -r * .6); ctx.lineTo(0, -r * .3); ctx.stroke(); ctx.globalAlpha = .9;
+        ctx.fillStyle = '#2a0802'; ctx.beginPath(); ctx.moveTo(r * 1.7, 0); ctx.lineTo(r * .9, r * .35); ctx.lineTo(r * 1.5, r * .5); ctx.fill();
+      }
+      else if (p === 'frost') { ctx.rotate(ang); ctx.beginPath(); ctx.ellipse(r * .2, 0, r * 1.5, r * .8, 0, 0, TAU); ctx.fill(); ctx.fillStyle = '#ffffff'; ctx.beginPath(); for (let i = 0; i < 4; i++) { const bx = -r * .6 + i * r * .45; ctx.moveTo(bx, -r * .6); ctx.lineTo(bx + r * .15, -r * 1.5); ctx.lineTo(bx + r * .3, -r * .6); } ctx.fill(); ctx.beginPath(); ctx.moveTo(r * .2, r * .6); ctx.lineTo(-r * .4, r * 1.3); ctx.lineTo(-r * .2, r * .5); ctx.fill(); }
+      else if (p === 'devourer') {
+        const ph2 = e.hp < e.max * .5;
+        ctx.globalAlpha = .95; ctx.fillStyle = '#05010c'; ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fill();
+        ctx.strokeStyle = ph2 ? '#ff4f8b' : col; ctx.lineWidth = 3;
+        for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.ellipse(0, 0, r * (1.3 + i * .25), r * (.45 + i * .1), t * (.4 + i * .2) * (i % 2 ? -1 : 1), 0, TAU); ctx.stroke(); }
+        ctx.fillStyle = ph2 ? '#ff4f8b' : col; for (let i = 0; i < 12; i++) { const a = i / 12 * TAU + t * .5; ctx.beginPath(); ctx.moveTo(Math.cos(a) * r * .55, Math.sin(a) * r * .55); ctx.lineTo(Math.cos(a + .1) * r * .95, Math.sin(a + .1) * r * .95); ctx.lineTo(Math.cos(a - .1) * r * .95, Math.sin(a - .1) * r * .95); ctx.fill(); }
+        const pa = P ? Math.atan2(P.y - e.y, P.x - e.x) : 0; ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(Math.cos(pa) * r * .2, Math.sin(pa) * r * .2, r * .16, 0, TAU); ctx.fill();
+      }
       else { ctx.rotate(ang); ctx.beginPath(); ctx.ellipse(0, 0, r * 1.8, r * .8, 0, 0, TAU); ctx.moveTo(-r * 1.5, 0); ctx.lineTo(-r * 2.8, -r); ctx.lineTo(-r * 2.8, r); ctx.fill(); ctx.fillStyle = '#1a0a05'; ctx.beginPath(); ctx.moveTo(r * 1.7, -r * .1); ctx.lineTo(r * .9, r * .2); ctx.lineTo(r * 1.6, r * .4); ctx.fill(); }
       break;
     }
@@ -2869,10 +3188,10 @@ function drawEnemy(e, sx, sy, ox, oy) {
   if (!hidden && e.t !== 'wraith') {
     ctx.globalAlpha = 1; ctx.fillStyle = '#04131c';
     const er = Math.max(2, r * .16), ex = e.t === 'boss' ? r * .5 : r * .35;
-    const one = { dart: ex + r * .3, angler: ex + r * .3, shark: r * 1.25, shrimp: r * .9, nautilus: r * .6, healer: r * .9 };
+    const one = { dart: ex + r * .3, angler: ex + r * .3, shark: r * 1.25, shrimp: r * .9, nautilus: r * .6, healer: r * .9, firefish: r * .85, iceray: r * .5 };
     if (e.t === 'mimic' && e.st === 0) ctx.globalAlpha = .55;
-    if (one[e.t] !== undefined || (e.t === 'boss' && (e.def.pattern === 'charge' || e.def.pattern === 'serpent'))) { ctx.beginPath(); ctx.arc(e.t === 'boss' ? r * (e.def.pattern === 'serpent' ? .9 : 1.1) : one[e.t], -r * .25, e.t === 'shrimp' ? Math.max(1.5, er * .8) : er, 0, TAU); ctx.fill(); }
-    else if (['squid', 'nettle', 'urchin'].indexOf(e.t) < 0 && !(e.t === 'boss' && ['radial', 'eye', 'colossus'].indexOf(e.def.pattern) >= 0)) { ctx.beginPath(); ctx.arc(-ex, -r * .15, er, 0, TAU); ctx.arc(ex, -r * .15, er, 0, TAU); ctx.fill(); }
+    if (one[e.t] !== undefined || (e.t === 'boss' && ['charge', 'serpent', 'magma', 'frost'].indexOf(e.def.pattern) >= 0)) { ctx.beginPath(); ctx.arc(e.t === 'boss' ? r * (e.def.pattern === 'serpent' || e.def.pattern === 'frost' ? .9 : e.def.pattern === 'magma' ? 1.3 : 1.1) : one[e.t], -r * .25, e.t === 'shrimp' ? Math.max(1.5, er * .8) : er, 0, TAU); ctx.fill(); }
+    else if (['squid', 'nettle', 'urchin', 'polyp', 'voideye'].indexOf(e.t) < 0 && !(e.t === 'boss' && ['radial', 'eye', 'colossus', 'hydra', 'devourer'].indexOf(e.def.pattern) >= 0)) { ctx.beginPath(); ctx.arc(-ex, -r * .15, er, 0, TAU); ctx.arc(ex, -r * .15, er, 0, TAU); ctx.fill(); }
   }
   ctx.restore();
   if (e.frozen > 0 || e.chill > 0) {

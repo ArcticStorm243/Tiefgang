@@ -154,7 +154,11 @@ Am **Ende jeder Welt** wartet ein Boss. Erst wenn er besiegt ist, geht es in die
 | 4 | Tiefseeschlange | Ganzer Körper verletzt, spuckt Giftfächer, stürmt los |
 | 5 | Kristallkoloss | Kreisende Kristallsplitter, Spiralen aus Geschossen |
 | 6 | Abgrundauge | Salven und ein Laserstrahl mit roter Warnlinie |
-| 7 | Königin der Tiefe | Endboss mit Heilerfischen und Schild, siehe unten |
+| 7 | Königin der Tiefe | Heilerfische und Schild, siehe unten |
+| 8 | Korallenhydra | Mehrere Köpfe feuern abwechselnd, Korallenspitzen, ruft Polypen, bei halben Leben wächst ein Kopf nach |
+| 9 | Magmawal | Rammt quer durch die Arena, hinterlässt Lavapfützen, Meteorregen |
+| 10 | Frostwyrm | Gefährlicher Körper, Frostatem (verlangsamt), Eisspitzen, Eiszapfenregen |
+| 11 | Weltenfresser | Schwerkraftbrunnen, Teleport, ruft Leerenaugen, Spiralfeuer, wird unter halben Leben rasend |
 
 ### Königin der Tiefe
 
@@ -173,7 +177,7 @@ Erst wenn **alle Heiler tot** sind, bricht der Schild, und die Königin ist **12
 
 Die Heilerfische erscheinen nur bei der Königin und stehen auch im Logbuch.
 
-Ab Welt 8 kommen die Bosse als **erwachte** Varianten zurück: mehr Leben, mehr Schaden, schnellere Angriffe und mehr Geschosse. Mit jeder weiteren Runde werden sie stärker.
+Ab Welt 12 kommen die Bosse als **erwachte** Varianten zurück: mehr Leben, mehr Schaden, schnellere Angriffe und mehr Geschosse. Mit jeder weiteren Runde werden sie stärker.
 
 ---
 
@@ -279,6 +283,35 @@ Diese Erfolge sind im Logbuch **rot** markiert und belohnen mit **Perlen**, insg
 | Mythenjäger | Einen mythischen Skin aus der Luckybox ziehen | 5 |
 | Goldgräber | 25 Goldquallen insgesamt | 10 |
 | Unendliche Tiefe | 60 Minuten in einem Tauchgang | 25 |
+
+---
+
+### Neue Welten, Monster und Erfolge (Welt 6 bis 11)
+
+Die Welten 6 (Kristallgraben) und 7 (Echoschlund) sind jetzt feste Welten. Dazu kommen **Korallenfriedhof** (Welt 8, ab 3600 m), **Lavaschlund** (Welt 9, ab 4300 m), **Eisabgrund** (Welt 10, ab 5000 m) und **Leerenmeer** (Welt 11, ab 5700 m). Danach folgen Zufallswelten.
+
+| Monster | Ab | Besonderheit |
+|---|---|---|
+| Abyssspinne | 3200 m | Springt dich an, der rote Kreis zeigt die Landestelle |
+| Korallenpolyp | 3600 m | Fast unbeweglich, gezielte Dreiersalven |
+| Feuerfisch | 4300 m | Explodiert kurz nach dem Tod |
+| Eisrochen | 5000 m | Eissplitter verlangsamen dich |
+| Leerenauge | 5700 m | Teleportiert sich neben dich und feuert |
+
+12 neue schwere Erfolge, zum Beispiel *Weltenende* (Weltenfresser besiegen), *Vulkanausbruch* (Magmawal in unter 60 s), *Erdkern* (20 000 m), *Ehrlicher Taucher* (Welt 9 ohne späteren Start) und *Sternenkind* (Supernova auf ★3).
+
+**Startwelt:** Mit geheimen Codes lässt sich im Hauptmenü eine spätere Startwelt wählen. Frühere Bosse gelten dann als besiegt, und du bekommst sofort Erfahrung für passende Mutationen.
+
+### Neue Luckybox-Skins
+
+| Skin | Seltenheit | Fähigkeit ★2 / ★3 |
+|---|---|---|
+| Seegras | Gewöhnlich | 7 % / 14 % weniger Schaden |
+| Koralle | Selten | 30 % / 50 % Chance, dass Besiegte 3 Splitter verschiessen |
+| Magmaqualle | Episch | Brennende Spur / doppelt so heiss |
+| Raureif | Episch | Puls friert mit 10 % / 20 % Chance ein |
+| Sternschnuppe | Legendär | Komet alle 4 s / 2,5 s |
+| Supernova | Mythisch | Explosion alle 10 s / 7 s, stärker auf ★3 |
 
 ---
 
